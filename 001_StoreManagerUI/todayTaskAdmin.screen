@@ -14,7 +14,6 @@
   <widgets xsi:type="model:HLine" id="18" x="17" y="362" width="343" measuredWidth="343" measuredHeight="6"/>
   <widgets xsi:type="model:HLine" id="19" x="17" y="394" width="343" measuredWidth="343" measuredHeight="6"/>
   <widgets xsi:type="model:HLine" id="34" x="15" y="253" width="343" measuredWidth="343" measuredHeight="6" lineStyle="dotted"/>
-  <widgets xsi:type="model:HLine" id="36" x="14" y="333" width="343" measuredWidth="343" measuredHeight="6"/>
   <widgets xsi:type="model:Tree" id="37" x="17" y="424" width="344" height="126" text="v 개인업무&#xA;[_] 보건증 갱신&#xA;[_] 통장사본 제출" measuredWidth="344" measuredHeight="126" selection="0">
     <items x="0" y="5" width="344" height="28" text="v 개인업무"/>
     <items x="0" y="33" width="344" height="28" text="[_] 보건증 갱신"/>
