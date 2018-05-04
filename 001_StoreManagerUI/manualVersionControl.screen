@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="3" x="100" y="100" width="360" height="640" text="manualVersionControl.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:TextField" id="6" x="182" y="232" width="195" text="버전별 매뉴얼 관리" measuredWidth="195" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="12" x="111" y="280" width="339" height="163" text="버전명, 마지막 수정 날짜, 기본으로 설정, 수정, 삭제&#xD;&#xA;(bg:lightyellow)|여름시즌, 2017.05.10.,  ,&#xD;&#xA;겨울시즌, 2016.02.17.,  , , &#xD;&#xA;초기, 2010.01.31.,  , ," measuredWidth="339" measuredHeight="163" rowHeight="40" horizontalLines="true" textAlignment="Center" verticalLines="false">
+    <font size="12px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="22" x="111" y="126" measuredWidth="32" measuredHeight="32" icon="list (large)" link="slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="23" x="252" y="129" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="24" x="136" y="234" measuredWidth="32" measuredHeight="32" icon="line-arrow-left (large)" link="manualManagementModify.screen"/>
+  <widgets xsi:type="model:Icon" id="25" x="382" y="332" width="21" height="21" measuredWidth="21" measuredHeight="21" icon="edit (large)"/>
+  <widgets xsi:type="model:Icon" id="26" x="382" y="370" width="21" height="21" measuredWidth="21" measuredHeight="21" icon="edit (large)"/>
+  <widgets xsi:type="model:Icon" id="27" x="382" y="409" width="21" height="21" measuredWidth="21" measuredHeight="21" icon="edit (large)"/>
+  <widgets xsi:type="model:Icon" id="28" x="421" y="331" width="18" height="18" measuredWidth="18" measuredHeight="18" icon="trash (large)"/>
+  <widgets xsi:type="model:Icon" id="29" x="421" y="371" width="18" height="18" measuredWidth="18" measuredHeight="18" icon="trash (large)"/>
+  <widgets xsi:type="model:Icon" id="30" x="421" y="411" width="18" height="18" measuredWidth="18" measuredHeight="18" icon="trash (large)"/>
+  <widgets xsi:type="model:Icon" id="31" x="312" y="328" width="25" height="23" measuredWidth="25" measuredHeight="23" foreground="#f90" icon="check (large)"/>
+  <widgets xsi:type="model:Icon" id="32" x="312" y="368" width="25" height="23" measuredWidth="25" measuredHeight="23" foreground="#ccc" icon="check (large)"/>
+  <widgets xsi:type="model:Icon" id="33" x="312" y="408" width="25" height="23" measuredWidth="25" measuredHeight="23" foreground="#ccc" icon="check (large)"/>
+  <widgets xsi:type="model:Alert" id="34" x="528" y="277" text="매뉴얼 삭제&#xA;'초기' 매뉴얼을 정말 삭제하시겠습니까?&#xA;OK,Cancel" measuredWidth="304" measuredHeight="132" icon="warning (large)">
+    <items x="114" y="93" width="80" height="24" text="OK"/>
+    <items x="209" y="93" width="80" height="24" text="Cancel"/>
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="35" x="438" y="332" width="90" height="45" measuredWidth="90" measuredHeight="45" left="false" right="true" direction="bottom"/>
+  <widgets xsi:type="model:TabbedPane" id="36" x="100" y="168" width="360" height="33" text="일일업무,매뉴얼,직원관리" measuredWidth="360" measuredHeight="33" selection="1" background="#0b5394">
+    <items x="10" y="0" width="81" height="36" text="일일업무"/>
+    <items x="91" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

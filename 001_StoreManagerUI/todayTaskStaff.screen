@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:WidgetGroup" id="70" x="34" y="32" measuredWidth="360" measuredHeight="640">
+    <widgets xsi:type="model:Window" id="47" width="360" height="640" text="todayTask_staff.html" measuredWidth="360" measuredHeight="640" layoutParams="anchor-left|anchor-top" verticalScrollbar="true"/>
+    <widgets xsi:type="model:Button" id="68" x="144" y="40" text="앱이름" measuredWidth="56" measuredHeight="25">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="71" x="7" y="37" measuredWidth="32" measuredHeight="32" icon="list (large)" link="slideMenuStaff.screen"/>
+    <widgets xsi:type="model:Icon" id="87" x="224" y="108" measuredWidth="32" measuredHeight="32" icon="calendar2 (large)"/>
+    <widgets xsi:type="model:Label" id="88" x="266" y="104" width="33" text="▷" measuredWidth="33" measuredHeight="40">
+      <font size="24px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="89" x="59" y="104" width="33" text="◁" measuredWidth="33" measuredHeight="40">
+      <font size="24px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="90" x="91" y="104" text="5월 2일(수)" measuredWidth="132" measuredHeight="40">
+      <font size="24px" bold="true"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="72" x="35" y="239" measuredWidth="343" measuredHeight="270">
+    <widgets xsi:type="model:Tree" id="73" x="2" width="340" height="270" text="v 오픈조&#xA;[-] 오픈 업무&#xA;[_] 쇼케이스 점등&#xA;[_] POS기 켜기&#xA;(bg:lightyellow)|[+] 재료 준비&#xA;> 미들조&#xA;> 마감조" measuredWidth="340" measuredHeight="270" border="false" selection="0">
+      <items x="0" y="5" width="340" height="28" text="v 오픈조"/>
+      <items x="0" y="33" width="340" height="28" text="[-] 오픈 업무"/>
+      <items x="0" y="61" width="340" height="28" text="[_] 쇼케이스 점등"/>
+      <items x="0" y="89" width="340" height="28" text="[_] POS기 켜기"/>
+      <items x="0" y="117" width="340" height="28" text="(bg:lightyellow)|[+] 재료 준비"/>
+      <items x="0" y="145" width="340" height="28" text="> 미들조"/>
+      <items x="0" y="173" width="340" height="28" text="> 마감조"/>
+      <font size="15px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:HLine" id="74" y="170" width="343" measuredWidth="343" measuredHeight="6"/>
+    <widgets xsi:type="model:HLine" id="75" y="114" width="343" measuredWidth="343" measuredHeight="6"/>
+    <widgets xsi:type="model:HLine" id="76" y="31" width="343" measuredWidth="343" measuredHeight="6" lineStyle="dotted"/>
+    <widgets xsi:type="model:HLine" id="77" y="140" width="343" measuredWidth="343" measuredHeight="6"/>
+  </widgets>
+  <widgets xsi:type="model:Tree" id="79" x="36" y="440" width="344" height="63" text="v 개인업무&#xA;(bg:lightyellow)|[_] 보건증 갱신" measuredWidth="344" measuredHeight="63" selection="0">
+    <items x="0" y="5" width="344" height="28" text="v 개인업무"/>
+    <items x="0" y="33" width="344" height="28" text="(bg:lightyellow)|[_] 보건증 갱신"/>
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="80" x="38" y="471" width="341" measuredWidth="341" measuredHeight="6" lineStyle="dotted"/>
+  <widgets xsi:type="model:TextField" id="81" x="34" y="204" width="344" text="오늘의 업무" measuredWidth="344" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="82" x="330" y="264" text="[ ]&#xA;" measuredWidth="35" measuredHeight="38" border="false" alpha="0">
+    <font size="20px"/>
+    <items x="0" y="2" width="35" height="34" text="[ ]"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="83" x="330" y="292" text="[x]&#xA;" measuredWidth="35" measuredHeight="38" border="false" alpha="0">
+    <font size="20px"/>
+    <items x="0" y="2" width="35" height="34" text="[x]"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="84" x="330" y="320" text="[ ]&#xA;" measuredWidth="35" measuredHeight="38" border="false" alpha="0">
+    <font size="20px"/>
+    <items x="0" y="2" width="35" height="34" text="[ ]"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="85" x="330" y="347" text="[x]&#xA;" measuredWidth="35" measuredHeight="38" border="false" alpha="0">
+    <font size="20px"/>
+    <items x="0" y="2" width="35" height="34" text="[x]"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="86" x="329" y="465" text="[x]&#xA;" measuredWidth="35" measuredHeight="38" border="false" alpha="0">
+    <font size="20px"/>
+    <items x="0" y="2" width="35" height="34" text="[x]"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="91" x="45" y="480" measuredWidth="16" measuredHeight="16" foreground="#f00" icon="bullet (small)"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

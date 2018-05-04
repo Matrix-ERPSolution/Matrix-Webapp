@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="1" x="100" y="96" width="360" height="640" text="certifyStaff.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Label" id="2" x="190" y="145" text="직원 회원 인증" measuredWidth="174" measuredHeight="43" textAlignment="Center">
+    <font size="25px"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="12" x="128" y="197" width="304" measuredWidth="304" measuredHeight="6" lineStyle="dotted"/>
+  <widgets xsi:type="model:Button" id="54" x="245" y="432" text="인증요청" measuredWidth="68" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="55" x="128" y="253" text="이력서" measuredWidth="42" measuredHeight="23">
+    <font size="12px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="56" x="128" y="288" text="보건증" measuredWidth="42" measuredHeight="23">
+    <font size="12px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="57" x="128" y="323" text="통장사본" measuredWidth="54" measuredHeight="23">
+    <font size="12px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="58" x="201" y="255" width="144" text="이력서.hwp" measuredWidth="144" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="59" x="201" y="290" width="144" text="보건증.jpg" measuredWidth="144" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="60" x="201" y="325" width="144" text="통장사본.jpg" measuredWidth="144" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="61" x="371" y="256" width="64" text="파일첨부" measuredWidth="64" measuredHeight="23">
+    <font size="10px"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="63" x="371" y="291" width="64" text="파일첨부" measuredWidth="64" measuredHeight="23">
+    <font size="10px"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="64" x="371" y="326" width="64" text="파일첨부" measuredWidth="64" measuredHeight="23">
+    <font size="10px"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="65" x="128" y="358" text="계좌번호" measuredWidth="54" measuredHeight="23">
+    <font size="12px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="66" x="280" y="360" width="154" text="70591011101507" measuredWidth="154" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="67" x="201" y="360" text="KEB하나" measuredWidth="71" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="68" x="123" y="155" measuredWidth="24" measuredHeight="24" icon="line-arrow-left (medium)" link="assets/certification.screen"/>
+  <widgets xsi:type="model:WidgetGroup" id="69" x="576" y="256" measuredWidth="360" measuredHeight="300">
+    <widgets xsi:type="model:Panel" id="70" width="360" height="300" measuredWidth="360" measuredHeight="300"/>
+    <widgets xsi:type="model:Table" id="71" x="31" y="108" width="297" height="157" text="지점명, 상세 도로명 주소, 상세 지번 주소&#xD;&#xA;" measuredWidth="297" measuredHeight="157" alternative="#eee">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Combo" id="72" x="40" y="62" width="113" text="시/도" measuredWidth="113" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Combo" id="73" x="160" y="62" width="105" text="구/군" measuredWidth="105" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="74" x="272" y="62" width="41" height="23" text="검색" measuredWidth="41" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="75" x="40" y="10" width="113" text="지점 검색" measuredWidth="113" measuredHeight="36" textAlignment="Center">
+      <font size="20px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:HLine" id="76" x="24" y="45" width="304" measuredWidth="304" measuredHeight="6"/>
+    <widgets xsi:type="model:List" id="77" x="40" y="84" width="113" height="147" text="서울&#xD;&#xA;경기&#xD;&#xA;인천&#xD;&#xA;충청&#xD;&#xA;대전&#xD;&#xA;전라&#xD;&#xA;광주&#xD;&#xA;경상&#xD;&#xA;부산" measuredWidth="113" measuredHeight="147" verticalScrollbar="true">
+      <font/>
+      <items x="0" y="2" width="96" height="21" text="서울"/>
+      <items x="0" y="23" width="96" height="21" text="경기"/>
+      <items x="0" y="44" width="96" height="21" text="인천"/>
+      <items x="0" y="65" width="96" height="21" text="충청"/>
+      <items x="0" y="86" width="96" height="21" text="대전"/>
+      <items x="0" y="107" width="96" height="21" text="전라"/>
+      <items x="0" y="128" width="96" height="21" text="광주"/>
+      <items x="0" y="149" width="96" height="21" text="경상"/>
+      <items x="0" y="170" width="96" height="21" text="부산"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="78" x="880" y="275" width="25" height="25" measuredWidth="25" measuredHeight="25" icon="delete (custom)"/>
+  <widgets xsi:type="model:Label" id="79" x="129" y="219" width="57" text="지점명" measuredWidth="57" measuredHeight="23">
+    <font bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="80" x="371" y="219" width="62" height="23" text="지점찾기" measuredWidth="62" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="81" x="201" y="219" measuredWidth="169" measuredHeight="23">
+    <widgets xsi:type="model:TextField" id="82" width="143" text="경찰병원역" measuredWidth="143" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="83" x="150" width="19" text="점" measuredWidth="19" measuredHeight="23">
+      <font bold="true"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="84" x="425" y="220" width="152" height="205" text="입력X, 버튼 누르면 팝업" measuredWidth="152" measuredHeight="205" left="false" right="true"/>
+  <widgets xsi:type="model:Label" id="88" x="167" y="217" text="*" measuredWidth="13" measuredHeight="29" foreground="#f00">
+    <font size="16px" bold="true"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="1" x="8" y="8" width="360" height="640" text="assignTask.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Accordion" id="2" x="16" y="224" width="342" height="169" text="▽청결관리&#xA;-&#xA;-&#xA;-&#xA;▷재고관리&#xA;▷시재관리&#xA;" measuredWidth="342" measuredHeight="169" selection="0">
+    <items x="0" y="2" width="342" height="32" text="▽청결관리"/>
+    <items x="0" y="34" width="342" height="32" text="-"/>
+    <items x="0" y="66" width="342" height="32" text="-"/>
+    <items x="0" y="98" width="342" height="32" text="-"/>
+    <items x="0" y="105" width="342" height="32" text="▷재고관리"/>
+    <items x="0" y="137" width="342" height="32" text="▷시재관리"/>
+    <font size="15px"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="5" x="18" y="202" text="오늘의 추천 업무" measuredWidth="121" measuredHeight="28">
+    <font size="14px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="8" x="45" y="531" width="265" text="연진이 생일 케이크 사오기" measuredWidth="265" measuredHeight="25" background="#fff8d7">
+    <font size="13px"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="9" x="49" y="256" width="275" height="72" text="(bg:lightyellow)|쇼케이스 얼룩 제거               D-1&#xA;(bg:lightyellow)|아이스크림 기계 청소            D-7&#xA;냉장고 성에 제거                  D-9" measuredWidth="275" measuredHeight="72">
+    <font size="13px"/>
+    <items x="0" y="2" width="275" height="23" text="(bg:lightyellow)|쇼케이스 얼룩 제거               D-1"/>
+    <items x="0" y="25" width="275" height="23" text="(bg:lightyellow)|아이스크림 기계 청소            D-7"/>
+    <items x="0" y="48" width="275" height="23" text="냉장고 성에 제거                  D-9"/>
+  </widgets>
+  <widgets xsi:type="model:Callout" id="13" x="326" y="230" width="22" height="21" text="2" measuredWidth="22" measuredHeight="21">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Accordion" id="16" x="16" y="458" width="342" height="33" text="▷매뉴얼 목록" measuredWidth="342" measuredHeight="33" selection="0">
+    <items x="0" y="2" width="342" height="32" text="▷매뉴얼 목록"/>
+    <font size="15px"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="17" x="18" y="403" text="매뉴얼에서 선택하기" measuredWidth="146" measuredHeight="28">
+    <font size="14px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="20" x="18" y="504" text="직접 입력하기" measuredWidth="101" measuredHeight="28">
+    <font size="14px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Callout" id="21" x="324" y="506" width="22" height="21" text="1" measuredWidth="22" measuredHeight="21">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="22" x="15" y="562" width="284" text="업무를 입력하세요." measuredWidth="284" measuredHeight="28">
+    <font size="15px"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="23" x="304" y="562" text="추가" measuredWidth="50" measuredHeight="30" background="#ccc">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="27" x="49" y="610" text="총      가지 업무를 배정합니다." measuredWidth="215" measuredHeight="28">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Callout" id="28" x="70" y="613" width="22" height="21" text="3" measuredWidth="22" measuredHeight="21">
+    <font size="13px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="47" x="385" y="8" width="360" height="640" text="assignTask.html" measuredWidth="360" measuredHeight="640" value="75"/>
+  <widgets xsi:type="model:Accordion" id="66" x="399" y="381" width="328" height="100" text="▽파트별&#xD;&#xA;▷개인별" measuredWidth="328" measuredHeight="100" selection="0">
+    <items x="0" y="2" width="328" height="32" text="▽파트별"/>
+    <items x="0" y="68" width="328" height="32" text="▷개인별"/>
+    <font size="15px"/>
+  </widgets>
+  <widgets xsi:type="model:ButtonBar" id="67" x="431" y="413" width="264" height="35" text="오픈조, 미들조, 마감조" measuredWidth="264" measuredHeight="35" selection="0">
+    <font size="15px"/>
+    <items x="0" y="0" width="87" height="35" text="오픈조"/>
+    <items x="87" y="0" width="86" height="35" text="미들조"/>
+    <items x="173" y="0" width="91" height="35" text="마감조"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="69" x="399" y="347" text="담당자 지정하기" measuredWidth="116" measuredHeight="28">
+    <font size="14px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Callout" id="70" x="697" y="387" width="22" height="21" text="1" measuredWidth="22" measuredHeight="21" background="#cfe2f3">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="74" x="468" y="599" width="93" text="배정하기" measuredWidth="93" measuredHeight="30" background="#ccc">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="78" x="459" y="203" text="총      가지 업무를 배정합니다." measuredWidth="215" measuredHeight="28">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Callout" id="79" x="481" y="205" width="22" height="21" text="3" measuredWidth="22" measuredHeight="21">
+    <font size="13px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="81" x="386" y="339" width="359" measuredWidth="359" measuredHeight="6"/>
+  <widgets xsi:type="model:Label" id="82" x="463" y="496" text="총      가지 파트에 배정합니다." measuredWidth="215" measuredHeight="28">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="84" x="390" y="486" width="352" measuredWidth="352" measuredHeight="6"/>
+  <widgets xsi:type="model:HLine" id="85" x="390" y="574" width="353" measuredWidth="353" measuredHeight="6"/>
+  <widgets xsi:type="model:Callout" id="86" x="485" y="499" width="22" height="21" text="1" measuredWidth="22" measuredHeight="21" background="#cfe2f3">
+    <font size="15px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="87" x="582" y="599" text="취소" measuredWidth="50" measuredHeight="30">
+    <font size="15px"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="88" x="445" y="255" width="265" height="71" text="(bg:lightyellow)|쇼케이스 얼룩 제거                     D-1&#xA;(bg:lightyellow)|아이스크림 기계 청소                   D-7&#xA;(bg:lightyellow)|연진이 생일 케이크 사오기" measuredWidth="265" measuredHeight="71">
+    <font size="13px"/>
+    <items x="0" y="2" width="265" height="23" text="(bg:lightyellow)|쇼케이스 얼룩 제거                     D-1"/>
+    <items x="0" y="25" width="265" height="23" text="(bg:lightyellow)|아이스크림 기계 청소                   D-7"/>
+    <items x="0" y="48" width="265" height="23" text="(bg:lightyellow)|연진이 생일 케이크 사오기"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="91" x="421" y="256" width="22" height="70" text="&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" measuredWidth="22" measuredHeight="70" horizontalLines="true" verticalLines="false" header="false">
+    <font size="13px"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="92" x="419" y="236" text="중요" measuredWidth="30" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="93" x="424" y="261" measuredWidth="16" measuredHeight="16" foreground="#f00" icon="bullet (small)"/>
+  <widgets xsi:type="model:Icon" id="94" x="424" y="306" measuredWidth="16" measuredHeight="16" foreground="#f00" icon="bullet (small)"/>
+  <widgets xsi:type="model:ButtonBar" id="95" x="514" y="525" width="88" height="35" text="오픈조" measuredWidth="88" measuredHeight="35" selection="0">
+    <font size="15px"/>
+    <items x="0" y="0" width="87" height="35" text="오픈조"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="97" x="17" y="32" width="30" measuredWidth="30" measuredHeight="32" icon="list (large)" link="slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="98" x="152" y="35" width="53" text="앱이름" measuredWidth="53" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="99" x="386" y="76" width="357" height="33" text="일일업무,매뉴얼,직원관리" measuredWidth="357" measuredHeight="33" selection="0" background="#0b5394">
+    <items x="10" y="0" width="81" height="36" text="일일업무"/>
+    <items x="91" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="101" x="8" y="164" width="358" text="업무 배정" measuredWidth="358" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="106" x="96" y="112" text="5월 3일(목)" measuredWidth="168" measuredHeight="50">
+    <font size="30px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="113" x="386" y="164" width="357" text="업무 배정" measuredWidth="357" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="114" x="474" y="112" text="5월 3일(목)" measuredWidth="168" measuredHeight="50">
+    <font size="30px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="115" x="8" y="599" width="360" measuredWidth="360" measuredHeight="6"/>
+  <widgets xsi:type="model:Icon" id="116" x="269" y="608" measuredWidth="32" measuredHeight="32" icon="submenu (large)">
+    <note>클릭하면 다음단계로.</note>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="117" x="19" y="430" width="296" text="업무 검색" measuredWidth="296" measuredHeight="28">
+    <font size="15px"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="122" x="319" y="430" measuredWidth="30" measuredHeight="27">
+    <widgets xsi:type="model:Panel" id="118" width="30" height="27" measuredWidth="30" measuredHeight="27"/>
+    <widgets xsi:type="model:Icon" id="119" x="6" y="3" width="20" height="22" measuredWidth="20" measuredHeight="22" icon="find (large)"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="120" x="8" y="399" width="344" measuredWidth="344" measuredHeight="6" foreground="#999" lineStyle="dotted"/>
+  <widgets xsi:type="model:HLine" id="121" x="9" y="499" width="344" measuredWidth="344" measuredHeight="6" foreground="#999" lineStyle="dotted"/>
+  <widgets xsi:type="model:Icon" id="125" x="399" y="32" width="30" measuredWidth="30" measuredHeight="32" icon="list (large)" link="slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="126" x="534" y="35" width="53" text="앱이름" measuredWidth="53" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="127" x="8" y="76" width="360" height="33" text="일일업무,매뉴얼,직원관리" measuredWidth="360" measuredHeight="33" selection="0" background="#0b5394">
+    <items x="10" y="0" width="81" height="36" text="일일업무"/>
+    <items x="91" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

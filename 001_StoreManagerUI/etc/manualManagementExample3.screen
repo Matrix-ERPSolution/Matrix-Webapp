@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="66" x="8" y="8" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="67" x="231" y="182" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="68" x="290" y="182" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="69" x="35" y="225" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="70" width="313" height="369" text="▽홀&#xD;&#xA;▷2층 홀&#xD;&#xA;▷테라스&#xD;&#xA;▷주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="0">
+      <items x="0" y="2" width="313" height="25" text="▽홀"/>
+      <items x="0" y="244" width="313" height="25" text="▷2층 홀"/>
+      <items x="0" y="269" width="313" height="25" text="▷테라스"/>
+      <items x="0" y="294" width="313" height="25" text="▷주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Button" id="71" x="295" y="605" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="72" x="236" y="605" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="73" x="35" y="187" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="74" x="300" y="132" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="75" x="119" y="130" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="76" x="8" y="84" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="77" x="18" y="41" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="78" x="159" y="44" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="80" x="319" y="229" measuredWidth="25" measuredHeight="23">
+    <widgets xsi:type="model:Icon" id="81" width="25" height="23" measuredWidth="25" measuredHeight="23" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="85" x="380" y="8" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="95" x="663" y="605" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="96" x="604" y="605" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="99" x="668" y="132" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="100" x="487" y="130" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="101" x="376" y="84" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="102" x="386" y="41" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="103" x="527" y="44" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="180" x="604" y="182" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="181" x="663" y="182" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="182" x="408" y="187" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Accordion" id="190" x="403" y="225" width="313" height="369" text="▽홀&#xD;&#xA;▷2층 홀&#xD;&#xA;▷테라스&#xD;&#xA;▷주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="0">
+    <items x="0" y="2" width="313" height="25" text="▽홀"/>
+    <items x="0" y="244" width="313" height="25" text="▷2층 홀"/>
+    <items x="0" y="269" width="313" height="25" text="▷테라스"/>
+    <items x="0" y="294" width="313" height="25" text="▷주방"/>
+    <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+    <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="217" x="51" y="253" height="212" measuredWidth="291" measuredHeight="212">
+    <widgets xsi:type="model:Accordion" id="218" width="291" height="212" text="▽청소&#xA;▷재고관리&#xA;" measuredWidth="291" measuredHeight="212" selection="0">
+      <items x="0" y="2" width="291" height="25" text="▽청소"/>
+      <items x="0" y="187" width="291" height="25" text="▷재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="219" x="263" y="2" width="24" height="18" measuredWidth="24" measuredHeight="18" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="65" x="51" y="281" width="291" height="66" text="홀 테이블 닦기, 1시간마다&#xD;&#xA;쓰레기봉투 교체, 3시간마다&#xD;&#xA;홀 쓰레기 줍고 닦기, 마감 시&#xD;&#xA;&#xD;&#xA;" measuredWidth="291" measuredHeight="66" selection="3" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+    <note>매뉴얼 삭제</note>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="250" x="421" y="253" width="290" measuredWidth="290" measuredHeight="150">
+    <widgets xsi:type="model:Accordion" id="251" width="290" height="150" text="▷청소&#xA;▽재고관리&#xA;" measuredWidth="290" measuredHeight="150" selection="1">
+      <items x="0" y="2" width="290" height="25" text="▷청소"/>
+      <items x="0" y="27" width="290" height="25" text="▽재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="252" x="261" y="1" width="24" height="12" measuredWidth="24" measuredHeight="12" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="249" x="424" y="303" width="287" text="소모품 채우기, 3시간마다" measuredWidth="287" measuredHeight="25" selection="3" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+    <note>매뉴얼 삭제</note>
+  </widgets>
+  <widgets xsi:type="model:Window" id="254" x="748" y="6" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="255" x="971" y="180" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="256" x="1030" y="180" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="257" x="775" y="223" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="258" width="313" height="369" text="▷홀&#xD;&#xA;▽2층 홀&#xD;&#xA;▷테라스&#xD;&#xA;▷주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="1">
+      <items x="0" y="2" width="313" height="25" text="▷홀"/>
+      <items x="0" y="27" width="313" height="25" text="▽2층 홀"/>
+      <items x="0" y="269" width="313" height="25" text="▷테라스"/>
+      <items x="0" y="294" width="313" height="25" text="▷주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Button" id="259" x="1035" y="603" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="260" x="976" y="603" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="261" x="775" y="185" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="262" x="1040" y="130" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="263" x="859" y="128" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="264" x="748" y="82" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="265" x="758" y="39" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="266" x="899" y="42" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="267" x="1059" y="230" measuredWidth="25" measuredHeight="23">
+    <widgets xsi:type="model:Icon" id="268" width="25" height="23" measuredWidth="25" measuredHeight="23" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="269" x="1120" y="6" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="270" x="1403" y="603" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="271" x="1344" y="603" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="272" x="1408" y="130" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="273" x="1227" y="128" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="274" x="1116" y="82" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="275" x="1126" y="39" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="276" x="1267" y="42" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="277" x="1344" y="180" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="278" x="1403" y="180" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="279" x="1148" y="185" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="289" x="1149" y="225" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="290" width="313" height="369" text="▷홀&#xD;&#xA;▽2층 홀&#xD;&#xA;▷테라스&#xD;&#xA;▷주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="1">
+      <items x="0" y="2" width="313" height="25" text="▷홀"/>
+      <items x="0" y="27" width="313" height="25" text="▽2층 홀"/>
+      <items x="0" y="269" width="313" height="25" text="▷테라스"/>
+      <items x="0" y="294" width="313" height="25" text="▷주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="281" x="791" y="275" measuredWidth="291" measuredHeight="212">
+    <widgets xsi:type="model:Accordion" id="282" width="291" height="212" text="▽청소&#xA;▷재고관리&#xA;" measuredWidth="291" measuredHeight="212" selection="0">
+      <items x="0" y="2" width="291" height="25" text="▽청소"/>
+      <items x="0" y="187" width="291" height="25" text="▷재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="283" x="263" y="2" width="24" height="18" measuredWidth="24" measuredHeight="18" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="284" x="791" y="303" width="291" height="66" text="홀 테이블 닦기, 2시간마다&#xD;&#xA;쓰레기봉투 교체, 3시간마다&#xD;&#xA;홀 쓰레기 줍고 닦기, 마감 시&#xD;&#xA;&#xD;&#xA;" measuredWidth="291" measuredHeight="66" selection="3" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+    <note>매뉴얼 삭제</note>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="285" x="1161" y="275" measuredWidth="290" measuredHeight="150">
+    <widgets xsi:type="model:Accordion" id="286" width="290" height="150" text="▷청소&#xA;▽재고관리&#xA;" measuredWidth="290" measuredHeight="150" selection="1">
+      <items x="0" y="2" width="290" height="25" text="▷청소"/>
+      <items x="0" y="27" width="290" height="25" text="▽재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="287" x="261" y="1" width="24" height="12" measuredWidth="24" measuredHeight="12" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="288" x="1164" y="325" width="287" text="소모품 채우기, 3시간마다" measuredWidth="287" measuredHeight="25" selection="3" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+    <note>매뉴얼 삭제</note>
+  </widgets>
+  <widgets xsi:type="model:Window" id="291" x="12" y="656" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="292" x="235" y="830" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="293" x="294" y="830" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="294" x="39" y="873" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="295" width="313" height="369" text="▷홀&#xD;&#xA;▷2층 홀&#xD;&#xA;▽테라스&#xD;&#xA;▷주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="2">
+      <items x="0" y="2" width="313" height="25" text="▷홀"/>
+      <items x="0" y="27" width="313" height="25" text="▷2층 홀"/>
+      <items x="0" y="52" width="313" height="25" text="▽테라스"/>
+      <items x="0" y="294" width="313" height="25" text="▷주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Button" id="296" x="299" y="1253" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="297" x="240" y="1253" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="298" x="39" y="835" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="299" x="304" y="780" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="300" x="123" y="778" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="301" x="12" y="732" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="302" x="22" y="689" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="303" x="163" y="692" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="304" x="323" y="880" measuredWidth="25" measuredHeight="23">
+    <widgets xsi:type="model:Icon" id="305" width="25" height="23" measuredWidth="25" measuredHeight="23" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="306" x="384" y="656" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="307" x="667" y="1253" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="308" x="608" y="1253" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="309" x="672" y="780" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="310" x="491" y="778" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="311" x="380" y="732" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="312" x="390" y="689" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="313" x="531" y="692" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="314" x="608" y="830" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="315" x="667" y="830" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="316" x="412" y="835" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="327" x="402" y="873" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="328" width="313" height="369" text="▷홀&#xD;&#xA;▷2층 홀&#xD;&#xA;▽테라스&#xD;&#xA;▷주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="2">
+      <items x="0" y="2" width="313" height="25" text="▷홀"/>
+      <items x="0" y="27" width="313" height="25" text="▷2층 홀"/>
+      <items x="0" y="52" width="313" height="25" text="▽테라스"/>
+      <items x="0" y="294" width="313" height="25" text="▷주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="319" x="55" y="951" measuredWidth="291" measuredHeight="212">
+    <widgets xsi:type="model:Accordion" id="320" width="291" height="212" text="▽청소&#xA;▷재고관리&#xA;" measuredWidth="291" measuredHeight="212" selection="0">
+      <items x="0" y="2" width="291" height="25" text="▽청소"/>
+      <items x="0" y="187" width="291" height="25" text="▷재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="321" x="263" y="2" width="24" height="18" measuredWidth="24" measuredHeight="18" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="323" x="423" y="952" measuredWidth="290" measuredHeight="150">
+    <widgets xsi:type="model:Accordion" id="324" width="290" height="150" text="▷청소&#xA;▽재고관리&#xA;" measuredWidth="290" measuredHeight="150" selection="1">
+      <items x="0" y="2" width="290" height="25" text="▷청소"/>
+      <items x="0" y="27" width="290" height="25" text="▽재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="325" x="257" y="1" width="28" height="24" measuredWidth="28" measuredHeight="24" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="329" x="68" y="979" width="276" height="62" text="흡연구역 청소, 2시간마다&#xD;&#xA;테라스 테이블 닦기, 2시간마다&#xD;&#xA;흡연구역 재떨이 교체(다쓴원두+컵), 2시간마다&#xD;&#xA;" measuredWidth="276" measuredHeight="62" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="330" x="748" y="656" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="331" x="971" y="830" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="332" x="1030" y="830" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="333" x="775" y="873" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="334" width="313" height="369" text="▷홀&#xD;&#xA;▷2층 홀&#xD;&#xA;▷테라스&#xD;&#xA;▽주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="3">
+      <items x="0" y="2" width="313" height="25" text="▷홀"/>
+      <items x="0" y="27" width="313" height="25" text="▷2층 홀"/>
+      <items x="0" y="52" width="313" height="25" text="▷테라스"/>
+      <items x="0" y="77" width="313" height="25" text="▽주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Button" id="335" x="1035" y="1253" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="336" x="976" y="1253" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="337" x="775" y="835" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="338" x="1040" y="780" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="339" x="859" y="778" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="340" x="748" y="732" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="341" x="758" y="689" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="342" x="899" y="692" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="343" x="1059" y="880" measuredWidth="25" measuredHeight="23">
+    <widgets xsi:type="model:Icon" id="344" width="25" height="23" measuredWidth="25" measuredHeight="23" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="345" x="1120" y="656" width="360" height="640" text="manualManagement.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="346" x="1403" y="1253" width="47" height="33" text="저장" measuredWidth="47" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="347" x="1344" y="1253" width="52" height="33" text="초기화" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="348" x="1408" y="780" measuredWidth="32" measuredHeight="32" icon="list-bullet (large)" link="../manualVersionControl.screen"/>
+  <widgets xsi:type="model:TextField" id="349" x="1227" y="778" width="137" text="2층 확장" measuredWidth="137" measuredHeight="36" textAlignment="Center">
+    <font size="20px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:TabbedPane" id="350" x="1116" y="732" width="360" height="33" text="매뉴얼,일일업무,직원관리" measuredWidth="360" measuredHeight="33" selection="0">
+    <items x="10" y="0" width="66" height="36" text="매뉴얼"/>
+    <items x="76" y="0" width="81" height="36" text="일일업무"/>
+    <items x="157" y="0" width="81" height="36" text="직원관리"/>
+    <font size="14px"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="351" x="1126" y="689" measuredWidth="32" measuredHeight="32" icon="list (large)" link="../slideMenuAdmin.screen"/>
+  <widgets xsi:type="model:Button" id="352" x="1267" y="692" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="353" x="1344" y="830" width="52" height="33" text="공간별" measuredWidth="52" measuredHeight="33" state="selected">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="354" x="1403" y="830" width="52" height="33" text="업무별" measuredWidth="52" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="355" x="1148" y="835" width="193" text="저장 날짜: 2016.02.17." measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="366" x="1144" y="873" measuredWidth="313" measuredHeight="369">
+    <widgets xsi:type="model:Accordion" id="367" width="313" height="369" text="▷홀&#xD;&#xA;▷2층 홀&#xD;&#xA;▷테라스&#xD;&#xA;▽주방&#xD;&#xA;▷카운터&#xD;&#xA;▷화장실&#xD;&#xA;" measuredWidth="313" measuredHeight="369" selection="3">
+      <items x="0" y="2" width="313" height="25" text="▷홀"/>
+      <items x="0" y="27" width="313" height="25" text="▷2층 홀"/>
+      <items x="0" y="52" width="313" height="25" text="▷테라스"/>
+      <items x="0" y="77" width="313" height="25" text="▽주방"/>
+      <items x="0" y="319" width="313" height="25" text="▷카운터"/>
+      <items x="0" y="344" width="313" height="25" text="▷화장실"/>
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="358" x="792" y="976" measuredWidth="291" measuredHeight="212">
+    <widgets xsi:type="model:Accordion" id="359" width="291" height="212" text="▽청소&#xA;▷재고관리&#xA;" measuredWidth="291" measuredHeight="212" selection="0">
+      <items x="0" y="2" width="291" height="25" text="▽청소"/>
+      <items x="0" y="187" width="291" height="25" text="▷재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="360" x="263" y="2" width="24" height="18" measuredWidth="24" measuredHeight="18" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="361" x="1160" y="977" measuredWidth="290" measuredHeight="150">
+    <widgets xsi:type="model:Accordion" id="362" width="290" height="150" text="▷청소&#xA;▽재고관리&#xA;" measuredWidth="290" measuredHeight="150" selection="1">
+      <items x="0" y="2" width="290" height="25" text="▷청소"/>
+      <items x="0" y="27" width="290" height="25" text="▽재고관리"/>
+      <font underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="363" x="256" y="1" width="29" height="23" measuredWidth="29" measuredHeight="23" icon="edit (custom)"/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="364" x="1163" y="1027" width="287" text="유통기한 점검, 마감 시&#xD;&#xA;식재료 재고 점검, 마감 시" measuredWidth="287" measuredHeight="46" selection="3" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+    <note>매뉴얼 삭제</note>
+  </widgets>
+  <widgets xsi:type="model:Table" id="365" x="805" y="1004" width="276" height="85" text="음식물 쓰레기 버리기, 마감 시&#xD;&#xA;싱크대 닦기, 마감 시&#xD;&#xA;행주 소독, 마감 시&#xD;&#xA;냉장고 성에 제거, 1개월" measuredWidth="276" measuredHeight="85" rowHeight="20" horizontalLines="true" alternative="#eee" header="false">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

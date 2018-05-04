@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:WidgetGroup" id="11" x="32" y="32" measuredWidth="360" measuredHeight="640">
+    <widgets xsi:type="model:Window" id="1" width="360" height="640" text="slideMenuStaff.html" measuredWidth="360" measuredHeight="640"/>
+    <widgets xsi:type="model:VLine" id="2" x="192" y="19" height="621" measuredWidth="6" measuredHeight="621"/>
+    <widgets xsi:type="model:Button" id="4" x="24" y="191" text="로그아웃" measuredWidth="68" measuredHeight="25">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="5" x="107" y="191" text="홈 화면" measuredWidth="60" measuredHeight="25">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Image" id="6" x="24" y="95" width="73" height="73" measuredWidth="73" measuredHeight="73"/>
+    <widgets xsi:type="model:VButtonBar" id="7" x="24" y="256" width="147" height="201" text="회원 정보 수정&#xD;&#xA;알림 설정&#xD;&#xA;도움말&#xD;&#xA;버전 정보   ver 1.1.0&#xD;&#xA;개발자 정보" measuredWidth="147" measuredHeight="201" selection="0">
+      <font/>
+      <items link="changeInfoStaff.screen" x="0" y="0" width="147" height="40" text="회원 정보 수정"/>
+      <items x="0" y="40" width="147" height="39" text="알림 설정"/>
+      <items x="0" y="79" width="147" height="39" text="도움말"/>
+      <items x="0" y="118" width="147" height="39" text="버전 정보   ver 1.1.0"/>
+      <items x="0" y="157" width="147" height="44" text="개발자 정보"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="8" x="105" y="140" text="김태훈님" measuredWidth="66" measuredHeight="28">
+      <font size="15px"/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="10" x="152" y="29" text="X" measuredWidth="33" measuredHeight="38">
+      <font size="20px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="74" x="105" y="118" text="직원" measuredWidth="36" measuredHeight="28">
+      <font size="15px"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="75" x="105" y="95" text="가락시장점" measuredWidth="81" measuredHeight="28">
+      <font size="15px"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="73" x="227" y="51" width="163" height="621" measuredWidth="163" measuredHeight="621" background="black" alpha="64" border="none"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

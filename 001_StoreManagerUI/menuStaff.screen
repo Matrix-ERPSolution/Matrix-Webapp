@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="82" x="16" y="16" width="360" height="640" text="todayTask_staff.html" measuredWidth="360" measuredHeight="640" layoutParams="anchor-left|anchor-top" verticalScrollbar="true"/>
+  <widgets xsi:type="model:Button" id="99" x="168" y="68" text="앱이름" measuredWidth="56" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="101" x="32" y="65" measuredWidth="32" measuredHeight="32" icon="list (large)" link="slideMenuAdmin.screen"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

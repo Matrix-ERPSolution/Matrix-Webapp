@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="3" x="32" y="48" width="360" height="640" text="certification.html" measuredWidth="360" measuredHeight="640"/>
+  <widgets xsi:type="model:Button" id="9" x="80" y="459" width="111" text="직원 인증" measuredWidth="111" measuredHeight="35" link="certifyStaff.screen">
+    <font size="18px"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="10" x="230" y="459" text="관리자 인증" measuredWidth="122" measuredHeight="35" link="certifyAdmin.screen">
+    <font size="18px"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="14" x="42" y="171" width="340" height="81" text="Store Manager&#xD;&#xA;회원가입을 환영합니다!&#xD;&#xA;" measuredWidth="340" measuredHeight="81" textAlignment="Center">
+    <font size="28px"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="15" x="42" y="67" text="&lt;" measuredWidth="26" measuredHeight="46" link="login.screen">
+    <font size="28px" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="18" x="218" y="307" width="137" height="129" measuredWidth="137" measuredHeight="129" icon="user (large)"/>
+  <widgets xsi:type="model:Icon" id="19" x="320" y="350" measuredWidth="32" measuredHeight="32" icon="wrench (large)"/>
+  <widgets xsi:type="model:Icon" id="21" x="72" y="303" width="127" height="129" measuredWidth="127" measuredHeight="129" icon="usergroup (large)"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>
