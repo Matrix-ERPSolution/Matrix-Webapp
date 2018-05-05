@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 업무</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(function () {
+	$(".accordion").accordion();
+	 collapsible: false
+});
+$(function () {
+	$("#accordion2").accordion();
+});
+$(function() {
+	$("#tabs").tabs();
+});
+</script>
+
+<header>
+
+	메뉴	<h2>앱이름</h2>
+</header>
+</head>
+
+<body>
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs1">매뉴얼</a></li>
+		<li><a href="#tabs2">일일업무</a></li>
+		<li><a href="#tabs3">직원관리</a></li>
+	</ul>
+	<div id="tabs1">
+		매뉴얼 탭 상세화면
+	</div>
+	<div id="tabs2">
+	<h2>5월 2일(수)</h2>
+	<h4>오늘의 업무</h4>달력 
+		<div class="accordion">
+			<h3>오픈조</h3>
+				<div id="open">
+					<div class="accordion">
+					<h5>오픈 업무</h5>
+						<table>
+							<tbody>
+								<tr>
+									<td>쇼케이스 점등</td><td></td>
+								</tr>
+								<tr>
+									<td>POS기 켜기</td><td>장윤석</td>
+								</tr>
+							</tbody>
+						</table>
+					<h5>재료 준비</h5>
+					</div>
+				</div>
+			<h3>미들조</h3>
+				<div id="middle">미들업무</div>
+			<h3>마감조</h3>
+				<div id="close">마감업무</div>
+			<h3>개인업무</h3>
+				<div id="personal">
+					<table>
+						<tr>
+							<td>보건증 갱신</td><td>김태훈</td>
+						</tr>
+						<tr>
+							<td>통장사본 제출</td><td>홍윤영</td>
+						</tr>
+					</table>
+				</div>
+		</div>
+		
+	</div>
+	<div id="tabs3">
+		직원관리 탭 상세화면
+	</div>
+</div>
+	
+</body>
+</html>
