@@ -20,22 +20,18 @@ $(function() {
 </script>
 </head>
 <body>
-<h3>어제 업무</h3>
+<h3>내일 업무</h3>
 <div class="accordion">
 	<div>
-		<p class="inline" align="left">개인업무</p><p class="inline"></p>
+		<p class="inline" align="left">개인업무</p>
+		<p class="inline"></p>
 	</div>
 	<div id="personalTask">
 		<table>
 			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>포스트잇 사오기</td>
-				<td>김태훈</td>
-			</tr>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>열쇠 카운터에 놔두기</td>
-				<td>홍윤영</td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 		</table>
 	</div>
@@ -45,7 +41,7 @@ $(function() {
 	<div id="openUnit">
 		<div class="subAccordion">
 			<div>
-				<p class="inline">오픈 업무</p><p class="inline" style="margin-left: 50pt;">홍윤영</p>
+				<p class="inline">오픈 업무</p><p class="inline" style="margin-left: 50pt;"></p>
 			</div>
 			<table>
 				<tr>
@@ -56,17 +52,10 @@ $(function() {
 				<tr>
 					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
 					<td>POS기 켜기</td>
-					<td>장윤석</td>
-				</tr>
-				<tr>
-					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-					<td>커피머신 켜기</td>
-					<td>김태훈</td>
+					<td></td>
 				</tr>
 			</table>
-			<div>
-				<p class="inline">재료 준비</p><p class="inline" style="margin-left: 50pt;">김태훈</p>
-			</div>
+			<div>재료 준비</div>
 		</div> <!-- end subAccordion -->
 	</div> <!-- end openUnit -->
 

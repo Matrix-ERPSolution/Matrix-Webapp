@@ -21,6 +21,7 @@ $(function() {
 </script>
 </head>
 <body>
+
 <div id="dateMenu">
 	<div class="inline">
 		<img src="images/calendar.png" width="30pt" />
@@ -28,7 +29,7 @@ $(function() {
 	<div class="inline">
 		<img id="scrollPast" src="images/leftTriangle.png" width="30pt" />
 	</div>
-	<h2 id="date" class="inline">오늘 날짜</h2>
+	<h2 id="date" class="inline">날짜</h2>
 	<div class="inline">
 		<img id="scrollFuture" src="images/rightTriangle.png" width="30pt" />
 	</div>
@@ -38,12 +39,41 @@ $(function() {
 </div>
 
 <div id="contents">
-	<%@include file="todayTaskAdmin.jsp" %>
+
 </div>
+
 <script>
-	$("#scrollPast").click(function(){
-		$("#contents").html("<%@include file='pastTaskAdmin.jsp' %>");
+var currentDate = new Date();
+var thisMonth = currentDate.getMonth()+1;
+var today = currentDate.getDate();
+
+$.ajax({
+	url:"todayTaskAdmin.jsp",
+	success:function(result){
+		$("#contents").html(result);
+		$("#date").html(thisMonth+"월 "+today+"일");
+	}
+});
+	
+$("#scrollPast").on("click", function(){
+	$.ajax({
+		url : "pastTaskAdmin.jsp", 
+		success : function(result){
+			$("#contents").html(result);
+			$("#date").html(thisMonth+"월 "+(today-1)+"일");
+		}
 	});
+});
+
+$("#scrollFuture").on("click", function(){
+	$.ajax({
+		url : "futureTaskAdmin.jsp", 
+		success : function(result){
+			$("#contents").html(result);
+			$("#date").html(thisMonth+"월 "+(today+1)+"일");
+		}
+	});
+});
 </script>
 <script>
 $(".inline").css({
