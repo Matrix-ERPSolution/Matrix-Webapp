@@ -46,56 +46,33 @@
 <body>
 
 <h2>어제 업무</h2>
-<div class="accordion">개인업무</div>
-<div class="panel" id="personalTask">
-	<table>
-		<tr>
-			<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-			<td>포스트잇 사오기</td>
-			<td>김태훈</td>
-		</tr>
-		<tr>
-			<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-			<td>열쇠 카운터에 놔두기</td>
-			<td>홍윤영</td>
-		</tr>
-	</table>
+<div class="accordion" id="personal">개인업무</div>
+<div class="panel">
+	<ul>
+		<li>포스트잇 사오기 <span class="finisher" style="float: right;">김태훈</span></li>
+		<li>열쇠 카운터에 놔두기 <span class="finisher" style="float: right;">홍윤영</span></li>
+	</ul>
 </div>
 
-<div class="accordion">오픈조</div>
-<div class="panel" id="openTeam">
+<div class="accordion" id="openTeam">오픈조</div>
+<div class="panel">
 	<div class="subAccordion">
-		<div>오픈 업무<p class="finisher">홍윤영</p></div>
+		<div>오픈 업무<span class="finisher" style="float: right;"></span></div>
 	</div>
 	<div class="subPanel" id="openTask">
-		<table>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>쇼케이스 점등</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>POS기 켜기</td>
-				<td>장윤석</td>
-			</tr>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>커피머신 켜기</td>
-				<td>김태훈</td>
-			</tr>
-		</table>
+		<ul>
+			<li>쇼케이스 점등 <span class="finisher" style="float: right;">장윤석</span></li>
+			<li>POS기 켜기 <span class="finisher" style="float: right;">장윤석</span></li>
+			<li>커피머신 켜기 <span class="finisher" style="float: right;">김태훈</span></li>
+		</ul>
 	</div>
-	<div class="SubAccordion">
-		<div>재료 준비</div>
+	<div class="subAccordion">
+		<div>재료 준비<span class="finisher" style="float: right;">장윤석</span></div>
 	</div>
 	<div class="subPanel" id="ingredientReady">
-			<table>
-				<tr>
-					<td>딸기 씻기</td>
-					<td>장윤석</td>
-				</tr>
-			</table>
+		<ul>
+			<li>딸기 씻기 <span class="finisher" style="float: right;">장윤석</span></li>
+		</ul>
 	</div>
 </div>
 
@@ -134,17 +111,10 @@ for (i = 0; i < subAcc.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
- 	
-    //내가속한 상위패널 불러와서 maxHeight조정하기
-    var motherPanel = document.querySelector(".accordion .active").nextElementSibling;
-    console.log(motherPanel);
-    motherPanel = motherPanel[motherPanel.length-1];
+    
+    var motherPanel = this.parentNode;
+    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
 
-    if (motherPanel.style.maxHeight){
-    	motherPanel.style.maxHeight = null;
-    } else {
-    	motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-    } 
   });
 }
 </script>
