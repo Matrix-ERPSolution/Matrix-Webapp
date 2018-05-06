@@ -48,7 +48,7 @@ var thisMonth = currentDate.getMonth()+1;
 var today = currentDate.getDate();
 
 $.ajax({
-	url:"todayTaskAdmin.jsp",
+	url:"todayTaskCSS.jsp",
 	success:function(result){
 		$("#contents").html(result);
 		$("#date").html(thisMonth+"월 "+today+"일");
@@ -57,7 +57,7 @@ $.ajax({
 	
 $("#scrollPast").on("click", function(){
 	$.ajax({
-		url : "pastTaskAdmin.jsp", 
+		url : "pastTaskCSS.jsp", 
 		success : function(result){
 			$("#contents").html(result);
 			$("#date").html(thisMonth+"월 "+(today-1)+"일");
