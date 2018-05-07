@@ -181,13 +181,25 @@ var i;
 
 for (i = 0; i < li.length; i++) {
 	li[i].addEventListener("click", function() {
-   		this.className += " selected";
-   		var addLi = document.createElement("li");
-   		var nodes = this.childNodes;
-   		for(var j = 0; j < nodes.length; j++){
-   			addLi.appendChild(nodes[j].cloneNode(true));
-   		}
-		document.querySelector("#selectedTasksList").appendChild(addLi);
+		 this.classList.toggle("selected");
+		 if(this.classList.contains("selected")){
+			var addLi = document.createElement("li");
+	   		var nodes = this.childNodes;
+	   		for(var j = 0; j < nodes.length; j++){
+	   			addLi.appendChild(nodes[j].cloneNode(true));
+	   		}
+			document.querySelector("#selectedTasksList").appendChild(addLi);
+		 } else {
+			 var list = document.querySelector("#selectedTasksList");
+			 var li = list.firstChild;
+			 for(var j = 0; j < list.childNodes.length-1; j++){
+				 li = li.nextElementSibling;
+				 if(li.innerHTML == this.innerHTML) {
+					 list.removeChild(li);
+					 break;
+				 }
+			 }
+		 }
 	})
 }
 
