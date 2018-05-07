@@ -73,7 +73,7 @@ $(function(){
 <div id="contents">
 </div>
 <div style="text-align: right;">
-   <button id="setTask">수정</button>
+   <button id="updateTask">수정</button>
    <button id="deleteTask">삭제</button>
 </div>
 
@@ -116,7 +116,7 @@ $("#scrollFuture").on("click", function(){
 });
 
 /**업무 수정, 삭제  기능*/
-$("#setTask").click(function(){
+$("#updateTask").click(function(){
    alert('업무 수정');
 });
 $("#deleteTask").click(function(){
