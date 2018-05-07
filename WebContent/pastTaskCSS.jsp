@@ -41,11 +41,6 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-
-.undone {
-	color: gray;
-}
-
 </style>
 </head>
 <body>
@@ -54,29 +49,29 @@
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
 	<ul>
-		<li>포스트잇 사오기 <span class="receiver" style="float: right;">김태훈</span></li>
-		<li>열쇠 카운터에 놔두기 <span class="receiver undone" style="float: right;">홍윤영</span></li>
+		<li>포스트잇 사오기 <span class="finisher" style="float: right;">김태훈</span></li>
+		<li>열쇠 카운터에 놔두기 <span class="finisher" style="float: right;">홍윤영</span></li>
 	</ul>
 </div>
 
 <div class="accordion" id="openTeam">오픈조</div>
 <div class="panel">
 	<div class="subAccordion">
-		<div>오픈 업무<span class="receiver" style="float: right;"></span></div>
+		<div>오픈 업무<span class="finisher" style="float: right;"></span></div>
 	</div>
 	<div class="subPanel" id="openTask">
 		<ul>
-			<li>쇼케이스 점등 <span class="receiver" style="float: right;"></span></li>
-			<li>POS기 켜기 <span class="receiver" style="float: right;">장윤석</span></li>
-			<li>커피머신 켜기 <span class="receiver" style="float: right;">김태훈</span></li>
+			<li>쇼케이스 점등 <span class="finisher" style="float: right;">장윤석</span></li>
+			<li>POS기 켜기 <span class="finisher" style="float: right;">장윤석</span></li>
+			<li>커피머신 켜기 <span class="finisher" style="float: right;">김태훈</span></li>
 		</ul>
 	</div>
 	<div class="subAccordion">
-		<div>재료 준비<span class="receiver" style="float: right;">장윤석</span></div>
+		<div>재료 준비<span class="finisher" style="float: right;">장윤석</span></div>
 	</div>
 	<div class="subPanel" id="ingredientReady">
 		<ul>
-			<li>딸기 씻기 <span class="receiver" style="float: right;">장윤석</span></li>
+			<li>딸기 씻기 <span class="finisher" style="float: right;">장윤석</span></li>
 		</ul>
 	</div>
 </div>
