@@ -133,7 +133,7 @@ li:hover, .selected {
 <div id="taskFromTyping">
 	<h4>직접 입력하기</h4>
 	<div id="taskTyping">
-		<input type="text" id="addTaskFromTypingTextfield" placeholder="일시적 업무 입력">
+		<input type="text" id="addTaskFromTypingInput" placeholder="일시적 업무 입력">
 		<button id="addTaskFromTyping">추가</button>
 	</div>
 </div>
@@ -183,14 +183,17 @@ for (i = 0; i < li.length; i++) {
 	li[i].addEventListener("click", function() {
    		this.className += " selected";
    		var addLi = document.createElement("li");
-   		addLi.appendChild(this.childNodes[0]);
+   		var nodes = this.childNodes;
+   		for(var j = 0; j < nodes.length; j++){
+   			addLi.appendChild(nodes[j].cloneNode(true));
+   		}
 		document.querySelector("#selectedTasksList").appendChild(addLi);
 	})
 }
 
 var addTask = document.querySelector("#addTaskFromTyping");
 addTask.onclick = function(){
-	var task = document.querySelector("#addTaskFromTypingTextfield");
+	var task = document.querySelector("#addTaskFromTypingInput");
 	if(task.value != ""){
 		var addLi = document.createElement("li");
 		addLi.appendChild(document.createTextNode(task.value));
