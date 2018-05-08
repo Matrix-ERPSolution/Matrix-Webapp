@@ -40,8 +40,7 @@ $(function(){
       maxDate: "+1d",
       onSelect : function(dateText, inst){
   	    $("#date").html(dateText);
-  		$("#datepicker").datepicker("setDate", $("#datepicker").datepicker( "getDate" )-1);
-        $("#date").html($("#datepicker").val());
+        if($("#datepicker").datepicker( "getDate" ))
   	    $.ajax({
   	        url : "pastTaskCSS.jsp", 
   	        success : function(result){
