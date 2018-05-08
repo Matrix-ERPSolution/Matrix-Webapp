@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.accordion, .subAccordion {
+.accordion{
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
@@ -18,11 +19,11 @@
     transition: 0.4s;
 }
 
-.active, .accordion:hover, .subAccordion:hover {
+.active, .accordion:hover{
     background-color: #99ccff;
 }
 
-.accordion:before, .subAccordion:before {
+.accordion:before{
     content: '\25B6';
     color: #003366;
     font-weight: bold;
@@ -34,7 +35,7 @@
     content: '\25BC';
 }
 
-.panel, .subPanel {
+.panel{
     padding: 0 18px;
     background-color: white;
     max-height: 0;
