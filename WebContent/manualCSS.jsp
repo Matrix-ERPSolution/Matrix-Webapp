@@ -118,10 +118,6 @@ li:hover, .selected {
 	</div>
 
 
-<div id="selectedTasks">
-	<ul id="selectedTasksList">	
-	</ul>
-</div>
 <script>
 var acc = document.querySelectorAll(".accordion");
 var i;
@@ -155,32 +151,8 @@ for (i = 0; i < subAcc.length; i++) {
 
   });
 }
-/* 
-var li = document.querySelectorAll("li");
-var i;
 
-for (i = 0; i < li.length; i++) {
-	li[i].addEventListener("click", function() {
-   		this.className += " selected";
-   		var addLi = document.createElement("li");
-   		var nodes = this.childNodes;
-   		for(var j = 0; j < nodes.length; j++){
-   			addLi.appendChild(nodes[j].cloneNode(true));
-   		}
-		document.querySelector("#selectedTasksList").appendChild(addLi);
-	})
-}
 
-var addTask = document.querySelector("#addTaskFromTyping");
-addTask.onclick = function(){
-	var task = document.querySelector("#addTaskFromTypingInput");
-	if(task.value != ""){
-		var addLi = document.createElement("li");
-		addLi.appendChild(document.createTextNode(task.value));
-		document.querySelector("#selectedTasksList").appendChild(addLi);
-		task.value = "";
-	}
-} */
 </script>
 
 </body>
