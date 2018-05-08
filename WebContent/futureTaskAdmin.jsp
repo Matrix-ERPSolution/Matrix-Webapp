@@ -55,10 +55,10 @@
 <div class="accordion">오픈조</div>
 	<div class="panel">
 		<ul>
-			<li>쇼케이스 점등 <div class="finisher" style="float: right;">장윤석</div></li>
-			<li>POS기 켜기 <div class="finisher" style="float: right;">장윤석</div></li>
-			<li>커피머신 켜기 <div class="finisher" style="float: right;">김태훈</div></li>
-			<li>딸기 씻기 <div class="finisher" style="float: right;">장윤석</div></li>
+			<li>쇼케이스 점등</li>
+			<li>POS기 켜기</li>
+			<li>커피머신 켜기</li>
+			<li>딸기 씻기</li>
 		</ul>
 	</div>
 
