@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>업무 배정</title>
 <style>
@@ -45,11 +46,18 @@
 li:hover, .selected {
 	background-color: #99ccff;
 }
+hr{
+	size: 2px;
+	width: 300px;
+	float: left;
+	color: black;
+}
 </style>
 </head>
 <body>
 <h2>5월 3일(목)</h2>
 <h2>업무 배정</h2>
+
 <div id="taskFromRecommend">
 	<h4>오늘의 추천업무</h4>
 	<div class="accordion" id="cleanControl">청결관리</div>
@@ -77,6 +85,7 @@ li:hover, .selected {
 	</div>
 </div>
 
+<hr> <br>
 <div id="taskFromManual">
 	<h4>매뉴얼에서 선택하기</h4>
 	<div id="searchTaskFromManual">
@@ -130,6 +139,8 @@ li:hover, .selected {
 		</ul>
 	</div>
 </div>
+
+<hr> <br>
 <div id="taskFromTyping">
 	<h4>직접 입력하기</h4>
 	<div id="taskTyping">
@@ -137,11 +148,18 @@ li:hover, .selected {
 		<button id="addTaskFromTyping">추가</button>
 	</div>
 </div>
+
+<hr> <br>
+<h4>배정할 업무 목록</h4>
 <div id="selectedTasks">
 	<ul id="selectedTasksList">
 	
 	</ul>
 </div>
+
+<hr> <br>
+<h3>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i></h3>
+</body>
 <script>
 var acc = document.querySelectorAll(".accordion");
 var i;
@@ -215,5 +233,4 @@ addTask.onclick = function(){
 }
 </script>
 
-</body>
 </html>
