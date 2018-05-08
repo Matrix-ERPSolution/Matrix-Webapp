@@ -38,16 +38,7 @@ $(function(){
         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
         yearSuffix: "년",
       maxDate: "+1d",
-      onSelect : function(dateText, inst){
-  	    $("#date").html(dateText);
-        if($("#datepicker").datepicker( "getDate" ))
-  	    $.ajax({
-  	        url : "pastTaskCSS.jsp", 
-  	        success : function(result){
-  	           $("#contents").html(result);
-  	        }
-  	    });
-  	 }
+     
    });
    $("#datepicker").hide();
 });
@@ -73,9 +64,7 @@ $(function(){
       <img id="scrollFuture" src="images/rightTriangle.png" width="15pt" />
    </div>
    <div class="inline">
- 	  <a href="assignTaskCSS.jsp">
-   	   <img src="images/taskassign.png" width="50pt" />
-      </a>
+      <img src="images/taskassign.png" width="50pt" />
    </div>
 </div>
 
@@ -102,16 +91,40 @@ $.ajax({
 });
 
 
+$("#datepicker").datepicker("option", {onSelect : function(dateText, inst){
+	    $("#date").html(dateText);
+	    $.ajax({
+	        url : "pastTaskCSS.jsp", 
+	        success : function(result){
+	           $("#contents").html(result);
+	           $("#datepicker").datepicker("setDate", $("#datepicker").datepicker( "getDate" )-1);
+	           $("#date").html($("#datepicker").val());
+	        }
+	    });
+	 }
+ });
    
 /**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 $("#scrollPast").on("click", function(){
-	$("#datepicker").datepicker("setDate", $("#datepicker").datepicker( "getDate" ) - 1);
-	$("#date").html($("#datepicker").val());
+   $.ajax({
+      url : "pastTaskCSS.jsp", 
+      success : function(result){
+         $("#contents").html(result);
+         $("#datepicker").datepicker("setDate", $("#datepicker").datepicker( "getDate" )-1);
+         $("#date").html($("#datepicker").val());
+      }
+   });
 });
 
 $("#scrollFuture").on("click", function(){
-    $("#datepicker").datepicker("setDate", "+1d");
-    $("#date").html($("#datepicker").val());
+   $.ajax({
+      url : "futureTaskAdmin.jsp", 
+      success : function(result){
+         $("#contents").html(result);
+         $("#datepicker").datepicker("setDate", "+1d");
+         $("#date").html($("#datepicker").val());
+      }
+   });
 });
 
 /**업무 수정, 삭제  기능*/
