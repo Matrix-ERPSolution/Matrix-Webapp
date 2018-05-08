@@ -71,7 +71,7 @@ li {
 		</ul>
 	</div>
 	<div class="subAccordion">
-		<div>재료 준비<div class="finisher" style="float: right;">장윤석</div</div>
+		<li>재료 준비<div class="finisher" style="float: right;">장윤석</div></li>
 	</div>
 	<div class="subPanel" id="ingredientReady">
 		<ul>
