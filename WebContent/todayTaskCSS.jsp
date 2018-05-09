@@ -46,6 +46,13 @@
 .finisher {
 	display: inline;
 }
+ul {
+	margin-left: -30pt;
+	list-style: none;
+}
+li {
+	font-size: 12pt;
+}
 </style>
 </head>
 <body>
@@ -57,31 +64,12 @@
 		<li>보건증 갱신 <div class="finisher" style="float: right;">김태훈</div></li>
 		<li>통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
 		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher" style="float: right;">김수한무</div></li>
+		<li>일이삼사오육칠팔구십일이삼사오육칠팔구십<div class="finisher" style="float: right;">가나다라</div></li>
 	</ul>
 </div>
 
 <div class="accordion" id="openTeam">오픈조</div>
 <div class="panel" >
-
-	<div class="subAccordion">
-		<div>오픈 업무<span class="finisher" style="float: right;"></span></div>
-	</div>
-	<div class="subPanel" id="openTask">
-		<ul>
-			<li>쇼케이스 점등 <div class="finisher" style="float: right;">장윤석</div></li>
-			<li>POS기 켜기 <div class="finisher" style="float: right;">장윤석</div></li>
-			<li>커피머신 켜기 <div class="finisher" style="float: right;">김태훈</div></li>
-		</ul>
-	</div>
-	<div class="subAccordion">
-		<li>재료 준비<div class="finisher" style="float: right;">장윤석</div></li>
-	</div>
-	<div class="subPanel" id="ingredientReady">
-		<ul>
-			<li>딸기 씻기 <div class="finisher" style="float: right;">장윤석</div></li>
-		</ul>
-	</div>
-	
 	<ul>
 		<li>쇼케이스 점등 <div class="finisher" style="float: right;">장윤석</div></li>
 		<li>POS기 켜기 <div class="finisher" style="float: right;">장윤석</div></li>
