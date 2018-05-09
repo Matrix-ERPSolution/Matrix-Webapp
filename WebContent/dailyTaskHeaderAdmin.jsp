@@ -80,7 +80,7 @@ $(function(){
 <style type="text/css">
 .ui-datepicker-trigger {
 	width: 20pt;
-}
+};
 
 </style>
 </head>

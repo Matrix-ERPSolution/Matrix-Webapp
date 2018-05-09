@@ -68,7 +68,7 @@ $(function() {
 
 <body>
 <header>
-	<%@include file="slideMenuAdmin.jsp" %>
+	<%@include file="slideMenu.jsp" %>
 	<p class="inline" align="right">앱이름</p>
 </header>
 	<div id="tabs">
