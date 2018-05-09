@@ -22,14 +22,20 @@
   background-repeat: no-repeat;
   background-position: center;
  };
+.tabs {
+  padding: 50px;
+};
 .w3-button w3-block {
   font-famliy : sans-serif;
   font-style : bold;
   font-size : 12px;
   line-height : 1.6;
   font-weight : bold; 
+    background-color: #99ccff;
 };
-
+#result {
+  padding: 30%;	
+};
 </style>
 <body>
 
@@ -37,22 +43,20 @@
 <div class="w3-top">
     <img class="inline" src="images/menu.png" width="30pt" />
     <p class="inline" align="center">앱이름</p>
-</div> 
 
-<div class="w3-padding-48">
-  <div class="w3-row w3-large"  >
-    <div class="w3-col s3">
-      <a id="dailyTaskTab" class="w3-button w3-block">일일업무</a>
-    </div>
-    <div class="w3-col s3">
-      <a id="manualTab" class="w3-button w3-block">매뉴얼</a>
-    </div>
-    <div class="w3-col s3">
-      <a id="staffManagementTab" class="w3-button w3-block">직원관리</a>
-    </div>
-  </div>
+	<div class="tabs">
+	    <div class="w3-col s3">
+	      <a id="dailyTaskTab" class="w3-button w3-block">일일업무</a>
+	    </div>
+	    <div class="w3-col s3">
+	      <a id="manualTab" class="w3-button w3-block">매뉴얼</a>
+	    </div>
+	    <div class="w3-col s3">
+	      <a id="staffManagementTab" class="w3-button w3-block">직원관리</a>
+	    </div>
+	</div> 
 </div> 
-	<div id="result"><%@include file="dailyTaskAdmin.jsp"%></div>
+	<div class="w3-padding-64" id="result"><%@include file="dailyTaskHeaderAdmin.jsp"%></div>
 
 
 <script>
