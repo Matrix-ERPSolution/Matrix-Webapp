@@ -17,17 +17,13 @@ $(function() {
       }
    });
 });
-var currentDate = new Date();
-var thisMonth=currentDate.getMonth()+1;
-var thisDay=currentDate.getDate();
-
 $(function(){
    $("#datepicker").datepicker({
       showOn : "button",
       buttonImage : "images/calendar.png",
       buttonImageOnly : true,
       showButtonPanel : true,
-      currentText : '이번 달로',
+      currentText : '오늘 날짜',
       closeText : '닫기',
       nextText : "다음 달",
       prevText : "이전 달",
@@ -44,34 +40,13 @@ $(function(){
       maxDate: "+1d",
       onSelect : function(dateText, inst){
   	    $("#date").html(dateText);
-  	    
-        if(dateText==(thisMonth+"월 "+thisDay+"일")) {
-        	$.ajax({
-        		url : "todayTaskCSS.jsp",
-        		data : {},
-        		success : function(result){
-        			$("#contents").html(result);
-        		}
-        	})
-        } else if(dateText==(thisMonth+"월 "+(thisDay+1)+"일")) {
-        	$.ajax({
-	  	        url : "futureTaskAdmin.jsp",
-	  	      	date : {},
-	  	        success : function(result){
-	  	           $("#contents").html(result);
-	  	        }
-	  	    });
-        } else {
-	  	    $.ajax({
-	  	        url : "pastTaskCSS.jsp", 
-	  	        date : {},
-	  	        success : function(result){
-	  	           $("#contents").html(result);
-	  	           $("#updateTask").hide();
-	  	           $("#deleteTask").hide();
-	  	        }
-	  	    });
-        }
+        if($("#datepicker").datepicker( "getDate" ))
+  	    $.ajax({
+  	        url : "pastTaskCSS.jsp", 
+  	        success : function(result){
+  	           $("#contents").html(result);
+  	        }
+  	    });
   	 }
    });
    $("#datepicker").hide();
@@ -112,26 +87,26 @@ $(function(){
 </div>
 
 <script>
+var currentDate = new Date();
+var thisMonth = currentDate.getMonth()+1;
+var today = currentDate.getDate();
 
-/**오늘의 업무 페이지 로드 + 오늘 날짜 설정*/
+
+/**오늘의업무 페이지 로드 + 오늘 날짜 설정*/
 $.ajax({
    url:"todayTaskCSS.jsp",
    success:function(result){
       $("#contents").html(result);
-      $("#date").html(thisMonth+"월 "+thisDay+"일");
+      $("#date").html(thisMonth+"월"+today+"일");
    }
 });
+
+
    
 /**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 $("#scrollPast").on("click", function(){
-	//오늘, 과거 업무 페이지일때 왼쪽 버튼 누르면 hide(내일 업무 페이지에서는 hideX.) //현재 제대로 구현 안됨
-	if($("#date").html()!=(thisMonth+"월 "+(thisDay+1)+"일")){
-		$("#updateTask").hide();
-		$("#deleteTask").hide();
-	}
-	$("#datepicker").datepicker("setDate", "-1d");
+	$("#datepicker").datepicker("setDate", $("#datepicker").datepicker( "getDate" ) - 1);
 	$("#date").html($("#datepicker").val());
-	
 });
 
 $("#scrollFuture").on("click", function(){
