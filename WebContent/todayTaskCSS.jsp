@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.accordion {
+.accordion{
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
     width: 100%;
     border: none;
     text-align: left;
@@ -18,11 +19,11 @@
     transition: 0.4s;
 }
 
-.active, .accordion:hover {
+.active, .accordion:hover{
     background-color: #99ccff;
 }
 
-.accordion:before, .subAccordion:before {
+.accordion:before{
     content: '\25B6';
     color: #003366;
     font-weight: bold;
@@ -34,15 +35,16 @@
     content: '\25BC';
 }
 
-.panel {
+.panel{
+    padding: 0 18px;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
 
-li {
-	list-style: none;
+.finisher {
+	display: inline;
 }
 </style>
 </head>
@@ -52,7 +54,7 @@ li {
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
 	<ul>
-		<li>보건증 갱ㅇ날니;ㅜ리ㅑ뒬우ㅏ널ㄴ신 <div class="finisher" style="float: right;">김태훈</div><br><div class="finisher" style="float: right;">장윤석</div><br><div class="finisher" style="float: right;">홍윤영</div><br></li>
+		<li>보건증 갱신 <div class="finisher" style="float: right;">김태훈</div></li>
 		<li>통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
 		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher" style="float: right;">김수한무</div></li>
 	</ul>
@@ -60,6 +62,7 @@ li {
 
 <div class="accordion" id="openTeam">오픈조</div>
 <div class="panel" >
+
 	<div class="subAccordion">
 		<div>오픈 업무<span class="finisher" style="float: right;"></span></div>
 	</div>
@@ -78,6 +81,13 @@ li {
 			<li>딸기 씻기 <div class="finisher" style="float: right;">장윤석</div></li>
 		</ul>
 	</div>
+	
+	<ul>
+		<li>쇼케이스 점등 <div class="finisher" style="float: right;">장윤석</div></li>
+		<li>POS기 켜기 <div class="finisher" style="float: right;">장윤석</div></li>
+		<li>커피머신 켜기 <div class="finisher" style="float: right;">김태훈</div></li>
+		<li>딸기 씻기 <div class="finisher" style="float: right;">장윤석</div></li>
+	</ul>
 </div>
 
 <div class="accordion" id="middleTeam">미들조</div>
@@ -101,24 +111,6 @@ for (i = 0; i < acc.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-  });
-}
-
-var subAcc = document.querySelectorAll(".subAccordion");
-
-for (i = 0; i < subAcc.length; i++) {
-	subAcc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-    
-    var motherPanel = this.parentNode;
-    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-
   });
 }
 </script>

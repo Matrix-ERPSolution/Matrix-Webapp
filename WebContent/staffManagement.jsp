@@ -24,7 +24,7 @@ $(function() {
 <div align="center">
 	<h3>직원 목록</h3>
 </div>
-<div class="accordion" style="width: 235pt; margin-left: -15pt;">
+<div class="accordion" style="width: 235pt; margin-left: 20pt;">
 	<h3>승인 요청 내역</h3>
 	<div id="staffAcceptRequestList">
 		<table style="width: 220pt; margin-left: -20pt;">
