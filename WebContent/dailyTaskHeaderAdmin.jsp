@@ -106,7 +106,8 @@ $(function(){
 
 <div id="contents">
 </div>
-<div style="text-align: right;">
+<br>
+<div style="text-align: center;">
    <button id="updateTask">수정</button>
    <button id="deleteTask">삭제</button>
 </div>

@@ -25,17 +25,7 @@
 .tabs {
   padding: 50px;
 };
-.w3-button w3-block {
-  font-famliy : sans-serif;
-  font-style : bold;
-  font-size : 12px;
-  line-height : 1.6;
-  font-weight : bold; 
-    background-color: #99ccff;
-};
-#result {
-  padding: 30%;	
-};
+
 </style>
 <body>
 
@@ -46,13 +36,13 @@
 
 	<div class="tabs">
 	    <div class="w3-col s3">
-	      <a id="dailyTaskTab" class="w3-button w3-block">일일업무</a>
+	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff">일일업무</a>
 	    </div>
 	    <div class="w3-col s3">
-	      <a id="manualTab" class="w3-button w3-block">매뉴얼</a>
+	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff">매뉴얼</a>
 	    </div>
 	    <div class="w3-col s3">
-	      <a id="staffManagementTab" class="w3-button w3-block">직원관리</a>
+	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff">직원관리</a>
 	    </div>
 	</div> 
 </div> 
@@ -66,7 +56,7 @@ $(".inline").css({
 $("#dailyTaskTab").click(
 		function(){
 			 $.ajax({
-			        url : "dailyTaskAdmin.jsp", 
+			        url : "dailyTaskHeaderAdmin.jsp", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }
@@ -90,6 +80,7 @@ $("#staffManagementTab").click(
 			        }
 			    });
 		});
+
 </script>
 </body>
 </html>
