@@ -76,12 +76,12 @@ $(function(){
    });
    $("#datepicker").hide();
 });
-
 </script>
 <style type="text/css">
 .ui-datepicker-trigger {
 	width: 20pt;
 }
+
 </style>
 </head>
 <body>
