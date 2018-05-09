@@ -47,22 +47,29 @@
 	display: inline;
 }
 ul {
-	margin-left: -30pt;
+	margin-left: -20pt;
 	list-style: none;
 }
-li {
+li::before {
 	font-size: 12pt;
+	content: "•";
+	color: gray;
+	display: inline-block;
+	width: 1em;
+  	margin-left: -1em
+}
+li.selected::before {
+	color: red;
 }
 </style>
 </head>
 <body>
-
 <h2>오늘의 업무</h2>
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
 	<ul>
-		<li>보건증 갱신 <div class="finisher" style="float: right;">김태훈</div></li>
-		<li>통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
+		<li class="selected">보건증 갱신<div class="finisher" style="float: right;">김태훈</div></li>
+		<li class="selected">통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
 		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher" style="float: right;">김수한무</div></li>
 		<li>일이삼사오육칠팔구십일이삼사오육칠팔구십<div class="finisher" style="float: right;">가나다라</div></li>
 	</ul>

@@ -5,20 +5,23 @@
 <head>
 <%@include file="headSetting.jsp"%>
 <title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <style type="text/css">
 html.open {
   overflow: hidden;
 }
 
-#sideMenu {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
+#menu {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left: 10px;
+  top: 5px;
   z-index: 1;
   background-image: url('images/menu.png');
-  background-size: 50%;
+  background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
  }
@@ -36,17 +39,18 @@ html.open {
   }
 
 #slideMenu {
-  width: 180px;
+  width: 240px;
   height: 100%;
   position: fixed;
   top: 0px;
-  left: -180px;
+  left: -240px;
   z-index: 10;
   border: 1px solid #c9c9c9;
   background-color: white;
   text-align: left;
   transition: All 0.2s ease;
- }
+  padding-top: 40px;
+}
 
 #slideMenu.open {
   left: 0px;
@@ -66,23 +70,40 @@ html.open {
   z-index: 4;
   display: none;
 }
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width : 40%;
+	vertical-align: bottom;
+}
 </style>
 
 </head>
 <body>
-	<div id="sideMenu"></div>
-	<!-- 메뉴 버튼 -->
+<header class="w3-container w3-top w3-padding-large">
+  	<!-- <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a> -->
+	<img src="./images/logo.png">
+</header>
+<div style="max-width: 1000px; margin: auto; background-color: red">
+	<div id="menu"></div><!-- 메뉴 버튼 -->
 	<div onclick="history.back();" id="pageCover"></div>
+
 	<div id="slideMenu">
 		<!-- 슬라이드 메뉴 -->
-		<div id="shopName">점포</div>
-		<br>
-		<div id="memberClass">직위</div>
-		<br>
-		<div id="memberName">회원명</div>
-		<br>
-		<button>로그아웃</button>
-		<button>홈 화면</button>
+		<table>
+		<tr>
+			<td><img src="" alt="프로필사진"></td>
+			<td><div id="shopName">가락시장점</div>
+				<div id="memberClass">관리자</div>
+				<div id="memberName">홍윤영님</div></td>
+		</tr>
+		<tr>
+			<td><button>로그아웃</button></td>
+			<td><button>홈 화면</button></td>
+		</tr>
+		</table>
+		
 		<div id="section">
 			<ul>
 				<li><a href="changeInfoAdmin.jsp">회원 정보 수정</a></li>
@@ -99,7 +120,7 @@ html.open {
 	<!-- slideMenu end -->
 	<script type="text/javascript">
 		//sidemenu 클릭 시 slidemenu, pagecover(음영) 호출
-		$("#sideMenu").click(function() {
+		$("#menu").click(function() {
 			$("#slideMenu,#pageCover,html").addClass("open");
 			window.location.hash = "#open";
 		});
@@ -111,6 +132,6 @@ html.open {
 			}
 		};
 	</script>
-
+</div>
 </body>
 </html>

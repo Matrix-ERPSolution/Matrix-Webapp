@@ -42,6 +42,21 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+ul {
+	margin-left: -20pt;
+	list-style: none;
+}
+li::before {
+	font-size: 12pt;
+	content: "•";
+	color: gray;
+	display: inline-block;
+	width: 1em;
+  	margin-left: -1em
+}
+li.selected::before {
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -50,8 +65,8 @@
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
 	<ul>
-		<li>포스트잇 사오기 <span class="finisher" style="float: right;">김태훈</span></li>
-		<li>열쇠 카운터에 놔두기 <span class="finisher" style="float: right;">홍윤영</span></li>
+		<li class="selected">포스트잇 사오기 <span class="finisher" style="float: right;">김태훈</span></li>
+		<li class="selected">열쇠 카운터에 놔두기 <span class="finisher" style="float: right;">홍윤영</span></li>
 	</ul>
 </div>
 

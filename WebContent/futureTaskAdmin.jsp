@@ -44,6 +44,21 @@
 .finisher {
 	display: inline;
 }
+ul {
+	margin-left: -20pt;
+	list-style: none;
+}
+li::before {
+	font-size: 12pt;
+	content: "•";
+	color: gray;
+	display: inline-block;
+	width: 1em;
+  	margin-left: -1em
+}
+li.selected::before {
+	color: red;
+}
 </style>
 </head>
 
@@ -51,6 +66,9 @@
 <h3>내일 업무</h3>
 <div class="accordion">개인업무</div>
 	<div class="panel">
+		<ul>
+			<!-- <li class="selected"></li> -->
+		</ul>
 	</div>
 <div class="accordion">오픈조</div>
 	<div class="panel">
