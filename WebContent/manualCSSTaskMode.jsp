@@ -57,15 +57,10 @@ li:hover, .selected {
 </head>
 <body>
       
-
-<div style="text-align:right"><b><a href="manualModify.jsp"  id="majorclassifier" >edit</a></b></div>
-
-	<div class="accordion" id="cleanControl">청결관리
-	<a href="manualModify.jsp" class="editButton" id="middleclassifier">edit</a> </div>
+	<div class="accordion" id="cleanControl">청결관리</div>
 	<div class="panel">
 		<div class="subAccordion">
-			<div>주방
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>주방</div>
 		</div>
 		<div class="subPanel" id="kitchenTask">
 			<ul>
@@ -76,8 +71,7 @@ li:hover, .selected {
 			</ul>
 		</div>
 		<div class="subAccordion">
-			<div>홀
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>홀</div>
 		</div>
 		<div class="subPanel" id="hallTask">
 			<ul>
@@ -86,8 +80,7 @@ li:hover, .selected {
 			</ul>
 		</div>
 		<div class="subAccordion">
-			<div>화장실
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>화장실</div>
 		</div>
 		<div class="subPanel" id="hallTask">
 			<ul>
@@ -96,8 +89,7 @@ li:hover, .selected {
 		</div>
 	</div>
 	
-	<div class="accordion" id="stockControl">재고관리
-	<a href="manualModify.jsp" class="editButton" id="middleclassifier">edit</a> </div>
+	<div class="accordion" id="stockControl">재고관리</div>
 	<div class="panel">
 		<ul>
 			<li>원두 재고 점검 <span class="interval" style="float: right;">3일</span></li>
@@ -105,8 +97,7 @@ li:hover, .selected {
 		</ul>
 	</div>
 	
-	<div class="accordion" id="moneyControl">시재관리
-	<a href="manualModify.jsp" class="editButton" id="middleclassifier">edit</a> </div>
+	<div class="accordion" id="moneyControl">시재관리</div>
 	<div class="panel">
 		<ul>
 			<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>

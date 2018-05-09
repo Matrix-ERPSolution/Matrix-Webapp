@@ -9,19 +9,19 @@
 </style>
 </head>
 <body>
-	<div class="w3-center">
-	<h2 class="inline">여름 시즌 </h2>
-	<a href="manualVersionControl.jsp"><img src="images/versionList.png" width="30" height="30"/></a>
-	<br>
-    <input type = "button" 
-          value = "공간별" 
-           id = "manualPlaceDivision" >
-    <input type = "button" 
-          value = "업무별" 
-           id = "manualTaskDivision" >  
-           
-	<div id="result"><%@include file="manualCSSTaskMode.jsp"%></div>
-	</div>
+
+<div class="w3-center">
+    <h2 class="inline">여름 시즌 </h2>
+    <p class="inline"><a href="manualVersionControl.jsp"><img src="images/versionList.png" width="30" height="30"/></a></p>
+</div> 		
+	    <div class="inline">
+	    <a id = "manualPlaceDivision"><button>공간별</button></a>
+	    </div>
+	    <div class="inline">
+	    <a id = "manualTaskDivision"><button>업무별</button></a>
+		</div> 
+	<div id="result2"><%@include file="manualCSSPlaceMode.jsp"%></div>
+
 <script>
 $(".inline").css({
 	"display":"inline"
@@ -31,7 +31,7 @@ $("#manualPlaceDivision").click(
 		 $.ajax({
 		        url : "manualCSSPlaceMode.jsp", 
 		        success : function(result){
-		           $("#result").html(result);
+		           $("#result2").html(result);
 		        }
 		    });
 	});
@@ -40,7 +40,7 @@ $("#manualTaskDivision").click(
 			 $.ajax({
 			        url : "manualCSSTaskMode.jsp", 
 			        success : function(result){
-			           $("#result").html(result);
+			           $("#result2").html(result);
 			        }
 			    });
 		});
