@@ -17,7 +17,7 @@ $(function() {
 });
 
 </script>
-<h3>오늘의 업무</h3>
+<h3 class="w3-center">오늘의 업무</h3>
 <div class="accordion">
 	<div>
 		<p class="inline" align="left">개인업무</p>

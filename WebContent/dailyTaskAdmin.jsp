@@ -86,7 +86,7 @@ $(function(){
 </head>
 <body>
 
-<div id="dateMenu" class="w3-center w3-padding-64">
+<div id="dateMenu" class="w3-center">
    <div class="inline">
       <input type="text" id="datepicker">
    </div>

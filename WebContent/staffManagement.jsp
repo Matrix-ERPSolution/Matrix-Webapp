@@ -21,7 +21,7 @@ $(function() {
 </script>
 </head>
 <body>
-<div align="center">
+<div align="center" class="w3-center">
 	<h3>직원 목록</h3>
 </div>
 <div class="accordion" style="width: 235pt; margin-left: 20pt;">

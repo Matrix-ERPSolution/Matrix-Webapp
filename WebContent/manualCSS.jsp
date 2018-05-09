@@ -9,11 +9,10 @@
 </style>
 </head>
 <body>
-	<p>
-		<h2>여름 시즌</h2><a href="manualVersionControl.jsp">
-		<img src="images/versionList.png" width="30" height="30"/></a>
-	</p>
-	
+	<div class="w3-center">
+	<h2 class="inline">여름 시즌 </h2>
+	<a href="manualVersionControl.jsp"><img src="images/versionList.png" width="30" height="30"/></a>
+	<br>
     <input type = "button" 
           value = "공간별" 
            id = "manualPlaceDivision" >
@@ -22,8 +21,11 @@
            id = "manualTaskDivision" >  
            
 	<div id="result"><%@include file="manualCSSTaskMode.jsp"%></div>
-	
+	</div>
 <script>
+$(".inline").css({
+	"display":"inline"
+});
 $("#manualPlaceDivision").click(
 	function(){
 		 $.ajax({
