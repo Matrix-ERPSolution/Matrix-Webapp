@@ -20,10 +20,10 @@ html.open {
   left: 10px;
   top: 5px;
   z-index: 1;
-  background-image: url('images/menu.png');
+/*   background-image: url('images/menu.png'); 
   background-size: 70%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center;*/
  }
 
 #close {
@@ -77,16 +77,20 @@ img {
 	width : 40%;
 	vertical-align: bottom;
 }
+ul {
+	list-style: none;
+}
 </style>
 
 </head>
 <body>
-<header class="w3-container w3-top w3-padding-large">
+<div class="w3-container w3-top">
   	<!-- <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a> -->
-	<img src="./images/logo.png">
-</header>
-<div style="max-width: 1000px; margin: auto; background-color: red">
-	<div id="menu"></div><!-- 메뉴 버튼 -->
+	<!-- <div id="menu" style="display:inline"></div>메뉴 버튼 -->
+	<img id="menu" src="images/menu.png" style="width:40px; height:40px; display:inline">
+	<img src="images/logo.png" >
+</div>
+<div style="max-width: 1000px; margin: auto;">
 	<div onclick="history.back();" id="pageCover"></div>
 
 	<div id="slideMenu">
