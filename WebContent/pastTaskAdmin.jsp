@@ -1,85 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
-<script>
-$(function() {
-	$(".accordion").accordion({  
-		'collapsible':true,'active':false
-	});
-});
-$(function() {
-	$(".subAccordion").accordion({
-		'collapsible':true,'active':false,
-		icons : {
-			"header" : "ui-icon-plus",
-			"activeHeader" : "ui-icon-minus"
-		}
-	});
-});
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.accordion{
+    background-color: #e6f2ff;
+    font-weight: bold;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
 
-</script>
+.active, .accordion:hover{
+    background-color: #99ccff;
+}
+
+.accordion:before{
+    content: '\25B6';
+    color: #003366;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+.active:before {
+    content: '\25BC';
+}
+
+.panel{
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+ul {
+	margin-left: -20pt;
+	list-style: none;
+}
+li::before {
+	font-size: 12pt;
+	content: "•";
+	color: gray;
+	display: inline-block;
+	width: 1em;
+  	margin-left: -1em
+}
+li.selected::before {
+	color: red;
+}
+</style>
 </head>
 <body>
-<h3>어제 업무</h3>
-<div class="accordion">
-	<div>
-		<p class="inline" align="left">개인업무</p><p class="inline"></p>
-	</div>
-	<div id="personalTask">
-		<table>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>포스트잇 사오기</td>
-				<td>김태훈</td>
-			</tr>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>열쇠 카운터에 놔두기</td>
-				<td>홍윤영</td>
-			</tr>
-		</table>
-	</div>
-	<!-- end personal -->
 
-	<h3>오픈조</h3>
-	<div id="openUnit">
-		<div class="subAccordion">
-			<div>
-				<p class="inline">오픈 업무</p><p class="inline" style="margin-left: 50pt;">홍윤영</p>
-			</div>
-			<table>
-				<tr>
-					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-					<td>쇼케이스 점등</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-					<td>POS기 켜기</td>
-					<td>장윤석</td>
-				</tr>
-				<tr>
-					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-					<td>커피머신 켜기</td>
-					<td>김태훈</td>
-				</tr>
-			</table>
-			<div>
-				<p class="inline">재료 준비</p><p class="inline" style="margin-left: 50pt;">김태훈</p>
-			</div>
-		</div> <!-- end subAccordion -->
-	</div> <!-- end openUnit -->
+<h2>과거 업무</h2>
+<div class="accordion" id="personal">개인업무</div>
+<div class="panel">
+	<ul>
+		<li class="selected">포스트잇 사오기 <span class="finisher" style="float: right;">김태훈</span></li>
+		<li class="selected">열쇠 카운터에 놔두기 <span class="finisher" style="float: right;">홍윤영</span></li>
+	</ul>
+</div>
 
-	<h3>미들조</h3>
-	<div id="middle">미들업무</div>
+<div class="accordion" id="openTeam">오픈조</div>
+<div class="panel">
+	<ul>
+		<li>쇼케이스 점등 <span class="finisher" style="float: right;">장윤석</span></li>
+		<li>POS기 켜기 <span class="finisher" style="float: right;">장윤석</span></li>
+		<li>커피머신 켜기 <span class="finisher" style="float: right;">김태훈</span></li>
+		<li>딸기 씻기 <span class="finisher" style="float: right;">장윤석</span></li>
+	</ul>
+</div>
 
-	<h3>마감조</h3>
-	<div id="close">마감업무</div>
+<div class="accordion" id="middleTeam">미들조</div>
+<div class="panel">
+</div>
 
-</div> <!-- end accordion -->
+<div class="accordion" id="closeTeam">마감조</div>
+<div class="panel">
+</div>
+
 <script>
-$(".inline").css({
-	"display":"inline"
-});
+var acc = document.querySelectorAll(".accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
 </script>
+
 </body>
+</html>

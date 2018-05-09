@@ -21,7 +21,7 @@
 	    <div class="inline">
 	    <a id = "manualTaskDivision"><button>업무별</button></a>
 		</div> 
-	<div id="result2"><%@include file="manualCSSPlaceMode.jsp"%></div>
+	<div id="result2"><%@include file="manualCSSPlaceModeAdmin.jsp"%></div>
 
 <script>
 $(".inline").css({
@@ -30,7 +30,7 @@ $(".inline").css({
 $("#manualPlaceDivision").click(
 	function(){
 		 $.ajax({
-		        url : "manualCSSPlaceMode.jsp", 
+		        url : "manualCSSPlaceModeAdmin.jsp", 
 		        success : function(result){
 		           $("#result2").html(result);
 		        }
@@ -39,7 +39,7 @@ $("#manualPlaceDivision").click(
 $("#manualTaskDivision").click(
 		function(){
 			 $.ajax({
-			        url : "manualCSSTaskMode.jsp", 
+			        url : "manualCSSTaskModeAdmin.jsp", 
 			        success : function(result){
 			           $("#result2").html(result);
 			        }

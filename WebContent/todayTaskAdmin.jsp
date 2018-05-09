@@ -1,82 +1,114 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.accordion{
+    background-color: #e6f2ff;
+    font-weight: bold;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover{
+    background-color: #99ccff;
+}
+
+.accordion:before{
+    content: '\25B6';
+    color: #003366;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+.active:before {
+    content: '\25BC';
+}
+
+.panel{
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.finisher {
+	display: inline;
+}
+ul {
+	margin-left: -20pt;
+	list-style: none;
+}
+li::before {
+	font-size: 12pt;
+	content: "•";
+	color: gray;
+	display: inline-block;
+	width: 1em;
+  	margin-left: -1em
+}
+li.selected::before {
+	color: red;
+}
+</style>
+</head>
+<body>
+<h2>오늘의 업무</h2>
+<div class="accordion" id="personal">개인업무</div>
+<div class="panel">
+	<ul>
+		<li class="selected">보건증 갱신<div class="finisher" style="float: right;">김태훈</div></li>
+		<li class="selected">통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
+		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher" style="float: right;">김수한무</div></li>
+		<li>일이삼사오육칠팔구십일이삼사오육칠팔구십<div class="finisher" style="float: right;">가나다라</div></li>
+	</ul>
+</div>
+
+<div class="accordion" id="openTeam">오픈조</div>
+<div class="panel" >
+	<ul>
+		<li>쇼케이스 점등 <div class="finisher" style="float: right;">장윤석</div></li>
+		<li>POS기 켜기 <div class="finisher" style="float: right;">장윤석</div></li>
+		<li>커피머신 켜기 <div class="finisher" style="float: right;">김태훈</div></li>
+		<li>딸기 씻기 <div class="finisher" style="float: right;">장윤석</div></li>
+	</ul>
+</div>
+
+<div class="accordion" id="middleTeam">미들조</div>
+<div class="panel">
+</div>
+
+<div class="accordion" id="closeTeam">마감조</div>
+<div class="panel">
+</div>
+
 <script>
-$(function() {
-	$(".accordion").accordion({  
-		'collapsible':true,'active':false
-	});
-});
-$(function() {
-	$(".subAccordion").accordion({
-		'collapsible':true,'active':false,
-		icons : {
-			"header" : "ui-icon-plus",
-			"activeHeader" : "ui-icon-minus"
-		}
-	});
-});
+var acc = document.querySelectorAll(".accordion");
+var i;
 
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
 </script>
-<h3 class="w3-center">오늘의 업무</h3>
-<div class="accordion">
-	<div>
-		<p class="inline" align="left">개인업무</p>
-		<p class="inline"></p>
-	</div>
-	<div id="personalTask">
-		<table>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>보건증 갱신</td>
-				<td>김태훈</td>
-			</tr>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet"></span></td>
-				<td>통장사본 제출</td>
-				<td>홍윤영</td>
-			</tr>
-			<tr>
-				<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-				<td>연진이 생일 케이크 사오기 (2호)</td>
-				<td>김수한무</td>
-			</tr>
-		</table>
-	</div>
-	<!-- end personal -->
 
-	<h3>오픈조</h3>
-	<div id="openUnit">
-		<div class="subAccordion">
-			<div>오픈 업무</div>
-			<table>
-				<tr>
-					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-					<td>쇼케이스 점등</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><span class="ui-icon ui-icon-bullet" style=""></span></td>
-					<td>POS기 켜기</td>
-					<td>장윤석</td>
-				</tr>
-			</table>
-			<div>재료 준비</div>
-		</div> <!-- end subAccordion -->
-	</div> <!-- end openUnit -->
-
-	<h3>미들조</h3>
-	<div id="middle">미들업무</div>
-
-	<h3>마감조</h3>
-	<div id="close">마감업무</div>
-
-</div> <!-- end accordion -->
-<footer style="text-align: right;">
-	<button>수정</button> <button>삭제</button>
-</footer>
-
-<script>
-$(".inline").css({
-	"display":"inline"
-});
-</script>
+</body>
+</html>

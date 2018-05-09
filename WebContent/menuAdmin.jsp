@@ -65,7 +65,7 @@ $("#dailyTaskTab").click(
 $("#manualTab").click(
 		function(){
 			 $.ajax({
-			        url : "manualCSS.jsp", 
+			        url : "manual.jsp", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }

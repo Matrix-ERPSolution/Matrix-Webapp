@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>업무 배정</title>
 <style>
-.accordion, .subAccordion {
+.accordion, .subAccordion, .subAccordion2 {
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
@@ -20,11 +20,11 @@
     transition: 0.4s;
 }
 
-.active, .accordion:hover, .subAccordion:hover {
+.active, .accordion:hover, .subAccordion:hover, subAccordion2:hover {
     background-color: #99ccff;
 }
 
-.accordion:before, .subAccordion:before {
+.accordion:before, .subAccordion:before, .subAccordion:before {
     content: '\25B6';
     color: #003366;
     font-weight: bold;
@@ -36,7 +36,7 @@
     content: '\25BC';
 }
 
-.panel, .subPanel {
+.panel, .subPanel, .subPanel2 {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
@@ -86,60 +86,91 @@ hr{
 </div>
 
 <hr> <br>
-<div id="taskFromManual">
-	<h4>매뉴얼에서 선택하기</h4>
-	<div id="searchTaskFromManual">
-		<input id="search" type="text" placeholder="업무 목록 검색">
-		<button>검색</button>
-	</div>
-	<div class="accordion" id="cleanControl">청결관리</div>
+
+	<div id="test">아코디언 테스트</div>
+	<div class="accordion" id="메뉴1">메뉴1</div>
 	<div class="panel">
-		<div class="subAccordion">
-			<div>주방</div>
+		<div class="subAccordion" id="메뉴1.1">메뉴1.1</div>
+		<div class="subPanel">
+			<div class="subAccordion2" id="메뉴1.1.1">메뉴1.1.1</div>
+			<div class="subPanel2">
+			<ul>
+				<li>메뉴1.1.1.1</li>
+				<li>메뉴1.1.1.1</li>
+			</ul>
+			</div>
+			<div class="subAccordion2" id="메뉴1.1.2">메뉴1.1.2</div>
+			<div class="subPanel2">
+			<ul>
+				<li>메뉴1.1.2.1</li>
+				<li>메뉴1.1.2.2</li>
+			</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div id="taskFromManual"><h4>매뉴얼에서 선택하기</h4></div>
+		<div class="accordion" id="manualList">매뉴얼 목록</div>
+		<div class="panel">
+			<div class="subAccordion" id="counterControl">카운터</div>
+		<div class="subPanel">
+			<div class="subAccordion">
+				<div>청결관리</div>
+			</div>
+			<div class="subPanel" id="kitchenTask">
+				<ul>
+					<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감시</span></li>
+					<li>싱크대 닦기 <span class="interval" style="float: right;">마감시</span></li>
+					<li>행주 소독 <span class="interval" style="float: right;">마감시</span></li>
+					<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
+				</ul>
+			</div>
+			<div class="subAccordion">
+				<div>시재관리 </div>
+			</div>
+			<div class="subPanel" id="hallTask">
+				<ul>
+					<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="subAccordion" id="stockControl">주방</div>
+		<div class="subPanel">
+			<div class="subAccordion">
+				<div>청결관리</div>
+			</div>
+			<div class="subPanel" id="kitchenTask">
+				<ul>
+					<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감시</span></li>
+					<li>싱크대 닦기 <span class="interval" style="float: right;">마감시</span></li>
+					<li>행주 소독 <span class="interval" style="float: right;">마감시</span></li>
+					<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
+				</ul>
+			</div>
+			<div class="subAccordion">
+				<div>재고관리</div>
+			</div>
+			<div class="subPanel" id="hallTask">
+				<ul>
+					<li>딸기 재고 확인 <span class="interval" style="float: right;">3일</span></li>
+				</ul>
+			</div>
+		</div> -->
+
+		<!-- <div class="subAccordion" id="moneyControl">홀 </div>
+		<div class="subPanel">
+			<div class="subAccordion"><div>청결관리</div></div>
 		</div>
 		<div class="subPanel" id="kitchenTask">
 			<ul>
-				<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감 시</span></li>
-				<li>싱크대 닦기 <span class="interval" style="float: right;">마감 시</span></li>
-				<li>행주 소독 <span class="interval" style="float: right;">마감 시</span></li>
-				<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
+				<li>대걸레 청소 <span class="interval" style="float: right;">마감시</span></li>
+				<li>테이블 위 닦기 <span class="interval" style="float: right;">마감시</span></li>
+				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감시</span></li>
 			</ul>
 		</div>
-		<div class="subAccordion">
-			<div>홀</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>바닥 대걸레 청소 <span class="interval" style="float: right;">오픈 시</span></li>
-				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감 시</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>화장실</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>남자화장실 핸드타월 갈기 <span class="interval" style="float: right;">3일</span></li>
-			</ul>
-		</div>
-	</div>
+	</div> -->
 	
-	<div class="accordion" id="stockControl">재고관리</div>
-	<div class="panel">
-		<ul>
-			<li>원두 재고 점검 <span class="interval" style="float: right;">3일</span></li>
-			<li>컵 재고 점검 <span class="interval" style="float: right;">4일</span></li>
-		</ul>
-	</div>
-	
-	<div class="accordion" id="moneyControl">시재관리</div>
-	<div class="panel">
-		<ul>
-			<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
-		</ul>
-	</div>
-</div>
-
 <hr> <br>
 <div id="taskFromTyping">
 	<h4>직접 입력하기</h4>
@@ -161,7 +192,12 @@ hr{
 <h3>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i></h3>
 </body>
 <script>
+//acordion 길이만큼 출력 길이 컨트롤
+//var anc = document.querySelectorAll(".ancestorAccordion");
+
 var acc = document.querySelectorAll(".accordion");
+var subAcc = document.querySelectorAll(".subAccordion");
+var subAcc2 = document.querySelectorAll(".subAccordion2");
 var i;
 
 for (i = 0; i < acc.length; i++) {
@@ -176,8 +212,6 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
-var subAcc = document.querySelectorAll(".subAccordion");
-
 for (i = 0; i < subAcc.length; i++) {
 	subAcc[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -187,13 +221,29 @@ for (i = 0; i < subAcc.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-    
     var motherPanel = this.parentNode;
     motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
+  });
+}
+
+for (i = 0; i < subAcc2.length; i++) {
+	subAcc2[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+    
+    var motherPanel = this.parentNode;
+    var siblingPanel=this.siblingNode;
+    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + siblingPanel.scrollHeight + "px";
 
   });
 }
 
+//업무 리스트 중 1개를 클릭 -> 
 var li = document.querySelectorAll("li");
 var i;
 
@@ -221,6 +271,7 @@ for (i = 0; i < li.length; i++) {
 	})
 }
 
+//직접 입력하여 업무 추가
 var addTask = document.querySelector("#addTaskFromTyping");
 addTask.onclick = function(){
 	var task = document.querySelector("#addTaskFromTypingInput");
@@ -231,6 +282,10 @@ addTask.onclick = function(){
 		task.value = "";
 	}
 }
+
+//직접 입력한 업무를 리스트에서 지우기
+
+//추가된 업무 갯수 세서 업데이트하기
 </script>
 
 </html>

@@ -22,7 +22,7 @@ $(function() {
 </head>
 <body>
 <div align="center" class="w3-center">
-	<h3>직원 목록</h3>
+	<h3>직원 관리</h3>
 </div>
 <div class="accordion" style="width: 235pt; margin-left: 20pt;">
 	<h3>승인 요청 내역</h3>
