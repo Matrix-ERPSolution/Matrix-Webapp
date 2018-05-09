@@ -44,11 +44,6 @@
     transition: max-height 0.2s ease-out;
 }
 
-.editButton{
-    font-weight: bold;
-    float: right;
-    margin-right: 5px;
-}
 
 li:hover, .selected {
 	background-color: #99ccff;
@@ -58,14 +53,11 @@ li:hover, .selected {
 <body>
       
 
-<div style="text-align:right"><b><a href="manualModify.jsp"  id="majorclassifier" >edit</a></b></div>
 
-	<div class="accordion" id="counterControl">카운터
-	<a href="manualModify.jsp" class="editButton" id="middleclassifier">edit</a> </div>
+	<div class="accordion" id="counterControl">카운터</div>
 	<div class="panel">
 		<div class="subAccordion">
-			<div>청결관리
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>청결관리</div>
 		</div>
 		<div class="subPanel" id="kitchenTask">
 			<ul>
@@ -76,8 +68,7 @@ li:hover, .selected {
 			</ul>
 		</div>
 		<div class="subAccordion">
-			<div>시재관리
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>시재관리</div>
 		</div>
 		<div class="subPanel" id="hallTask">
 			<ul>
@@ -86,12 +77,10 @@ li:hover, .selected {
 		</div>
 	</div>
 	
-	<div class="accordion" id="stockControl">주방
-	<a href="manualModify.jsp" class="editButton" id="middleclassifier">edit</a> </div>
+	<div class="accordion" id="stockControl">주방</div>
 	<div class="panel">
 		<div class="subAccordion">
-			<div>청결관리
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>청결관리</div>
 		</div>
 		<div class="subPanel" id="kitchenTask">
 			<ul>
@@ -102,8 +91,7 @@ li:hover, .selected {
 			</ul>
 		</div>
 		<div class="subAccordion">
-			<div>재고관리
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>재고관리</div>
 		</div>
 		<div class="subPanel" id="hallTask">
 			<ul>
@@ -112,12 +100,10 @@ li:hover, .selected {
 		</div>
 	</div>
 	
-	<div class="accordion" id="moneyControl">홀
-	<a href="manualModify.jsp" class="editButton" id="middleclassifier">edit</a> </div>
+	<div class="accordion" id="moneyControl">홀</div>
 	<div class="panel">
 		<div class="subAccordion">
-			<div>청결관리
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>청결관리</div>
 		</div>
 		<div class="subPanel" id="kitchenTask">
 			<ul>
@@ -127,8 +113,7 @@ li:hover, .selected {
 			</ul>
 		</div>
 		<div class="subAccordion">
-			<div>재고관리
-	<a href="manualModify.jsp" class="editButton" id="minorclassifier">edit</a> </div>
+			<div>재고관리</div>
 		</div>
 		<div class="subPanel" id="hallTask">
 			<ul>

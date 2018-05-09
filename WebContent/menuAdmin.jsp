@@ -27,8 +27,9 @@
   font-style : bold;
   font-size : 12px;
   line-height : 1.6;
-  font-weight : bold;
+  font-weight : bold; 
 };
+
 </style>
 <body>
 
@@ -36,13 +37,12 @@
 <div class="w3-top">
     <img class="inline" src="images/menu.png" width="30pt" />
     <p class="inline" align="center">앱이름</p>
-
 </div> 
 
 <div class="w3-padding-48">
-  <div class="w3-row w3-large w3-light-grey" >
+  <div class="w3-row w3-large"  >
     <div class="w3-col s3">
-      <a id="dailyTaskTab" class="w3-button w3-block" style="color:blue;">일일업무</a>
+      <a id="dailyTaskTab" class="w3-button w3-block">일일업무</a>
     </div>
     <div class="w3-col s3">
       <a id="manualTab" class="w3-button w3-block">매뉴얼</a>
