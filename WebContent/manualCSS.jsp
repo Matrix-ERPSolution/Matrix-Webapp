@@ -15,13 +15,13 @@
     <p class="inline"><a href="manualVersionControl.jsp"><img src="images/versionList.png" width="30" height="30"/></a></p>
 </div> 		
 <br>
-	    <div class="inline"  style="text-align: right;">
+	    <div class="inline">
 	    <a id = "manualPlaceDivision"><button>공간별</button></a>
 	    </div>
-	    <div class="inline" style="text-align: right;">
+	    <div class="inline">
 	    <a id = "manualTaskDivision"><button>업무별</button></a>
 		</div> 
-	<div id="result2"><br><%@include file="manualCSSPlaceMode.jsp"%></div>
+	<div id="result2"><%@include file="manualCSSPlaceMode.jsp"%></div>
 
 <script>
 $(".inline").css({
