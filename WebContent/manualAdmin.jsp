@@ -11,8 +11,8 @@
 <body>
 
 <div class="w3-center">
-    <h2 class="inline">여름 시즌 </h2>
-    <p class="inline"><a href="manualVersionControl.jsp"><img src="images/versionList.png" width="30" height="30"/></a></p>
+    <h2 class="inline">매뉴얼 </h2>
+    <!-- <p class="inline"><a href="manualVersionControl.jsp"><img src="images/versionList.png" width="30" height="30"/></a></p> -->
 </div> 		
 <br>
 	    <div class="inline">
