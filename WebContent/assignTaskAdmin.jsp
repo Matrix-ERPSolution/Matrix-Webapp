@@ -6,7 +6,7 @@
 <title>업무 배정</title>
 <%@include file="headSetting.jsp" %>
 <style>
-.accordion, .subAccordion {
+.accordion, .subAccordion, #manualList {
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
@@ -20,25 +20,11 @@
     transition: 0.4s; 
     }
 
-#manualList {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
-    cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-    }
-    
 .active, .accordion:hover, .subAccordion:hover, #manualList:hover {
     background-color: #99ccff;
 }
 
-.accordion:before, .subAccordion:before, #manualList:before {
+.accordion:before, .subAccordion:before {
     content: '\25B6';
     color: #003366;
     font-weight: bold;
@@ -56,10 +42,12 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    display: none;
 }
 li:hover, .selected {
 	background-color: #99ccff;
+}
+.manual {
+	display: none;
 }
 </style>
 </head>
@@ -68,7 +56,7 @@ li:hover, .selected {
 <h2>업무 배정</h2>
 <div id="taskFromRecommend">
 	<h4>오늘의 추천업무</h4>
-	<div class="accordion" id="cleanControl">청결관리</div>
+	<div class="accordion" id="cleanControl">위생관리</div>
 	<div class="panel">
 		<ul>
 			<li>쇼케이스 얼룩 제거 <span class="deadline" style="float: right;">D-1</span></li>
@@ -99,16 +87,15 @@ li:hover, .selected {
 			<input id="search" type="text" placeholder="업무 목록 검색">
 			<button>검색</button>
 		</div>
-		<div id="manualList">매뉴얼 목록
-		<div class="accordion" id="counterControl" >카운터</div>
+		<div id="manualList">매뉴얼 전체보기</div>
+		<div class="accordion manual" id="counterControl" >카운터</div>
 		<div class="panel">
 			<div class="subAccordion">
 				<div>청결관리</div>
 			</div>
 			<div class="subPanel" id="kitchenTask">
 				<ul>
-					<li>카운터 닦기 <span class="interval" style="float: right;">마감
-							시</span></li>
+					<li>카운터 닦기 <span class="interval" style="float: right;">마감 시</span></li>
 				</ul>
 			</div>
 			<div class="subAccordion">
@@ -121,7 +108,7 @@ li:hover, .selected {
 			</div>
 		</div>
 
-		<div class="accordion" id="stockControl">주방</div>
+		<div class="accordion manual" id="stockControl">주방</div>
 		<div class="panel">
 			<div class="subAccordion">
 				<div>청결관리</div>
@@ -146,34 +133,33 @@ li:hover, .selected {
 				</ul>
 			</div>
 		</div>
-
-		<div class="accordion" id="moneyControl" >홀</div>
-		<div class="panel" >
-			<div class="subAccordion">
-				<div>청결관리</div>
-			</div>
-			<div class="subPanel" id="kitchenTask">
-				<ul>
-					<li>대걸레 청소 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>테이블 위 닦기 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감
-							시</span></li>
-				</ul>
-			</div>
-			<div class="subAccordion">
-				<div>재고관리</div>
-			</div>
-			<div class="subPanel" id="hallTask">
-				<ul>
-					<li>냅킨 재고 채우기 <span class="interval" style="float: right;">3일</span></li>
-					<li>빨대 채우기 <span class="interval" style="float: right;">3일</span></li>
-				</ul>
-			</div>
+	</div>
+	<div class="accordion manual" id="moneyControl" >홀</div>
+	<div class="panel" >
+		<div class="subAccordion">
+			<div>청결관리</div>
+		</div>
+		<div class="subPanel" id="kitchenTask">
+			<ul>
+				<li>대걸레 청소 <span class="interval" style="float: right;">마감
+						시</span></li>
+				<li>테이블 위 닦기 <span class="interval" style="float: right;">마감
+						시</span></li>
+				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감
+						시</span></li>
+			</ul>
+		</div>
+		<div class="subAccordion">
+			<div>재고관리</div>
+		</div>
+		<div class="subPanel" id="hallTask">
+			<ul>
+				<li>냅킨 재고 채우기 <span class="interval" style="float: right;">3일</span></li>
+				<li>빨대 채우기 <span class="interval" style="float: right;">3일</span></li>
+			</ul>
 		</div>
 	</div>
-	</div>
+		
 	<div id="taskFromTyping">
 		<h4>직접 입력하기</h4>
 		<div id="taskTyping">
@@ -188,46 +174,47 @@ li:hover, .selected {
 		</ul>
 	</div>
 	<script>
-		//아코디언 길이 조정: panel로.
 		var acc = document.querySelectorAll(".accordion");
 		var i;
-
+	
 		for (i = 0; i < acc.length; i++) {
-			acc[i].addEventListener("click", function() {
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.maxHeight) {
-					panel.style.maxHeight = null;
-				} else {
-					panel.style.maxHeight = panel.scrollHeight + "px";
-				}
-			})
+		  acc[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var panel = this.nextElementSibling;
+		    if (panel.style.maxHeight){
+		      panel.style.maxHeight = null;
+		    } else {
+		      panel.style.maxHeight = panel.scrollHeight + "px";
+		    } 
+		  });
 		}
-		
-		//매뉴얼목록 토글; 작성중
-        var cnt=0;
-		$("#manualList").click(function() {
-			$("#manualList").children(".accordion").toggle(cnt++ % 2 === 0);
-		});
-		
-		//서브아코디언 길이 조정
+	
 		var subAcc = document.querySelectorAll(".subAccordion");
-
+	
 		for (i = 0; i < subAcc.length; i++) {
 			subAcc[i].addEventListener("click", function() {
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.maxHeight) {
-					panel.style.maxHeight = null;
-				} else {
-					panel.style.maxHeight = panel.scrollHeight + "px";
-				}
-
-				var motherPanel = this.parentNode;
-				motherPanel.style.maxHeight = motherPanel.scrollHeight
-						+ panel.scrollHeight + "px";
-			})
+		    this.classList.toggle("active");
+		    var panel = this.nextElementSibling;
+		    if (panel.style.maxHeight){
+		      panel.style.maxHeight = null;
+		    } else {
+		      panel.style.maxHeight = panel.scrollHeight + "px";
+		    } 
+		    
+		    var motherPanel = this.parentNode;
+		    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
+	
+		  });
 		}
+		
+		
+		//매뉴얼목록 토글; 작성중
+		$("#manualList").click(function() {
+			$(".manual").toggle();
+			$("#manualList").toggleClass("selected");
+		});
+		
+		
 
 		//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
 		var li = document.querySelectorAll("li");
