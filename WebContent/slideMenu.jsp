@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   
 <style type="text/css">
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+/* .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer} */
 .w3-half img:hover{opacity:1}
 .w3-bar-block {
 	font-size: 12pt;
@@ -19,7 +19,7 @@
 </head>
 <body>
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-white w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:240px;font-weight:bold;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-white w3-collapse w3-top w3-large" style="z-index:3;width:240px;font-weight:bold;" id="mySidebar"><br>
   <div class="w3-container">
   	<table>
   		<tr>
@@ -38,7 +38,7 @@
 </nav>
 
 <!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-blue w3-xlarge w3-padding">
+<header class="w3-container w3-top w3-blue w3-large">
   <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
   <span>Company Name</span>
 </header>

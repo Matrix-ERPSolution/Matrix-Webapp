@@ -12,7 +12,9 @@
 <style>	
 
 .tabs {
-  padding: 50px;
+  padding: 0px;
+  margin-top: 43.34px;
+  width: 360px;
 };
 
 </style>
@@ -21,20 +23,20 @@
 </header>
 <body>
 <!-- 위치조정 필요 -->
-<div class="w3-top">
-	<div class="tabs">
-	    <div class="w3-col s3">
-	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff">일일업무</a>
+
+	<div class="tabs w3-bar" style="background-color: #e6f2ff; position:relative;">
+	    <div class="w3-col s4">
+	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff; width: 120px;">일일업무</a>
 	    </div>
-	    <div class="w3-col s3">
-	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff">매뉴얼</a>
+	    <div class="w3-col s4">
+	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff; width: 120px;">매뉴얼</a>
 	    </div>
-	    <div class="w3-col s3">
-	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff">직원관리</a>
+	    <div class="w3-col s4">
+	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff; width: 120px;">직원관리</a>
 	    </div>
 	</div> 
-</div> 
-<div style="background-color: aqua;" class="w3-padding-64" id="result"><%@include file="dailyTaskHeaderAdmin.jsp"%></div>
+
+<div style="background-color: aqua;" id="result"><%@include file="dailyTaskAdmin.jsp"%></div>
 
 <script>
 $(".inline").css({
@@ -43,7 +45,7 @@ $(".inline").css({
 $("#dailyTaskTab").click(
 		function(){
 			 $.ajax({
-			        url : "dailyTaskHeaderAdmin.jsp", 
+			        url : "dailyTaskAdmin.jsp", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }
