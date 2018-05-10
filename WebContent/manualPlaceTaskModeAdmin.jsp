@@ -8,13 +8,12 @@
 <style>
 
 .accordion {
-	border-radius: 5px;
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
     cursor: pointer;
     padding: 8px;
-    width: 80%;
+    width: 100%;
     border: 2px solid #d4e5f7;
     text-align: left;
     outline: none;
@@ -22,19 +21,17 @@
     transition: 0.4s;
 }
 .subAccordion {
-	border-radius: 5px;
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
     cursor: pointer;
     padding: 8px;
-    width: 80%;
+    width: 100%;
     border: 2px solid #e6f2ff;
     text-align: left;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
-    height: 15px;
 }
 .active, .accordion:hover, .subAccordion:hover {
     background-color: #99ccff;
