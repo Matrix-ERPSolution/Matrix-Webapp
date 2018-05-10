@@ -91,7 +91,7 @@ CREATE TABLE "DAILY_TASKS" (
 	"IMPORTANCE"       NUMBER(1,0)  NOT NULL, -- 중요업무여부
 	"ASSIGN_TYPE"      VARCHAR2(6)  NOT NULL, -- 배정유형(파트or개인)
 	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- 배정대상(파트명or이름)
-	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NOT NULL, -- 매뉴얼업무코드
+	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NULL, -- 매뉴얼업무코드
 	"ID"               VARCHAR2(16) NULL,     -- 완료자아이디
 	"FINISHER"         VARCHAR2(20) NULL,     -- 완료자명
 	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL  -- 지점코드
