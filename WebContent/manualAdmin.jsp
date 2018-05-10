@@ -21,30 +21,21 @@
 	    <div class="inline">
 	    <a id = "manualTaskDivision"><button>업무별</button></a>
 		</div> 
-	<div id="result2"><%@include file="manualCSSPlaceModeAdmin.jsp"%></div>
+	<div id="result2"><%@include file="manualPlaceTaskModeAdmin.jsp"%></div>
 
 <script>
 $(".inline").css({
 	"display":"inline"
 });
-$("#manualPlaceDivision").click(
+$("#manualPlaceDivision", "#manualTaskDivision").click(
 	function(){
 		 $.ajax({
-		        url : "manualCSSPlaceModeAdmin.jsp", 
+		        url : "manualCSSPlaceTaskModeAdmin.jsp", 
 		        success : function(result){
 		           $("#result2").html(result);
 		        }
 		    });
 	});
-$("#manualTaskDivision").click(
-		function(){
-			 $.ajax({
-			        url : "manualCSSTaskModeAdmin.jsp", 
-			        success : function(result){
-			           $("#result2").html(result);
-			        }
-			    });
-		});
 </script>
 </body>
 </html>
