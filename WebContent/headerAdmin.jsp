@@ -36,7 +36,6 @@
 </div> 
 <div style="background-color: aqua;" class="w3-padding-64" id="result"><%@include file="dailyTaskHeaderAdmin.jsp"%></div>
 
-
 <script>
 $(".inline").css({
 	"display":"inline"
@@ -53,7 +52,7 @@ $("#dailyTaskTab").click(
 $("#manualTab").click(
 		function(){
 			 $.ajax({
-			        url : "manual.jsp", 
+			        url : "manualAdmin.jsp", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }
