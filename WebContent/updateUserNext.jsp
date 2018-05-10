@@ -8,9 +8,8 @@
 회원정보 변경 메뉴+비밀번호 변경 메뉴(공통)
 
 재활용할 코드
-<div class="accordion">
-	<p class="inline" align="left">회원정보 변경</p>
-	<div id="privacy">
+<div class="accordion">회원정보 변경</div>
+	<div class="panel" id="privacy">
 		이름 <input name="name" id="name" required="required"> <br>
 		생년월일 <select name="birthyear" id="birthyear" required="required">
 			<option value="">년</option>
@@ -46,18 +45,16 @@
 			<option value="가락동">가락동</option>
 		</select> <br>
 		<button id="certification" class="ui-button ui-widget ui-corner-all">수정완료</button>
-	</div>	<!-- privacy end -->
-</div>
+	</div>	<!-- panel privacy end -->
 
-<div class="accordion">
-	<p class="inline" align="left">비밀번호 변경</p>
+<div class="accordion">비밀번호 변경</div>
 	<div class="panel" id="changePassword">
 		아이디 <input type="text" id="id" name="id" placeholder="아이디" readonly="readonly"><br> 
 		현재 비밀번호<input type="password" id="pw1" name="pw1" placeholder="현재 비밀번호"><br> 
 		새 비밀번호<input type="password" id="pw2" name="pw2" placeholder="새 비밀번호"><br> 
-		새 비밀번호 확인<input type="password" id="pw3" name="pw3" placeholder="새 비밀번호 확인">
+		새 비밀번호 확인<input type="password" id="pw3" name="pw3" placeholder="새 비밀번호 확인"><br>
 		<button id="certification" class="ui-button ui-widget ui-corner-all">수정완료</button>
-	</div>	<!-- end changePassword -->
-</div>
+	</div>	<!-- panel changePassword end -->
+
 </body>
 </html>

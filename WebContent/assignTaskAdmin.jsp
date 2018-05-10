@@ -6,7 +6,21 @@
 <title>업무 배정</title>
 <%@include file="headSetting.jsp" %>
 <style>
-.accordion, .subAccordion, #manualList {
+.accordion, .subAccordion {
+    background-color: #e6f2ff;
+    font-weight: bold;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s; 
+    }
+
+#manualList {
     background-color: #e6f2ff;
     font-weight: bold;
     color: #444;
@@ -18,8 +32,8 @@
     outline: none;
     font-size: 15px;
     transition: 0.4s;
-}
-
+    }
+    
 .active, .accordion:hover, .subAccordion:hover, #manualList:hover {
     background-color: #99ccff;
 }
@@ -42,6 +56,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    display: none;
 }
 li:hover, .selected {
 	background-color: #99ccff;
@@ -85,7 +100,7 @@ li:hover, .selected {
 			<button>검색</button>
 		</div>
 		<div id="manualList">매뉴얼 목록
-		<div class="accordion" id="counterControl">카운터</div>
+		<div class="accordion" id="counterControl" >카운터</div>
 		<div class="panel">
 			<div class="subAccordion">
 				<div>청결관리</div>
@@ -132,8 +147,8 @@ li:hover, .selected {
 			</div>
 		</div>
 
-		<div class="accordion" id="moneyControl">홀</div>
-		<div class="panel">
+		<div class="accordion" id="moneyControl" >홀</div>
+		<div class="panel" >
 			<div class="subAccordion">
 				<div>청결관리</div>
 			</div>
@@ -190,10 +205,12 @@ li:hover, .selected {
 		}
 		
 		//매뉴얼목록 토글; 작성중
+        var cnt=0;
 		$("#manualList").click(function() {
-			$()
+			$("#manualList").children(".accordion").toggle(cnt++ % 2 === 0);
 		});
-
+		
+		//서브아코디언 길이 조정
 		var subAcc = document.querySelectorAll(".subAccordion");
 
 		for (i = 0; i < subAcc.length; i++) {
@@ -212,7 +229,7 @@ li:hover, .selected {
 			})
 		}
 
-		//업무 리스트 중 1개를 클릭 -> 
+		//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
 		var li = document.querySelectorAll("li");
 		var i;
 
