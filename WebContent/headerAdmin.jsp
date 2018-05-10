@@ -10,18 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-#sideMenu {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 1;
-  background-image: url('images/menu.png');
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: center;
- };
+
 .tabs {
   padding: 50px;
 };
@@ -74,7 +63,7 @@ $("#manualTab").click(
 $("#staffManagementTab").click(
 		function(){
 			 $.ajax({
-			        url : "staffManagement.jsp", 
+			        url : "staffManagementAdmin.jsp", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }
