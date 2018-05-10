@@ -30,7 +30,7 @@ $(".inline").css({
 $("#manualPlaceDivision", "#manualTaskDivision").click(
 	function(){
 		 $.ajax({
-		        url : "manualCSSPlaceTaskModeAdmin.jsp", 
+		        url : "manualPlaceTaskModeAdmin.jsp", 
 		        success : function(result){
 		           $("#result2").html(result);
 		        }
