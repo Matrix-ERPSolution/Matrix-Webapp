@@ -67,6 +67,9 @@ li.selected::before {
 .inline {
  display: inline-block;
 }
+#datemenu {
+	vertical-align: middle 
+}
 </style>
 <script type="text/javascript">
 var currentDate = new Date();
@@ -143,10 +146,8 @@ $(function(){
    <div class="inline">
       <img id="scrollFuture" src="images/rightTriangle.png" width="15pt" />
    </div>
-   <div class="inline">
-    <a href="assignTaskCSS.jsp">
-       <img src="images/taskassign.png" width="50pt" />
-      </a>
+   <div class="inline" >
+       <i class="fa fa-external-link w3-xlarge" aria-hidden="true" id="assignTaskButton"></i>
    </div>
 </div>
 
@@ -238,6 +239,16 @@ $("#updateTask").click(function(){
 $("#deleteTask").click(function(){
    alert('업무 삭제');
 });
+/**assignTaskAdmin 페이지로 이동*/
+$("#assignTaskButton").click(
+		function(){
+			 $.ajax({
+			        url : "assignTaskAdmin.jsp", 
+			        success : function(result){
+			           $("#result").html(result);
+			        }
+			    });
+		});
 </script>
 
 </body>

@@ -7,24 +7,30 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   
-<style type="text/css">
-/* .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer} */
-.w3-half img:hover{opacity:1}
+ <style type="text/css">
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1} 
+/* 찬영오빠 위의 코드는 어디에 쓰이는 건지 잘 모르겠어요 일단 살려둠 from 연진*/
 .w3-bar-block {
-	font-size: 12pt;
-	font-weight: normal;
+	font-size: small;
+	font-weight: bold;
 }
-</style>
+#logo {
+	width: 150px;
+	height: 35px;
+}
+</style> 
 
 </head>
 <body>
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-white w3-collapse w3-top w3-large" style="z-index:3;width:240px;font-weight:bold;" id="mySidebar"><br>
+<div class="w3-sidebar w3-white w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-small" onclick="w3_close()" style="text-align:right;">&times;</button>
   <div class="w3-container">
   	<table>
   		<tr>
   			<td><img alt="프로필사진" src="images/defaultProfile.png" style="width: 70px; height: 70px;"></td>
-  			<td><h5><b>가락시장점<br>관리자<br>홍윤영님</b></h5></td>
+  			<td><h6><b>가락시장점<br>관리자<br>홍윤영 님</b></h6></td>
 		</tr>
   	</table>
   </div>
@@ -35,16 +41,16 @@
     <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 ver 1.10</a> 
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
   </div>
-</nav>
+</div>
 
-<!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-blue w3-large">
-  <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Company Name</span>
+<!-- Page Content -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+
+<header class="w3-container w3-large">
+  <a href="javascript:void(0)" class="w3-button w3-margin-right w3-large" onclick="w3_open()">☰</a>
+    <span><img id="logo" src="images/logo.png"></span>
 </header>
-  
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <script>
 //Script to open and close sidebar

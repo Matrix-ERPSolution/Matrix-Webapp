@@ -54,7 +54,6 @@
 #assignedTaskBox{
 	padding: 5px;
 	border: 2px solid black;
-    width: 400px;
 }
 .staffs{
 	border: 2px solid black;
@@ -67,16 +66,16 @@
 <h2>5월 3일(목)</h2>
 <h2>업무 배정</h2>
 <hr> <br>
-<h3>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i></h3>
+<h4>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i></h4>
 <div id="assignedTaskBox">
 	<ul>
-		<li ><i class="fa fa-circle" aria-hidden="true" style="margin-right:25px"></i></li> <li style="width:220px">쇼케이스 얼룩 제거</li> <li>D-1</li>
+		<li ><i class="fa fa-circle" aria-hidden="true" style="margin-right:25px"></i></li> <li>쇼케이스 얼룩 제거</li> <li>D-1</li>
 	</ul>
 	<ul>
-		<li><i class="fa fa-circle-thin" aria-hidden="true" style="margin-right:25px"></i></li> <li style="width:220px">아이스크림 기계 청소</li> <li>D-7</li>
+		<li><i class="fa fa-circle-thin" aria-hidden="true" style="margin-right:25px"></i></li> <li>아이스크림 기계 청소</li> <li>D-7</li>
 	</ul>
 	<ul>
-		<li><i class="fa fa-circle" aria-hidden="true" style="margin-right:25px"></i></li> <li style="width:220px">연진이 생일 케이크 사오기</li> <li>D-0</li>
+		<li><i class="fa fa-circle" aria-hidden="true" style="margin-right:25px"></i></li> <li>연진이 생일 케이크 사오기</li> <li>D-0</li>
 	</ul>
 </div>
 
@@ -129,7 +128,7 @@
 </div>
 
 <hr> <br>
-<h4>해당 업무를 총 1가지 파트에 배정합니다.</h4>
+<h5>해당 업무를 --- 파트에 배정합니다.</h5>
 <div id="selectedTasks">
 	<ul id="selectedTasksList">
 	
@@ -137,8 +136,10 @@
 </div>
 
 <hr> <br>
+<div style="text-align: center;">
 <button>배정하기</button>
 <button>취소</button>
+</div>
 <script>
 var acc = document.querySelectorAll(".accordion");
 var i;

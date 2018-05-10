@@ -13,7 +13,6 @@
 
 .tabs {
   padding: 0px;
-  margin-top: 43.34px;
   width: 360px;
 };
 
@@ -26,13 +25,13 @@
 
 	<div class="tabs w3-bar" style="background-color: #e6f2ff; position:relative;">
 	    <div class="w3-col s4">
-	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff; width: 120px;">일일업무</a>
+	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff;">일일업무</a>
 	    </div>
 	    <div class="w3-col s4">
-	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff; width: 120px;">매뉴얼</a>
+	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff;">매뉴얼</a>
 	    </div>
 	    <div class="w3-col s4">
-	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff; width: 120px;">직원관리</a>
+	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff;">직원관리</a>
 	    </div>
 	</div> 
 
