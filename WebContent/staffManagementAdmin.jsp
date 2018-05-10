@@ -38,12 +38,20 @@ $(function() {
 $(".inline").css({
 	"display":"inline"
 });
-
-$(function(){
+$(".profilePicture").click(
+		function(){
+			 $.ajax({
+			        url : "staffDetailAdmin.jsp", 
+			        success : function(result){
+			           $("#result").html(result);
+			        }
+			    });
+		});
+/* $(function(){
 	$(".profilePicture").click(function(){
 		location.href ='staffDetailAdmin.jsp';
 	})
-});
+}); */
 		
 </script>
 </body>
