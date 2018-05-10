@@ -1,0 +1,182 @@
+--DDL
+
+
+--매뉴얼관련 MANUAL_TASKS , SPACE_TYPES, TASK_TYPES 테이블 포워드 엔지니어링
+
+-- 매뉴얼업무
+CREATE TABLE "MANUAL_TASKS" (
+	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NOT NULL, -- 매뉴얼업무코드
+	"TASK"             VARCHAR2(60) NOT NULL, -- 업무명
+	"REPEAT_TYPE"      VARCHAR2(6)  NULL,     -- 반복기준유형
+	"REPEAT_DETAIL"    VARCHAR2(6)  NULL,     -- 반복기준상세
+	"SPACE_TYPES_SEQ"  NUMBER(2,0)  NOT NULL, -- 공간분류코드
+	"TASK_TYPES_SEQ"   NUMBER(2,0)  NOT NULL  -- 업무분류코드
+);
+
+-- 매뉴얼업무
+ALTER TABLE "MANUAL_TASKS"
+	ADD
+		CONSTRAINT "PK_MANUAL_TASKS" -- 매뉴얼업무 기본키
+		PRIMARY KEY (
+			"MANUAL_TASKS_SEQ" -- 매뉴얼업무코드
+		);
+
+-- 공간분류
+CREATE TABLE "SPACE_TYPES" (
+	"SPACE_TYPES_SEQ" NUMBER(2,0)  NOT NULL, -- 공간분류코드
+	"SPACE_TYPE"      VARCHAR2(25) NOT NULL  -- 분류명
+);
+
+-- 공간분류
+
+ALTER TABLE "SPACE_TYPES"
+	ADD
+		CONSTRAINT "PK_SPACE_TYPES" -- 공간분류 기본키
+		PRIMARY KEY (
+			"SPACE_TYPES_SEQ" -- 공간분류코드
+		);
+
+-- 업무분류
+CREATE TABLE "TASK_TYPES" (
+	"TASK_TYPES_SEQ" NUMBER(2,0)  NOT NULL, -- 업무분류코드
+	"TASK_TYPE"      VARCHAR2(25) NOT NULL  -- 분류명
+);
+
+-- 업무분류
+ALTER TABLE "TASK_TYPES"
+	ADD
+		CONSTRAINT "PK_TASK_TYPES" -- 업무분류 기본키
+		PRIMARY KEY (
+			"TASK_TYPES_SEQ" -- 업무분류코드
+		);
+
+-- 매뉴얼업무
+ALTER TABLE "MANUAL_TASKS"
+	ADD
+		CONSTRAINT "FK_SPACE_TYPES_TO_MANUAL_TASKS" -- 공간분류 -> 매뉴얼업무
+		FOREIGN KEY (
+			"SPACE_TYPES_SEQ" -- 공간분류코드
+		)
+		REFERENCES "SPACE_TYPES" ( -- 공간분류
+			"SPACE_TYPES_SEQ" -- 공간분류코드
+		);
+
+-- 매뉴얼업무
+ALTER TABLE "MANUAL_TASKS"
+	ADD
+		CONSTRAINT "FK_TASK_TYPES_TO_MANUAL_TASKS" -- 업무분류 -> 매뉴얼업무
+		FOREIGN KEY (
+			"TASK_TYPES_SEQ" -- 업무분류코드
+		)
+		REFERENCES "TASK_TYPES" ( -- 업무분류
+			"TASK_TYPES_SEQ" -- 업무분류코드
+		);
+
+
+-- 시퀀스 생성
+create sequence space_types_seq;
+create sequence task_types_seq;
+create sequence manual_tasks_seq;
+
+
+
+
+-- 일일업무 DAILY_TASKS 테이블 포워드 엔지니어링
+
+-- 일일업무
+CREATE TABLE "DAILY_TASKS" (
+	"DAILY_TASKS_SEQ"  NUMBER(7,0)  NOT NULL, -- 일일업무코드
+	"INPUT_TASK"       VARCHAR2(60) NULL,     -- 직접입력업무명
+	"DATE"             DATE         NOT NULL, -- 배정날짜
+	"IMPORTANCE"       NUMBER(1,0)  NOT NULL, -- 중요업무여부
+	"ASSIGN_TYPE"      VARCHAR2(6)  NOT NULL, -- 배정유형(파트or개인)
+	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- 배정대상(파트명or이름)
+	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NOT NULL, -- 매뉴얼업무코드
+	"ID"               VARCHAR2(16) NULL,     -- 완료자아이디
+	"FINISHER"         VARCHAR2(20) NULL,     -- 완료자명
+	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL  -- 지점코드
+);
+
+-- 일일업무
+ALTER TABLE "DAILY_TASKS"
+	ADD
+		CONSTRAINT "PK_DAILY_TASKS" -- 일일업무 기본키2
+		PRIMARY KEY (
+			"DAILY_TASKS_SEQ" -- 일일업무코드
+		);
+
+-- 일일업무
+ALTER TABLE "DAILY_TASKS"
+	ADD
+		CONSTRAINT "FK_MANUAL_TASKS_TO_DAILY_TASKS" -- 매뉴얼업무 -> 일일업무
+		FOREIGN KEY (
+			"MANUAL_TASKS_SEQ" -- 매뉴얼업무코드
+		)
+		REFERENCES "MANUAL_TASKS" ( -- 매뉴얼업무
+			"MANUAL_TASKS_SEQ" -- 매뉴얼업무코드
+		);
+
+-- 시퀀스 생성
+create sequence daily_tasks_seq;
+
+
+
+
+
+
+
+
+-- DML
+
+-- 메뉴얼레코드
+
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, '홀');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, '바');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, '카운터');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, '테라스');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, '화장실');
+
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '비품관리');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '식품관리');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '시재관리');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '위생관리');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '설비관리');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '고객관리');
+
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '아이스 컵 재고량 점검', '기간', '2', 2, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '비품재고현황표 작성', '기간', '30', 2, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '원두 재고량 점검', '기간', '2', 2, 2);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '시럽류 유통기한 확인', '기간', '7', 2, 2);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '음식물 쓰레기 버리기', '파트', '마감', 2, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '행주 소독', '파트', '마감', 2, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '커피머신 윤활제 바르기', '기간', '3', 2, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '냉장고 성에 제거', '기간', '14', 2, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '영수증 용지 재고 확인', '기간', '2', 3, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '행사 상품 재고 확인', '파트', '마감', 3, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '현금 시재 확인', '파트', '미들', 3, 3);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '은행에서 잔돈 교환', 3, 3);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '카운터 선반 닦기', '파트', '마감', 3, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'POS기 먼지 제거', '파트', '마감', 3, 4);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '메뉴판 업데이트 및 점검' , 3, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'POS기 프로그램 업데이트', 3, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '셀프 바 빨대 재고량 확인', '파트', '오픈', 1, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '셀프 바 시럽 채우기', '기간', '2', 1, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '바닥 쓸기', '파트', '마감', 1, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '바닥 닦기', '파트', '마감', 1, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '에어컨 필터 교체', '기간', '365', 1, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '테이블 및 좌석 점검', '파트', '마감', 1, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '시즌별 메뉴 포스터 부착', 1, 6);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '이번달 프로모션 행사 홍보물 부착', 1, 6);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '테라스 테이블 및 바닥 청소', '파트', '마감', 4, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '테라스 외부 청소', '기간', '2', 4, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '테라스 테이블, 의자 수거', '파트', '마감', 4, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '우천시 파라솔 설치', 4, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '화장지 재고량 점검', '기간', '3', 5, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '손 세정제 리필', '기간', '3', 5, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '화장실 청소', '파트', '마감', 5, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '화장실 소독', '기간', '7', 5, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '환풍기 청소', '기간', '30', 5, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '대소변기 비데 및 센서점검', 5, 5);
+
+
+
