@@ -14,11 +14,7 @@
 </div>
 	<fieldset>
 	<div id="cellPhoneCertify">
-		휴대폰 번호 <select id="numberField1" required="required">
-			<option value="">선택</option>
-			<option value="010">010</option>
-		</select>- <input type="tel" id="numberField2" required="required">- <input
-			type="tel" id="numberField3" required="required">
+		휴대폰 번호<input type="text" id="cellPhone" required="required" pattern="(01[0|1|6|7|8|9]{1})([1-9]{3,4})([0-9]{4})" title="전화번호 양식"><div id="certifyResult"></div>
 		<button href="" id="certify1"
 			class="ui-button ui-widget ui-corner-all">인증</button>
 		<br>
@@ -42,7 +38,25 @@
 	
 	$("#addMember2").on("click", function(){
 		location.href="addMember2.jsp";
-	});	
+	});
+	
+	//휴대전화 유효성 검사 	
+	$(document).ready(function() {
+		$("#certify1").click(function() {
+			var regCellPhone = /^(01[0|1|6|7|8|9]{1})([1-9]{3,4})([0-9]{4})$/;
+			if (!$("#cellPhone").val()) {
+				$("#certifyResult").html('휴대전화번호를 입력하세요');
+				$("#cellPhone").focus();
+				return false;//값이 비어있을 경우
+			} else if (!regCellPhone.test($("#cellPhone").val())) {
+				$("#certifyResult").html('올바르지 않은 전화번호입니다');
+				$("#cellPhone").val('');
+				$("#cellPhone").focus();
+				return false;//형식에 맞지 않을 경우
+			}
+		});
+	});
+	
 </script>
 </body>
 </html>
