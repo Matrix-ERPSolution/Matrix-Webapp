@@ -3,139 +3,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@include file="headSetting.jsp"%>
-<title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  
 <style type="text/css">
-html.open {
-  overflow: hidden;
-}
-
-#menu {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  left: 10px;
-  top: 5px;
-  z-index: 1;
-/*   background-image: url('images/menu.png'); 
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: center;*/
- }
-
-#close {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  background-image: url('images/close.png');
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: center;
-  }
-
-#slideMenu {
-  width: 240px;
-  height: 100%;
-  position: fixed;
-  top: 0px;
-  left: -240px;
-  z-index: 10;
-  border: 1px solid #c9c9c9;
-  background-color: white;
-  text-align: left;
-  transition: All 0.2s ease;
-  padding-top: 40px;
-}
-
-#slideMenu.open {
-  left: 0px;
-}
-
-#pageCover.open {
-  display: block;
-}
-
-#pageCover {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 4;
-  display: none;
-}
-img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width : 40%;
-	vertical-align: bottom;
-}
-ul {
-	list-style: none;
-}
+	body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+	body {font-size:16px;}
+	.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+	.w3-half img:hover{opacity:1}
 </style>
 
 </head>
 <body>
-<div class="w3-container w3-top">
-  	<!-- <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a> -->
-	<!-- <div id="menu" style="display:inline"></div>메뉴 버튼 -->
-	<img id="menu" src="images/menu.png" style="width:40px; height:40px; display:inline">
-	<img src="images/logo.png" >
-</div>
-<div style="max-width: 1000px; margin: auto;">
-	<div onclick="history.back();" id="pageCover"></div>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Company<br>Name</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
+    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
+    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
+    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+  </div>
+</nav>
 
-	<div id="slideMenu">
-		<!-- 슬라이드 메뉴 -->
-		<table>
-		<tr>
-			<td><img src="" alt="프로필사진"></td>
-			<td><div id="shopName">가락시장점</div>
-				<div id="memberClass">관리자</div>
-				<div id="memberName">홍윤영님</div></td>
-		</tr>
-		<tr>
-			<td><button>로그아웃</button></td>
-			<td><button>홈 화면</button></td>
-		</tr>
-		</table>
-		
-		<div id="section">
-			<ul>
-				<li><a href="changeInfoAdmin.jsp">회원 정보 수정</a></li>
-				<li><a href="#">알림 설정</a></li>
-				<li><a href="#">도움말</a></li>
-				<li><a href="#">버전 정보</a></li>
-				<li><a href="#">개발자 정보</a></li>
-			</ul>
-		</div>
-		<!-- section end -->
-		<div onclick="history.back();" id="close"></div>
-		<!-- 닫기 버튼 -->
-	</div>
-	<!-- slideMenu end -->
-	<script type="text/javascript">
-		//sidemenu 클릭 시 slidemenu, pagecover(음영) 호출
-		$("#menu").click(function() {
-			$("#slideMenu,#pageCover,html").addClass("open");
-			window.location.hash = "#open";
-		});
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Company Name</span>
+</header>
+  
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-		//close 클릭 혹은 다른 화면 영역 클릭 시 슬라이드 메뉴 닫힘
-		window.onhashchange = function() {
-			if (location.hash != "#open") {
-				$("#slideMenu,#pageCover,html").removeClass("open");
-			}
-		};
-	</script>
-</div>
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+<script>
+//Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+</script>
+
 </body>
 </html>
