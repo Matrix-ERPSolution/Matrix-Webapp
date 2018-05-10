@@ -20,7 +20,7 @@
 	<%@include file="slideMenu.jsp" %>
 </header>
 <body>
-	
+<!-- 위치조정 필요 -->
 <div class="w3-top">
 	<div class="tabs">
 	    <div class="w3-col s3">
