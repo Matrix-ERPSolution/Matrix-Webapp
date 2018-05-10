@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@include file="headSetting.jsp"%>
 <title>Manual</title>
 <style>
 
@@ -44,67 +45,62 @@
     transition: max-height 0.2s ease-out;
 }
 
-.editButton{
-    font-weight: bold;
-    float: right;
-    margin-right: 5px;
-}
-
 li:hover, .selected {
 	background-color: #99ccff;
 }
 </style>
 </head>
 <body>
-    <br>  
-	<div class="accordion" id="cleanControl">청결관리</div>
+
+	<br>
+	<div class="accordion" id="accordion1">accordion1</div>
 	<div class="panel">
 		<div class="subAccordion">
-			<div>주방</div>
+			<div>subAccordion1</div>
 		</div>
-		<div class="subPanel" id="kitchenTask">
+		<div class="subPanel">
 			<ul>
-				<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감 시</span></li>
-				<li>싱크대 닦기 <span class="interval" style="float: right;">마감 시</span></li>
-				<li>행주 소독 <span class="interval" style="float: right;">마감 시</span></li>
-				<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
+				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
+				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>
+				<li>taskContent3 <span class="interval" style="float: right;">taskPeriod3</span></li>
+				<li>taskContent4 <span class="interval" style="float: right;">taskPeriod4</span></li>
 			</ul>
 		</div>
 		<div class="subAccordion">
-			<div>홀</div>
+			<div>subAccordion2</div>
 		</div>
 		<div class="subPanel" id="hallTask">
 			<ul>
-				<li>바닥 대걸레 청소 <span class="interval" style="float: right;">오픈 시</span></li>
-				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감 시</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>화장실</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>남자화장실 핸드타월 갈기 <span class="interval" style="float: right;">3일</span></li>
+				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
+				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>
 			</ul>
 		</div>
 	</div>
 	
-	<div class="accordion" id="stockControl">재고관리</div>
+	<div class="accordion" id="accordion2">accordion2</div>
 	<div class="panel">
-		<ul>
-			<li>원두 재고 점검 <span class="interval" style="float: right;">3일</span></li>
-			<li>컵 재고 점검 <span class="interval" style="float: right;">4일</span></li>
-		</ul>
+		<div class="subAccordion">
+			<div>subAccordion1</div>
+		</div>
+		<div class="subPanel">
+			<ul>
+				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
+				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>
+				<li>taskContent3 <span class="interval" style="float: right;">taskPeriod3</span></li>
+				<li>taskContent4 <span class="interval" style="float: right;">taskPeriod4</span></li>
+			</ul>
+		</div>
+		<div class="subAccordion">
+			<div>subAccordion2</div>
+		</div>
+		<div class="subPanel">
+			<ul>
+				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
+				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>	
+				<li>taskContent3 <span class="interval" style="float: right;">taskPeriod3</span></li>				
+			</ul>
+		</div>
 	</div>
-	
-	<div class="accordion" id="moneyControl">시재관리</div>
-	<div class="panel">
-		<ul>
-			<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
-		</ul>
-	</div>
-
-
 <script>
 var acc = document.querySelectorAll(".accordion");
 var i;
@@ -138,9 +134,6 @@ for (i = 0; i < subAcc.length; i++) {
 
   });
 }
-
-
 </script>
-
 </body>
 </html>
