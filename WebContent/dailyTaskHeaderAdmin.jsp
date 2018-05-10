@@ -125,14 +125,13 @@ $.ajax({
    
 /**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 $("#scrollPast").on("click", function(){
+	$("#datepicker").datepicker("setDate", "-1d");
+	$("#date").html($("#datepicker").val());
 	//오늘, 과거 업무 페이지일때 왼쪽 버튼 누르면 hide(내일 업무 페이지에서는 hideX.) //현재 제대로 구현 안됨
 	if($("#date").html()!=(thisMonth+"월 "+(thisDay+1)+"일")){
 		$("#updateTask").hide();
 		$("#deleteTask").hide();
 	}
-	$("#datepicker").datepicker("setDate", "-1d");
-	$("#date").html($("#datepicker").val());
-	
 });
 
 $("#scrollFuture").on("click", function(){

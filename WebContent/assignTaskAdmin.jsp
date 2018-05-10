@@ -53,267 +53,252 @@ li:hover, .selected {
 <h2>업무 배정</h2>
 <div id="taskFromRecommend">
 	<h4>오늘의 추천업무</h4>
-	<div class="accordion" id="cleanControl">청결관리</div>
+	<div class="accordion" id="">바</div>
 	<div class="panel">
 		<ul>
-			<li>쇼케이스 얼룩 제거 <span class="deadline" style="float: right;">D-1</span></li>
-			<li>아이스크림 기계 청소 <span class="deadline" style="float: right;">D-7</span></li>
-			<li>냉장고 성에 제거 <span class="deadline" style="float: right;">D-9</span></li>
+			<li>비품재고현황표 작성 <span class="deadline" style="float: right;">D-2</span></li>
+			<li>시럽류 유통기한 확인 <span class="deadline" style="float: right;">D-3</span></li>
 		</ul>
 	</div>
 	
-	<div class="accordion" id="stockControl">재고관리</div>
+	<div class="accordion" id="">카운터</div>
 	<div class="panel">
 		<ul>
-			<li>원두 재고 점검 <span class="deadline" style="float: right;">D-2</span></li>
-			<li>컵 재고 점검 <span class="deadline" style="float: right;">D-3</span></li>
+			<li>은행에서 잔돈 교환 <span class="deadline" style="float: right;">D-1</span></li>
 		</ul>
 	</div>
 	
-	<div class="accordion" id="moneyControl">시재관리</div>
+	<div class="accordion" id="">홀</div>
 	<div class="panel">
 		<ul>
-			<li>영업 준비금 환전 <span class="deadline" style="float: right;">D-1</span></li>
+			<li>셀프 바 시럽 채우기 <span class="deadline" style="float: right;">D-1</span></li>
+			<li>에어컨 필터 교체 <span class="deadline" style="float: right;">D-7</span></li>
+		</ul>
+	</div>
+	
+	<div class="accordion" id="">테라스</div>
+	<div class="panel">
+		<ul>
+			<li>테라스 외부 청소 <span class="deadline" style="float: right;">D-1</span></li>
+		</ul>
+	</div>
+	
+	<div class="accordion" id="">화장실</div>
+	<div class="panel">
+		<ul>
+			<li>손 세정제 리필 <span class="deadline" style="float: right;">D-1</span></li>
 		</ul>
 	</div>
 </div>
 
-	<div id="taskFromManual">
-		<h4>매뉴얼에서 선택하기</h4>
-		<div id="searchTaskFromManual">
-			<input id="search" type="text" placeholder="업무 목록 검색">
-			<button>검색</button>
-		</div>
-		<div id="manualList">매뉴얼 목록
-		<div class="accordion" id="counterControl">카운터</div>
+<div id="taskFromManual">
+	<h4>매뉴얼에서 선택하기</h4>
+	<div id="searchTaskFromManual">
+		<input id="search" type="text" placeholder="업무 목록 검색">
+		<button>검색</button>
+	</div>
+	<div id="manualList">매뉴얼 목록
+		<div class="accordion" id="">바</div>
 		<div class="panel">
-			<div class="subAccordion">
-				<div>청결관리</div>
-			</div>
-			<div class="subPanel" id="kitchenTask">
-				<ul>
-					<li>카운터 닦기 <span class="interval" style="float: right;">마감
-							시</span></li>
-				</ul>
-			</div>
-			<div class="subAccordion">
-				<div>시재관리</div>
-			</div>
-			<div class="subPanel" id="hallTask">
-				<ul>
-					<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
-				</ul>
-			</div>
+			<ul>
+				<li>아이스 컵 재고량 점검 <span class="deadline" style="float: right;">2일</span></li>
+				<li>원두 재고량 점검 <span class="deadline" style="float: right;">2일</span></li>
+			</ul>
 		</div>
-
-		<div class="accordion" id="stockControl">주방</div>
-		<div class="panel">
-			<div class="subAccordion">
-				<div>청결관리</div>
-			</div>
-			<div class="subPanel" id="kitchenTask">
-				<ul>
-					<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>싱크대 닦기 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>행주 소독 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
-				</ul>
-			</div>
-			<div class="subAccordion">
-				<div>재고관리</div>
-			</div>
-			<div class="subPanel" id="hallTask">
-				<ul>
-					<li>딸기 재고 확인 <span class="interval" style="float: right;">3일</span></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="accordion" id="moneyControl">홀</div>
-		<div class="panel">
-			<div class="subAccordion">
-				<div>청결관리</div>
-			</div>
-			<div class="subPanel" id="kitchenTask">
-				<ul>
-					<li>대걸레 청소 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>테이블 위 닦기 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감
-							시</span></li>
-				</ul>
-			</div>
-			<div class="subAccordion">
-				<div>재고관리</div>
-			</div>
-			<div class="subPanel" id="hallTask">
-				<ul>
-					<li>냅킨 재고 채우기 <span class="interval" style="float: right;">3일</span></li>
-					<li>빨대 채우기 <span class="interval" style="float: right;">3일</span></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	</div>
-	<div id="taskFromTyping">
-		<h4>직접 입력하기</h4>
-		<div id="taskTyping">
-			<input type="text" id="addTaskFromTypingInput"
-				placeholder="일시적 업무 입력">
-			<button id="addTaskFromTyping">추가</button>
-		</div>
-	</div>
-	<div id="selectedTasks">
-		<ul id="selectedTasksList">
-
-		</ul>
-	</div>
-	<script>
-		//아코디언 길이 조정: panel로.
-		var acc = document.querySelectorAll(".accordion");
-		var i;
-
-		for (i = 0; i < acc.length; i++) {
-			acc[i].addEventListener("click", function() {
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.maxHeight) {
-					panel.style.maxHeight = null;
-				} else {
-					panel.style.maxHeight = panel.scrollHeight + "px";
-				}
-			})
-		}
 		
-		//매뉴얼목록 토글; 작성중
-		$("#manualList").click(function() {
-			$()
-		});
+		<div class="accordion" id="">카운터</div>
+		<div class="panel">
+			<ul>
+				<li>영수증 용지 재고 확인 <span class="deadline" style="float: right;">2일</span></li>
+				<li>현금 시재 확인 <span class="deadline" style="float: right;">미들조</span></li>
+			</ul>			
+		</div>
+		
+		<div class="accordion" id="">홀</div>
+		<div class="panel">
+			<ul>
+				<li>셀프 바 빨대 재고량 확인<span class="deadline" style="float: right;">오픈</span></li>
+				<li>바닥 쓸기 <span class="deadline" style="float: right;">마감</span></li>
+			</ul>			
+		</div>
+		
+		<div class="accordion" id="">테라스</div>
+		<div class="panel">
+			<ul>
+				<li>테라스 테이블 및 바닥 청소<span class="deadline" style="float: right;">마감</span></li>
+				<li>테라스 테이블, 의자 수거 <span class="deadline" style="float: right;">마감</span></li>
+			</ul>			
+		</div>
+		
+		<div class="accordion" id="">화장실</div>
+		<div class="panel">
+			<ul>
+				<li>화장지 재고량 점검<span class="deadline" style="float: right;">3일</span></li>
+				<li>화장실 청소 <span class="deadline" style="float: right;">마감</span></li>
+			</ul>			
+		</div>				
+	</div>
+</div>
+<div id="taskFromTyping">
+	<h4>직접 입력하기</h4>
+	<div id="taskTyping">
+		<input type="text" id="addTaskFromTypingInput"
+			placeholder="일시적 업무 입력">
+		<button id="addTaskFromTyping">추가</button>
+	</div>
+</div>
+<div>
+	<img id="delete" src="images/close.png" style="display: inline-block; width: 20px; float: left;">
+	<ul id="selectedTask" style="display: inline-block;">
+		<!-- 선택한 업무 보여주는 공간 -->
+	</ul>
+	<img id="next" src="images/forward.png" style="display: inline-block; width: 20px; float: right;">
+</div>
+<script>
+//취소버튼
+$("#delete").click(function(){
+	$("#selectedTask").html("");
+	$(".selected").removeClass("selected");
+});
 
-		var subAcc = document.querySelectorAll(".subAccordion");
+//다음버튼
+$("#next").click(function(){
+	location.href="assignTaskNextAdmin.jsp";
+});
 
-		for (i = 0; i < subAcc.length; i++) {
-			subAcc[i].addEventListener("click", function() {
-				this.classList.toggle("active");
-				var panel = this.nextElementSibling;
-				if (panel.style.maxHeight) {
-					panel.style.maxHeight = null;
-				} else {
-					panel.style.maxHeight = panel.scrollHeight + "px";
-				}
+//아코디언 길이 조정: panel로.
+var acc = document.querySelectorAll(".accordion");
+var i;
 
-				var motherPanel = this.parentNode;
-				motherPanel.style.maxHeight = motherPanel.scrollHeight
-						+ panel.scrollHeight + "px";
-			})
+for (i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+		} else {
+			panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+	})
+}
+
+//매뉴얼목록 토글 작성중 - by 태훈
+var cnt=0;
+$("#manualList").click(function() {
+   $("#manualList").children(".accordion").toggle(cnt++ % 2 === 0);
+});
+
+var subAcc = document.querySelectorAll(".subAccordion");
+
+for (i = 0; i < subAcc.length; i++) {
+	subAcc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+		} else {
+			panel.style.maxHeight = panel.scrollHeight + "px";
 		}
 
-		//업무 리스트 중 1개를 클릭 -> 
-		var li = document.querySelectorAll("li");
-		var i;
+		var motherPanel = this.parentNode;
+		motherPanel.style.maxHeight = motherPanel.scrollHeight
+				+ panel.scrollHeight + "px";
+	})
+}
 
-		for (i = 0; i < li.length; i++) {
-			li[i].addEventListener("click", function() {
-				this.classList.toggle("selected");
-				if (this.classList.contains("selected")) {
-					var addLi = document.createElement("li");
-					var nodes = this.childNodes;
-					for (var j = 0; j < nodes.length; j++) {
-						addLi.appendChild(nodes[j].cloneNode(true));
-					}
-					document.querySelector("#selectedTasksList").appendChild(
-							addLi);
-				} else {
-					var list = document.querySelector("#selectedTasksList");
-					var li = list.firstChild;
-					for (var j = 0; j < list.childNodes.length - 1; j++) {
-						li = li.nextElementSibling;
-						if (li.innerHTML == this.innerHTML) {
-							list.removeChild(li);
-							break;
-						}
-					}
+//업무 리스트 중 1개를 클릭 -> 
+var li = document.querySelectorAll("li");
+var i;
+
+for (i = 0; i < li.length; i++) {
+	li[i].addEventListener("click", function() {
+		this.classList.toggle("selected");
+		if (this.classList.contains("selected")) {
+			var addLi = document.createElement("li");
+			var nodes = this.childNodes;
+			for (var j = 0; j < nodes.length; j++) {
+				addLi.appendChild(nodes[j].cloneNode(true));
+			}
+			document.querySelector("#selectedTask").appendChild(
+					addLi);
+		} else {
+			var list = document.querySelector("#selectedTask");
+			var li = list.firstChild;
+			for (var j = 0; j < list.childNodes.length - 1; j++) {
+				li = li.nextElementSibling;
+				if (li.innerHTML == this.innerHTML) {
+					list.removeChild(li);
+					break;
 				}
-			})
-		}
-
-		//직접 입력하여 업무 추가
-		var addTask = document.querySelector("#addTaskFromTyping");
-		addTask.onclick = function() {
-			var task = document.querySelector("#addTaskFromTypingInput");
-			if (task.value != "") {
-				var addLi = document.createElement("li");
-				addLi.appendChild(document.createTextNode(task.value));
-				document.querySelector("#selectedTasksList").appendChild(addLi);
-				task.value = "";
 			}
 		}
+	})
+}
 
-		//직접 입력한 업무를 리스트에서 지우기
+//직접 입력하여 업무 추가
+var addTask = document.querySelector("#addTaskFromTyping");
+addTask.onclick = function() {
+	var task = document.querySelector("#addTaskFromTypingInput");
+	if (task.value != "") {
+		var addLi = document.createElement("li");
+		addLi.appendChild(document.createTextNode(task.value));
+		document.querySelector("#selectedTask").appendChild(addLi);
+		task.value = "";
+	}
+}
 
-		//추가된 업무 갯수 세서 업데이트하기
-		
-		//자동완성
-		$(function() {
-			$.widget("custom.catcomplete", $.ui.autocomplete, {
-				_create : function() {
-					this._super();
-					this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
-				},
-				_renderMenu : function(ul, items) {
-					var that = this, currentCategory = "";
-					$.each(items, function(index, item) {
-						var li;
-						if (item.category != currentCategory) {
-							ul.append("<li class='ui-autocomplete-category'>"
-									+ item.category + "</li>");
-							currentCategory = item.category;
-						}
-						li = that._renderItemData(ul, item);
-						if (item.category) {
-							li.attr("aria-label", item.category + " : "
-									+ item.label);
-						}
-					});
+//직접 입력한 업무를 리스트에서 지우기
+
+//자동완성 - 대분류 검색 안됨
+$(function() {
+	$.widget("custom.catcomplete", $.ui.autocomplete, {
+		_create : function() {
+			this._super();
+			this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+		},
+		_renderMenu : function(ul, items) {
+			var that = this, currentCategory = "";
+			$.each(items, function(index, item) {
+				var li;
+				if (item.category != currentCategory) {
+					ul.append("<li class='ui-autocomplete-category'>"
+							+ item.category + "</li>");
+					currentCategory = item.category;
+				}
+				li = that._renderItemData(ul, item);
+				if (item.category) {
+					li.attr("aria-label", item.category + " : "
+							+ item.label);
 				}
 			});
-			var data = [ {
-				label : "anders",
-				category : ""
-			}, {
-				label : "annhhx10",
-				category : "Products"
-			}, {
-				label : "annttop C13",
-				category : "Products"
-			}, {
-				label : "andreas andersson",
-				category : "People"
-			}, {
-				label : "andreas johnson",
-				category : "People"
-			}, {
-				label : "홀 - 쓰레기통 비우기",
-				category : "청소"
-			}, {
-				label : "주방 - 음식물 쓰레기 버리기",
-				category : "청소"
-			}, {
-				label : "주방 - 행주 소독",
-				category : "청소"
-			} ];
-			$("#search").catcomplete({
-				delay : 0,
-				source : data
-			});
-		});
+		}
+	});
+	var data = [{
+		label : "홀 - 쓰레기통 비우기",
+		category : "청소"
+	}, {
+		label : "홀 - 바닥 쓸기",
+		category : "청소"
+	}, {
+		label : "홀 - 밀걸레질",
+		category : "청소"
+	}, {
+		label : "주방 - 음식물 쓰레기 버리기",
+		category : "청소"
+	}, {
+		label : "주방 - 음식물 쓰레기 버리기",
+		category : "청소"
+	}, {
+		label : "주방 - 행주 소독",
+		category : "청소"
+	} ];
+	$("#search").catcomplete({
+		delay : 0,
+		source : data
+	});
+});
 
-		//업무검색
-	</script>
+</script>
 
 </body>
 </html>

@@ -34,7 +34,7 @@
 	    </div>
 	</div> 
 </div> 
-<div style="background-color: aqua;" class="w3-padding-64" id="result"><%@include file="dailyTaskHeaderAdmin.jsp"%></div>
+<div style="background-color: aqua;" class="w3-padding-64" id="result"><%@include file="dailyTaskAdmin.jsp"%></div>
 
 
 <script>

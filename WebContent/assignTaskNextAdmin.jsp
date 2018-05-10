@@ -67,7 +67,7 @@
 <h2>5월 3일(목)</h2>
 <h2>업무 배정</h2>
 <hr> <br>
-<h3>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i></h3>
+<h3>XXX 업무를 배정합니다.</h3>
 <div id="assignedTaskBox">
 	<ul>
 		<li ><i class="fa fa-circle" aria-hidden="true" style="margin-right:25px"></i></li> <li style="width:220px">쇼케이스 얼룩 제거</li> <li>D-1</li>
@@ -129,10 +129,10 @@
 </div>
 
 <hr> <br>
-<h4>해당 업무를 총 1가지 파트에 배정합니다.</h4>
-<div id="selectedTasks">
-	<ul id="selectedTasksList">
-	
+<h4>XXX 업무를 다음 파트에 배정합니다.</h4>
+<div id="">
+	<ul id="selectedTask">
+	<!-- 선택한 파트 출력하는 부분 -->
 	</ul>
 </div>
 
@@ -184,9 +184,9 @@ for (i = 0; i < li.length; i++) {
 	   		for(var j = 0; j < nodes.length; j++){
 	   			addLi.appendChild(nodes[j].cloneNode(true));
 	   		}
-			document.querySelector("#selectedTasksList").appendChild(addLi);
+			document.querySelector("#selectedTask").appendChild(addLi);
 		 } else {
-			 var list = document.querySelector("#selectedTasksList");
+			 var list = document.querySelector("#selectedTask");
 			 var li = list.firstChild;
 			 for(var j = 0; j < list.childNodes.length-1; j++){
 				 li = li.nextElementSibling;
