@@ -93,7 +93,7 @@ CREATE TABLE "DAILY_TASKS" (
 	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- 배정대상(파트명or이름)
 	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NULL,     -- 매뉴얼업무코드
 	"FINISHER_ID"      VARCHAR2(16) NULL,     -- 완료자아이디
-	"FINISHER"         VARCHAR2(20) NULL,     -- 완료자명
+	"FINISHER_NAME"    VARCHAR2(20) NULL,     -- 완료자명
 	"ASSIGNER_ID"      VARCHAR2(16) NOT NULL, -- 배정자아이디
 	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL  -- 지점코드
 );
@@ -180,4 +180,8 @@ insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, spa
 insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '대소변기 비데 및 센서점검', 5, 5);
 
 
+
+
+
+-- 일일업무 레코드
 
