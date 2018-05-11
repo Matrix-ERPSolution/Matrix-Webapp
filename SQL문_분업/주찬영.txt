@@ -21,3 +21,10 @@ select d.importance, m.task, d.assign_detail, d.finisher_name from daily_tasks d
 	--직접입력 업무
 select importance, input_task, finisher_name from daily_tasks where input_task is not null and assign_type='개인' and assign_date='2018/05/09';
 select importance, input_task, finisher_name from daily_tasks where input_task is not null and assign_type='개인' and assign_date=?;
+
+/*배정할 파트 목록 보기*/
+select distinct work_part from branch_staffs where leave_date is null;
+
+/*배정할 직원 목록 보기*/
+select staff_id from branch_staffs where leave_date is not null;
+--나중에 다른 테이블과 연동된다면 staff_id 대신 이름 출력 가능
