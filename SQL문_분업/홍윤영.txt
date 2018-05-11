@@ -1,0 +1,12 @@
+--매뉴얼 업무별 보기
+
+--업무분류 출력
+select task_type from task_types;
+
+--업무분류에 해당하는 공간분류 출력
+select distinct space_type from manual_tasks m, space_types s, task_types t 
+where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and t.task_type=?;
+
+--업무/공간분류에 해당하는 업무목록 출력
+select task, repeat_type, repeat_detail from manual_tasks m, space_types s, task_types t 
+where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and s.space_type=? and t.task_type=?;
