@@ -55,27 +55,27 @@ li:hover, .selected {
 <h2>업무 배정</h2>
 <div id="taskFromRecommend">
 	<h4>오늘의 추천업무</h4>
-	<div class="accordion" id="cleanControl">위생관리</div>
+	<div class="accordion" id="cleanControl">카운터</div>
 	<div class="panel">
 		<ul>
 			<li>쇼케이스 얼룩 제거 <span class="deadline" style="float: right;">D-1</span></li>
 			<li>아이스크림 기계 청소 <span class="deadline" style="float: right;">D-7</span></li>
-			<li>냉장고 성에 제거 <span class="deadline" style="float: right;">D-9</span></li>
 		</ul>
 	</div>
 	
-	<div class="accordion" id="stockControl">재고관리</div>
+	<div class="accordion" id="stockControl">주방</div>
 	<div class="panel">
 		<ul>
 			<li>원두 재고 점검 <span class="deadline" style="float: right;">D-2</span></li>
 			<li>컵 재고 점검 <span class="deadline" style="float: right;">D-3</span></li>
+			<li>냉장고 성에 제거 <span class="deadline" style="float: right;">D-9</span></li>
 		</ul>
 	</div>
 	
-	<div class="accordion" id="moneyControl">시재관리</div>
+	<div class="accordion" id="moneyControl">홀</div>
 	<div class="panel">
 		<ul>
-			<li>영업 준비금 환전 <span class="deadline" style="float: right;">D-1</span></li>
+			<li>대걸레 청소 <span class="deadline" style="float: right;">D-1</span></li>
 		</ul>
 	</div>
 </div>
