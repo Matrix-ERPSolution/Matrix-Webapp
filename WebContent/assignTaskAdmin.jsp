@@ -15,7 +15,6 @@
     width: 100%;
     border: none;
     text-align: left;
-    outline: none;
     font-size: 15px;
     transition: 0.4s; 
     }
@@ -82,12 +81,13 @@ li:hover, .selected {
 </div>
 
 	<div id="taskFromManual">
-		<h4>매뉴얼에서 선택하기</h4>
+		<h4 id="">매뉴얼에서 선택하기</h4>
 		<div id="searchTaskFromManual">
 			<input id="search" type="text" placeholder="업무 목록 검색">
 			<button>검색</button>
 		</div>
 		<div id="manualList">매뉴얼 전체보기</div>
+		<div class="manual">
 		<div class="accordion manual" id="counterControl" >카운터</div>
 		<div class="panel">
 			<div class="subAccordion">
@@ -133,7 +133,7 @@ li:hover, .selected {
 				</ul>
 			</div>
 		</div>
-	</div>
+	
 	<div class="accordion manual" id="moneyControl" >홀</div>
 	<div class="panel" >
 		<div class="subAccordion">
@@ -159,6 +159,8 @@ li:hover, .selected {
 			</ul>
 		</div>
 	</div>
+</div>	
+</div>
 		
 	<div id="taskFromTyping">
 		<h4>직접 입력하기</h4>
