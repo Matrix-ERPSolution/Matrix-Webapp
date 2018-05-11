@@ -17,17 +17,14 @@
     text-align: left;
     outline: none;
     font-size: 15px;
-<<<<<<< HEAD
     transition: 0.4s;
 }
 
 .active, .accordion:hover, .subAccordion:hover {
-=======
     transition: 0.4s; 
     }
 
 .active, .accordion:hover, .subAccordion:hover, #manualList:hover {
->>>>>>> fa4c9f5b9d796d973e801e9aacfbc9e7b57eb3e2
     background-color: #99ccff;
 }
 
@@ -53,15 +50,12 @@
 li:hover, .selected {
 	background-color: #99ccff;
 }
-<<<<<<< HEAD
 hr{
 	size: 2px;
 	float: left;
 	color: black;
-=======
 .manual {
 	display: none;
->>>>>>> fa4c9f5b9d796d973e801e9aacfbc9e7b57eb3e2
 }
 </style>
 </head>
@@ -106,7 +100,6 @@ hr{
 		<div class="subAccordion">
 			<div>주방</div>
 		</div>
-<<<<<<< HEAD
 		<div class="subPanel" id="kitchenTask">
 			<ul>
 				<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감 시</span></li>
@@ -131,7 +124,7 @@ hr{
 			<ul>
 				<li>남자화장실 핸드타월 갈기 <span class="interval" style="float: right;">3일</span></li>
 			</ul>
-=======
+		</div>
 		<div id="manualList">매뉴얼 전체보기</div>
 		<div class="accordion manual" id="counterControl" >카운터</div>
 		<div class="panel">
@@ -204,14 +197,14 @@ hr{
 			</ul>
 		</div>
 	</div>
-		
+	</div>
 	<div id="taskFromTyping">
 		<h4>직접 입력하기</h4>
 		<div id="taskTyping">
 			<input type="text" id="addTaskFromTypingInput"
 				placeholder="일시적 업무 입력">
 			<button id="addTaskFromTyping">추가</button>
->>>>>>> fa4c9f5b9d796d973e801e9aacfbc9e7b57eb3e2
+
 		</div>
 	</div>
 	
@@ -222,7 +215,7 @@ hr{
 			<li>컵 재고 점검 <span class="interval" style="float: right;">4일</span></li>
 		</ul>
 	</div>
-<<<<<<< HEAD
+
 	
 	<div class="accordion" id="moneyControl">시재관리</div>
 	<div class="panel">
@@ -248,7 +241,7 @@ hr{
 	
 	</ul>
 </div>
-=======
+
 	<script>
 		var acc = document.querySelectorAll(".accordion");
 		var i;
@@ -291,7 +284,7 @@ hr{
 		});
 		
 		
->>>>>>> fa4c9f5b9d796d973e801e9aacfbc9e7b57eb3e2
+</script>
 
 <hr> <br>
 <h4>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px" id="assignTaskNextAdminButton"></i></h4>
