@@ -184,4 +184,126 @@ insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq
 
 
 -- 일일업무 레코드
-
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '오픈', 17, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '오픈', 1, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, '파트', '오픈', 3, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '미들', 11, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, '개인', 'yunseok', 7, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '미들', 29, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 5, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, '파트', '마감', 10, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 19, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 22, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 25, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 31, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, '파트', '오픈', 17, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, '파트', '오픈', 2, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, '파트', '오픈', 4, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, '파트', '미들', 11, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, '개인', 'yunseok', 8, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, '파트', '미들', 32, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, '파트', '마감', 6, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, '파트', '마감', 13, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, '파트', '마감', 20, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, '파라솔 상태 점검', '2018/05/07', 0, '파트', '마감', null, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '오픈', 17, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '오픈', 12, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, '연진이 피카츄 생일케이크 사오기',  '2018/05/11', 1, '개인', 'yunjin', null, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '오픈', 24, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 1, '파트', '미들', 21, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '미들', 34, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '미들', 15, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 1, '파트', '마감', 21, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '마감', 19, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, '파트', '마감', 16, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, '근무태만 반성문 작성해오기',  '2018/05/11', 1, '개인', 'taehun', null, null, null, 'yunyoung', 1);
+insert into daily_tasks 
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '파트', '오픈', 12, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, '파트', '오픈', 16, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '개인', 'yunseok', null, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, '파트', '미들', 1, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '파트', '미들', 3, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, '파트', '미들', 17, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, '레몬청 만들기', '2018/05/08', 0, '개인', 'chanyoung', null, 'chanyoung', '주찬영', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '파트', '마감', 23, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, '파트', '마감', 32, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '개인', 'taehun', null, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, '파트', '오픈', 17, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '파트', '오픈', 30, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, '파트', '오픈', 33, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '개인', 'yunjin', 34, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, '파트', '미들', 26, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '파트', '미들', 9, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, '보건증 갱신', '2018/05/09', 0, '개인', 'yunseok', null, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '개인', 'chanyoung', null, 'chanyoung', '주찬영', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '파트', '마감', 22, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, '파트', '마감', 25, 'taehun', '김태훈', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, '파트', '오픈', 24, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, '파트', '오픈', 33, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, '파트', '오픈', 8, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, '신메뉴 팝업 제작', '2018/05/10', 1, '개인', 'yunjin', null, 'yunjin', '김연진', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, '파트', '미들', 1, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, '파트', '미들', 3, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, '파트', '미들', 13, 'yunseok', '장윤석', 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, '파트', '마감', 14, null, null, 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, '파트', '마감', 19, null, null, 'yunyoung', 1);
+insert into daily_tasks
+(DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, '개인', 'taehun', null, null, null, 'yunyoung', 1);
