@@ -120,8 +120,26 @@ ALTER TABLE "DAILY_TASKS"
 -- 시퀀스 생성
 create sequence daily_tasks_seq;
 
+-- 지점_직원정보
+CREATE TABLE BRANCH_STAFFS (
+	BRANCH_STAFFS_SEQ NUMBER(6,0)  NOT NULL, -- 지점_직원정보_일련번호
+	JOIN_DATE          DATE         NOT NULL, -- 입사날짜
+	LEAVE_DATE         DATE         NULL,     -- 퇴사날짜
+	BRANCHES_SEQ       NUMBER(5,0)  NOT NULL, -- 지점코드
+	STAFF_ID           VARCHAR2(16) NOT NULL, -- 직원아이디
+	WORK_PART          VARCHAR2(20) NOT NULL  -- 소속파트
+);
 
+-- 지점_직원정보
+ALTER TABLE BRANCH_STAFFS
+	ADD
+		CONSTRAINT PK_BRANCH_STAFFS -- 지점_직원정보 기본키3
+		PRIMARY KEY (
+			BRANCH_STAFFS_SEQ -- 지점_직원정보_일련번호
+		);
 
+-- 시퀀스 생성
+create sequence branch_staffs_seq;
 
 
 
@@ -307,3 +325,22 @@ values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, '파트', '마감', 19, null,
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
 values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, '개인', 'taehun', null, null, null, 'yunyoung', 1);
+
+
+--지점_직원정보 레코드
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/05/31', null, 1, 'yunjin', '오픈');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/07/10', null, 1, 'heeeun', '오픈');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/19', null, 1, 'chanyoung', '미들');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/02/15', null, 1, 'jonghyuk', '미들');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/29', null, 1, 'yunseok', '미들');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/04/15', null, 1, 'taehun', '마감');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/12/07', null, 1, 'jaesun', '마감');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/26', null, 1, 'yejee', '마감');
+
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2014/10/31', '2016/11/11', 1, 'hyesoo', '오픈');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/05', '2017/06/05', 1, 'jaemin', '오픈');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/05/13', '2016/12/03', 1, 'eunkyul', '미들');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/10/31', '2017/04/20', 1, 'sumin', '미들');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/08/10', '2017/04/18', 1, 'seungkyun', '마감');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/03/17', '2016/12/30', 1, 'hyungjun', '마감');
+
