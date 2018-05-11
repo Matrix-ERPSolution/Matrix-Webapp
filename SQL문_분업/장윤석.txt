@@ -1,0 +1,78 @@
+
+[업무 배정 - 매뉴얼에서 선택(input_task = null)]
+<test 쿼리문>
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) 
+values(daily_tasks_seq.nextval, null,  '2018/05/13', 0, '파트', '오픈', (select manual_tasks_seq from manual_tasks where task='행주 소독'), null, null, 'yunyoung', 1);
+
+<DAO 쿼리문>
+	//TODO -> values - assigner_id, branch_seq (assigner_id = session의 관리자 아이디 대입 / branch_seq = session의 관리자 아이디가 속해있는 지점코드 대입)
+	//현재 아래의 쿼리문 - assigner_id = 'yunyoung' / branch_seq = 1 
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) 
+values(daily_tasks_seq.nextval, null, ?, ?, ?, ?, (select manual_tasks_seq from manual_tasks where task=?), null, null, 'yunyoung', 1);
+
+
+
+[업무 배정 - 직접 입력하기(manual_tasks_seq = null)]
+<test 쿼리문>
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) 
+values(daily_tasks_seq.nextval, '연진이 생일케이크 사오기', '2018/05/13', 1, '개인', 'yunjin', null, null, null, 'yunyoung', 1);
+
+<DAO 쿼리문>
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) 
+values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, null, null, null, 'yunyoung', 1);
+
+
+
+		  old		new
+[업무 수정 - 매뉴얼 업무->매뉴얼에서 선택]
+<test 쿼리문>
+update daily_tasks
+set manual_tasks_seq=(select manual_tasks_seq from manual_tasks where task='은행에서 잔돈 교환')
+where assign_date='2018/05/13' and assign_detail='오픈' and manual_tasks_seq=(select manual_tasks_seq from manual_tasks where task='행주 소독')
+
+<DAO 쿼리문>
+update daily_tasks
+set manual_tasks_seq=(select manual_tasks_seq from manual_tasks where task=?)
+where assign_date=? and assign_detail=? and manual_tasks_seq=(select manual_tasks_seq from manual_tasks where task=?)
+
+
+		  old		new
+[업무 수정 - 매뉴얼 업무->직접 입력하기]
+<test 쿼리문>
+update daily_tasks
+set input_task='택배 반송', manual_tasks_seq=null
+where assign_date='2018/05/13' and assign_detail='오픈' and manual_tasks_seq=(select manual_tasks_seq from manual_tasks where task='은행에서 잔돈 교환')
+
+<DAO 쿼리문>
+update daily_tasks
+set input_task=?, manual_tasks_seq=null
+where assign_date=? and assign_detail=? and manual_tasks_seq=(select manual_tasks_seq from manual_tasks where task=?)
+
+
+		  old		new
+[업무 수정 - 직접입력 업무->직접 입력하기]
+<test 쿼리문>
+update daily_tasks
+set input_task='메뉴판 정리'
+where assign_date='2018/05/13' and assign_detail='yunjin' and input_task='연진이 생일케이크 사오기'
+
+<DAO 쿼리문>
+update daily_tasks
+set input_task='메뉴판 정리'
+where assign_date=? and assign_detail=? and input_task=?
+
+
+		  old		new
+[업무 수정 - 직접입력 업무->매뉴얼에서 선택]
+<test 쿼리문>
+update daily_tasks
+set manual_tasks_seq = (select manual_tasks_seq from manual_tasks where task='현금 시재 확인'), input_task=null
+where assign_date='2018/05/13' and assign_detail='yunjin' and input_task='메뉴판 정리'
+
+<DAO 쿼리문>
+update daily_tasks
+set manual_tasks_seq = (select manual_tasks_seq from manual_tasks where task=?), input_task=null
+where assign_date=? and assign_detail=? and input_task=?
+
+
+
