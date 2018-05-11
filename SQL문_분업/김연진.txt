@@ -1,0 +1,8 @@
+--공간별 매뉴얼 업무 검색 자동완성 
+
+select mt.TASK, st.SPACE_TYPE
+from MANUAL_TASKS mt inner join SPACE_TYPES st
+on mt.SPACE_TYPES_SEQ=st.SPACE_TYPES_SEQ
+order by mt.SPACE_TYPES_SEQ asc, mt.MANUAL_TASKS_SEQ asc
+;
+
