@@ -1,0 +1,31 @@
+-- 입력값=업무명(task)/ui에서 입력값 중복이 일어나지 않도록 조정.
+
+-- 업무 재배정
+
+-- 1. 직접인지, 매뉴얼 업무인지 판별: select
+select manual_tasks_seq from manual_tasks where task=?
+
+-- 2-1. 직접일 경우 update
+update daily_tasks set assign_type=?, assign_detail=? where assign_date=? and assign_detail=? and input_task=?
+
+-- 예시) 
+update daily_tasks set assign_type='파트', assign_detail='미들' where assign_date='2018/05/07' and assign_detail='yunjin' and input_task='테스트1'
+
+-- 2-2. 매뉴얼일 경우 update
+update daily_tasks set assign_type=?, assign_detail=? where assign_date=? and manual_tasks_seq=(select m.manual_tasks_seq from manual_tasks m where task=?)
+
+-- 예시)
+update daily_tasks set assign_type='개인', assign_detail='chanyoung' where assign_date='2018/05/08' and manual_tasks_seq=(select m.manual_tasks_seq from manual_tasks m where task='셀프 바 빨대 재고량 확인')
+
+-- 업무 삭제: row 1개를 날려버리는 것.
+-- 1. 매뉴얼 목록에서 배정된 업무를 삭제
+delete daily_tasks where assign_date=? and assign_type=? and assign_detail=? and manual_tasks_seq=(select m.manual_tasks_seq from manual_tasks m where task=?) 
+
+-- 예시)
+delete daily_tasks where assign_date='2018/05/11' and assign_type='파트' and assign_detail='마감' and manual_tasks_seq=(select m.manual_tasks_seq from manual_tasks m where task='POS기 프로그램 업데이트') 
+
+-- 2. 직접 입력 목록에서 배정된 업무를 삭제
+delete daily_tasks where assgin_date=? and assign_type=? and assign_detail=? and input_task=?
+
+-- 예시)
+delete daily_tasks where assgin_date='2018/05/11' and assign_type='개인' and assign_detail='taehun' and input_task='근무태만 반성문 작성해오기'
