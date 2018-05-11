@@ -52,7 +52,6 @@
   display: table-cell;
 }
 #assignedTaskBox{
-	padding: 5px;
 	border: 2px solid black;
 }
 .staffs{

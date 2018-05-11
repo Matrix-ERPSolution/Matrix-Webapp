@@ -102,7 +102,7 @@ $(function(){
        
         if(dateText==(thisMonth+"월 "+thisDay+"일")) {
          $.ajax({
-          url : "todayTaskCSS.jsp",
+          url : "todayTaskAdmin.jsp",
           data : {},
           success : function(result){
            $("#contents").html(result);
@@ -118,7 +118,7 @@ $(function(){
         });
         } else {
         $.ajax({
-            url : "pastTaskCSS.jsp", 
+            url : "pastTaskAdmin.jsp", 
             date : {},
             success : function(result){
                $("#contents").html(result);
@@ -135,14 +135,14 @@ $(function(){
 </head>
 <body>
 <!-- 날짜선택바 -->
-<div id="dateMenu" class="w3-center">
+<div id="dateMenu" class="w3-center" style="vertial-align:center; padding:1px;">
    <div class="inline">
       <input type="text" id="datepicker">
    </div>
    <div class="inline">
       <img id="scrollPast" src="images/leftTriangle.png" width="15pt" />
    </div>
-   <h2 id="date" class="inline">날짜</h2>
+   <h2 id="date" class="inline">n월 n일</h2>
    <div class="inline">
       <img id="scrollFuture" src="images/rightTriangle.png" width="15pt" />
    </div>
@@ -152,7 +152,7 @@ $(function(){
 </div>
 
 <!-- 알맹이 -->
-<h2 id="dailyTaskTitle">dailyTaskTitle</h2> <!-- 오늘/내일/과거 업무 보기 -->
+<!-- <h2 id="dailyTaskTitle" style="text-align:center;">dailyTaskTitle</h2> --> <!-- 오늘/내일/과거 업무 보기 -->
 <div id="content">
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
@@ -160,7 +160,6 @@ $(function(){
   <li class="selected">보건증 갱신<div class="finisher" style="float: right;">김태훈</div></li>
   <li class="selected">통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
   <li>연진이 생일 케이크 사오기 (2호) <div class="finisher" style="float: right;">김수한무</div></li>
-  <li>일이삼사오육칠팔구십일이삼사오육칠팔구십<div class="finisher" style="float: right;">가나다라</div></li>
  </ul>
 </div>
 
@@ -209,7 +208,7 @@ for (i = 0; i < acc.length; i++) {
 
 /**오늘의 업무 페이지 로드 + 오늘 날짜 설정*/
 $.ajax({
-   url:"todayTaskCSS.jsp",
+   url:"todayTaskAdmin.jsp",
    success:function(result){
       $("#contents").html(result);
       $("#date").html(thisMonth+"월 "+thisDay+"일");

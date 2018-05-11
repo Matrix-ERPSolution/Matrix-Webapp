@@ -18,6 +18,7 @@
 #logo {
 	width: 150px;
 	height: 35px;
+	text-align:center; 
 }
 </style> 
 
