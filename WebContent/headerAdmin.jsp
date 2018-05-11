@@ -35,7 +35,7 @@
 	    </div>
 	</div> 
 
-<div style="background-color: aqua;" id="result"><%@include file="dailyTaskAdmin.jsp"%></div>
+<div id="result"><%@include file="dailyTaskAdmin.jsp"%></div>
 
 <script>
 $(".inline").css({
