@@ -1,0 +1,23 @@
+/*선택한 날짜에 해당하는 배정대상 목록 보기*/
+select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = '2018/05/09';
+select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = ?;
+
+
+/*선택한 날짜에 해당하는 선택한 배정대상에 속한 업무 목록 보기*/
+--파트별 업무보기
+	--매뉴얼에서 선택한 업무
+select d.importance, m.task, d.finisher_name from daily_tasks d, manual_tasks m where d.manual_tasks_seq=m.manual_tasks_seq and d.assign_detail='오픈' and d.assign_date='2018/05/09';
+select d.importance, m.task, d.finisher_name from daily_tasks d, manual_tasks m where d.manual_tasks_seq=m.manual_tasks_seq and d.assign_detail=? and d.assign_date=?;
+
+	--직접입력 업무
+select importance, input_task, finisher_name from daily_tasks where input_task is not null and assign_detail='마감' and assign_date='2018/05/07';
+select importance, input_task, finisher_name from daily_tasks where input_task is not null and assign_detail=? and assign_date=?;
+
+--개인업무로 배정된 업무 보기
+	--매뉴얼에서 선택한 업무
+select d.importance, m.task, d.assign_detail, d.finisher_name from daily_tasks d, manual_tasks m where d.manual_tasks_seq=m.manual_tasks_seq and d.assign_type='개인' and d.assign_date='2018/05/09';
+select d.importance, m.task, d.assign_detail, d.finisher_name from daily_tasks d, manual_tasks m where d.manual_tasks_seq=m.manual_tasks_seq and d.assign_type='개인' and d.assign_date=?;
+
+	--직접입력 업무
+select importance, input_task, finisher_name from daily_tasks where input_task is not null and assign_type='개인' and assign_date='2018/05/09';
+select importance, input_task, finisher_name from daily_tasks where input_task is not null and assign_type='개인' and assign_date=?;
