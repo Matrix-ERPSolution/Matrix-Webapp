@@ -1,346 +1,449 @@
---DDL
+ï»¿--DDL
 
-
---¸Å´º¾ó°ü·Ã MANUAL_TASKS , SPACE_TYPES, TASK_TYPES Å×ÀÌºí Æ÷¿öµå ¿£Áö´Ï¾î¸µ
-
--- ¸Å´º¾ó¾÷¹«
-CREATE TABLE "MANUAL_TASKS" (
-	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NOT NULL, -- ¸Å´º¾ó¾÷¹«ÄÚµå
-	"TASK"             VARCHAR2(60) NOT NULL, -- ¾÷¹«¸í
-	"REPEAT_TYPE"      VARCHAR2(6)  NULL,     -- ¹İº¹±âÁØÀ¯Çü
-	"REPEAT_DETAIL"    VARCHAR2(6)  NULL,     -- ¹İº¹±âÁØ»ó¼¼
-	"SPACE_TYPES_SEQ"  NUMBER(2,0)  NOT NULL, -- °ø°£ºĞ·ùÄÚµå
-	"TASK_TYPES_SEQ"   NUMBER(2,0)  NOT NULL  -- ¾÷¹«ºĞ·ùÄÚµå
+-- ì¼ì¼ì—…ë¬´
+CREATE TABLE "DAILY_TASKS" (
+	"DAILY_TASKS_SEQ"  NUMBER(7,0)  NOT NULL, -- ì¼ì¼ì—…ë¬´ì½”ë“œ
+	"INPUT_TASK"       VARCHAR2(60) NULL,     -- ì§ì ‘ì…ë ¥ì—…ë¬´ëª…
+	"ASSIGN_DATE"      DATE         NOT NULL, -- ë°°ì •ë‚ ì§œ
+	"IMPORTANCE"       NUMBER(1,0)  NOT NULL, -- ì¤‘ìš”ì—…ë¬´ì—¬ë¶€
+	"ASSIGN_TYPE"      VARCHAR2(6)  NOT NULL, -- ë°°ì •ìœ í˜•(íŒŒíŠ¸orê°œì¸)
+	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- ë°°ì •ëŒ€ìƒ(íŒŒíŠ¸ëª…orì•„ì´ë””)
+	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NULL,     -- ë§¤ë‰´ì–¼ì—…ë¬´ì½”ë“œ
+	"ASSIGNER_ID"      VARCHAR2(16) NOT NULL, -- ë°°ì •ìì•„ì´ë””
+	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL, -- ì§€ì ì½”ë“œ
+	"FINISHER_NAME"    VARCHAR2(20) NULL,     -- ì™„ë£Œìëª…
+	"FINISHER_ID"      VARCHAR2(16) NULL      -- ì™„ë£Œìì•„ì´ë””
 );
 
--- ¸Å´º¾ó¾÷¹«
-ALTER TABLE "MANUAL_TASKS"
+-- ì¼ì¼ì—…ë¬´
+ALTER TABLE "DAILY_TASKS"
 	ADD
-		CONSTRAINT "PK_MANUAL_TASKS" -- ¸Å´º¾ó¾÷¹« ±âº»Å°
+		CONSTRAINT "PK_DAILY_TASKS" -- ì¼ì¼ì—…ë¬´ ê¸°ë³¸í‚¤2
 		PRIMARY KEY (
-			"MANUAL_TASKS_SEQ" -- ¸Å´º¾ó¾÷¹«ÄÚµå
+			"DAILY_TASKS_SEQ" -- ì¼ì¼ì—…ë¬´ì½”ë“œ
 		);
 
--- °ø°£ºĞ·ù
-CREATE TABLE "SPACE_TYPES" (
-	"SPACE_TYPES_SEQ" NUMBER(2,0)  NOT NULL, -- °ø°£ºĞ·ùÄÚµå
-	"SPACE_TYPE"      VARCHAR2(25) NOT NULL  -- ºĞ·ù¸í
+-- ë§¤ë‰´ì–¼ì—…ë¬´
+CREATE TABLE "MANUAL_TASKS" (
+	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NOT NULL, -- ë§¤ë‰´ì–¼ì—…ë¬´ì½”ë“œ
+	"TASK"             VARCHAR2(60) NOT NULL, -- ì—…ë¬´ëª…
+	"REPEAT_TYPE"      VARCHAR2(6)  NULL,     -- ë°˜ë³µê¸°ì¤€ìœ í˜•
+	"REPEAT_DETAIL"    VARCHAR2(6)  NULL,     -- ë°˜ë³µê¸°ì¤€ìƒì„¸
+	"SPACE_TYPES_SEQ"  NUMBER(2,0)  NOT NULL, -- ê³µê°„ë¶„ë¥˜ì½”ë“œ
+	"TASK_TYPES_SEQ"   NUMBER(2,0)  NOT NULL  -- ì—…ë¬´ë¶„ë¥˜ì½”ë“œ
 );
 
--- °ø°£ºĞ·ù
+-- ë§¤ë‰´ì–¼ì—…ë¬´
+ALTER TABLE "MANUAL_TASKS"
+	ADD
+		CONSTRAINT "PK_MANUAL_TASKS" -- ë§¤ë‰´ì–¼ì—…ë¬´ ê¸°ë³¸í‚¤
+		PRIMARY KEY (
+			"MANUAL_TASKS_SEQ" -- ë§¤ë‰´ì–¼ì—…ë¬´ì½”ë“œ
+		);
 
+-- íšŒì›ì •ë³´
+CREATE TABLE "USERS" (
+	"USER_ID"      VARCHAR2(16) NOT NULL, -- ì•„ì´ë””
+	"PW"           VARCHAR2(16) NOT NULL, -- ë¹„ë°€ë²ˆí˜¸
+	"PHONE_NUM"    VARCHAR2(11) NOT NULL, -- íœ´ëŒ€í°ë²ˆí˜¸
+	"NAME"         VARCHAR2(12) NOT NULL, -- ì´ë¦„
+	"BIRTH"        DATE         NOT NULL, -- ìƒë…„ì›”ì¼
+	"GENDER"       VARCHAR2(1)  NOT NULL, -- ì„±ë³„
+	"EMAIL"        VARCHAR2(40) NOT NULL, -- ì´ë©”ì¼
+	"ADDRESS_CITY" VARCHAR2(25) NOT NULL, -- ì£¼ì†Œ-ì‹œ/ë„
+	"ADDRESS_GU"   VARCHAR2(15) NOT NULL, -- ì£¼ì†Œ-êµ¬/êµ°
+	"ADDRESS_DONG" VARCHAR2(15) NOT NULL, -- ì£¼ì†Œ-ë™
+	"STATUS"       NUMBER(1,0)  NOT NULL,  -- íƒˆí‡´ì—¬ë¶€
+	"PROFILE_PHOTO"  VARCHAR2(40)  NULL  -- í”„ë¡œí•„ì‚¬ì§„
+);
+
+-- íšŒì›ì •ë³´
+ALTER TABLE "USERS"
+	ADD
+		CONSTRAINT "PK_USERS" -- íšŒì›ì •ë³´ ê¸°ë³¸í‚¤
+		PRIMARY KEY (
+			"USER_ID" -- ì•„ì´ë””
+		);
+
+-- ê³µê°„ë¶„ë¥˜
+CREATE TABLE "SPACE_TYPES" (
+	"SPACE_TYPES_SEQ" NUMBER(2,0)  NOT NULL, -- ê³µê°„ë¶„ë¥˜ì½”ë“œ
+	"SPACE_TYPE"      VARCHAR2(25) NOT NULL  -- ë¶„ë¥˜ëª…
+);
+
+-- ê³µê°„ë¶„ë¥˜
 ALTER TABLE "SPACE_TYPES"
 	ADD
-		CONSTRAINT "PK_SPACE_TYPES" -- °ø°£ºĞ·ù ±âº»Å°
+		CONSTRAINT "PK_SPACE_TYPES" -- ê³µê°„ë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			"SPACE_TYPES_SEQ" -- °ø°£ºĞ·ùÄÚµå
+			"SPACE_TYPES_SEQ" -- ê³µê°„ë¶„ë¥˜ì½”ë“œ
 		);
 
--- ¾÷¹«ºĞ·ù
+-- ì—…ë¬´ë¶„ë¥˜
 CREATE TABLE "TASK_TYPES" (
-	"TASK_TYPES_SEQ" NUMBER(2,0)  NOT NULL, -- ¾÷¹«ºĞ·ùÄÚµå
-	"TASK_TYPE"      VARCHAR2(25) NOT NULL  -- ºĞ·ù¸í
+	"TASK_TYPES_SEQ" NUMBER(2,0)  NOT NULL, -- ì—…ë¬´ë¶„ë¥˜ì½”ë“œ
+	"TASK_TYPE"      VARCHAR2(25) NOT NULL  -- ë¶„ë¥˜ëª…
 );
 
--- ¾÷¹«ºĞ·ù
+-- ì—…ë¬´ë¶„ë¥˜
 ALTER TABLE "TASK_TYPES"
 	ADD
-		CONSTRAINT "PK_TASK_TYPES" -- ¾÷¹«ºĞ·ù ±âº»Å°
+		CONSTRAINT "PK_TASK_TYPES" -- ì—…ë¬´ë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			"TASK_TYPES_SEQ" -- ¾÷¹«ºĞ·ùÄÚµå
+			"TASK_TYPES_SEQ" -- ì—…ë¬´ë¶„ë¥˜ì½”ë“œ
 		);
 
--- ¸Å´º¾ó¾÷¹«
+-- ì§€ì _ì§ì›ì •ë³´
+CREATE TABLE "BRANCH_STAFFS" (
+	"BRANCH_STAFFS_SEQ" NUMBER(6,0)  NOT NULL, -- ì§€ì _ì§ì›ì •ë³´_ì¼ë ¨ë²ˆí˜¸
+	"JOIN_DATE"         DATE         NOT NULL, -- ì…ì‚¬ë‚ ì§œ
+	"LEAVE_DATE"        DATE         NULL,     -- í‡´ì‚¬ë‚ ì§œ
+	"BRANCHES_SEQ"      NUMBER(5,0)  NOT NULL, -- ì§€ì ì½”ë“œ
+	"WORK_PART"         VARCHAR2(20) NOT NULL, -- ì†Œì†íŒŒíŠ¸
+	"STAFF_ID"          VARCHAR2(16) NULL      -- ì§ì›ì•„ì´ë””
+);
+
+-- ì§€ì _ì§ì›ì •ë³´
+ALTER TABLE "BRANCH_STAFFS"
+	ADD
+		CONSTRAINT "PK_BRANCH_STAFFS" -- ì§€ì _ì§ì›ì •ë³´ ê¸°ë³¸í‚¤3
+		PRIMARY KEY (
+			"BRANCH_STAFFS_SEQ" -- ì§€ì _ì§ì›ì •ë³´_ì¼ë ¨ë²ˆí˜¸
+		);
+
+-- ì§ì›ì¸ì¦ì •ë³´
+CREATE TABLE "STAFFS" (
+	"STAFF_ID"    VARCHAR2(16)  NOT NULL, -- ì•„ì´ë””
+	"RESUME_FILE" VARCHAR2(40) NULL,     -- ì´ë ¥ì„œì²¨ë¶€íŒŒì¼
+	"HEALTH_FILE" VARCHAR2(40) NULL,     -- ë³´ê±´ì¦ì²¨ë¶€íŒŒì¼
+	"BANK_FILE"   VARCHAR2(40) NULL,     -- í†µì¥ì‚¬ë³¸ì²¨ë¶€íŒŒì¼
+	"BANK_NAME"   VARCHAR2(30)  NULL,     -- ì€í–‰ëª…
+	"ACCOUNT_NUM" VARCHAR2(20)  NULL,     -- ê³„ì¢Œë²ˆí˜¸
+	"STATUS"      NUMBER(1,0)   NOT NULL  -- ìŠ¹ì¸ì—¬ë¶€
+);
+
+-- ì§ì›ì¸ì¦ì •ë³´
+ALTER TABLE "STAFFS"
+	ADD
+		CONSTRAINT "PK_STAFFS" -- ì§ì›ì¸ì¦ì •ë³´ ê¸°ë³¸í‚¤2
+		PRIMARY KEY (
+			"STAFF_ID" -- ì•„ì´ë””
+		);
+
+-- ì¼ì¼ì—…ë¬´
+ALTER TABLE "DAILY_TASKS"
+	ADD
+		CONSTRAINT "FK_MANUAL_TASKS_TO_DAILY_TASKS" -- ë§¤ë‰´ì–¼ì—…ë¬´ -> ì¼ì¼ì—…ë¬´
+		FOREIGN KEY (
+			"MANUAL_TASKS_SEQ" -- ë§¤ë‰´ì–¼ì—…ë¬´ì½”ë“œ
+		)
+		REFERENCES "MANUAL_TASKS" ( -- ë§¤ë‰´ì–¼ì—…ë¬´
+			"MANUAL_TASKS_SEQ" -- ë§¤ë‰´ì–¼ì—…ë¬´ì½”ë“œ
+		);
+
+-- ì¼ì¼ì—…ë¬´
+ALTER TABLE "DAILY_TASKS"
+	ADD
+		CONSTRAINT "FK_USERS_TO_DAILY_TASKS" -- íšŒì›ì •ë³´ -> ì¼ì¼ì—…ë¬´
+		FOREIGN KEY (
+			"FINISHER_ID" -- ì™„ë£Œìì•„ì´ë””
+		)
+		REFERENCES "USERS" ( -- íšŒì›ì •ë³´
+			"USER_ID" -- ì•„ì´ë””
+		);
+
+-- ë§¤ë‰´ì–¼ì—…ë¬´
 ALTER TABLE "MANUAL_TASKS"
 	ADD
-		CONSTRAINT "FK_SPACE_TYPES_TO_MANUAL_TASKS" -- °ø°£ºĞ·ù -> ¸Å´º¾ó¾÷¹«
+		CONSTRAINT "FK_SPACE_TYPES_TO_MANUAL_TASKS" -- ê³µê°„ë¶„ë¥˜ -> ë§¤ë‰´ì–¼ì—…ë¬´
 		FOREIGN KEY (
-			"SPACE_TYPES_SEQ" -- °ø°£ºĞ·ùÄÚµå
+			"SPACE_TYPES_SEQ" -- ê³µê°„ë¶„ë¥˜ì½”ë“œ
 		)
-		REFERENCES "SPACE_TYPES" ( -- °ø°£ºĞ·ù
-			"SPACE_TYPES_SEQ" -- °ø°£ºĞ·ùÄÚµå
+		REFERENCES "SPACE_TYPES" ( -- ê³µê°„ë¶„ë¥˜
+			"SPACE_TYPES_SEQ" -- ê³µê°„ë¶„ë¥˜ì½”ë“œ
 		);
 
--- ¸Å´º¾ó¾÷¹«
+-- ë§¤ë‰´ì–¼ì—…ë¬´
 ALTER TABLE "MANUAL_TASKS"
 	ADD
-		CONSTRAINT "FK_TASK_TYPES_TO_MANUAL_TASKS" -- ¾÷¹«ºĞ·ù -> ¸Å´º¾ó¾÷¹«
+		CONSTRAINT "FK_TASK_TYPES_TO_MANUAL_TASKS" -- ì—…ë¬´ë¶„ë¥˜ -> ë§¤ë‰´ì–¼ì—…ë¬´
 		FOREIGN KEY (
-			"TASK_TYPES_SEQ" -- ¾÷¹«ºĞ·ùÄÚµå
+			"TASK_TYPES_SEQ" -- ì—…ë¬´ë¶„ë¥˜ì½”ë“œ
 		)
-		REFERENCES "TASK_TYPES" ( -- ¾÷¹«ºĞ·ù
-			"TASK_TYPES_SEQ" -- ¾÷¹«ºĞ·ùÄÚµå
+		REFERENCES "TASK_TYPES" ( -- ì—…ë¬´ë¶„ë¥˜
+			"TASK_TYPES_SEQ" -- ì—…ë¬´ë¶„ë¥˜ì½”ë“œ
 		);
 
+-- ì§€ì _ì§ì›ì •ë³´
+ALTER TABLE "BRANCH_STAFFS"
+	ADD
+		CONSTRAINT "FK_STAFFS_TO_BRANCH_STAFFS" -- ì§ì›ì¸ì¦ì •ë³´ -> ì§€ì _ì§ì›ì •ë³´2
+		FOREIGN KEY (
+			"STAFF_ID" -- ì§ì›ì•„ì´ë””
+		)
+		REFERENCES "STAFFS" ( -- ì§ì›ì¸ì¦ì •ë³´
+			"STAFF_ID" -- ì•„ì´ë””
+		);
 
--- ½ÃÄö½º »ı¼º
+-- ì§ì›ì¸ì¦ì •ë³´
+ALTER TABLE "STAFFS"
+	ADD
+		CONSTRAINT "FK_USERS_TO_STAFFS" -- íšŒì›ì •ë³´ -> ì§ì›ì¸ì¦ì •ë³´2
+		FOREIGN KEY (
+			"STAFF_ID" -- ì•„ì´ë””
+		)
+		REFERENCES "USERS" ( -- íšŒì›ì •ë³´
+			"USER_ID" -- ì•„ì´ë””
+		);
+
+-- ì‹œí€€ìŠ¤ ìƒì„±
+
+create sequence daily_tasks_seq;
+create sequence manual_tasks_seq;
 create sequence space_types_seq;
 create sequence task_types_seq;
-create sequence manual_tasks_seq;
-
-
-
-
--- ÀÏÀÏ¾÷¹« DAILY_TASKS Å×ÀÌºí Æ÷¿öµå ¿£Áö´Ï¾î¸µ
-
--- ÀÏÀÏ¾÷¹«
-CREATE TABLE "DAILY_TASKS" (
-	"DAILY_TASKS_SEQ"  NUMBER(7,0)  NOT NULL, -- ÀÏÀÏ¾÷¹«ÄÚµå
-	"INPUT_TASK"       VARCHAR2(60) NULL,     -- Á÷Á¢ÀÔ·Â¾÷¹«¸í
-	"ASSIGN_DATE"      DATE         NOT NULL, -- ¹èÁ¤³¯Â¥
-	"IMPORTANCE"       NUMBER(1,0)  NOT NULL, -- Áß¿ä¾÷¹«¿©ºÎ
-	"ASSIGN_TYPE"      VARCHAR2(6)  NOT NULL, -- ¹èÁ¤À¯Çü(ÆÄÆ®or°³ÀÎ)
-	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- ¹èÁ¤´ë»ó(ÆÄÆ®¸íorÀÌ¸§)
-	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NULL,     -- ¸Å´º¾ó¾÷¹«ÄÚµå
-	"FINISHER_ID"      VARCHAR2(16) NULL,     -- ¿Ï·áÀÚ¾ÆÀÌµğ
-	"FINISHER_NAME"    VARCHAR2(20) NULL,     -- ¿Ï·áÀÚ¸í
-	"ASSIGNER_ID"      VARCHAR2(16) NOT NULL, -- ¹èÁ¤ÀÚ¾ÆÀÌµğ
-	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL  -- ÁöÁ¡ÄÚµå
-);
-
--- ÀÏÀÏ¾÷¹«
-ALTER TABLE "DAILY_TASKS"
-	ADD
-		CONSTRAINT "PK_DAILY_TASKS" -- ÀÏÀÏ¾÷¹« ±âº»Å°2
-		PRIMARY KEY (
-			"DAILY_TASKS_SEQ" -- ÀÏÀÏ¾÷¹«ÄÚµå
-		);
-
--- ÀÏÀÏ¾÷¹«
-ALTER TABLE "DAILY_TASKS"
-	ADD
-		CONSTRAINT "FK_MANUAL_TASKS_TO_DAILY_TASKS" -- ¸Å´º¾ó¾÷¹« -> ÀÏÀÏ¾÷¹«
-		FOREIGN KEY (
-			"MANUAL_TASKS_SEQ" -- ¸Å´º¾ó¾÷¹«ÄÚµå
-		)
-		REFERENCES "MANUAL_TASKS" ( -- ¸Å´º¾ó¾÷¹«
-			"MANUAL_TASKS_SEQ" -- ¸Å´º¾ó¾÷¹«ÄÚµå
-		);
-
--- ½ÃÄö½º »ı¼º
-create sequence daily_tasks_seq;
-
--- ÁöÁ¡_Á÷¿øÁ¤º¸
-CREATE TABLE BRANCH_STAFFS (
-	BRANCH_STAFFS_SEQ NUMBER(6,0)  NOT NULL, -- ÁöÁ¡_Á÷¿øÁ¤º¸_ÀÏ·Ã¹øÈ£
-	JOIN_DATE          DATE         NOT NULL, -- ÀÔ»ç³¯Â¥
-	LEAVE_DATE         DATE         NULL,     -- Åğ»ç³¯Â¥
-	BRANCHES_SEQ       NUMBER(5,0)  NOT NULL, -- ÁöÁ¡ÄÚµå
-	STAFF_ID           VARCHAR2(16) NOT NULL, -- Á÷¿ø¾ÆÀÌµğ
-	WORK_PART          VARCHAR2(20) NOT NULL  -- ¼Ò¼ÓÆÄÆ®
-);
-
--- ÁöÁ¡_Á÷¿øÁ¤º¸
-ALTER TABLE BRANCH_STAFFS
-	ADD
-		CONSTRAINT PK_BRANCH_STAFFS -- ÁöÁ¡_Á÷¿øÁ¤º¸ ±âº»Å°3
-		PRIMARY KEY (
-			BRANCH_STAFFS_SEQ -- ÁöÁ¡_Á÷¿øÁ¤º¸_ÀÏ·Ã¹øÈ£
-		);
-
--- ½ÃÄö½º »ı¼º
 create sequence branch_staffs_seq;
-
 
 
 
 
 -- DML
 
--- ¸Ş´º¾ó·¹ÄÚµå
 
- insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'È¦');
- insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, '¹Ù');
- insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'Ä«¿îÅÍ');
- insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'Å×¶ó½º');
- insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'È­Àå½Ç');
-
- insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ºñÇ°°ü¸®');
- insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '½ÄÇ°°ü¸®');
- insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '½ÃÀç°ü¸®');
- insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'À§»ı°ü¸®');
- insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '¼³ºñ°ü¸®');
- insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, '°í°´°ü¸®');
-
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¾ÆÀÌ½º ÄÅ Àç°í·® Á¡°Ë', '±â°£', '2', 2, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ºñÇ°Àç°íÇöÈ²Ç¥ ÀÛ¼º', '±â°£', '30', 2, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¿øµÎ Àç°í·® Á¡°Ë', '±â°£', '2', 2, 2);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '½Ã·´·ù À¯Åë±âÇÑ È®ÀÎ', '±â°£', '7', 2, 2);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'À½½Ä¹° ¾²·¹±â ¹ö¸®±â', 'ÆÄÆ®', '¸¶°¨', 2, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ÇàÁÖ ¼Òµ¶', 'ÆÄÆ®', '¸¶°¨', 2, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Ä¿ÇÇ¸Ó½Å À±È°Á¦ ¹Ù¸£±â', '±â°£', '3', 2, 5);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '³ÃÀå°í ¼º¿¡ Á¦°Å', '±â°£', '14', 2, 5);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¿µ¼öÁõ ¿ëÁö Àç°í È®ÀÎ', '±â°£', '2', 3, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Çà»ç »óÇ° Àç°í È®ÀÎ', 'ÆÄÆ®', '¸¶°¨', 3, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Çö±İ ½ÃÀç È®ÀÎ', 'ÆÄÆ®', '¹Ìµé', 3, 3);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ÀºÇà¿¡¼­ ÀÜµ· ±³È¯', 3, 3);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Ä«¿îÅÍ ¼±¹İ ´Û±â', 'ÆÄÆ®', '¸¶°¨', 3, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'POS±â ¸ÕÁö Á¦°Å', 'ÆÄÆ®', '¸¶°¨', 3, 4);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¸Ş´ºÆÇ ¾÷µ¥ÀÌÆ® ¹× Á¡°Ë' , 3, 5);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'POS±â ÇÁ·Î±×·¥ ¾÷µ¥ÀÌÆ®', 3, 5);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¼¿ÇÁ ¹Ù »¡´ë Àç°í·® È®ÀÎ', 'ÆÄÆ®', '¿ÀÇÂ', 1, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¼¿ÇÁ ¹Ù ½Ã·´ Ã¤¿ì±â', '±â°£', '2', 1, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¹Ù´Ú ¾µ±â', 'ÆÄÆ®', '¸¶°¨', 1, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¹Ù´Ú ´Û±â', 'ÆÄÆ®', '¸¶°¨', 1, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¿¡¾îÄÁ ÇÊÅÍ ±³Ã¼', '±â°£', '365', 1, 5);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Å×ÀÌºí ¹× ÁÂ¼® Á¡°Ë', 'ÆÄÆ®', '¸¶°¨', 1, 5);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '½ÃÁğº° ¸Ş´º Æ÷½ºÅÍ ºÎÂø', 1, 6);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ÀÌ¹ø´Ş ÇÁ·Î¸ğ¼Ç Çà»ç È«º¸¹° ºÎÂø', 1, 6);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Å×¶ó½º Å×ÀÌºí ¹× ¹Ù´Ú Ã»¼Ò', 'ÆÄÆ®', '¸¶°¨', 4, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Å×¶ó½º ¿ÜºÎ Ã»¼Ò', '±â°£', '2', 4, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'Å×¶ó½º Å×ÀÌºí, ÀÇÀÚ ¼ö°Å', 'ÆÄÆ®', '¸¶°¨', 4, 5);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¿ìÃµ½Ã ÆÄ¶ó¼Ö ¼³Ä¡', 4, 5);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'È­ÀåÁö Àç°í·® Á¡°Ë', '±â°£', '3', 5, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '¼Õ ¼¼Á¤Á¦ ¸®ÇÊ', '±â°£', '3', 5, 1);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'È­Àå½Ç Ã»¼Ò', 'ÆÄÆ®', '¸¶°¨', 5, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'È­Àå½Ç ¼Òµ¶', '±â°£', '7', 5, 4);
-insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'È¯Ç³±â Ã»¼Ò', '±â°£', '30', 5, 5);
-insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, '´ë¼Òº¯±â ºñµ¥ ¹× ¼¾¼­Á¡°Ë', 5, 5);
+--íšŒì›ì •ë³´ ë ˆì½”ë“œ
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'chanyoung' , 'chanyoung1234' , '01023606586' , 'ì£¼ì°¬ì˜' , '1989/10/29' , 'M' , 'chanyoung@naver.com' , 'ì„œìš¸ì‹œ' , 'ë§ˆí¬êµ¬' , 'ë„í™”ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'chulsoo' , 'chulsoo1234' , '01085239468' , 'ë°•ì² ìˆ˜' , '1992/07/24' , 'M' , 'chulsoo@naver.com' , 'ì„œìš¸ì‹œ' , 'ìš©ì‚°êµ¬' , 'ì´ì´Œë™' , 0 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'eunkyul' , 'eunkyul1234' , '01097291122' , 'ê³ ì€ê²°' , '1991/09/04' , 'M' , 'eunkyul@naver.com' , 'ê²½ê¸°ë„' , 'ê´‘ëª…ì‹œ' , 'ì†Œí•˜ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'heeeun' , 'heeeun1234' , '01072105321' , 'ê°•í¬ì€' , '1990/03/21' , 'F' , 'heeeun@naver.com' , 'ì„œìš¸ì‹œ' , 'ê°•ì„œêµ¬' , 'ê³µí•­ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'hyesoo' , 'hyesoo1234' , '01075794815' , 'í•œí˜œìˆ˜' , '1995/02/21' , 'F' , 'hyesoo@naver.com' , 'ê²½ê¸°ë„' , 'ê³¼ì²œì‹œ' , 'ê³¼ì²œë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'hyungjun' , 'hyungjun1234' , '01040872442' , 'ë¯¼í˜•ì¤€' , '1993/06/25' , 'M' , 'hyungjun@naver.com' , 'ì„œìš¸ì‹œ' , 'ê°•ë™êµ¬' , 'ìƒì¼ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'jaemin' , 'jaemin1234' , '01093963130' , 'ìµœì¬ë¯¼' , '1994/08/15' , 'F' , 'jaemin@naver.com' , 'ê²½ê¸°ë„' , 'ì‹œí¥ì‹œ' , 'ì •ì™•ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'jaesun' , 'jaesun1234' ,'01094955647' , 'ì´ì¬ì„ ' , '1996/11/11' ,'M' , 'jaesun@naver.com' , 'ì„œìš¸ì‹œ' , 'ê´€ì•…êµ¬' , 'ì‹ ë¦¼ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'jonghyuk' , 'jonghyuk1234' , '01020169206' , 'ë°•ì¢…í˜' , '1996/05/12' , 'M' , 'jonghyuk@naver.com' , 'ì„œìš¸ì‹œ' , 'ë§ˆí¬êµ¬' , 'ê³µë•ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'minji' , 'minji1234' , '01051852547' , 'ê¹€ë¯¼ì§€' , '1996/09/13' , 'F' , 'minji@naver.com' , 'ì„œìš¸ì‹œ' , 'ì˜ë“±í¬êµ¬' , 'ì—¬ì˜ë„ë™' , 0 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'seungkyun' , 'seungkyun1234' , '01098836283' , 'í•¨ìŠ¹ê· ' , '1988/01/17' , 'M' , 'seungkyun@naver.com' , 'ê²½ê¸°ë„' , 'ì˜¤ì‚°ì‹œ' , 'ê°€ìˆ˜ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'sumin' , 'sumin1234' , '01025408580' , 'ë°•ìˆ˜ë¯¼' , '1996/11/15' , 'M' ,' sumin@naver.com' , 'ê²½ê¸°ë„' , 'ìˆ˜ì›ì‹œ' , 'ë§¤íƒ„ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'taehun' , 'taehun1234' , '01032828507' , 'ê¹€íƒœí›ˆ' , '1998/05/30' , 'M' , 'taehun@naver.com' , 'ì„œìš¸ì‹œ' , 'êµ¬ë¡œêµ¬' , 'êµ¬ë¡œë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yejee' , 'yejee1234' , '01020764174' , 'ì´ì˜ˆì§€' , '1996/11/17' , 'F' , 'yejee@naver.com' , 'ì„œìš¸ì‹œ' , 'ë™ì‘êµ¬' , 'ìƒë„ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yeonghee' , 'yeonghee1234' , '01098561452' , 'í—ˆì˜í¬' , '1989/03/21' , 'F' , 'yeonghee@naver.com' , 'ì„œìš¸ì‹œ' , 'ê°•ë¶êµ¬' , 'ìš°ì´ë™' , 0 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yunjin' , 'yunjin1234' , '01053710710' , 'ê¹€ì—°ì§„' , '1988/11/19' , 'F' , 'yunjin@naver.com' , 'ì„œìš¸ì‹œ' , 'ì†¡íŒŒêµ¬' , 'ë¬¸ì •ë™' , 1 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yunseok' , 'yunseok1234' , '01099031063' , 'ì¥ìœ¤ì„' , '1992/11/20' , 'M' , 'yunseok@naver.com' , 'ì„œìš¸ì‹œ' , 'ì†¡íŒŒêµ¬' , 'ì„ì´Œë™' , 1 );
 
 
+--ì§ì›ì¸ì¦ì •ë³´ ë ˆì½”ë“œ
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'yunjin' , 'yunjin_resume.hwp' , 'yunjin_health.jpg' , 'yunjin_bank.png', 'ìš°ë¦¬ì€í–‰' , '1004427204842' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'heeeun' , 'heeeun_resume.hwp' , 'heeeun_health.jpg' , 'heeeun_bank.png' , 'ì‹ í•œì€í–‰' , '110101764526' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'chanyoung' , 'chanyoung_resume.hwp' , 'chanyoung_health.jpg' , 'chanyoung_bank.png' , 'SCì œì¼ì€í–‰' , '10485675482' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'jonghyuk' , 'jonghyuk_resume.hwp' , 'jonghyuk_health.jpg' , 'jonghyuk_bank.png' , 'í•˜ë‚˜ì€í–‰' , '52546278031224' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yunseok' , 'yunseok_resume.hwp' , 'yunseok_health.jpg' , 'yunseok_bank.png' , 'ì‹ í•œì€í–‰' , '110468824651' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'taehun' , 'taehun_resume.hwp' , 'taehun_health.jpg' , null , 'ì™¸í™˜ì€í–‰' , '336511098371' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'jaesun' , 'jaesun_resume.hwp' , 'jaesun_health.jpg' , null , 'NHë†í˜‘ì€í–‰' , '113478515465' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yejee' , null , 'yejee_health.jpg' , null , 'í•˜ë‚˜ì€í–‰' , '98850424756733' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyesoo' , null , 'hyesoo_health.jpg' , null , 'êµ­ë¯¼ì€í–‰' , '42578500105462' , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'jaemin' , null , 'jaemin_health.jpg' , null , 'ìš°ë¦¬ì€í–‰' , '1002546825713' , 1 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'eunkyul' , null , null , null , null , null , 1 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'sumin' , null , null , 'sumin_bank.png' , null , null , 1 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'seungkyun' , 'seungkyun_resume.hwp' , null , 'seungkyun_bank.png' , null , null , 1 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyungjun' , 'hyungjun_resume.hwp' , null , 'hyungjun_bank.png' , null , null , 1 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'chulsoo' , null , null , null , null , null , 0 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yeonghee' , 'yeonghee_resume.hwp' , null , 'yeonghee_bank.png' , null , null , 0 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'minji' , 'minji_resume.hwp' , 'minji_health.jpg' , 'minji_bank.png' , 'ì‹ í•œì€í–‰' , '113154209875' , 0 );
+
+
+--ì§€ì _ì§ì›ì •ë³´ ë ˆì½”ë“œ
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/05/31', null, 1, 'yunjin', 'ì˜¤í”ˆ');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/07/10', null, 1, 'heeeun', 'ì˜¤í”ˆ');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/19', null, 1, 'chanyoung', 'ë¯¸ë“¤');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/02/15', null, 1, 'jonghyuk', 'ë¯¸ë“¤');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/29', null, 1, 'yunseok', 'ë¯¸ë“¤');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/04/15', null, 1, 'taehun', 'ë§ˆê°');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/12/07', null, 1, 'jaesun', 'ë§ˆê°');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/26', null, 1, 'yejee', 'ë§ˆê°');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2014/10/31', '2016/11/11', 1, 'hyesoo', 'ì˜¤í”ˆ');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/05', '2017/06/05', 1, 'jaemin', 'ì˜¤í”ˆ');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/05/13', '2016/12/03', 1, 'eunkyul', 'ë¯¸ë“¤');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/10/31', '2017/04/20', 1, 'sumin', 'ë¯¸ë“¤');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/08/10', '2017/04/18', 1, 'seungkyun', 'ë§ˆê°');
+insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/03/17', '2016/12/30', 1, 'hyungjun', 'ë§ˆê°');
+
+
+-- ê³µê°„ë¶„ë¥˜ ë ˆì½”ë“œ
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'í™€');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'ë°”');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'ì¹´ìš´í„°');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'í…Œë¼ìŠ¤');
+ insert into space_types(space_types_seq, space_type) values(space_types_seq.nextval, 'í™”ì¥ì‹¤');
+
+-- ì—…ë¬´ë¶„ë¥˜ ë ˆì½”ë“œ
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ë¹„í’ˆê´€ë¦¬');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ì‹í’ˆê´€ë¦¬');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ì‹œì¬ê´€ë¦¬');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ìœ„ìƒê´€ë¦¬');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ì„¤ë¹„ê´€ë¦¬');
+ insert into task_types(task_types_seq, task_type) values(task_types_seq.nextval, 'ê³ ê°ê´€ë¦¬');
+
+
+-- ë©”ë‰´ì–¼ì—…ë¬´ ë ˆì½”ë“œ
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì•„ì´ìŠ¤ ì»µ ì¬ê³ ëŸ‰ ì ê²€', 'ê¸°ê°„', '2', 2, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ë¹„í’ˆì¬ê³ í˜„í™©í‘œ ì‘ì„±', 'ê¸°ê°„', '30', 2, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì›ë‘ ì¬ê³ ëŸ‰ ì ê²€', 'ê¸°ê°„', '2', 2, 2);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì‹œëŸ½ë¥˜ ìœ í†µê¸°í•œ í™•ì¸', 'ê¸°ê°„', '7', 2, 2);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ìŒì‹ë¬¼ ì“°ë ˆê¸° ë²„ë¦¬ê¸°', 'íŒŒíŠ¸', 'ë§ˆê°', 2, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í–‰ì£¼ ì†Œë…', 'íŒŒíŠ¸', 'ë§ˆê°', 2, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì»¤í”¼ë¨¸ì‹  ìœ¤í™œì œ ë°”ë¥´ê¸°', 'ê¸°ê°„', '3', 2, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ëƒ‰ì¥ê³  ì„±ì— ì œê±°', 'ê¸°ê°„', '14', 2, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì˜ìˆ˜ì¦ ìš©ì§€ ì¬ê³  í™•ì¸', 'ê¸°ê°„', '2', 3, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í–‰ì‚¬ ìƒí’ˆ ì¬ê³  í™•ì¸', 'íŒŒíŠ¸', 'ë§ˆê°', 3, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í˜„ê¸ˆ ì‹œì¬ í™•ì¸', 'íŒŒíŠ¸', 'ë¯¸ë“¤', 3, 3);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì€í–‰ì—ì„œ ì”ëˆ êµí™˜', 3, 3);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì¹´ìš´í„° ì„ ë°˜ ë‹¦ê¸°', 'íŒŒíŠ¸', 'ë§ˆê°', 3, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'POSê¸° ë¨¼ì§€ ì œê±°', 'íŒŒíŠ¸', 'ë§ˆê°', 3, 4);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ë©”ë‰´íŒ ì—…ë°ì´íŠ¸ ë° ì ê²€' , 3, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'POSê¸° í”„ë¡œê·¸ë¨ ì—…ë°ì´íŠ¸', 3, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì…€í”„ ë°” ë¹¨ëŒ€ ì¬ê³ ëŸ‰ í™•ì¸', 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 1, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì…€í”„ ë°” ì‹œëŸ½ ì±„ìš°ê¸°', 'ê¸°ê°„', '2', 1, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ë°”ë‹¥ ì“¸ê¸°', 'íŒŒíŠ¸', 'ë§ˆê°', 1, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ë°”ë‹¥ ë‹¦ê¸°', 'íŒŒíŠ¸', 'ë§ˆê°', 1, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì—ì–´ì»¨ í•„í„° êµì²´', 'ê¸°ê°„', '365', 1, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í…Œì´ë¸” ë° ì¢Œì„ ì ê²€', 'íŒŒíŠ¸', 'ë§ˆê°', 1, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì‹œì¦Œë³„ ë©”ë‰´ í¬ìŠ¤í„° ë¶€ì°©', 1, 6);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì´ë²ˆë‹¬ í”„ë¡œëª¨ì…˜ í–‰ì‚¬ í™ë³´ë¬¼ ë¶€ì°©', 1, 6);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í…Œë¼ìŠ¤ í…Œì´ë¸” ë° ë°”ë‹¥ ì²­ì†Œ', 'íŒŒíŠ¸', 'ë§ˆê°', 4, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í…Œë¼ìŠ¤ ì™¸ë¶€ ì²­ì†Œ', 'ê¸°ê°„', '2', 4, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í…Œë¼ìŠ¤ í…Œì´ë¸”, ì˜ì ìˆ˜ê±°', 'íŒŒíŠ¸', 'ë§ˆê°', 4, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ìš°ì²œì‹œ íŒŒë¼ì†” ì„¤ì¹˜', 4, 5);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í™”ì¥ì§€ ì¬ê³ ëŸ‰ ì ê²€', 'ê¸°ê°„', '3', 5, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ì† ì„¸ì •ì œ ë¦¬í•„', 'ê¸°ê°„', '3', 5, 1);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í™”ì¥ì‹¤ ì²­ì†Œ', 'íŒŒíŠ¸', 'ë§ˆê°', 5, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í™”ì¥ì‹¤ ì†Œë…', 'ê¸°ê°„', '7', 5, 4);
+insert into manual_tasks(manual_tasks_seq, task, repeat_type, repeat_detail, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'í™˜í’ê¸° ì²­ì†Œ', 'ê¸°ê°„', '30', 5, 5);
+insert into manual_tasks(manual_tasks_seq, task, space_types_seq, task_types_seq) values(manual_tasks_seq.nextval, 'ëŒ€ì†Œë³€ê¸° ë¹„ë° ë° ì„¼ì„œì ê²€', 5, 5);
 
 
 
--- ÀÏÀÏ¾÷¹« ·¹ÄÚµå
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¿ÀÇÂ', 17, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¿ÀÇÂ', 1, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, 'ÆÄÆ®', '¿ÀÇÂ', 3, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¹Ìµé', 11, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, '°³ÀÎ', 'yunseok', 7, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¹Ìµé', 29, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¸¶°¨', 5, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, 'ÆÄÆ®', '¸¶°¨', 10, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¸¶°¨', 19, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¸¶°¨', 22, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¸¶°¨', 25, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'ÆÄÆ®', '¸¶°¨', 31, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'ÆÄÆ®', '¿ÀÇÂ', 17, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'ÆÄÆ®', '¿ÀÇÂ', 2, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, 'ÆÄÆ®', '¿ÀÇÂ', 4, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'ÆÄÆ®', '¹Ìµé', 11, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, '°³ÀÎ', 'yunseok', 8, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'ÆÄÆ®', '¹Ìµé', 32, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'ÆÄÆ®', '¸¶°¨', 6, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'ÆÄÆ®', '¸¶°¨', 13, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, 'ÆÄÆ®', '¸¶°¨', 20, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, 'ÆÄ¶ó¼Ö »óÅÂ Á¡°Ë', '2018/05/07', 0, 'ÆÄÆ®', '¸¶°¨', null, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¿ÀÇÂ', 17, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¿ÀÇÂ', 12, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, '¿¬ÁøÀÌ ÇÇÄ«Ãò »ıÀÏÄÉÀÌÅ© »ç¿À±â',  '2018/05/11', 1, '°³ÀÎ', 'yunjin', null, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¿ÀÇÂ', 24, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 1, 'ÆÄÆ®', '¹Ìµé', 21, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¹Ìµé', 34, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¹Ìµé', 15, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 1, 'ÆÄÆ®', '¸¶°¨', 21, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¸¶°¨', 19, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'ÆÄÆ®', '¸¶°¨', 16, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, '±Ù¹«ÅÂ¸¸ ¹İ¼º¹® ÀÛ¼ºÇØ¿À±â',  '2018/05/11', 1, '°³ÀÎ', 'taehun', null, null, null, 'yunyoung', 1);
+-- ì¼ì¼ì—…ë¬´ ë ˆì½”ë“œ
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 17, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 1, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 3, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 11, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, 'ê°œì¸', 'yunseok', 7, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 29, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 5, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 1, 'íŒŒíŠ¸', 'ë§ˆê°', 10, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 19, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 22, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 25, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/06', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 31, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 17, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 2, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 4, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 11, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, 'ê°œì¸', 'yunseok', 8, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 32, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 6, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 13, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, null, '2018/05/07', 1, 'íŒŒíŠ¸', 'ë§ˆê°', 20, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ) values(daily_tasks_seq.nextval, 'íŒŒë¼ì†” ìƒíƒœ ì ê²€', '2018/05/07', 0, 'íŒŒíŠ¸', 'ë§ˆê°', null, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 17, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 12, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, 'ì—°ì§„ì´ í”¼ì¹´ì¸„ ìƒì¼ì¼€ì´í¬ ì‚¬ì˜¤ê¸°',  '2018/05/11', 1, 'ê°œì¸', 'yunjin', null, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 24, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 1, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 21, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 34, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 15, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 1, 'íŒŒíŠ¸', 'ë§ˆê°', 21, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 19, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, null,  '2018/05/11', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 16, null, null, 'yunyoung', 1);
+insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_tasks_seq.nextval, 'ê·¼ë¬´íƒœë§Œ ë°˜ì„±ë¬¸ ì‘ì„±í•´ì˜¤ê¸°',  '2018/05/11', 1, 'ê°œì¸', 'taehun', null, null, null, 'yunyoung', 1);
 insert into daily_tasks 
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'ÆÄÆ®', '¿ÀÇÂ', 12, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 12, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'ÆÄÆ®', '¿ÀÇÂ', 16, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 16, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '°³ÀÎ', 'yunseok', null, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'ê°œì¸', 'yunseok', null, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'ÆÄÆ®', '¹Ìµé', 1, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 1, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'ÆÄÆ®', '¹Ìµé', 3, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 3, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'ÆÄÆ®', '¹Ìµé', 17, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 17, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, '·¹¸óÃ» ¸¸µé±â', '2018/05/08', 0, '°³ÀÎ', 'chanyoung', null, 'chanyoung', 'ÁÖÂù¿µ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, 'ë ˆëª¬ì²­ ë§Œë“¤ê¸°', '2018/05/08', 0, 'ê°œì¸', 'chanyoung', null, 'chanyoung', 'ì£¼ì°¬ì˜', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'ÆÄÆ®', '¸¶°¨', 23, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'íŒŒíŠ¸', 'ë§ˆê°', 23, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'ÆÄÆ®', '¸¶°¨', 32, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 32, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, '°³ÀÎ', 'taehun', null, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/08', 1, 'ê°œì¸', 'taehun', null, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'ÆÄÆ®', '¿ÀÇÂ', 17, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 17, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'ÆÄÆ®', '¿ÀÇÂ', 30, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 30, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'ÆÄÆ®', '¿ÀÇÂ', 33, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 33, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '°³ÀÎ', 'yunjin', 34, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'ê°œì¸', 'yunjin', 34, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'ÆÄÆ®', '¹Ìµé', 26, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 26, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'ÆÄÆ®', '¹Ìµé', 9, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 9, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, 'º¸°ÇÁõ °»½Å', '2018/05/09', 0, '°³ÀÎ', 'yunseok', null, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, 'ë³´ê±´ì¦ ê°±ì‹ ', '2018/05/09', 0, 'ê°œì¸', 'yunseok', null, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, '°³ÀÎ', 'chanyoung', null, 'chanyoung', 'ÁÖÂù¿µ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'ê°œì¸', 'chanyoung', null, 'chanyoung', 'ì£¼ì°¬ì˜', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'ÆÄÆ®', '¸¶°¨', 22, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 1, 'íŒŒíŠ¸', 'ë§ˆê°', 22, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'ÆÄÆ®', '¸¶°¨', 25, 'taehun', '±èÅÂÈÆ', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/09', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 25, 'taehun', 'ê¹€íƒœí›ˆ', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'ÆÄÆ®', '¿ÀÇÂ', 24, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 24, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'ÆÄÆ®', '¿ÀÇÂ', 33, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 33, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'ÆÄÆ®', '¿ÀÇÂ', 8, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'íŒŒíŠ¸', 'ì˜¤í”ˆ', 8, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, '½Å¸Ş´º ÆË¾÷ Á¦ÀÛ', '2018/05/10', 1, '°³ÀÎ', 'yunjin', null, 'yunjin', '±è¿¬Áø', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, 'ì‹ ë©”ë‰´ íŒì—… ì œì‘', '2018/05/10', 1, 'ê°œì¸', 'yunjin', null, 'yunjin', 'ê¹€ì—°ì§„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'ÆÄÆ®', '¹Ìµé', 1, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 1, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'ÆÄÆ®', '¹Ìµé', 3, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 3, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'ÆÄÆ®', '¹Ìµé', 13, 'yunseok', 'ÀåÀ±¼®', 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'íŒŒíŠ¸', 'ë¯¸ë“¤', 13, 'yunseok', 'ì¥ìœ¤ì„', 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'ÆÄÆ®', '¸¶°¨', 14, null, null, 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'íŒŒíŠ¸', 'ë§ˆê°', 14, null, null, 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'ÆÄÆ®', '¸¶°¨', 19, null, null, 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 0, 'íŒŒíŠ¸', 'ë§ˆê°', 19, null, null, 'yunyoung', 1);
 insert into daily_tasks
 (DAILY_TASKS_SEQ, INPUT_TASK, ASSIGN_DATE, IMPORTANCE, ASSIGN_TYPE, ASSIGN_DETAIL, MANUAL_TASKS_SEQ, FINISHER_ID, FINISHER_NAME, ASSIGNER_ID, BRANCH_SEQ)
-values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, '°³ÀÎ', 'taehun', null, null, null, 'yunyoung', 1);
+values(DAILY_TASKS_seq.nextval, null, '2018/05/10', 1, 'ê°œì¸', 'taehun', null, null, null, 'yunyoung', 1);
 
-
---ÁöÁ¡_Á÷¿øÁ¤º¸ ·¹ÄÚµå
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/05/31', null, 1, 'yunjin', '¿ÀÇÂ');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/07/10', null, 1, 'heeeun', '¿ÀÇÂ');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/19', null, 1, 'chanyoung', '¹Ìµé');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/02/15', null, 1, 'jonghyuk', '¹Ìµé');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/29', null, 1, 'yunseok', '¹Ìµé');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/04/15', null, 1, 'taehun', '¸¶°¨');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/12/07', null, 1, 'jaesun', '¸¶°¨');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/26', null, 1, 'yejee', '¸¶°¨');
-
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2014/10/31', '2016/11/11', 1, 'hyesoo', '¿ÀÇÂ');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/05', '2017/06/05', 1, 'jaemin', '¿ÀÇÂ');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/05/13', '2016/12/03', 1, 'eunkyul', '¹Ìµé');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/10/31', '2017/04/20', 1, 'sumin', '¹Ìµé');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/08/10', '2017/04/18', 1, 'seungkyun', '¸¶°¨');
-insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/03/17', '2016/12/30', 1, 'hyungjun', '¸¶°¨');
 
