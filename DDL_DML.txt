@@ -142,7 +142,24 @@ ALTER TABLE BRANCH_STAFFS
 create sequence branch_staffs_seq;
 
 
+-- 직원인증정보
+CREATE TABLE "STAFFS" (
+   "STAFF_ID"    VARCHAR2(16)  NOT NULL, -- 아이디
+   "RESUME_FILE" VARCHAR2(300) NULL,     -- 이력서첨부파일
+   "HEALTH_FILE" VARCHAR2(300) NULL,     -- 보건증첨부파일
+   "BANK_FILE"   VARCHAR2(300) NULL,     -- 통장사본첨부파일
+   "BANK_NAME"   VARCHAR2(30)  NULL,     -- 은행명
+   "ACCOUNT_NUM" VARCHAR2(20)  NULL,     -- 계좌번호
+   "STATUS"      NUMBER(1,0)   NOT NULL  -- 승인여부
+);
 
+-- 직원인증정보
+ALTER TABLE "STAFFS"
+   ADD
+      CONSTRAINT "PK_STAFFS" -- 직원인증정보 기본키3
+      PRIMARY KEY (
+         "STAFF_ID" -- 아이디
+      );
 
 
 -- DML
@@ -336,11 +353,29 @@ insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_se
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2017/04/15', null, 1, 'taehun', '마감');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/12/07', null, 1, 'jaesun', '마감');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2018/01/26', null, 1, 'yejee', '마감');
-
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2014/10/31', '2016/11/11', 1, 'hyesoo', '오픈');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/11/05', '2017/06/05', 1, 'jaemin', '오픈');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/05/13', '2016/12/03', 1, 'eunkyul', '미들');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/10/31', '2017/04/20', 1, 'sumin', '미들');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2016/08/10', '2017/04/18', 1, 'seungkyun', '마감');
 insert into branch_staffs (branch_staffs_seq, join_date, leave_date, branches_seq, staff_id, work_part) values(branch_staffs_seq.nextval, '2015/03/17', '2016/12/30', 1, 'hyungjun', '마감');
+
+--직원인증정보 레코드
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'yunjin' , 'yunjin_resume.hwp' , 'yunjin_health.jpg' , 'yunjin_bank.png', '우리은행' , '1004427204842' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'heeeun' , 'heeeun_resume.hwp' , 'heeeun_health.jpg' , 'heeeun_bank.png' , '신한은행' , '110101764526' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'chanyoung' , 'chanyoung_resume.hwp' , 'chanyoung_health.jpg' , 'chanyoung_bank.png' , 'SC제일은행' , '10485675482' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'jonghyuk' , 'jonghyuk_resume.hwp' , 'jonghyuk_health.jpg' , 'jonghyuk_bank.png' , '하나은행' , '52546278031224' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yunseok' , 'yunseok_resume.hwp' , 'yunseok_health.jpg' , 'yunseok_bank.png' , '신한은행' , '110468824651' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'taehun' , 'taehun_resume.hwp' , 'taehun_health.jpg' , null , '외환은행' , '336511098371' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'jaesun' , 'jaesun_resume.hwp' , 'jaesun_health.jpg' , null , 'NH농협은행' , '113478515465' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yejee' , null , 'yejee_health.jpg' , null , '하나은행' , '98850424756733' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyesoo' , null , 'hyesoo_health.jpg' , null , '국민은행' , '42578500105462' , 1 );
+insert into (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'jaemin' , null , 'jaemin_health.jpg' , null , '우리은행' , '1002546825713' , 1 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'eunkyul' , null , null , null , null , null , 1 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'sumin' , null , null , 'sumin_bank.png' , null , null , 1 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'seungkyun' , 'seungkyun_resume.hwp' , null , 'seungkyun_bank.png' , null , null , 1 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyungjun' , 'hyungjun_resume.hwp' , null , 'hyungjun_bank.png' , null , null , 1 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'chulsoo' , null , null , null , null , null , 0 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yeonghee' , 'yeonghee_resume.hwp' , null , 'yeonghee_bank.png' , null , null , 0 );
+insert into ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'minji' , 'minji_resume.hwp' , 'minji_health.jpg' , 'minji_bank.png' , '신한은행' , '113154209875' , 0 );
 
