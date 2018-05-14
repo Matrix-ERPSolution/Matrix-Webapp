@@ -19,10 +19,7 @@ public class ManualVO {
 
 	/**constructor: null값 없는 경우*/
 	public ManualVO(int manualTasksSeq, String task, String repeatType, String repeatDetail, String spaceType, String taskType) {
-		setManualTasksSeq(manualTasksSeq);
-		setTask(task);
-		setSpaceType(spaceType);
-		setTaskType(taskType);
+		this(manualTasksSeq, task, spaceType, taskType);
 		setRepeatType(repeatType);
 		setRepeatDetail(repeatDetail);
 	}
