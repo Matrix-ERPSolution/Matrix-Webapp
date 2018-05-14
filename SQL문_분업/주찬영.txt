@@ -26,5 +26,5 @@ select importance, input_task, finisher_name from daily_tasks where input_task i
 select distinct work_part from branch_staffs where leave_date is null;
 
 /*배정할 직원 목록 보기*/
-select staff_id from branch_staffs where leave_date is not null;
+select staff_id from branch_staffs where leave_date is null;
 --나중에 다른 테이블과 연동된다면 staff_id 대신 이름 출력 가능
