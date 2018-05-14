@@ -19,7 +19,9 @@ public class DailyDAO {
 	   public boolean addDailyTask(String taskText, Date assignDate, int importance, String assignType, String assignDetail, String assignerId, int branchSeq){
 		   return false;
 	   }
-	   public boolean addDailyTask(new DailyVO(String taskText, Date assignDate, int importance, String assignType, String assignDetail, String assignerId, int branchSeq))
+	   public boolean addDailyTask(DailyVO vo){
+		   return false;
+	   }
 	   /** 업무 수정 */
 	   public boolean setDailyTask(String newTaskText, String oldTaskText, Date assignDate, String assignDetail){
 		   return false;

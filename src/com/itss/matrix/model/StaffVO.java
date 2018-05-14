@@ -1,4 +1,4 @@
-package com.itss.matrix.member;
+package com.itss.matrix.model;
 
 public class StaffVO {
 	/**member data*/
