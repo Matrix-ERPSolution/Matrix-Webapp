@@ -115,12 +115,9 @@ li:hover, .selected {
 			</div>
 			<div class="subPanel" id="kitchenTask">
 				<ul>
-					<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>싱크대 닦기 <span class="interval" style="float: right;">마감
-							시</span></li>
-					<li>행주 소독 <span class="interval" style="float: right;">마감
-							시</span></li>
+					<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감시</span></li>
+					<li>싱크대 닦기 <span class="interval" style="float: right;">마감시</span></li>
+					<li>행주 소독 <span class="interval" style="float: right;">마감시</span></li>
 					<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
 				</ul>
 			</div>
@@ -278,29 +275,29 @@ li:hover, .selected {
 				}
 			});
 			var data = [ {
-				label : "anders",
-				category : ""
+				label : "셀프 바 빨대 재고량 확인",
+				category : "홀"
 			}, {
-				label : "annhhx10",
-				category : "Products"
+				label : "셀프 바 시럽 채우기",
+				category : "홀"
 			}, {
-				label : "annttop C13",
-				category : "Products"
+				label : "바닥 쓸기",
+				category : "홀"
 			}, {
-				label : "andreas andersson",
-				category : "People"
+				label : "바닥 닦기",
+				category : "홀"
 			}, {
-				label : "andreas johnson",
-				category : "People"
+				label : "에어컨 필터 교체",
+				category : "홀"
 			}, {
-				label : "홀 - 쓰레기통 비우기",
-				category : "청소"
+				label : "테이블 및 좌석 점검",
+				category : "홀"
 			}, {
-				label : "주방 - 음식물 쓰레기 버리기",
-				category : "청소"
+				label : "시즌별 메뉴 포스터 부착",
+				category : "홀"
 			}, {
-				label : "주방 - 행주 소독",
-				category : "청소"
+				label : "이번달 프로모션 행사 홍보물 부착",
+				category : "홀"
 			} ];
 			$("#search").catcomplete({
 				delay : 0,
