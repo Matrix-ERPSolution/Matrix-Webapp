@@ -8,7 +8,7 @@ values(daily_tasks_seq.nextval, null,  '2018/05/13', 0, '파트', '오픈', (select 
 	//TODO -> values - assigner_id, branch_seq (assigner_id = session의 관리자 아이디 대입 / branch_seq = session의 관리자 아이디가 속해있는 지점코드 대입)
 	//현재 아래의 쿼리문 - assigner_id = 'yunyoung' / branch_seq = 1 
 insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) 
-values(daily_tasks_seq.nextval, null, ?, ?, ?, ?, (select manual_tasks_seq from manual_tasks where task=?), null, null, 'yunyoung', 1);
+values(daily_tasks_seq.nextval, null, ?, ?, ?, ?, (select manual_tasks_seq from manual_tasks where task=?), null, null, ?, ?);
 
 
 
@@ -19,7 +19,7 @@ values(daily_tasks_seq.nextval, '연진이 생일케이크 사오기', '2018/05/13', 1, '개
 
 <DAO 쿼리문>
 insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_tasks_seq, finisher_id, finisher_name, assigner_id, branch_seq) 
-values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, null, null, null, 'yunyoung', 1);
+values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, null, null, null, ?, ?);
 
 
 
@@ -58,7 +58,7 @@ where assign_date='2018/05/13' and assign_detail='yunjin' and input_task='연진이
 
 <DAO 쿼리문>
 update daily_tasks
-set input_task='메뉴판 정리'
+set input_task=?
 where assign_date=? and assign_detail=? and input_task=?
 
 
