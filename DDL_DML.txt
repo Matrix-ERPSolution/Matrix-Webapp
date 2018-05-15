@@ -40,46 +40,6 @@ ALTER TABLE MANUAL_TASKS
 			MANUAL_TASK_SEQ -- 매뉴얼업무코드
 		);
 
--- 일일업무담당자
-CREATE TABLE TABLE3 (
-	COL  <데이터 타입 없음> NULL, -- 일일업무코드
-	COL2 <데이터 타입 없음> NULL  -- 담당자명
-);
-
--- 일일업무담당자상세
-CREATE TABLE TABLE4 (
-	COL2           <데이터 타입 없음> NULL, -- 담당자상세
-	DAILY_TASK_SEQ NUMBER(7,0)        NULL  -- 일일업무코드
-);
-
--- 일일업무
-CREATE TABLE TABLE5 (
-	COL9 <데이터 타입 없음> NULL, -- 업무명
-	COL  <데이터 타입 없음> NULL, -- 배정날짜
-	COL8 <데이터 타입 없음> NULL, -- 중분류명
-	COL2 <데이터 타입 없음> NULL, -- 중요업무여부
-	COL3 <데이터 타입 없음> NULL, -- 완료여부
-	COL4 <데이터 타입 없음> NULL, -- 완료자명
-	COL6 <데이터 타입 없음> NULL, -- 담당자유형(파트or개인)
-	COL5 <데이터 타입 없음> NULL  -- 담당자상세
-);
-
--- 회원정보
-CREATE TABLE TABLE6 (
-	COL  <데이터 타입 없음> NULL, -- id
-	COL2 <데이터 타입 없음> NULL  -- pw
-);
-
--- 일일업무_배정대상
-CREATE TABLE TABLE7 (
-	DAILY_TASK_SEQ NUMBER(7,0) NULL -- 일일업무코드
-);
-
--- 휴대폰인증
-CREATE TABLE TABLE8 (
-	COL2 <데이터 타입 없음> NULL -- 인증번호
-);
-
 -- 관리자인증정보
 CREATE TABLE ADMINS (
 	ADMIN_SEQ    NUMBER(5,0)  NOT NULL, -- 관리자인증일련번호
@@ -164,22 +124,6 @@ ALTER TABLE BRANCHES
 		CONSTRAINT PK_BRANCHES -- 지점 기본키
 		PRIMARY KEY (
 			BRANCH_SEQ -- 지점코드
-		);
-
--- 매뉴얼버전
-CREATE TABLE TABLE13 (
-	COL  <데이터 타입 없음> NOT NULL, -- 매뉴얼일련번호
-	COL2 <데이터 타입 없음> NULL,     -- 버전명
-	COL3 <데이터 타입 없음> NULL,     -- 마지막수정일
-	COL4 <데이터 타입 없음> NULL      -- 기본매뉴얼여부
-);
-
--- 매뉴얼버전
-ALTER TABLE TABLE13
-	ADD
-		CONSTRAINT PK_TABLE13 -- 매뉴얼버전 기본키
-		PRIMARY KEY (
-			COL -- 매뉴얼일련번호
 		);
 
 -- 지점_직원정보
@@ -314,28 +258,6 @@ ALTER TABLE MANUAL_TASKS
 		)
 		REFERENCES TASK_TYPES ( -- 업무분류
 			TASK_TYPE_SEQ -- 업무분류코드
-		);
-
--- 일일업무담당자상세
-ALTER TABLE TABLE4
-	ADD
-		CONSTRAINT FK_DAILY_TASKS_TO_TABLE4 -- 일일업무 -> 일일업무담당자상세
-		FOREIGN KEY (
-			DAILY_TASK_SEQ -- 일일업무코드
-		)
-		REFERENCES DAILY_TASKS ( -- 일일업무
-			DAILY_TASK_SEQ -- 일일업무코드
-		);
-
--- 일일업무_배정대상
-ALTER TABLE TABLE7
-	ADD
-		CONSTRAINT FK_DAILY_TASKS_TO_TABLE7 -- 일일업무 -> 일일업무_배정대상
-		FOREIGN KEY (
-			DAILY_TASK_SEQ -- 일일업무코드
-		)
-		REFERENCES DAILY_TASKS ( -- 일일업무
-			DAILY_TASK_SEQ -- 일일업무코드
 		);
 
 -- 관리자인증정보
