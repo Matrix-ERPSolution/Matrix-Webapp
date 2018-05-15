@@ -7,8 +7,17 @@
 	<select id="getSpaceTypes" resultType="String">
 		select space_type from space_types
 	</select>
-	<select id="getTaskTypes" resultType="java.util.Map" parameterType="String">	
-		select distinct task_type from manual_tasks m, space_types s, task_types t where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and s.space_type=#{spaceType}
+	<select id="getTaskTypesBySpaceType" resultType="java.util.Map" parameterType="String">
+		select distinct task_type from task_types t, manual_tasks m, space_types s where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and s.space_type=#{spaceType}
+	</select> 
+	<select id="getTaskTypes" resultType="String">
+		select task_type from task_types
+	</select>
+	<select id="getSpaceTypesByTaskType" resultType="String" parameterType="String">
+		select distinct space_type from manual_tasks m, space_types s, task_types t where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and t.task_type=#{taskType}
+	</select>
+	<select id="getTasks" resultType="java.util.Map" parameterType="java.util.Map">
+		select task, repeat_type, repeat_detail from manual_tasks m, space_types s, task_types t where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and s.space_type=#{spaceType} and t.task_type=#{taskType}
 	</select>
 	<select id="getManualTasksSeq" resultType="int" parameterType="String">
 		select manual_tasks_seq from manual_tasks where task=#{searchTask}

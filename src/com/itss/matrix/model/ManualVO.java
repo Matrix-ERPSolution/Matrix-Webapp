@@ -28,7 +28,7 @@ public class ManualVO {
 	public int getManualTasksSeq() {
 		return manualTasksSeq;
 	}
-		public String getTask() {
+	public String getTask() {
 		return task;
 	}
 	public String getRepeatType() {

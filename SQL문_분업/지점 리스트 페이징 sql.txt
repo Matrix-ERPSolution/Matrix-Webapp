@@ -1,0 +1,50 @@
+--지점 리스트 더미 데이터 dml
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('가점', '고', '0234319633', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-1')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('나점', '노', '0234319634', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-2')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('다점', '도', '0234319635', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-3')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('라점', '로', '0234319636', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-4')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('마점', '모', '0234319637', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-5')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('바점', '보', '0234319638', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-6')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('사점', '소', '0234319639', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-7')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('아점', '오', '0234319640', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-8')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('자점', '조', '0234319641', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-9')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('차점', '초', '0234319642', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-10')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('카점', '코', '0234319643', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-11')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('타점', '토', '0234319644', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-12')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('파점', '포', '0234319645', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-13')
+insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values ('하점', '호', '0234319646', '09:00 - 23:00', '서울시', '송파구', '잠실동', '629-14')
+
+-- 서울시 송파구에 존재하는 모든 지점 리스트 페이징 
+select rownum as r, a.branch_name, a.address_dong, a.address_detail
+ from (select rownum as rnum, b.branch_name, b.address_dong, b.address_detail
+    from (select branch_name, address_dong, address_detail
+            from branches
+           where address_city='서울시' and address_gu='송파구'
+               ) b
+               where rownum <=(select count(rownum) from branches where address_city='서울시' and address_gu='송파구')) a
+                    where a.rnum >5
+
+-- 서울시 송파구에 존재하는 모든 지점 리스트 페이징 
+select rownum, a.branch_seq, a.branch_name, a.address_dong, a.address_detail
+ from (select rownum, b.branch_seq, b.branch_name, b.address_dong, b.address_detail
+    from (select branch_seq, branch_name, address_dong, address_detail
+            from branches
+           where address_city='서울시' and address_gu='송파구'
+               ) b
+               where rownum <=(select count(rownum) from branches where address_city='서울시' and address_gu='송파구')) a
+                    where a.rownum >5
+
+
+
+-- xx시 yy구(군)에 존재하는 모든 지점 리스트 페이징
+--1. xx시 yy구(조건)에 해당하는 총 지점 개수 조회
+select count(rownum) from branches where address_city=? and address_gu=?
+--2. 조회된 개수를 바탕으로 페이지 나누기
+select rownum as r, a.branch_name, a.address_dong, a.address_detail
+ from (select rownum as rnum, b.branch_name, b.address_dong, b.address_detail
+    from (select branch_name, address_dong, address_detail
+            from branches
+           where address_city=? and address_gu=?
+               ) b
+               where rownum <=(select count(rownum) from branches where address_city=? and address_gu=?)) a
+                    where a.rnum >?
