@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dailyMapper">	<!-- 클래스 역할 -->
+	<select id="getAssignTypes" parameterType="String" resultType="String">	<!-- 메소드 역할 -->
+		select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = #{date}
+	</select>
+	<insert id="empId" parameterType="DailyVO">
+		insert into daily_tasks 
+		(daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, assigner_id, branch_seq, manual_tasks_seq) 
+		values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)
+	</insert>
+</mapper>

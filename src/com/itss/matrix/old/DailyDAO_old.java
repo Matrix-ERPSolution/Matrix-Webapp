@@ -1,4 +1,4 @@
-package com.itss.matrix.model;
+package com.itss.matrix.old;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class DailyDAO {
+public class DailyDAO_old {
 	private Connection conn;
 
-	public DailyDAO() throws ClassNotFoundException, SQLException {
+	public DailyDAO_old() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		String uri = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
 		String id = "hr";
