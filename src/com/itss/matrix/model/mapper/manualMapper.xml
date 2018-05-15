@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="getManualTasks" resultType="Collection">
+		select m.TASK, s.SPACE_TYPE from MANUAL_TASKS m, SPACE_TYPES s where m.SPACE_TYPES_SEQ=s.SPACE_TYPES_SEQ order by m.SPACE_TYPES_SEQ asc, m.MANUAL_TASKS_SEQ asc
+	</select>
+	<select id="getSpaceTypes" ></select>
+	<select id="getTaskTypes" resultType="Collection" parameterType="String">
+		select distinct task_type from manual_tasks m, space_types s, task_types t where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and s.space_type=#{spaceType}
+	</select>
+</mapper>
