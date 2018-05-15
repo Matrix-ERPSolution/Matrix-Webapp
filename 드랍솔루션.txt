@@ -2,11 +2,12 @@ drop table daily_tasks;
 drop table manual_tasks;
 drop table space_types;
 drop table task_types;
-drop table branch_staffs;
 drop table staffs;
 drop table admins;
 drop table branches;
 drop table users;
+drop table addresses;
+drop table head_branches;
 
 drop sequence daily_task_seq;
 drop sequence manual_task_seq;

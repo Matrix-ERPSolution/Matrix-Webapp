@@ -1,6 +1,4 @@
-﻿--DDL
-
--- 일일업무
+﻿-- 일일업무
 CREATE TABLE DAILY_TASKS (
 	DAILY_TASK_SEQ  NUMBER(7,0)  NOT NULL, -- 일일업무코드
 	DAILY_TASK      VARCHAR2(60) NOT NULL, -- 업무명
@@ -88,7 +86,7 @@ CREATE TABLE STAFFS (
 	BRANCH_SEQ  NUMBER(5,0)  NOT NULL, -- 지점코드
 	JOIN_DATE   DATE         NULL,     -- 입사날짜
 	LEAVE_DATE  DATE         NULL,     -- 퇴사날짜
-	WORK_PART   VARCHAR2(20) NOT NULL, -- 소속파트
+	WORK_PART   VARCHAR2(20) NULL,     -- 소속파트
 	BANK_NAME   VARCHAR2(30) NULL,     -- 은행명
 	ACCOUNT_NUM VARCHAR2(20) NULL,     -- 계좌번호
 	RESUME_FILE VARCHAR2(40) NULL,     -- 이력서첨부파일
@@ -124,19 +122,6 @@ ALTER TABLE BRANCHES
 		CONSTRAINT PK_BRANCHES -- 지점 기본키
 		PRIMARY KEY (
 			BRANCH_SEQ -- 지점코드
-		);
-
--- 지점_직원정보
-CREATE TABLE BRANCH_STAFFS (
-	BRANCH_STAFFS_SEQ NUMBER(6,0) NOT NULL -- 지점_직원정보_일련번호
-);
-
--- 지점_직원정보
-ALTER TABLE BRANCH_STAFFS
-	ADD
-		CONSTRAINT PK_BRANCH_STAFFS -- 지점_직원정보 기본키
-		PRIMARY KEY (
-			BRANCH_STAFFS_SEQ -- 지점_직원정보_일련번호
 		);
 
 -- 주소
