@@ -9,10 +9,10 @@ CREATE TABLE "DAILY_TASKS" (
 	"ASSIGN_TYPE"      VARCHAR2(6)  NOT NULL, -- 배정유형(파트or개인)
 	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- 배정대상(파트명or아이디)
 	"MANUAL_TASKS_SEQ" NUMBER(5,0)  NULL,     -- 매뉴얼업무코드
-	"ASSIGNER_ID"      VARCHAR2(16) NOT NULL, -- 배정자아이디
-	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL, -- 지점코드
+	"FINISHER_ID"      VARCHAR2(16) NULL,     -- 완료자아이디
 	"FINISHER_NAME"    VARCHAR2(20) NULL,     -- 완료자명
-	"FINISHER_ID"      VARCHAR2(16) NULL      -- 완료자아이디
+	"ASSIGNER_ID"      VARCHAR2(16) NOT NULL, -- 배정자아이디
+	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL  -- 지점코드
 );
 
 -- 일일업무
@@ -41,20 +41,37 @@ ALTER TABLE "MANUAL_TASKS"
 			"MANUAL_TASKS_SEQ" -- 매뉴얼업무코드
 		);
 
+-- 관리자인증정보
+CREATE TABLE "ADMINS" (
+	"ADMIN_ID"    VARCHAR2(16) NOT NULL, -- 아이디
+	"BRANCH_SEQ"  NUMBER(5,0)  NOT NULL, -- 지점코드
+	"LICENSE_NUM" VARCHAR2(10) NOT NULL, -- 사업자 등록번호
+	"STATUS"      NUMBER(1,0)  NOT NULL  -- 승인여부
+);
+
+-- 관리자인증정보
+ALTER TABLE "ADMINS"
+	ADD
+		CONSTRAINT "PK_ADMINS" -- 관리자인증정보 기본키
+		PRIMARY KEY (
+			"ADMIN_ID",   -- 아이디
+			"BRANCH_SEQ"  -- 지점코드
+		);
+
 -- 회원정보
 CREATE TABLE "USERS" (
-	"USER_ID"      VARCHAR2(16) NOT NULL, -- 아이디
-	"PW"           VARCHAR2(16) NOT NULL, -- 비밀번호
-	"PHONE_NUM"    VARCHAR2(11) NOT NULL, -- 휴대폰번호
-	"NAME"         VARCHAR2(12) NOT NULL, -- 이름
-	"BIRTH"        DATE         NOT NULL, -- 생년월일
-	"GENDER"       VARCHAR2(1)  NOT NULL, -- 성별
-	"EMAIL"        VARCHAR2(40) NOT NULL, -- 이메일
-	"ADDRESS_CITY" VARCHAR2(25) NOT NULL, -- 주소-시/도
-	"ADDRESS_GU"   VARCHAR2(15) NOT NULL, -- 주소-구/군
-	"ADDRESS_DONG" VARCHAR2(15) NOT NULL, -- 주소-동
-	"STATUS"       NUMBER(1,0)  NOT NULL,  -- 탈퇴여부
-	"PROFILE_PHOTO"  VARCHAR2(40)  NULL  -- 프로필사진
+	"USER_ID"       VARCHAR2(16) NOT NULL, -- 아이디
+	"PW"            VARCHAR2(16) NOT NULL, -- 비밀번호
+	"PHONE_NUM"     VARCHAR2(11) NOT NULL, -- 휴대폰번호
+	"NAME"          VARCHAR2(12) NOT NULL, -- 이름
+	"BIRTH"         DATE         NOT NULL, -- 생년월일
+	"GENDER"        VARCHAR2(1)  NOT NULL, -- 성별
+	"EMAIL"         VARCHAR2(40) NOT NULL, -- 이메일
+	"ADDRESS_CITY"  VARCHAR2(25) NOT NULL, -- 주소-시/도
+	"ADDRESS_GU"    VARCHAR2(15) NOT NULL, -- 주소-구/군
+	"ADDRESS_DONG"  VARCHAR2(15) NOT NULL, -- 주소-동
+	"STATUS"        NUMBER(1,0)  NOT NULL, -- 탈퇴여부
+	"PROFILE_PHOTO" VARCHAR2(40) NULL      -- 프로필사진
 );
 
 -- 회원정보
@@ -63,6 +80,64 @@ ALTER TABLE "USERS"
 		CONSTRAINT "PK_USERS" -- 회원정보 기본키
 		PRIMARY KEY (
 			"USER_ID" -- 아이디
+		);
+
+-- 직원인증정보
+CREATE TABLE "STAFFS" (
+	"STAFF_ID"    VARCHAR2(16) NOT NULL, -- 아이디
+	"RESUME_FILE" VARCHAR2(40) NULL,     -- 이력서첨부파일
+	"HEALTH_FILE" VARCHAR2(40) NULL,     -- 보건증첨부파일
+	"BANK_FILE"   VARCHAR2(40) NULL,     -- 통장사본첨부파일
+	"BANK_NAME"   VARCHAR2(30) NULL,     -- 은행명
+	"ACCOUNT_NUM" VARCHAR2(20) NULL,     -- 계좌번호
+	"STATUS"      NUMBER(1,0)  NOT NULL  -- 승인여부
+);
+
+-- 직원인증정보
+ALTER TABLE "STAFFS"
+	ADD
+		CONSTRAINT "PK_STAFFS" -- 직원인증정보 기본키
+		PRIMARY KEY (
+			"STAFF_ID" -- 아이디
+		);
+
+-- 지점
+CREATE TABLE "BRANCHES" (
+	"BRANCH_SEQ"       NUMBER(5,0)   NOT NULL, -- 지점코드
+	"BRANCH_NAME"      VARCHAR2(30)  NOT NULL, -- 지점명
+	"REPRESENTATIVE"   VARCHAR2(12)  NOT NULL, -- 대표자명
+	"BRANCH_PHONE_NUM" VARCHAR2(11)  NOT NULL, -- 매장전화번호
+	"OPENING_HOUR"     VARCHAR2(100) NOT NULL, -- 영업시간
+	"ADDRESS_CITY"     VARCHAR2(25)  NOT NULL, -- 주소-시/도
+	"ADDRESS_GU"       VARCHAR2(15)  NOT NULL, -- 주소-구/군
+	"ADDRESS_DONG"     VARCHAR2(15)  NOT NULL, -- 주소-동
+	"ADDRESS_DETAIL"   VARCHAR2(30)  NOT NULL  -- 상세주소
+);
+
+-- 지점
+ALTER TABLE "BRANCHES"
+	ADD
+		CONSTRAINT "PK_BRANCHES" -- 지점 기본키
+		PRIMARY KEY (
+			"BRANCH_SEQ" -- 지점코드
+		);
+
+-- 지점_직원정보
+CREATE TABLE "BRANCH_STAFFS" (
+	"BRANCH_STAFFS_SEQ" NUMBER(6,0)  NOT NULL, -- 지점_직원정보_일련번호
+	"JOIN_DATE"         DATE         NOT NULL, -- 입사날짜
+	"LEAVE_DATE"        DATE         NULL,     -- 퇴사날짜
+	"BRANCHES_SEQ"      NUMBER(5,0)  NOT NULL, -- 지점코드
+	"STAFF_ID"          VARCHAR2(16) NOT NULL, -- 직원아이디
+	"WORK_PART"         VARCHAR2(20) NOT NULL  -- 소속파트
+);
+
+-- 지점_직원정보
+ALTER TABLE "BRANCH_STAFFS"
+	ADD
+		CONSTRAINT "PK_BRANCH_STAFFS" -- 지점_직원정보 기본키
+		PRIMARY KEY (
+			"BRANCH_STAFFS_SEQ" -- 지점_직원정보_일련번호
 		);
 
 -- 공간분류
@@ -93,43 +168,6 @@ ALTER TABLE "TASK_TYPES"
 			"TASK_TYPES_SEQ" -- 업무분류코드
 		);
 
--- 지점_직원정보
-CREATE TABLE "BRANCH_STAFFS" (
-	"BRANCH_STAFFS_SEQ" NUMBER(6,0)  NOT NULL, -- 지점_직원정보_일련번호
-	"JOIN_DATE"         DATE         NOT NULL, -- 입사날짜
-	"LEAVE_DATE"        DATE         NULL,     -- 퇴사날짜
-	"BRANCHES_SEQ"      NUMBER(5,0)  NOT NULL, -- 지점코드
-	"WORK_PART"         VARCHAR2(20) NOT NULL, -- 소속파트
-	"STAFF_ID"          VARCHAR2(16) NULL      -- 직원아이디
-);
-
--- 지점_직원정보
-ALTER TABLE "BRANCH_STAFFS"
-	ADD
-		CONSTRAINT "PK_BRANCH_STAFFS" -- 지점_직원정보 기본키3
-		PRIMARY KEY (
-			"BRANCH_STAFFS_SEQ" -- 지점_직원정보_일련번호
-		);
-
--- 직원인증정보
-CREATE TABLE "STAFFS" (
-	"STAFF_ID"    VARCHAR2(16)  NOT NULL, -- 아이디
-	"RESUME_FILE" VARCHAR2(40) NULL,     -- 이력서첨부파일
-	"HEALTH_FILE" VARCHAR2(40) NULL,     -- 보건증첨부파일
-	"BANK_FILE"   VARCHAR2(40) NULL,     -- 통장사본첨부파일
-	"BANK_NAME"   VARCHAR2(30)  NULL,     -- 은행명
-	"ACCOUNT_NUM" VARCHAR2(20)  NULL,     -- 계좌번호
-	"STATUS"      NUMBER(1,0)   NOT NULL  -- 승인여부
-);
-
--- 직원인증정보
-ALTER TABLE "STAFFS"
-	ADD
-		CONSTRAINT "PK_STAFFS" -- 직원인증정보 기본키2
-		PRIMARY KEY (
-			"STAFF_ID" -- 아이디
-		);
-
 -- 일일업무
 ALTER TABLE "DAILY_TASKS"
 	ADD
@@ -150,6 +188,19 @@ ALTER TABLE "DAILY_TASKS"
 		)
 		REFERENCES "USERS" ( -- 회원정보
 			"USER_ID" -- 아이디
+		);
+
+-- 일일업무
+ALTER TABLE "DAILY_TASKS"
+	ADD
+		CONSTRAINT "FK_ADMINS_TO_DAILY_TASKS" -- 관리자인증정보 -> 일일업무
+		FOREIGN KEY (
+			"ASSIGNER_ID", -- 배정자아이디
+			"BRANCH_SEQ"   -- 지점코드
+		)
+		REFERENCES "ADMINS" ( -- 관리자인증정보
+			"ADMIN_ID",   -- 아이디
+			"BRANCH_SEQ"  -- 지점코드
 		);
 
 -- 매뉴얼업무
@@ -174,26 +225,59 @@ ALTER TABLE "MANUAL_TASKS"
 			"TASK_TYPES_SEQ" -- 업무분류코드
 		);
 
--- 지점_직원정보
-ALTER TABLE "BRANCH_STAFFS"
+-- 관리자인증정보
+ALTER TABLE "ADMINS"
 	ADD
-		CONSTRAINT "FK_STAFFS_TO_BRANCH_STAFFS" -- 직원인증정보 -> 지점_직원정보2
+		CONSTRAINT "FK_USERS_TO_ADMINS" -- 회원정보 -> 관리자인증정보
 		FOREIGN KEY (
-			"STAFF_ID" -- 직원아이디
+			"ADMIN_ID" -- 아이디
 		)
-		REFERENCES "STAFFS" ( -- 직원인증정보
-			"STAFF_ID" -- 아이디
+		REFERENCES "USERS" ( -- 회원정보
+			"USER_ID" -- 아이디
+		);
+
+-- 관리자인증정보
+ALTER TABLE "ADMINS"
+	ADD
+		CONSTRAINT "FK_BRANCHES_TO_ADMINS" -- 지점 -> 관리자인증정보
+		FOREIGN KEY (
+			"BRANCH_SEQ" -- 지점코드
+		)
+		REFERENCES "BRANCHES" ( -- 지점
+			"BRANCH_SEQ" -- 지점코드
 		);
 
 -- 직원인증정보
 ALTER TABLE "STAFFS"
 	ADD
-		CONSTRAINT "FK_USERS_TO_STAFFS" -- 회원정보 -> 직원인증정보2
+		CONSTRAINT "FK_USERS_TO_STAFFS" -- 회원정보 -> 직원인증정보
 		FOREIGN KEY (
 			"STAFF_ID" -- 아이디
 		)
 		REFERENCES "USERS" ( -- 회원정보
 			"USER_ID" -- 아이디
+		);
+
+-- 지점_직원정보
+ALTER TABLE "BRANCH_STAFFS"
+	ADD
+		CONSTRAINT "FK_BRANCHES_TO_BRANCH_STAFFS" -- 지점 -> 지점_직원정보
+		FOREIGN KEY (
+			"BRANCHES_SEQ" -- 지점코드
+		)
+		REFERENCES "BRANCHES" ( -- 지점
+			"BRANCH_SEQ" -- 지점코드
+		);
+
+-- 지점_직원정보
+ALTER TABLE "BRANCH_STAFFS"
+	ADD
+		CONSTRAINT "FK_STAFFS_TO_BRANCH_STAFFS" -- 직원인증정보 -> 지점_직원정보
+		FOREIGN KEY (
+			"STAFF_ID" -- 직원아이디
+		)
+		REFERENCES "STAFFS" ( -- 직원인증정보
+			"STAFF_ID" -- 아이디
 		);
 
 -- 시퀀스 생성
@@ -203,7 +287,7 @@ create sequence manual_tasks_seq;
 create sequence space_types_seq;
 create sequence task_types_seq;
 create sequence branch_staffs_seq;
-
+create sequence branch_seq;
 
 
 
@@ -220,12 +304,12 @@ insert into users (user_id, pw, phone_num, name, birth, gender, email, address_c
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'jaemin' , 'jaemin1234' , '01093963130' , '최재민' , '1994/08/15' , 'F' , 'jaemin@naver.com' , '경기도' , '시흥시' , '정왕동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'jaesun' , 'jaesun1234' ,'01094955647' , '이재선' , '1996/11/11' ,'M' , 'jaesun@naver.com' , '서울시' , '관악구' , '신림동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'jonghyuk' , 'jonghyuk1234' , '01020169206' , '박종혁' , '1996/05/12' , 'M' , 'jonghyuk@naver.com' , '서울시' , '마포구' , '공덕동' , 1 );
-insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'minji' , 'minji1234' , '01051852547' , '김민지' , '1996/09/13' , 'F' , 'minji@naver.com' , '서울시' , '영등포구' , '여의도동' , 0 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'minji' , 'minji1234' , '01051852547' , '김민지' , '1996/09/13' , 'F' , 'minji@naver.com' , '서울시' , '영등포구' , '여의도동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'seungkyun' , 'seungkyun1234' , '01098836283' , '함승균' , '1988/01/17' , 'M' , 'seungkyun@naver.com' , '경기도' , '오산시' , '가수동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'sumin' , 'sumin1234' , '01025408580' , '박수민' , '1996/11/15' , 'M' ,' sumin@naver.com' , '경기도' , '수원시' , '매탄동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'taehun' , 'taehun1234' , '01032828507' , '김태훈' , '1998/05/30' , 'M' , 'taehun@naver.com' , '서울시' , '구로구' , '구로동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yejee' , 'yejee1234' , '01020764174' , '이예지' , '1996/11/17' , 'F' , 'yejee@naver.com' , '서울시' , '동작구' , '상도동' , 1 );
-insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yeonghee' , 'yeonghee1234' , '01098561452' , '허영희' , '1989/03/21' , 'F' , 'yeonghee@naver.com' , '서울시' , '강북구' , '우이동' , 0 );
+insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yeonghee' , 'yeonghee1234' , '01098561452' , '허영희' , '1989/03/21' , 'F' , 'yeonghee@naver.com' , '서울시' , '강북구' , '우이동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yunjin' , 'yunjin1234' , '01053710710' , '김연진' , '1988/11/19' , 'F' , 'yunjin@naver.com' , '서울시' , '송파구' , '문정동' , 1 );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status) values ( 'yunseok' , 'yunseok1234' , '01099031063' , '장윤석' , '1992/11/20' , 'M' , 'yunseok@naver.com' , '서울시' , '송파구' , '석촌동' , 1 );
 
@@ -239,12 +323,12 @@ insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, ac
 insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'taehun' , 'taehun_resume.hwp' , 'taehun_health.jpg' , null , '외환은행' , '336511098371' , 1 );
 insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'jaesun' , 'jaesun_resume.hwp' , 'jaesun_health.jpg' , null , 'NH농협은행' , '113478515465' , 1 );
 insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yejee' , null , 'yejee_health.jpg' , null , '하나은행' , '98850424756733' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyesoo' , null , 'hyesoo_health.jpg' , null , '국민은행' , '42578500105462' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'jaemin' , null , 'jaemin_health.jpg' , null , '우리은행' , '1002546825713' , 1 );
-insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'eunkyul' , null , null , null , null , null , 1 );
-insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'sumin' , null , null , 'sumin_bank.png' , null , null , 1 );
-insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'seungkyun' , 'seungkyun_resume.hwp' , null , 'seungkyun_bank.png' , null , null , 1 );
-insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyungjun' , 'hyungjun_resume.hwp' , null , 'hyungjun_bank.png' , null , null , 1 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyesoo' , null , 'hyesoo_health.jpg' , null , '국민은행' , '42578500105462' , 2 );
+insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values ( 'jaemin' , null , 'jaemin_health.jpg' , null , '우리은행' , '1002546825713' , 2 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'eunkyul' , null , null , null , null , null , 2 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'sumin' , null , null , 'sumin_bank.png' , null , null , 2 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'seungkyun' , 'seungkyun_resume.hwp' , null , 'seungkyun_bank.png' , null , null , 2 );
+insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'hyungjun' , 'hyungjun_resume.hwp' , null , 'hyungjun_bank.png' , null , null , 2 );
 insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'chulsoo' , null , null , null , null , null , 0 );
 insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'yeonghee' , 'yeonghee_resume.hwp' , null , 'yeonghee_bank.png' , null , null , 0 );
 insert into staffs ( staff_id, resume_file, health_file, bank_file, bank_name, account_num, status ) values (  'minji' , 'minji_resume.hwp' , 'minji_health.jpg' , 'minji_bank.png' , '신한은행' , '113154209875' , 0 );

@@ -1,0 +1,16 @@
+drop table daily_tasks;
+drop sequence daily_tasks_seq;
+drop table manual_tasks;
+drop sequence manual_tasks_seq;
+drop table space_types;
+drop sequence space_types_seq;
+drop table task_types;
+drop sequence task_types_seq;
+drop table branch_staffs;
+drop sequence branch_staffs_seq;
+drop table staffs;
+drop table branches;
+drop sequence branch_seq;
+drop table admins;
+drop table users;
+purge recyclebin;
