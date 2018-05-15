@@ -1,283 +1,385 @@
 ﻿--DDL
 
 -- 일일업무
-CREATE TABLE "DAILY_TASKS" (
-	"DAILY_TASK_SEQ"  NUMBER(7,0)  NOT NULL, -- 일일업무코드
-	"INPUT_TASK"       VARCHAR2(60) NULL,     -- 직접입력업무명
-	"ASSIGN_DATE"      DATE         NOT NULL, -- 배정날짜
-	"IMPORTANCE"       NUMBER(1,0)  NOT NULL, -- 중요업무여부
-	"ASSIGN_TYPE"      VARCHAR2(6)  NOT NULL, -- 배정유형(파트or개인)
-	"ASSIGN_DETAIL"    VARCHAR2(20) NOT NULL, -- 배정대상(파트명or아이디)
-	"MANUAL_TASK_SEQ" NUMBER(5,0)  NULL,     -- 매뉴얼업무코드
-	"FINISHER_ID"      VARCHAR2(16) NULL,     -- 완료자아이디
-	"FINISHER_NAME"    VARCHAR2(20) NULL,     -- 완료자명
-	"ASSIGNER_ID"      VARCHAR2(16) NOT NULL, -- 배정자아이디
-	"BRANCH_SEQ"       NUMBER(5,0)  NOT NULL  -- 지점코드
+CREATE TABLE DAILY_TASKS (
+	DAILY_TASK_SEQ  NUMBER(7,0)  NOT NULL, -- 일일업무코드
+	DAILY_TASK      VARCHAR2(60) NOT NULL, -- 업무명
+	ASSIGN_DATE     DATE         NOT NULL, -- 배정날짜
+	IMPORTANCE      NUMBER(1,0)  NOT NULL, -- 중요업무여부
+	ASSIGN_TYPE     VARCHAR2(6)  NOT NULL, -- 배정유형(파트or개인)
+	ASSIGN_DETAIL   VARCHAR2(20) NOT NULL, -- 배정대상(파트명or아이디)
+	MANUAL_TASK_SEQ NUMBER(5,0)  NULL,     -- 매뉴얼업무코드
+	FINISHER_ID     VARCHAR2(16) NULL,     -- 완료자아이디
+	FINISHER_NAME   VARCHAR2(20) NULL,     -- 완료자명
+	ADMIN_SEQ       NUMBER(5,0)  NOT NULL  -- 관리자인증일련번호
 );
 
 -- 일일업무
-ALTER TABLE "DAILY_TASKS"
+ALTER TABLE DAILY_TASKS
 	ADD
-		CONSTRAINT "PK_DAILY_TASKS" -- 일일업무 기본키2
+		CONSTRAINT PK_DAILY_TASKS -- 일일업무 기본키2
 		PRIMARY KEY (
-			"DAILY_TASK_SEQ" -- 일일업무코드
+			DAILY_TASK_SEQ -- 일일업무코드
 		);
 
 -- 매뉴얼업무
-CREATE TABLE "MANUAL_TASKS" (
-	"MANUAL_TASK_SEQ" NUMBER(5,0)  NOT NULL, -- 매뉴얼업무코드
-	"TASK"             VARCHAR2(60) NOT NULL, -- 업무명
-	"REPEAT_TYPE"      VARCHAR2(6)  NULL,     -- 반복기준유형
-	"REPEAT_DETAIL"    VARCHAR2(6)  NULL,     -- 반복기준상세
-	"SPACE_TYPE_SEQ"  NUMBER(2,0)  NOT NULL, -- 공간분류코드
-	"TASK_TYPE_SEQ"   NUMBER(2,0)  NOT NULL  -- 업무분류코드
+CREATE TABLE MANUAL_TASKS (
+	MANUAL_TASK_SEQ NUMBER(5,0)  NOT NULL, -- 매뉴얼업무코드
+	MANUAL_TASK     VARCHAR2(60) NOT NULL, -- 업무명
+	REPEAT_TYPE     VARCHAR2(6)  NULL,     -- 반복기준유형
+	REPEAT_DETAIL   VARCHAR2(6)  NULL,     -- 반복기준상세
+	SPACE_TYPE_SEQ  NUMBER(3,0)  NOT NULL, -- 공간분류코드
+	TASK_TYPE_SEQ   NUMBER(3,0)  NOT NULL  -- 업무분류코드
 );
 
 -- 매뉴얼업무
-ALTER TABLE "MANUAL_TASKS"
+ALTER TABLE MANUAL_TASKS
 	ADD
-		CONSTRAINT "PK_MANUAL_TASKS" -- 매뉴얼업무 기본키
+		CONSTRAINT PK_MANUAL_TASKS -- 매뉴얼업무 기본키
 		PRIMARY KEY (
-			"MANUAL_TASK_SEQ" -- 매뉴얼업무코드
+			MANUAL_TASK_SEQ -- 매뉴얼업무코드
 		);
 
--- 관리자인증정보
-CREATE TABLE "ADMINS" (
-	"ADMIN_ID"    VARCHAR2(16) NOT NULL, -- 아이디
-	"BRANCH_SEQ"  NUMBER(5,0)  NOT NULL, -- 지점코드
-	"LICENSE_NUM" VARCHAR2(10) NOT NULL, -- 사업자 등록번호
-	"STATUS"      NUMBER(1,0)  NOT NULL  -- 승인여부
+-- 일일업무담당자
+CREATE TABLE TABLE3 (
+	COL  <데이터 타입 없음> NULL, -- 일일업무코드
+	COL2 <데이터 타입 없음> NULL  -- 담당자명
 );
 
--- 관리자인증정보
-ALTER TABLE "ADMINS"
-	ADD
-		CONSTRAINT "PK_ADMINS" -- 관리자인증정보 기본키
-		PRIMARY KEY (
-			"ADMIN_ID",   -- 아이디
-			"BRANCH_SEQ"  -- 지점코드
-		);
+-- 일일업무담당자상세
+CREATE TABLE TABLE4 (
+	COL2           <데이터 타입 없음> NULL, -- 담당자상세
+	DAILY_TASK_SEQ NUMBER(7,0)        NULL  -- 일일업무코드
+);
 
--- 회원정보
-CREATE TABLE "USERS" (
-	"USER_ID"       VARCHAR2(16) NOT NULL, -- 아이디
-	"PW"            VARCHAR2(16) NOT NULL, -- 비밀번호
-	"PHONE_NUM"     VARCHAR2(11) NOT NULL, -- 휴대폰번호
-	"NAME"          VARCHAR2(12) NOT NULL, -- 이름
-	"BIRTH"         DATE         NOT NULL, -- 생년월일
-	"GENDER"        VARCHAR2(1)  NOT NULL, -- 성별
-	"EMAIL"         VARCHAR2(40) NOT NULL, -- 이메일
-	"ADDRESS_CITY"  VARCHAR2(25) NOT NULL, -- 주소-시/도
-	"ADDRESS_GU"    VARCHAR2(15) NOT NULL, -- 주소-구/군
-	"ADDRESS_DONG"  VARCHAR2(15) NOT NULL, -- 주소-동
-	"STATUS"        NUMBER(1,0)  NOT NULL, -- 탈퇴여부
-	"PROFILE_PHOTO" VARCHAR2(40) NULL      -- 프로필사진
+-- 일일업무
+CREATE TABLE TABLE5 (
+	COL9 <데이터 타입 없음> NULL, -- 업무명
+	COL  <데이터 타입 없음> NULL, -- 배정날짜
+	COL8 <데이터 타입 없음> NULL, -- 중분류명
+	COL2 <데이터 타입 없음> NULL, -- 중요업무여부
+	COL3 <데이터 타입 없음> NULL, -- 완료여부
+	COL4 <데이터 타입 없음> NULL, -- 완료자명
+	COL6 <데이터 타입 없음> NULL, -- 담당자유형(파트or개인)
+	COL5 <데이터 타입 없음> NULL  -- 담당자상세
 );
 
 -- 회원정보
-ALTER TABLE "USERS"
+CREATE TABLE TABLE6 (
+	COL  <데이터 타입 없음> NULL, -- id
+	COL2 <데이터 타입 없음> NULL  -- pw
+);
+
+-- 일일업무_배정대상
+CREATE TABLE TABLE7 (
+	DAILY_TASK_SEQ NUMBER(7,0) NULL -- 일일업무코드
+);
+
+-- 휴대폰인증
+CREATE TABLE TABLE8 (
+	COL2 <데이터 타입 없음> NULL -- 인증번호
+);
+
+-- 관리자인증정보
+CREATE TABLE ADMINS (
+	ADMIN_SEQ    NUMBER(5,0)  NOT NULL, -- 관리자인증일련번호
+	ADMIN_ID     VARCHAR2(16) NOT NULL, -- 아이디
+	BRANCH_SEQ   NUMBER(5,0)  NOT NULL, -- 지점코드
+	APPROVE_DATE DATE         NULL,     -- 권한승인날짜
+	REVOKE_DATE  DATE         NULL      -- 권한철회날짜
+);
+
+-- 관리자인증정보
+ALTER TABLE ADMINS
 	ADD
-		CONSTRAINT "PK_USERS" -- 회원정보 기본키
+		CONSTRAINT PK_ADMINS -- 관리자인증정보 기본키
 		PRIMARY KEY (
-			"USER_ID" -- 아이디
+			ADMIN_SEQ -- 관리자인증일련번호
+		);
+
+-- 회원정보
+CREATE TABLE USERS (
+	USER_ID       VARCHAR2(16) NOT NULL, -- 아이디
+	PW            VARCHAR2(16) NOT NULL, -- 비밀번호
+	PHONE_NUM     VARCHAR2(11) NOT NULL, -- 휴대폰번호
+	NAME          VARCHAR2(12) NOT NULL, -- 이름
+	BIRTH         DATE         NOT NULL, -- 생년월일
+	GENDER        VARCHAR2(1)  NOT NULL, -- 성별
+	EMAIL         VARCHAR2(40) NOT NULL, -- 이메일
+	ADDRESS_CITY  VARCHAR2(25) NOT NULL, -- 주소-시/도
+	ADDRESS_GU    VARCHAR2(15) NOT NULL, -- 주소-구/군
+	ADDRESS_DONG  VARCHAR2(15) NOT NULL, -- 주소-동
+	STATUS        NUMBER(1,0)  NOT NULL, -- 탈퇴여부
+	PROFILE_PHOTO VARCHAR2(40) NULL      -- 프로필사진
+);
+
+-- 회원정보
+ALTER TABLE USERS
+	ADD
+		CONSTRAINT PK_USERS -- 회원정보 기본키
+		PRIMARY KEY (
+			USER_ID -- 아이디
 		);
 
 -- 직원인증정보
-CREATE TABLE "STAFFS" (
-	"STAFF_ID"    VARCHAR2(16) NOT NULL, -- 아이디
-	"RESUME_FILE" VARCHAR2(40) NULL,     -- 이력서첨부파일
-	"HEALTH_FILE" VARCHAR2(40) NULL,     -- 보건증첨부파일
-	"BANK_FILE"   VARCHAR2(40) NULL,     -- 통장사본첨부파일
-	"BANK_NAME"   VARCHAR2(30) NULL,     -- 은행명
-	"ACCOUNT_NUM" VARCHAR2(20) NULL,     -- 계좌번호
-	"STATUS"      NUMBER(1,0)  NOT NULL  -- 승인여부
+CREATE TABLE STAFFS (
+	STAFF_SEQ   NUMBER(7,0)  NOT NULL, -- 직원인증일련번호
+	STAFF_ID    VARCHAR2(16) NOT NULL, -- 아이디
+	BRANCH_SEQ  NUMBER(5,0)  NOT NULL, -- 지점코드
+	JOIN_DATE   DATE         NULL,     -- 입사날짜
+	LEAVE_DATE  DATE         NULL,     -- 퇴사날짜
+	WORK_PART   VARCHAR2(20) NOT NULL, -- 소속파트
+	BANK_NAME   VARCHAR2(30) NULL,     -- 은행명
+	ACCOUNT_NUM VARCHAR2(20) NULL,     -- 계좌번호
+	RESUME_FILE VARCHAR2(40) NULL,     -- 이력서첨부파일
+	HEALTH_FILE VARCHAR2(40) NULL,     -- 보건증첨부파일
+	BANK_FILE   VARCHAR2(40) NULL      -- 통장사본첨부파일
 );
 
 -- 직원인증정보
-ALTER TABLE "STAFFS"
+ALTER TABLE STAFFS
 	ADD
-		CONSTRAINT "PK_STAFFS" -- 직원인증정보 기본키
+		CONSTRAINT PK_STAFFS -- 직원인증정보 기본키
 		PRIMARY KEY (
-			"STAFF_ID" -- 아이디
+			STAFF_SEQ -- 직원인증일련번호
 		);
 
 -- 지점
-CREATE TABLE "BRANCHES" (
-	"BRANCH_SEQ"       NUMBER(5,0)   NOT NULL, -- 지점코드
-	"BRANCH_NAME"      VARCHAR2(30)  NOT NULL, -- 지점명
-	"REPRESENTATIVE"   VARCHAR2(12)  NOT NULL, -- 대표자명
-	"BRANCH_PHONE_NUM" VARCHAR2(11)  NOT NULL, -- 매장전화번호
-	"OPENING_HOUR"     VARCHAR2(100) NOT NULL, -- 영업시간
-	"ADDRESS_CITY"     VARCHAR2(25)  NOT NULL, -- 주소-시/도
-	"ADDRESS_GU"       VARCHAR2(15)  NOT NULL, -- 주소-구/군
-	"ADDRESS_DONG"     VARCHAR2(15)  NOT NULL, -- 주소-동
-	"ADDRESS_DETAIL"   VARCHAR2(30)  NOT NULL  -- 상세주소
+CREATE TABLE BRANCHES (
+	BRANCH_SEQ       NUMBER(5,0)   NOT NULL, -- 지점코드
+	BRANCH_NAME      VARCHAR2(60)  NOT NULL, -- 지점명
+	REPRESENTATIVE   VARCHAR2(12)  NOT NULL, -- 대표자명
+	LICENSE_NUM      VARCHAR2(10)  NOT NULL, -- 사업자 등록번호
+	BRANCH_PHONE_NUM VARCHAR2(11)  NOT NULL, -- 매장전화번호
+	OPENING_HOUR     VARCHAR2(100) NOT NULL, -- 영업시간
+	ADDRESS_CITY     VARCHAR2(25)  NOT NULL, -- 주소-시/도
+	ADDRESS_GU       VARCHAR2(15)  NOT NULL, -- 주소-구/군
+	ADDRESS_DONG     VARCHAR2(15)  NOT NULL, -- 주소-동
+	ADDRESS_DETAIL   VARCHAR2(30)  NOT NULL  -- 상세주소
 );
 
 -- 지점
-ALTER TABLE "BRANCHES"
+ALTER TABLE BRANCHES
 	ADD
-		CONSTRAINT "PK_BRANCHES" -- 지점 기본키
+		CONSTRAINT PK_BRANCHES -- 지점 기본키
 		PRIMARY KEY (
-			"BRANCH_SEQ" -- 지점코드
+			BRANCH_SEQ -- 지점코드
+		);
+
+-- 매뉴얼버전
+CREATE TABLE TABLE13 (
+	COL  <데이터 타입 없음> NOT NULL, -- 매뉴얼일련번호
+	COL2 <데이터 타입 없음> NULL,     -- 버전명
+	COL3 <데이터 타입 없음> NULL,     -- 마지막수정일
+	COL4 <데이터 타입 없음> NULL      -- 기본매뉴얼여부
+);
+
+-- 매뉴얼버전
+ALTER TABLE TABLE13
+	ADD
+		CONSTRAINT PK_TABLE13 -- 매뉴얼버전 기본키
+		PRIMARY KEY (
+			COL -- 매뉴얼일련번호
 		);
 
 -- 지점_직원정보
-CREATE TABLE "BRANCH_STAFFS" (
-	"BRANCH_STAFF_SEQ" NUMBER(6,0)  NOT NULL, -- 지점_직원정보_일련번호
-	"JOIN_DATE"         DATE         NOT NULL, -- 입사날짜
-	"LEAVE_DATE"        DATE         NULL,     -- 퇴사날짜
-	"BRANCHE_SEQ"      NUMBER(5,0)  NOT NULL, -- 지점코드
-	"STAFF_ID"          VARCHAR2(16) NOT NULL, -- 직원아이디
-	"WORK_PART"         VARCHAR2(20) NOT NULL  -- 소속파트
+CREATE TABLE BRANCH_STAFFS (
+	BRANCH_STAFFS_SEQ NUMBER(6,0) NOT NULL -- 지점_직원정보_일련번호
 );
 
 -- 지점_직원정보
-ALTER TABLE "BRANCH_STAFFS"
+ALTER TABLE BRANCH_STAFFS
 	ADD
-		CONSTRAINT "PK_BRANCH_STAFFS" -- 지점_직원정보 기본키
+		CONSTRAINT PK_BRANCH_STAFFS -- 지점_직원정보 기본키
 		PRIMARY KEY (
-			"BRANCH_STAFF_SEQ" -- 지점_직원정보_일련번호
+			BRANCH_STAFFS_SEQ -- 지점_직원정보_일련번호
+		);
+
+-- 주소
+CREATE TABLE ADDRESSES (
+	ADDRESS_SEQ NUMBER(5,0)  NOT NULL, -- 주소일련번호
+	CITY        VARCHAR2(25) NOT NULL, -- 시/도
+	GU          VARCHAR2(15) NOT NULL, -- 구/군
+	DONG        VARCHAR2(15) NOT NULL  -- 동
+);
+
+-- 주소
+ALTER TABLE ADDRESSES
+	ADD
+		CONSTRAINT PK_ADDRESSES -- 주소 기본키
+		PRIMARY KEY (
+			ADDRESS_SEQ -- 주소일련번호
+		);
+
+-- 본사DB
+CREATE TABLE HEAD_BRANCHES (
+	HEAD_BRANCH_SEQ  NUMBER(5,0)   NOT NULL, -- 지점코드
+	BRANCH_NAME      VARCHAR2(60)  NOT NULL, -- 지점명
+	REPRESENTATIVE   VARCHAR2(12)  NOT NULL, -- 대표자명
+	LICENSE_NUM      VARCHAR2(10)  NOT NULL, -- 사업자 등록번호
+	BRANCH_PHONE_NUM VARCHAR2(11)  NOT NULL, -- 매장전화번호
+	OPENING_HOUR     VARCHAR2(100) NOT NULL, -- 영업시간
+	ADDRESS_CITY     VARCHAR2(25)  NOT NULL, -- 주소-시/도
+	ADDRESS_GU       VARCHAR2(15)  NOT NULL, -- 주소-구/군
+	ADDRESS_DONG     VARCHAR2(15)  NOT NULL, -- 주소-동
+	ADDRESS_DETAIL   VARCHAR2(30)  NOT NULL  -- 상세주소
+);
+
+-- 본사DB
+ALTER TABLE HEAD_BRANCHES
+	ADD
+		CONSTRAINT PK_HEAD_BRANCHES -- 본사DB 기본키
+		PRIMARY KEY (
+			HEAD_BRANCH_SEQ -- 지점코드
 		);
 
 -- 공간분류
-CREATE TABLE "SPACE_TYPES" (
-	"SPACE_TYPE_SEQ" NUMBER(2,0)  NOT NULL, -- 공간분류코드
-	"SPACE_TYPE"      VARCHAR2(25) NOT NULL  -- 분류명
+CREATE TABLE SPACE_TYPES (
+	SPACE_TYPE_SEQ NUMBER(3,0)  NOT NULL, -- 공간분류코드
+	SPACE_TYPE     VARCHAR2(25) NOT NULL  -- 분류명
 );
 
 -- 공간분류
-ALTER TABLE "SPACE_TYPES"
+ALTER TABLE SPACE_TYPES
 	ADD
-		CONSTRAINT "PK_SPACE_TYPES" -- 공간분류 기본키
+		CONSTRAINT PK_SPACE_TYPES -- 공간분류 기본키
 		PRIMARY KEY (
-			"SPACE_TYPE_SEQ" -- 공간분류코드
+			SPACE_TYPE_SEQ -- 공간분류코드
 		);
 
 -- 업무분류
-CREATE TABLE "TASK_TYPES" (
-	"TASK_TYPE_SEQ" NUMBER(2,0)  NOT NULL, -- 업무분류코드
-	"TASK_TYPE"      VARCHAR2(25) NOT NULL  -- 분류명
+CREATE TABLE TASK_TYPES (
+	TASK_TYPE_SEQ NUMBER(3,0)  NOT NULL, -- 업무분류코드
+	TASK_TYPE     VARCHAR2(25) NOT NULL  -- 분류명
 );
 
 -- 업무분류
-ALTER TABLE "TASK_TYPES"
+ALTER TABLE TASK_TYPES
 	ADD
-		CONSTRAINT "PK_TASK_TYPES" -- 업무분류 기본키
+		CONSTRAINT PK_TASK_TYPES -- 업무분류 기본키
 		PRIMARY KEY (
-			"TASK_TYPE_SEQ" -- 업무분류코드
+			TASK_TYPE_SEQ -- 업무분류코드
 		);
 
 -- 일일업무
-ALTER TABLE "DAILY_TASKS"
+ALTER TABLE DAILY_TASKS
 	ADD
-		CONSTRAINT "FK_MANUAL_TASKS_TO_DAILY_TASKS" -- 매뉴얼업무 -> 일일업무
+		CONSTRAINT FK_MANUAL_TASKS_TO_DAILY_TASKS -- 매뉴얼업무 -> 일일업무
 		FOREIGN KEY (
-			"MANUAL_TASK_SEQ" -- 매뉴얼업무코드
+			MANUAL_TASK_SEQ -- 매뉴얼업무코드
 		)
-		REFERENCES "MANUAL_TASKS" ( -- 매뉴얼업무
-			"MANUAL_TASK_SEQ" -- 매뉴얼업무코드
+		REFERENCES MANUAL_TASKS ( -- 매뉴얼업무
+			MANUAL_TASK_SEQ -- 매뉴얼업무코드
 		);
 
 -- 일일업무
-ALTER TABLE "DAILY_TASKS"
+ALTER TABLE DAILY_TASKS
 	ADD
-		CONSTRAINT "FK_USERS_TO_DAILY_TASKS" -- 회원정보 -> 일일업무
+		CONSTRAINT FK_USERS_TO_DAILY_TASKS -- 회원정보 -> 일일업무
 		FOREIGN KEY (
-			"FINISHER_ID" -- 완료자아이디
+			FINISHER_ID -- 완료자아이디
 		)
-		REFERENCES "USERS" ( -- 회원정보
-			"USER_ID" -- 아이디
+		REFERENCES USERS ( -- 회원정보
+			USER_ID -- 아이디
 		);
 
 -- 일일업무
-ALTER TABLE "DAILY_TASKS"
+ALTER TABLE DAILY_TASKS
 	ADD
-		CONSTRAINT "FK_ADMINS_TO_DAILY_TASKS" -- 관리자인증정보 -> 일일업무
+		CONSTRAINT FK_ADMINS_TO_DAILY_TASKS -- 관리자인증정보 -> 일일업무
 		FOREIGN KEY (
-			"ASSIGNER_ID", -- 배정자아이디
-			"BRANCH_SEQ"   -- 지점코드
+			ADMIN_SEQ -- 관리자인증일련번호
 		)
-		REFERENCES "ADMINS" ( -- 관리자인증정보
-			"ADMIN_ID",   -- 아이디
-			"BRANCH_SEQ"  -- 지점코드
+		REFERENCES ADMINS ( -- 관리자인증정보
+			ADMIN_SEQ -- 관리자인증일련번호
 		);
 
 -- 매뉴얼업무
-ALTER TABLE "MANUAL_TASKS"
+ALTER TABLE MANUAL_TASKS
 	ADD
-		CONSTRAINT "FK_SPACE_TYPES_TO_MANUAL_TASKS" -- 공간분류 -> 매뉴얼업무
+		CONSTRAINT FK_SPACE_TYPES_TO_MANUAL_TASKS -- 공간분류 -> 매뉴얼업무
 		FOREIGN KEY (
-			"SPACE_TYPE_SEQ" -- 공간분류코드
+			SPACE_TYPE_SEQ -- 공간분류코드
 		)
-		REFERENCES "SPACE_TYPES" ( -- 공간분류
-			"SPACE_TYPE_SEQ" -- 공간분류코드
+		REFERENCES SPACE_TYPES ( -- 공간분류
+			SPACE_TYPE_SEQ -- 공간분류코드
 		);
 
 -- 매뉴얼업무
-ALTER TABLE "MANUAL_TASKS"
+ALTER TABLE MANUAL_TASKS
 	ADD
-		CONSTRAINT "FK_TASK_TYPES_TO_MANUAL_TASKS" -- 업무분류 -> 매뉴얼업무
+		CONSTRAINT FK_TASK_TYPES_TO_MANUAL_TASKS -- 업무분류 -> 매뉴얼업무
 		FOREIGN KEY (
-			"TASK_TYPE_SEQ" -- 업무분류코드
+			TASK_TYPE_SEQ -- 업무분류코드
 		)
-		REFERENCES "TASK_TYPES" ( -- 업무분류
-			"TASK_TYPE_SEQ" -- 업무분류코드
+		REFERENCES TASK_TYPES ( -- 업무분류
+			TASK_TYPE_SEQ -- 업무분류코드
+		);
+
+-- 일일업무담당자상세
+ALTER TABLE TABLE4
+	ADD
+		CONSTRAINT FK_DAILY_TASKS_TO_TABLE4 -- 일일업무 -> 일일업무담당자상세
+		FOREIGN KEY (
+			DAILY_TASK_SEQ -- 일일업무코드
+		)
+		REFERENCES DAILY_TASKS ( -- 일일업무
+			DAILY_TASK_SEQ -- 일일업무코드
+		);
+
+-- 일일업무_배정대상
+ALTER TABLE TABLE7
+	ADD
+		CONSTRAINT FK_DAILY_TASKS_TO_TABLE7 -- 일일업무 -> 일일업무_배정대상
+		FOREIGN KEY (
+			DAILY_TASK_SEQ -- 일일업무코드
+		)
+		REFERENCES DAILY_TASKS ( -- 일일업무
+			DAILY_TASK_SEQ -- 일일업무코드
 		);
 
 -- 관리자인증정보
-ALTER TABLE "ADMINS"
+ALTER TABLE ADMINS
 	ADD
-		CONSTRAINT "FK_USERS_TO_ADMINS" -- 회원정보 -> 관리자인증정보
+		CONSTRAINT FK_USERS_TO_ADMINS -- 회원정보 -> 관리자인증정보
 		FOREIGN KEY (
-			"ADMIN_ID" -- 아이디
+			ADMIN_ID -- 아이디
 		)
-		REFERENCES "USERS" ( -- 회원정보
-			"USER_ID" -- 아이디
+		REFERENCES USERS ( -- 회원정보
+			USER_ID -- 아이디
 		);
 
 -- 관리자인증정보
-ALTER TABLE "ADMINS"
+ALTER TABLE ADMINS
 	ADD
-		CONSTRAINT "FK_BRANCHES_TO_ADMINS" -- 지점 -> 관리자인증정보
+		CONSTRAINT FK_BRANCHES_TO_ADMINS -- 지점 -> 관리자인증정보
 		FOREIGN KEY (
-			"BRANCH_SEQ" -- 지점코드
+			BRANCH_SEQ -- 지점코드
 		)
-		REFERENCES "BRANCHES" ( -- 지점
-			"BRANCH_SEQ" -- 지점코드
+		REFERENCES BRANCHES ( -- 지점
+			BRANCH_SEQ -- 지점코드
 		);
 
 -- 직원인증정보
-ALTER TABLE "STAFFS"
+ALTER TABLE STAFFS
 	ADD
-		CONSTRAINT "FK_USERS_TO_STAFFS" -- 회원정보 -> 직원인증정보
+		CONSTRAINT FK_USERS_TO_STAFFS -- 회원정보 -> 직원인증정보
 		FOREIGN KEY (
-			"STAFF_ID" -- 아이디
+			STAFF_ID -- 아이디
 		)
-		REFERENCES "USERS" ( -- 회원정보
-			"USER_ID" -- 아이디
+		REFERENCES USERS ( -- 회원정보
+			USER_ID -- 아이디
 		);
 
--- 지점_직원정보
-ALTER TABLE "BRANCH_STAFFS"
+-- 직원인증정보
+ALTER TABLE STAFFS
 	ADD
-		CONSTRAINT "FK_BRANCHES_TO_BRANCH_STAFFS" -- 지점 -> 지점_직원정보
+		CONSTRAINT FK_BRANCHES_TO_STAFFS -- 지점 -> 직원인증정보
 		FOREIGN KEY (
-			"BRANCHE_SEQ" -- 지점코드
+			BRANCH_SEQ -- 지점코드
 		)
-		REFERENCES "BRANCHES" ( -- 지점
-			"BRANCH_SEQ" -- 지점코드
-		);
-
--- 지점_직원정보
-ALTER TABLE "BRANCH_STAFFS"
-	ADD
-		CONSTRAINT "FK_STAFFS_TO_BRANCH_STAFFS" -- 직원인증정보 -> 지점_직원정보
-		FOREIGN KEY (
-			"STAFF_ID" -- 직원아이디
-		)
-		REFERENCES "STAFFS" ( -- 직원인증정보
-			"STAFF_ID" -- 아이디
+		REFERENCES BRANCHES ( -- 지점
+			BRANCH_SEQ -- 지점코드
 		);
 
 -- 시퀀스 생성
@@ -286,7 +388,8 @@ create sequence daily_task_seq;
 create sequence manual_task_seq;
 create sequence space_type_seq;
 create sequence task_type_seq;
-create sequence branch_staff_seq;
+create sequence staff_seq;
+create sequence admin_seq;
 create sequence branch_seq;
 
 
