@@ -479,3 +479,5 @@ insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, ass
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'POS기 프로그램 업데이트',	'2018/05/20',	0,	'파트',	'마감',	16,	null,	null,	1	);
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'근무태만 반성문 작성해오기',	'2018/05/20',	1,	'개인',	'taehun',	null,	null,	null,	1	);
 
+--커밋하실건가요?
+commit?
