@@ -118,13 +118,13 @@ public class ManualDAO {
 		return list;
 	}
 	
-	/**i: 업무명, o: ManualTasksSeq*/
-	public int getManualTasksSeq(String searchTask){
+	/**i: 업무명, o: ManualTaskSeq*/
+	public int getManualTaskSeq(String searchTask){
 		SqlSession session = sqlSessionFactory.openSession();
-		int manualTasksSeq=-1;
-		manualTasksSeq = session.selectOne("manualMapper.getManualTasksSeq", searchTask);
+		int manualTaskSeq=-1;
+		manualTaskSeq = session.selectOne("manualMapper.getManualTaskSeq", searchTask);
 		session.close();
-		return manualTasksSeq;
+		return manualTaskSeq;
 	}
 	
 }

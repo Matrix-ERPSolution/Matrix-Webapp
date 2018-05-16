@@ -1,0 +1,26 @@
+select tname from tab;
+select sequence_name from user_sequences;
+select count(*) from users;
+select count(*) from branches;
+select count(*) from admins;
+select count(*) from staffs;
+select count(*) from space_types;
+select count(*) from task_types;
+select count(*) from manual_tasks;
+select count(*) from daily_tasks;
+select count(*) from addresses ;
+select count(*) from head_branches;
+
+
+총 table + 10개
+sequence + 7개: daily_task_seq, manual_task_seq, space_type_seq, task_type_seq, staff_seq, admin_seq, branch_seq
+Users table 레코드 20개
+Branches table 레코드 3개
+Admins table 레코드 3개
+Staffs table 레코드 17개
+Space_types table 레코드 5개
+Task_types table 레코드 6개
+Manual_tasks table 레코드 34개
+Daily_tasks table 레코드 63개
+Addresses table 레코드 0개
+Head_branches table 레코드 0개
