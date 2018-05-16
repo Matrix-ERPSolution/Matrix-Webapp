@@ -1,47 +1,40 @@
 package com.itss.matrix.model;
 
-import java.util.Date;
-
 public class DailyVO {
-	private int dailyTasksSeq;
-	private String taskText;
-	private Date assignDate;
+	private int dailyTaskSeq;
+	private String dailyTask;
+	private String assignDate;
 	private int importance;
 	private String assignType;
 	private String assignDetail;
-	private int manualTasksSeq;
+	private int manualTaskSeq;
 	private String finisherId;
 	private String finisherName;
-	private String assignerId;
-	private int branchSeq;
+	private String adminSeq;
 
 	/**업무 배정*/
-	public DailyVO(String taskText, Date assignDate, int importance, String assignType, String assignDetail, String assignerId, int branchSeq) {
-		setTaskText(taskText);
+	public DailyVO(String dailyTask, String assignDate, int importance, String assignType, String assignDetail, String adminSeq) {
+		setDailyTask(dailyTask);
 		setAssignDate(assignDate);
 		setImportance(importance);
+		setAssignType(assignType);
 		setAssignDetail(assignDetail);
-		setAssignerId(assignerId);
-		setBranchSeq(branchSeq);
+		setAdminSeq(adminSeq);
 	}
-	/**?*/
-	public DailyVO(int dailyTasksSeq, String taskText, Date assignDate, int importance, String assignType, String assignDetail, String assignerId, int branchSeq) {
-		this(taskText, assignDate, importance, assignType, assignDetail, assignerId, branchSeq);
-		setDailyTasksSeq(dailyTasksSeq);
+	/**업무 삭제*/
+	public DailyVO(String dailyTask, String assignDate, String assignType, String assignDetail) {
+		setDailyTask(dailyTask);
+		setAssignDate(assignDate);
+		setAssignType(assignType);
+		setAssignDetail(assignDetail);
 	}
-	public DailyVO(int dailyTasksSeq, String taskText, Date assignDate, int importance, String assignType, String assignDetail, int manualTasksSeq, String assignerId, int branchSeq) {
-		this(taskText, assignDate, importance, assignType, assignDetail, assignerId, branchSeq);
-		setDailyTasksSeq(dailyTasksSeq);
-		setManualTasksSeq(manualTasksSeq);
+	public int getDailyTaskSeq() {
+		return dailyTaskSeq;
 	}
-	
-	public int getDailyTasksSeq() {
-		return dailyTasksSeq;
+	public String getDailyTask() {
+		return dailyTask;
 	}
-	public String getTaskText() {
-		return taskText;
-	}
-	public Date getAssignDate() {
+	public String getAssignDate() {
 		return assignDate;
 	}
 	public int getImportance() {
@@ -53,8 +46,8 @@ public class DailyVO {
 	public String getAssignDetail() {
 		return assignDetail;
 	}
-	public int getManualTasksSeq() {
-		return manualTasksSeq;
+	public int getManualTaskSeq() {
+		return manualTaskSeq;
 	}
 	public String getFinisherId() {
 		return finisherId;
@@ -62,20 +55,16 @@ public class DailyVO {
 	public String getFinisherName() {
 		return finisherName;
 	}
-	public String getAssignerId() {
-		return assignerId;
+	public String getAdminSeq() {
+		return adminSeq;
 	}
-	public int getBranchSeq() {
-		return branchSeq;
+	private void setDailyTaskSeq(int dailyTaskSeq) {
+		this.dailyTaskSeq = dailyTaskSeq;
 	}
-	
-	private void setDailyTasksSeq(int dailyTasksSeq) {
-		this.dailyTasksSeq = dailyTasksSeq;
+	private void setDailyTask(String dailyTask) {
+		this.dailyTask = dailyTask;
 	}
-	private void setTaskText(String taskText) {
-		this.taskText = taskText;
-	}
-	private void setAssignDate(Date assignDate) {
+	private void setAssignDate(String assignDate) {
 		this.assignDate = assignDate;
 	}
 	private void setImportance(int importance) {
@@ -87,34 +76,23 @@ public class DailyVO {
 	private void setAssignDetail(String assignDetail) {
 		this.assignDetail = assignDetail;
 	}
-	private void setManualTasksSeq(int manualTasksSeq) {
-		this.manualTasksSeq = manualTasksSeq;
+	public void setManualTaskSeq(int manualTaskSeq) {
+		this.manualTaskSeq = manualTaskSeq;
 	}
-	private void setFinisherId(String finisherId) {
+	public void setFinisherId(String finisherId) {
 		this.finisherId = finisherId;
 	}
-	private void setFinisherName(String finisherName) {
+	public void setFinisherName(String finisherName) {
 		this.finisherName = finisherName;
 	}
-	private void setAssignerId(String assignerId) {
-		this.assignerId = assignerId;
-	}
-	private void setBranchSeq(int branchSeq) {
-		this.branchSeq = branchSeq;
-	}
-	
-	@Override
-	public String toString() {
-		return "DailyVO [dailyTasksSeq=" + dailyTasksSeq + ", taskText=" + taskText + ", assignDate=" + assignDate
-				+ ", importance=" + importance + ", assignType=" + assignType + ", assignDetail=" + assignDetail
-				+ ", manualTasksSeq=" + manualTasksSeq + ", finisherId=" + finisherId + ", finisherName=" + finisherName
-				+ ", assignerId=" + assignerId + ", branchSeq=" + branchSeq + "]";
+	private void setAdminSeq(String adminSeq) {
+		this.adminSeq = adminSeq;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + dailyTasksSeq;
+		result = prime * result + dailyTaskSeq;
 		return result;
 	}
 	@Override
@@ -126,10 +104,16 @@ public class DailyVO {
 		if (getClass() != obj.getClass())
 			return false;
 		DailyVO other = (DailyVO) obj;
-		if (dailyTasksSeq != other.dailyTasksSeq)
+		if (dailyTaskSeq != other.dailyTaskSeq)
 			return false;
 		return true;
 	}
-	
+	@Override
+	public String toString() {
+		return "DailyVO [dailyTaskSeq=" + dailyTaskSeq + ", dailyTask=" + dailyTask + ", assignDate=" + assignDate
+				+ ", importance=" + importance + ", assignType=" + assignType + ", assignDetail=" + assignDetail
+				+ ", manualTaskSeq=" + manualTaskSeq + ", finisherId=" + finisherId + ", finisherName=" + finisherName
+				+ ", adminSeq=" + adminSeq + "]";
+	}
 	
 }

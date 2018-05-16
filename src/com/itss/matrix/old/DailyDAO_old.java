@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.itss.matrix.model.DailyVO;
+
 public class DailyDAO_old {
 	private Connection conn;
 
@@ -57,7 +59,7 @@ public class DailyDAO_old {
 		String inputTask = null;
 		
 		try {
-			int manualTasksSeq = new ManualDAO().getManualTaskSeq(taskText);
+			int manualTasksSeq = new ManualDAO_old().getManualTaskSeq(taskText);
 			if(manualTasksSeq == -1){	//매뉴얼에 없는 업무 --> input_task
 				inputTask = taskText;
 				sql = "insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, assigner_id, branch_seq, manual_tasks_seq)"
@@ -104,7 +106,7 @@ public class DailyDAO_old {
 		String inputTask = null;
 		
 		try {
-			int manualTasksSeq = new ManualDAO().getManualTaskSeq(taskText);
+			int manualTasksSeq = new ManualDAO_old().getManualTaskSeq(taskText);
 			if(manualTasksSeq == -1){	//매뉴얼에 없는 업무 --> input_task
 				inputTask = taskText;
 				sql = "update daily_tasks set assign_type=?, assign_detail=? where assign_date=? and assign_detail=? and input_task=?";
@@ -138,7 +140,7 @@ public class DailyDAO_old {
 		String inputTask = null;
 		
 		try {
-			int manualTasksSeq = new ManualDAO().getManualTaskSeq(taskText);
+			int manualTasksSeq = new ManualDAO_old().getManualTaskSeq(taskText);
 			if(manualTasksSeq == -1){	//매뉴얼에 없는 업무 --> input_task
 				inputTask = taskText;
 				sql = "delete daily_tasks where assgin_date=? and assign_type=? and assign_detail=? and input_task=?";
