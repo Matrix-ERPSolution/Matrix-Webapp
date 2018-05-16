@@ -14,11 +14,8 @@ public class DailyVO {
 
 	/**업무 배정*/
 	public DailyVO(String dailyTask, String assignDate, int importance, String assignType, String assignDetail, String adminSeq) {
-		setDailyTask(dailyTask);
-		setAssignDate(assignDate);
+		this(dailyTask, assignDate, assignType, assignDetail);
 		setImportance(importance);
-		setAssignType(assignType);
-		setAssignDetail(assignDetail);
 		setAdminSeq(adminSeq);
 	}
 	/**업무 삭제*/

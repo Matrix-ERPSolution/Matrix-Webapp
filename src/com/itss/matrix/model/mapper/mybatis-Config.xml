@@ -15,6 +15,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="manualMapper.xml" />
+		<mapper resource="com/itss/matrix/model/mapper/manualMapper.xml" />
+		<mapper resource="com/itss/matrix/model/mapper/dailyMapper.xml" />
 	</mappers>
 </configuration>

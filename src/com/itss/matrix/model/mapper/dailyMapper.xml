@@ -7,7 +7,7 @@
 	<select id="getDailyTasksForParts" parameterType="java.util.Map" resultType="java.util.Map">
 		select importance, daily_task, finisher_id, finisher_name 
 		from daily_tasks 
-		where assign_date=#{assignDate} and assign_detail=#{assignDetail}
+		where assign_date=#{assignDate} and assign_type='파트' and assign_detail=#{assignDetail}
 	</select>
 	<select id="getDailyTasksForPerson" parameterType="java.util.Map" resultType="java.util.Map">
 		select importance, daily_task, assign_detail, finisher_id, finisher_name 
@@ -24,10 +24,6 @@
 		(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, admin_seq) 
 		values(daily_tasks_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, #{manualTaskSeq}, #{adminSeq})
 	</insert>
-	<delete id="removeDailyTask" parameterType="com.itss.matrix.model.DailyVO">
-		delete daily_tasks 
-		where assgin_date=#{assignDate} and assign_type=#{assignType} and assign_detail=#{assignDetail} and daily_task=#{dailyTask}
-	</delete>
 	<update id="setDailyTaskByInput" parameterType="java.util.Map">
 		update daily_tasks
 		set daily_task=#{newDailyTask}, manual_task_seq = null
@@ -40,7 +36,11 @@
 	</update>
 	<update id="setDailyAssign" parameterType="java.util.Map">
 		update daily_tasks 
-		set assign_type=?, assign_detail=? 
-		where assign_date=? and assign_detail=? and daily_task=?
+		set assign_type=#{newAssignType}, assign_detail=#{newAssignDetail} 
+		where assign_date=#{assignDate} and assign_type=#{oldAssignType} and assign_detail=#{oldAssignDetail} and daily_task=#{dailyTask}
 	</update>
+	<delete id="removeDailyTask" parameterType="com.itss.matrix.model.DailyVO">
+		delete daily_tasks 
+		where assign_date=#{assignDate} and assign_type=#{assignType} and assign_detail=#{assignDetail} and daily_task=#{dailyTask}
+	</delete>
 </mapper>

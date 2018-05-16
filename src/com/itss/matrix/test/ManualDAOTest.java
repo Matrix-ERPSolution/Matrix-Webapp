@@ -1,5 +1,13 @@
 package com.itss.matrix.test;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import com.itss.matrix.model.ManualDAO;
 
 public class ManualDAOTest {
@@ -14,5 +22,7 @@ public class ManualDAOTest {
 		//System.out.println(dao.getSpaceTypesByTaskType("위생관리"));
 		//System.out.println(dao.getTasks("홀", "위생관리"));
 		
+		System.out.println(dao.getManualTaskSeq("바닥 닦기"));
+		System.out.println(dao.getManualTaskSeq("바닥 "));
 	}
 }

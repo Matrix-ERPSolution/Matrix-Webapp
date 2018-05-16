@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="manualMapper">
 	<select id="getManualTasks" resultType="java.util.Map">
-		select m.TASK, s.SPACE_TYPE from MANUAL_TASKS m, SPACE_TYPES s where m.SPACE_TYPE_SEQ=s.SPACE_TYPE_SEQ order by m.SPACE_TYPE_SEQ asc, m.MANUAL_TASK_SEQ asc
+		select m.MANUAL_TASK, s.SPACE_TYPE from MANUAL_TASKS m, SPACE_TYPES s where m.SPACE_TYPE_SEQ=s.SPACE_TYPE_SEQ order by m.SPACE_TYPE_SEQ asc, m.MANUAL_TASK_SEQ asc
 	</select>
 	<select id="getSpaceTypes" resultType="String">
 		select space_type from space_types
@@ -17,9 +17,9 @@
 		select distinct space_type from manual_tasks m, space_types s, task_types t where m.space_types_seq = s.space_types_seq and m.task_types_seq = t.task_types_seq and t.task_type=#{taskType}
 	</select>
 	<select id="getTasks" resultType="java.util.Map" parameterType="java.util.Map">
-		select task, repeat_type, repeat_detail from manual_tasks m, space_types s, task_types t where m.space_type_seq = s.space_type_seq and m.task_type_seq = t.task_type_seq and s.space_type=#{spaceType} and t.task_type=#{taskType}
+		select manual_task, repeat_type, repeat_detail from manual_tasks m, space_types s, task_types t where m.space_type_seq = s.space_type_seq and m.task_type_seq = t.task_type_seq and s.space_type=#{spaceType} and t.task_type=#{taskType}
 	</select>
 	<select id="getManualTaskSeq" resultType="int" parameterType="String">
-		select manual_task_seq from manual_tasks where task=#{searchTask}
+		select manual_task_seq from manual_tasks where manual_task=#{searchTask}
 	</select>
 </mapper>
