@@ -17,12 +17,12 @@
 	<insert id="addDailyTaskByInput" parameterType="com.itss.matrix.model.DailyVO">
 		insert into daily_tasks 
 		(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, admin_seq) 
-		values(daily_tasks_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, null, #{adminSeq})
+		values(daily_task_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, null, #{adminSeq})
 	</insert>
 	<insert id="addDailyTaskByManual" parameterType="com.itss.matrix.model.DailyVO">
 		insert into daily_tasks 
 		(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, admin_seq) 
-		values(daily_tasks_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, #{manualTaskSeq}, #{adminSeq})
+		values(daily_task_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, #{manualTaskSeq}, #{adminSeq})
 	</insert>
 	<update id="setDailyTaskByInput" parameterType="java.util.Map">
 		update daily_tasks
