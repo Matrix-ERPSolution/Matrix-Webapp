@@ -91,7 +91,7 @@ public class DailyDAO {
 	}
 
 	public void addDailyTask(String dailyTask, String assignDate, int importance, String assignType,
-			String assignDetail, String adminSeq) throws IOException {
+			String assignDetail, int adminSeq) {
 		addDailyTask(new DailyVO(dailyTask, assignDate, importance, assignType, assignDetail, adminSeq));
 	}
 
