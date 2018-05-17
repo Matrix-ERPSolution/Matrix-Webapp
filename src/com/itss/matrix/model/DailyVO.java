@@ -10,10 +10,10 @@ public class DailyVO {
 	private int manualTaskSeq;
 	private String finisherId;
 	private String finisherName;
-	private String adminSeq;
+	private int adminSeq;
 
 	/**업무 배정*/
-	public DailyVO(String dailyTask, String assignDate, int importance, String assignType, String assignDetail, String adminSeq) {
+	public DailyVO(String dailyTask, String assignDate, int importance, String assignType, String assignDetail, int adminSeq) {
 		this(dailyTask, assignDate, assignType, assignDetail);
 		setImportance(importance);
 		setAdminSeq(adminSeq);
@@ -52,7 +52,7 @@ public class DailyVO {
 	public String getFinisherName() {
 		return finisherName;
 	}
-	public String getAdminSeq() {
+	public int getAdminSeq() {
 		return adminSeq;
 	}
 	private void setDailyTaskSeq(int dailyTaskSeq) {
@@ -82,7 +82,7 @@ public class DailyVO {
 	public void setFinisherName(String finisherName) {
 		this.finisherName = finisherName;
 	}
-	private void setAdminSeq(String adminSeq) {
+	private void setAdminSeq(int adminSeq) {
 		this.adminSeq = adminSeq;
 	}
 	@Override
