@@ -1,165 +1,149 @@
 package com.itss.matrix.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DailyDAO {
-	private Connection conn;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-	public DailyDAO() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String uri = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
-		String id = "hr";
-		String pw = "hr";
-		conn = DriverManager.getConnection(uri, id, pw);
+public class DailyDAO {
+	private SqlSessionFactory sqlSessionFactory;
+
+	public DailyDAO() {
+		InputStream inputStream = null;
+		try {
+			String resource = "com/itss/matrix/model/mapper/mybatis-Config.xml";
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
 	/** 선택한 날짜에 해당하는 배정대상 목록 보기 */
-	public List<String> getAssignTypes(String assignDate) {
-		List<String> list = new ArrayList<>();
-
-		String sql = "select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = ?";
-
+	public List<String> getAssignedParts(String assignDate) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<String> list = null;
 		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, assignDate);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(rs.getString(1));
-			}
-			rs.close();
-			ps.close();
-		} catch (SQLException e) {
+			list = session.selectList("dailyMapper.getAssignedParts", assignDate);
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return list;
 	}
 
-	/** 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
-	public Collection<Map<String, String>> getDailyTasks(String assignDate, String assignDetail) {
-		return null;
+	/** 파트별 - 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
+	public Collection<Map<String, String>> getDailyTasksForParts(String assignDate, String assignDetail) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, String> input = new HashMap<>();
+		input.put("assignDate", assignDate);
+		input.put("assignDetail", assignDetail);
+		List<Map<String, String>> list = null;
+		try {
+			list = sqlSession.selectList("dailyMapper.getDailyTasksForParts", input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return list;
+	}
+
+	/** 개인별 - 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
+	public Collection<Map<String, String>> getDailyTasksForPerson(String assignDate) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Map<String, String>> list = null;
+		try {
+			list = sqlSession.selectList("dailyMapper.getDailyTasksForPerson", assignDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return list;
 	}
 
 	/** 업무 배정 */
-	public boolean addDailyTask(String taskText, String assignDate, int importance, String assignType,
-			String assignDetail, String assignerId, int branchSeq) {
-		boolean result = false;
-		String sql = "insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, assigner_id, branch_seq, manual_tasks_seq)"
-				+ " values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
-		String inputTask = null;
+	public void addDailyTask(DailyVO vo) {
+		vo.setManualTaskSeq(new ManualDAO().getManualTaskSeq(vo.getDailyTask()));
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
 		try {
-			int manualTasksSeq = new ManualDAO().getManualTaskSeq(taskText);
-			if(manualTasksSeq == -1){	//매뉴얼에 없는 업무 --> input_task
-				inputTask = taskText;
-				sql = "insert into daily_tasks (daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, assigner_id, branch_seq, manual_tasks_seq)"
-						+ " values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, ?, ?, null)";
+			if (vo.getManualTaskSeq() == -1) {
+				sqlSession.insert("dailyMapper.addDailyTaskByInput", vo);
+			} else {
+				sqlSession.insert("dailyMapper.addDailyTaskByManual", vo);
 			}
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, inputTask);
-			pstmt.setString(2, assignDate);
-			pstmt.setInt(3, importance);
-			pstmt.setString(4, assignType);
-			pstmt.setString(5, assignDetail);
-			pstmt.setString(6, assignerId);
-			pstmt.setInt(7, branchSeq);
-			if(manualTasksSeq != -1){
-				pstmt.setInt(8, manualTasksSeq);
-			}
-			if (pstmt.executeUpdate() == 1) {
-				result = true;
-			}
-			pstmt.close();
-		} catch (SQLException | ClassNotFoundException e) {
+			sqlSession.commit();
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			sqlSession.close();
 		}
-
-		return result;
-
 	}
 
-	public boolean addDailyTask(DailyVO vo) {
-		return false;
+	public void addDailyTask(String dailyTask, String assignDate, int importance, String assignType,
+			String assignDetail, int adminSeq) {
+		addDailyTask(new DailyVO(dailyTask, assignDate, importance, assignType, assignDetail, adminSeq));
 	}
 
 	/** 업무 수정 */
-	public boolean setDailyTask(String newTaskText, String oldTaskText, String assignDate, String assignDetail) {
-		return false;
+	public void setDailyTask(String newDailyTask, String oldDailyTask, String assignDate, String assignDetail) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int result = -1;
+		Map input = new HashMap<>();
+		input.put("newDailyTask", newDailyTask);
+		input.put("assignDetail", assignDetail);
+		input.put("assignDate", assignDate);
+		input.put("oldDailyTask", oldDailyTask);
+		int newManualTaskSeq = new ManualDAO().getManualTaskSeq(newDailyTask);
+		if (newManualTaskSeq == -1) {
+			result = sqlSession.update("dailyMapper.setDailyTaskByInput", input);
+		} else {
+			input.put("newManualTaskSeq", newManualTaskSeq);
+			result = sqlSession.update("dailyMapper.setDailyTaskByManual", input);
+		}
+		if (result == 1) {
+			sqlSession.commit();
+		}
+		sqlSession.close();
 	}
 
 	/** 업무 재배정 */
-	public boolean setDailyAssign(String newAssignType,
-			String newAssignDetail, String assignDate, String oldAssignDetail, String taskText) {
-		boolean result = false;
-		String sql = "update daily_tasks set assign_type=?, assign_detail=? where assign_date=? and assign_detail=? and manual_tasks_seq=?";
-		
-		String inputTask = null;
-		
-		try {
-			int manualTasksSeq = new ManualDAO().getManualTaskSeq(taskText);
-			if(manualTasksSeq == -1){	//매뉴얼에 없는 업무 --> input_task
-				inputTask = taskText;
-				sql = "update daily_tasks set assign_type=?, assign_detail=? where assign_date=? and assign_detail=? and input_task=?";
-			}
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, newAssignType);
-			pstmt.setString(2, newAssignDetail);
-			pstmt.setString(3, assignDate);
-			pstmt.setString(4, oldAssignDetail);
-			if(manualTasksSeq == -1){
-				pstmt.setString(5, inputTask);
-			} else {
-				pstmt.setInt(5, manualTasksSeq);
-			}
-			if (pstmt.executeUpdate() == 1) {
-				result = true;
-			}
-			pstmt.close();
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+	public void setDailyAssign(String newAssignType, String newAssignDetail, String assignDate, String oldAssignType, String oldAssignDetail,
+			String dailyTask) {
+		Map<String, String> input = new HashMap<>();
+		input.put("newAssignType", newAssignType);
+		input.put("newAssignDetail", newAssignDetail);
+		input.put("assignDate", assignDate);
+		input.put("oldAssignType", oldAssignType);
+		input.put("oldAssignDetail", oldAssignDetail);
+		input.put("dailyTask", dailyTask);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		if (sqlSession.delete("dailyMapper.setDailyAssign", input) == 1) {
+			sqlSession.commit();
 		}
-
-		return result;
+		sqlSession.close();
 	}
 
 	/** 업무 삭제 */
-	public boolean removeDailyTask(String taskText, String assignDate, String assignType, String assignDetail) {
-		boolean result = false;
-		String sql = "delete daily_tasks where assign_date=? and assign_type=? and assign_detail=? and manual_tasks_seq=?";
-		
-		String inputTask = null;
-		
-		try {
-			int manualTasksSeq = new ManualDAO().getManualTaskSeq(taskText);
-			if(manualTasksSeq == -1){	//매뉴얼에 없는 업무 --> input_task
-				inputTask = taskText;
-				sql = "delete daily_tasks where assgin_date=? and assign_type=? and assign_detail=? and input_task=?";
-			}
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, assignDate);
-			pstmt.setString(2, assignType);
-			pstmt.setString(3, assignDetail);
-			if(manualTasksSeq == -1){
-				pstmt.setString(4, inputTask);
-			} else {
-				pstmt.setInt(4, manualTasksSeq);
-			}
-			if (pstmt.executeUpdate() == 1) {
-				result = true;
-			}
-			pstmt.close();
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+	public void removeDailyTask(DailyVO vo) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		if (sqlSession.delete("dailyMapper.removeDailyTask", vo) == 1) {
+			sqlSession.commit();
 		}
+		sqlSession.close();
+	}
 
-		return result;
+	public void removeDailyTask(String dailyTask, String assignDate, String assignType, String assignDetail) {
+		removeDailyTask(new DailyVO(dailyTask, assignDate, assignType, assignDetail));
 	}
 }

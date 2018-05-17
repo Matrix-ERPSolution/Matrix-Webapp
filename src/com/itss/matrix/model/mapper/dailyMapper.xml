@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dailyMapper">	<!-- 클래스 역할 -->
-	<select id="getAssignTypes" parameterType="String" resultType="String">	<!-- 메소드 역할 -->
+	<select id="getAssignedParts" parameterType="String" resultType="String">	<!-- 메소드 역할 -->
 		select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = #{date}
 	</select>
-	<insert id="empId" parameterType="DailyVO">
+	<select id="getDailyTasksForParts" parameterType="java.util.Map" resultType="java.util.Map">
+		select importance, daily_task, finisher_id, finisher_name 
+		from daily_tasks 
+		where assign_date=#{assignDate} and assign_type='파트' and assign_detail=#{assignDetail}
+	</select>
+	<select id="getDailyTasksForPerson" parameterType="java.util.Map" resultType="java.util.Map">
+		select importance, daily_task, assign_detail, finisher_id, finisher_name 
+		from daily_tasks 
+		where assign_date=#{assignDate} and assign_type='개인'
+	</select>
+	<insert id="addDailyTaskByInput" parameterType="com.itss.matrix.model.DailyVO">
 		insert into daily_tasks 
-		(daily_tasks_seq, input_task, assign_date, importance, assign_type, assign_detail, assigner_id, branch_seq, manual_tasks_seq) 
-		values(daily_tasks_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)
+		(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, admin_seq) 
+		values(daily_task_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, null, #{adminSeq})
 	</insert>
+	<insert id="addDailyTaskByManual" parameterType="com.itss.matrix.model.DailyVO">
+		insert into daily_tasks 
+		(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, admin_seq) 
+		values(daily_task_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, #{manualTaskSeq}, #{adminSeq})
+	</insert>
+	<update id="setDailyTaskByInput" parameterType="java.util.Map">
+		update daily_tasks
+		set daily_task=#{newDailyTask}, manual_task_seq = null
+		where assign_date=#{assignDate} and assign_detail=#{assignDetail} and daily_task=#{oldDailyTask}
+	</update>
+	<update id="setDailyTaskByManual" parameterType="java.util.Map">
+		update daily_tasks
+		set daily_task=#{newDailyTask}, manual_task_seq = #{newManualTaskSeq}
+		where assign_date=#{assignDate} and assign_detail=#{assignDetail} and daily_task=#{oldDailyTask}
+	</update>
+	<update id="setDailyAssign" parameterType="java.util.Map">
+		update daily_tasks 
+		set assign_type=#{newAssignType}, assign_detail=#{newAssignDetail} 
+		where assign_date=#{assignDate} and assign_type=#{oldAssignType} and assign_detail=#{oldAssignDetail} and daily_task=#{dailyTask}
+	</update>
+	<delete id="removeDailyTask" parameterType="com.itss.matrix.model.DailyVO">
+		delete daily_tasks 
+		where assign_date=#{assignDate} and assign_type=#{assignType} and assign_detail=#{assignDetail} and daily_task=#{dailyTask}
+	</delete>
 </mapper>

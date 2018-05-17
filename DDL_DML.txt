@@ -322,180 +322,162 @@ insert into users (user_id, pw, phone_num, name, birth, gender, email, address_c
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( 'yeonghee' , 'yeonghee1234' , '01098561452' , '허영희' , '1989/03/21' , 'F' , 'yeonghee@naver.com' , '서울시' , '강북구' , '우이동' , 0, null );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( 'yunjin' , 'yunjin1234' , '01053710710' , '김연진' , '1988/11/19' , 'F' , 'yunjin@naver.com' , '서울시' , '송파구' , '문정동' , 1, null );
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( 'yunseok' , 'yunseok1234' , '01099031063' , '장윤석' , '1992/11/20' , 'M' , 'yunseok@naver.com' , '서울시' , '송파구' , '석촌동' , 1, null );
+
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( 'yunyoung' , 'yunyoung1234' , '01085234512' , '홍윤영' , '1980/07/01' , 'F' , 'yunyoung@naver.com' , '서울시' , '서초구' ,  '방배동' , 1, 'yunyoung_profile.jpg');
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( 'minsu' , 'minsu1234' , '01058428965' , '윤민수' , '1975/05/24' , 'M' , 'minsu@naver.com' , '서울시' , '송파구' , '문정동' , 1, 'minsu_profile.jpg');
 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( 'hyeja' , 'hyeja1234' , '01063574821' , '김혜자' , '1971/04/05' , 'F' , 'hyeja@naver.com' , '부산광역시' , '해운대구' , '중1동' , 1, null );
 
 
 -- 지점 레코드
-insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) 
-values (branch_seq.nextval,  '가락시장점' , '홍윤영' , '0221574531' , '평일 08:00 ~ 23:00 / 주말 11:00 ~ 23:00' , '서울시' , '송파구' , '가락동' , '79-2 1층가락동' );
-insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) 
-values (branch_seq.nextval,  '잠실점' , '윤민수' , '0234319633' , '월~금 07:00 ~ 23:00 / 토,일 08:00 ~ 23:00' , '서울시' , '송파구' , '신천동' , '7-26번지' );
-insert into branches(branch_seq, branch_name, representative, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) 
-values (branch_seq.nextval,  '해운대점' , '김혜자' , '0517829961'  , '09:00 - 23:00' , '부산광역시' , '해운대구' , '우동' , '629-1' );
+insert into branches (branch_seq, branch_name, representative, license_num, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values (	branch_seq.nextval,	'가락시장점',	'홍윤영',	'1008512345',	'0221574531',	'평일 08:00 ~ 23:00 / 주말 11:00 ~ 23:00',	'서울시',	'송파구',	'가락동',	'79-2 1층가락동'	);
+insert into branches (branch_seq, branch_name, representative, license_num, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values (	branch_seq.nextval,	'잠실점',	'윤민수',	'1108554132',	'0234319633',	'월~금 07:00 ~ 23:00 / 토,일 08:00 ~ 23:00',	'서울시',	'송파구',	'신천동',	'7-26번지'	);
+insert into branches (branch_seq, branch_name, representative, license_num, branch_phone_num, opening_hour, address_city, address_gu, address_dong, address_detail) values (	branch_seq.nextval,	'해운대점',	'김혜자',	'6018519876',	'0517829961',	'09:00 - 23:00',	'부산광역시',	'해운대구',	'우동',	'629-1'	);
 
 
 -- 관리자 인증정보 레코드
-insert into admins (admin_id, branch_seq, license_num, status) values ( 'yunyoung' , 1 , '1008512345' , 1 );
-insert into admins (admin_id, branch_seq, license_num, status) values ( 'minsu' , 2 , '1108554132' , 0 );
-insert into admins (admin_id, branch_seq, license_num, status) values ( 'hyeja' , 3 , '6018519876' , 0 );
+insert into admins(admin_seq, admin_id, branch_seq, approve_date, revoke_date) values(	admin_seq.nextval,	'yunyoung',	1,	'2018/3/1',	null	);
+insert into admins(admin_seq, admin_id, branch_seq, approve_date, revoke_date) values(	admin_seq.nextval,	'minsu',	2,	'2016/1/1',	'2018/2/15'	);
+insert into admins(admin_seq, admin_id, branch_seq, approve_date, revoke_date) values(	admin_seq.nextval,	'hyeja',	3,	null,	null	);
 
 
 -- 직원인증정보 레코드
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'yunjin' , 'yunjin_resume.hwp' , 'yunjin_health.jpg' , 'yunjin_bank.png', '우리은행' , '1004427204842' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'heeeun' , 'heeeun_resume.hwp' , 'heeeun_health.jpg' , 'heeeun_bank.png' , '신한은행' , '110101764526' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'chanyoung' , 'chanyoung_resume.hwp' , 'chanyoung_health.jpg' , 'chanyoung_bank.png' , 'SC제일은행' , '10485675482' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'jonghyuk' , 'jonghyuk_resume.hwp' , 'jonghyuk_health.jpg' , 'jonghyuk_bank.png' , '하나은행' , '52546278031224' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'yunseok' , 'yunseok_resume.hwp' , 'yunseok_health.jpg' , 'yunseok_bank.png' , '신한은행' , '110468824651' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'taehun' , 'taehun_resume.hwp' , 'taehun_health.jpg' , null , '외환은행' , '336511098371' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'jaesun' , 'jaesun_resume.hwp' , 'jaesun_health.jpg' , null , 'NH농협은행' , '113478515465' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'yejee' , null , 'yejee_health.jpg' , null , '하나은행' , '98850424756733' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'hyesoo' , null , 'hyesoo_health.jpg' , null , '국민은행' , '42578500105462' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'jaemin' , null , 'jaemin_health.jpg' , null , '우리은행' , '1002546825713' , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'eunkyul' , null , null , null , null , null , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'sumin' , null , null , 'sumin_bank.png' , null , null , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'seungkyun' , 'seungkyun_resume.hwp' , null , 'seungkyun_bank.png' , null , null , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'hyungjun' , 'hyungjun_resume.hwp' , null , 'hyungjun_bank.png' , null , null , 1 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'chulsoo' , null , null , null , null , null , 0 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'yeonghee' , 'yeonghee_resume.hwp' , null , 'yeonghee_bank.png' , null , null , 0 );
-insert into staffs (staff_id, resume_file, health_file, bank_file, bank_name, account_num, status) values ( 'minji' , 'minji_resume.hwp' , 'minji_health.jpg' , 'minji_bank.png' , '신한은행' , '113154209875' , 0 );
-
-
---지점_직원정보 레코드
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2017/05/31', null, 1, 'yunjin', '오픈');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2017/07/10', null, 1, 'heeeun', '오픈');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2018/01/19', null, 1, 'chanyoung', '미들');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2018/02/15', null, 1, 'jonghyuk', '미들');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2016/11/29', null, 1, 'yunseok', '미들');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2017/04/15', null, 1, 'taehun', '마감');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2016/12/07', null, 1, 'jaesun', '마감');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2018/01/26', null, 1, 'yejee', '마감');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2014/10/31', '2016/11/11', 1, 'hyesoo', '오픈');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2016/11/05', '2017/06/05', 1, 'jaemin', '오픈');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2015/05/13', '2016/12/03', 1, 'eunkyul', '미들');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2016/10/31', '2017/04/20', 1, 'sumin', '미들');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2016/08/10', '2017/04/18', 1, 'seungkyun', '마감');
-insert into branch_staffs (branch_staff_seq, join_date, leave_date, branche_seq, staff_id, work_part) values(branch_staff_seq.nextval, '2015/03/17', '2016/12/30', 1, 'hyungjun', '마감');
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'yunjin',	1,	'2017/05/31',	null,	 '오픈',	'우리은행',	'1004427204842',	'yunjin_resume.hwp',	'yunjin_health.jpg',	'yunjin_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'heeeun',	1,	'2017/07/10',	null,	 '오픈',	'신한은행',	'110101764526',	'heeeun_resume.hwp',	'heeun_health.jpg',	'heeeun_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'chanyoung',	1,	'2018/01/19',	null,	 '미들',	'SC제일은행',	'10485675482',	'chanyoung_resume.hwp',	'chanyoung_health.jpg',	'chanyoung_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'jonghyuk',	1,	'2018/02/15',	null,	 '미들',	'하나은행',	'52546278031224',	'jonghyuk_resume.hwp',	'jonghyuk_health.jpg',	'jonghyuk_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'yunseok',	1,	'2016/11/29',	null,	 '미들',	'신한은행',	'110468824651',	'yunseok_resume.hwp',	'yunseok_health.jpg',	'yunseok_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'taehun',	1,	'2017/04/15',	null,	 '마감',	'외환은행',	'336511098371',	'taehun_resume.hwp',	'taehun_health.jpg',	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'jaesun',	1,	'2016/12/07',	null,	 '마감',	'NH농협은행',	'113478515465',	'jaesun_resume.hwp',	'jaesun_health.jpg',	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'yejee',	1,	'2018/01/26',	null,	 '마감',	'하나은행',	'98850424756733',	null,	'yejee_health.jpg',	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'hyesoo',	1,	'2014/10/31',	 '2016/11/11',	 '오픈',	'국민은행',	'42578500105462',	null,	'hyesoo_health.jpg',	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'jaemin',	1,	'2016/11/05',	 '2017/06/05',	 '오픈',	'우리은행',	'1002546825713',	null,	'jaemin_health.jpg',	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'eunkyul',	1,	'2015/05/13',	 '2016/12/03',	 '미들',	null,	null,	null,	null,	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'sumin',	1,	'2016/10/31',	 '2017/04/20',	 '미들',	null,	null,	null,	null,	'sumin_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'seungkyun',	1,	'2016/08/10',	 '2017/04/18',	 '마감',	null,	null,	'seungkyun_resume.hwp',	null,	'seungkyun_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'hyungjun',	1,	'2015/03/17',	 '2016/12/30',	 '마감',	null,	null,	'hyungjun_resume.hwp',	null,	'hyungjun_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'chulsoo',	1,	null,	null,	null,	null,	null,	'chulsoo_resume.hwp',	null,	null	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'yeonghee',	1,	null,	null,	null,	null,	null,	'yeonghee_resume.hwp',	null,	'yeonghee_bank.png'	);
+insert into staffs (staff_seq, staff_id, branch_seq, join_date, leave_date, work_part, bank_name, account_num, resume_file, health_file, bank_file) values (	staff_seq.nextval,	'minji',	1,	null,	null,	null,	'신한은행',	'113154209875',	'minji_resume.hwp',	'minji_health.jpg',	'minji_bank.png'	);
 
 
 -- 공간분류 레코드
- insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '홀');
- insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '바');
- insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '카운터');
- insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '테라스');
- insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '화장실');
+insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '홀');
+insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '바');
+insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '카운터');
+insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '테라스');
+insert into space_types(space_type_seq, space_type) values(space_type_seq.nextval, '화장실');
+
 
 -- 업무분류 레코드
- insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '비품관리');
- insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '식품관리');
- insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '시재관리');
- insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '위생관리');
- insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '설비관리');
- insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '고객관리');
+insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '비품관리');
+insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '식품관리');
+insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '시재관리');
+insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '위생관리');
+insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '설비관리');
+insert into task_types(task_type_seq, task_type) values(task_type_seq.nextval, '고객관리');
 
 
 -- 메뉴얼업무 레코드
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '아이스 컵 재고량 점검', '기간', '2', 2, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '비품재고현황표 작성', '기간', '30', 2, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '원두 재고량 점검', '기간', '2', 2, 2);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '시럽류 유통기한 확인', '기간', '7', 2, 2);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '음식물 쓰레기 버리기', '파트', '마감', 2, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '행주 소독', '파트', '마감', 2, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '커피머신 윤활제 바르기', '기간', '3', 2, 5);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '냉장고 성에 제거', '기간', '14', 2, 5);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '영수증 용지 재고 확인', '기간', '2', 3, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '행사 상품 재고 확인', '파트', '마감', 3, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '현금 시재 확인', '파트', '미들', 3, 3);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '은행에서 잔돈 교환', 3, 3);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '카운터 선반 닦기', '파트', '마감', 3, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, 'POS기 먼지 제거', '파트', '마감', 3, 4);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '메뉴판 업데이트 및 점검' , 3, 5);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, 'POS기 프로그램 업데이트', 3, 5);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '셀프 바 빨대 재고량 확인', '파트', '오픈', 1, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '셀프 바 시럽 채우기', '기간', '2', 1, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '바닥 쓸기', '파트', '마감', 1, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '바닥 닦기', '파트', '마감', 1, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '에어컨 필터 교체', '기간', '365', 1, 5);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테이블 및 좌석 점검', '파트', '마감', 1, 5);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '시즌별 메뉴 포스터 부착', 1, 6);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '이번달 프로모션 행사 홍보물 부착', 1, 6);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 테이블 및 바닥 청소', '파트', '마감', 4, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 외부 청소', '기간', '2', 4, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 테이블, 의자 수거', '파트', '마감', 4, 5);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '우천시 파라솔 설치', 4, 5);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장지 재고량 점검', '기간', '3', 5, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '손 세정제 리필', '기간', '3', 5, 1);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 청소', '파트', '마감', 5, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 소독', '기간', '7', 5, 4);
-insert into manual_tasks(manual_task_seq, task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '환풍기 청소', '기간', '30', 5, 5);
-insert into manual_tasks(manual_task_seq, task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '대소변기 비데 및 센서점검', 5, 5);
-
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '아이스 컵 재고량 점검', '기간', '2', 2, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '비품재고현황표 작성', '기간', '30', 2, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '원두 재고량 점검', '기간', '2', 2, 2);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '시럽류 유통기한 확인', '기간', '7', 2, 2);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '음식물 쓰레기 버리기', '파트', '마감', 2, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '행주 소독', '파트', '마감', 2, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '커피머신 윤활제 바르기', '기간', '3', 2, 5);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '냉장고 성에 제거', '기간', '14', 2, 5);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '영수증 용지 재고 확인', '기간', '2', 3, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '행사 상품 재고 확인', '파트', '마감', 3, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '현금 시재 확인', '파트', '미들', 3, 3);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '은행에서 잔돈 교환', 3, 3);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '카운터 선반 닦기', '파트', '마감', 3, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, 'POS기 먼지 제거', '파트', '마감', 3, 4);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '메뉴판 업데이트 및 점검' , 3, 5);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, 'POS기 프로그램 업데이트', 3, 5);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '셀프 바 빨대 재고량 확인', '파트', '오픈', 1, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '셀프 바 시럽 채우기', '기간', '2', 1, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '바닥 쓸기', '파트', '마감', 1, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '바닥 닦기', '파트', '마감', 1, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '에어컨 필터 교체', '기간', '365', 1, 5);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테이블 및 좌석 점검', '파트', '마감', 1, 5);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '시즌별 메뉴 포스터 부착', 1, 6);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '이번달 프로모션 행사 홍보물 부착', 1, 6);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 테이블 및 바닥 청소', '파트', '마감', 4, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 외부 청소', '기간', '2', 4, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 테이블, 의자 수거', '파트', '마감', 4, 5);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '우천시 파라솔 설치', 4, 5);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장지 재고량 점검', '기간', '3', 5, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '손 세정제 리필', '기간', '3', 5, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 청소', '파트', '마감', 5, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 소독', '기간', '7', 5, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '환풍기 청소', '기간', '30', 5, 5);
+insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '대소변기 비데 및 센서점검', 5, 5);
 
 
 -- 일일업무 레코드
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '오픈', 17, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '오픈', 1, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 1, '파트', '오픈', 3, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '미들', 11, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 1, '개인', 'yunseok', 7, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '미들', 29, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 5, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 1, '파트', '마감', 10, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 19, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 22, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 25, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/06', 0, '파트', '마감', 31, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 0, '파트', '오픈', 17, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 0, '파트', '오픈', 2, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 1, '파트', '오픈', 4, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 0, '파트', '미들', 11, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 1, '개인', 'yunseok', 8, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 0, '파트', '미들', 32, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 0, '파트', '마감', 6, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 0, '파트', '마감', 13, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/07', 1, '파트', '마감', 20, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, '파라솔 상태 점검', '2018/05/07', 0, '파트', '마감', null, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '오픈', 17, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '오픈', 12, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, '연진이 피카츄 생일케이크 사오기',  '2018/05/11', 1, '개인', 'yunjin', null, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '오픈', 24, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 1, '파트', '미들', 21, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '미들', 34, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '미들', 15, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 1, '파트', '마감', 21, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '마감', 19, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null,  '2018/05/11', 0, '파트', '마감', 16, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, '근무태만 반성문 작성해오기',  '2018/05/11', 1, '개인', 'taehun', null, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 1, '파트', '오픈', 12, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 0, '파트', '오픈', 16, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 1, '개인', 'yunseok', null, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 0, '파트', '미들', 1, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 1, '파트', '미들', 3, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 0, '파트', '미들', 17, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, '레몬청 만들기', '2018/05/08', 0, '개인', 'chanyoung', null, 'chanyoung', '주찬영', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 1, '파트', '마감', 23, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 0, '파트', '마감', 32, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/08', 1, '개인', 'taehun', null, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 0, '파트', '오픈', 17, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 1, '파트', '오픈', 30, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 0, '파트', '오픈', 33, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 1, '개인', 'yunjin', 34, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 0, '파트', '미들', 26, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 1, '파트', '미들', 9, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, '보건증 갱신', '2018/05/09', 0, '개인', 'yunseok', null, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 1, '개인', 'chanyoung', null, 'chanyoung', '주찬영', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 1, '파트', '마감', 22, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/09', 0, '파트', '마감', 25, 'taehun', '김태훈', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 0, '파트', '오픈', 24, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 1, '파트', '오픈', 33, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 0, '파트', '오픈', 8, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, '신메뉴 팝업 제작', '2018/05/10', 1, '개인', 'yunjin', null, 'yunjin', '김연진', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 0, '파트', '미들', 1, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 1, '파트', '미들', 3, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 0, '파트', '미들', 13, 'yunseok', '장윤석', 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 1, '파트', '마감', 14, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 0, '파트', '마감', 19, null, null, 'yunyoung', 1);
-insert into daily_tasks (daily_task_seq, input_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, assigner_id, branch_seq) values(daily_task_seq.nextval, null, '2018/05/10', 1, '개인', 'taehun', null, null, null, 'yunyoung', 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/15',	0,	'파트',	'오픈',	17,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'아이스 컵 재고량 점검',	'2018/05/15',	1,	'파트',	'오픈',	1,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'원두 재고량 점검',	'2018/05/15',	1,	'파트',	'오픈',	3,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'현금 시재 확인',	'2018/05/15',	0,	'파트',	'미들',	11,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'커피머신 윤활제 바르기',	'2018/05/15',	1,	'개인',	'yunseok',	7,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'화장지 재고량 점검',	'2018/05/15',	0,	'파트',	'미들',	29,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'음식물 쓰레기 버리기',	'2018/05/15',	0,	'파트',	'마감',	5,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'행사 상품 재고 확인',	'2018/05/15',	1,	'파트',	'마감',	10,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'바닥 쓸기',	'2018/05/15',	0,	'파트',	'마감',	19,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'테이블 및 좌석 점검',	'2018/05/15',	0,	'파트',	'마감',	22,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'테라스 테이블 및 바닥 청소',	'2018/05/15',	0,	'파트',	'마감',	25,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'화장실 청소',	'2018/05/15',	0,	'파트',	'마감',	31,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/16',	0,	'파트',	'오픈',	17,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'비품재고현황표 작성',	'2018/05/16',	0,	'파트',	'오픈',	2,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'시럽류 유통기한 확인',	'2018/05/16',	1,	'파트',	'오픈',	4,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'현금 시재 확인',	'2018/05/16',	0,	'파트',	'미들',	11,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'냉장고 성에 제거',	'2018/05/16',	1,	'개인',	'yunseok',	8,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'화장실 소독',	'2018/05/16',	0,	'파트',	'미들',	32,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'행주 소독',	'2018/05/16',	0,	'파트',	'마감',	6,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'카운터 선반 닦기',	'2018/05/16',	0,	'파트',	'마감',	13,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'바닥 닦기',	'2018/05/16',	1,	'파트',	'마감',	20,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'파라솔 상태 점검',	'2018/05/16',	0,	'파트',	'마감',	null,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'은행에서 잔돈 교환',	'2018/05/17',	1,	'파트',	'오픈',	12,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'POS기 프로그램 업데이트',	'2018/05/17',	0,	'파트',	'오픈',	16,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'블루투스 스피커 점검',	'2018/05/17',	1,	'개인',	'yunseok',	null,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'아이스 컵 재고량 점검',	'2018/05/17',	0,	'파트',	'미들',	1,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'원두 재고량 점검',	'2018/05/17',	1,	'파트',	'미들',	3,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/17',	0,	'파트',	'미들',	17,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'레몬청 만들기',	'2018/05/17',	0,	'개인',	'chanyoung',	null,	'chanyoung',	'주찬영',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'시즌별 메뉴 포스터 부착',	'2018/05/17',	1,	'파트',	'마감',	23,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'화장실 소독',	'2018/05/17',	0,	'파트',	'마감',	32,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'테라스 테이블, 의자 수거',	'2018/05/17',	1,	'개인',	'마감',	27,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/18',	0,	'파트',	'오픈',	17,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'손 세정제 리필',	'2018/05/18',	1,	'파트',	'오픈',	30,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'환풍기 청소',	'2018/05/18',	0,	'파트',	'오픈',	33,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'대소변기 비데 및 센서점검',	'2018/05/18',	1,	'개인',	'yunjin',	34,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'테라스 외부 청소',	'2018/05/18',	0,	'파트',	'미들',	26,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'냉장고 성에 제거',	'2018/05/18',	1,	'파트',	'미들',	9,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'보건증 갱신',	'2018/05/18',	0,	'개인',	'yunseok',	null,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'메뉴판 업데이트 및 점검',	'2018/05/18',	1,	'개인',	'chanyoung',	15,	'chanyoung',	'주찬영',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'테이블 및 좌석 점검',	'2018/05/18',	1,	'파트',	'마감',	22,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'테라스 테이블 및 바닥 청소',	'2018/05/18',	0,	'파트',	'마감',	25,	'taehun',	'김태훈',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'이번달 프로모션 행사 홍보물 부착',	'2018/05/19',	0,	'파트',	'오픈',	24,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'환풍기 청소',	'2018/05/19',	1,	'파트',	'오픈',	33,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'냉장고 성에 제거',	'2018/05/19',	0,	'파트',	'오픈',	8,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'신메뉴 팝업 제작',	'2018/05/19',	1,	'개인',	'yunjin',	null,	'yunjin',	'김연진',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'아이스 컵 재고량 점검',	'2018/05/19',	0,	'파트',	'미들',	1,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'원두 재고량 점검',	'2018/05/19',	1,	'파트',	'미들',	3,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'카운터 선반 닦기',	'2018/05/19',	0,	'파트',	'미들',	13,	'yunseok',	'장윤석',	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'POS기 먼지 제거',	'2018/05/19',	1,	'파트',	'마감',	14,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'바닥 쓸기',	'2018/05/19',	0,	'파트',	'마감',	19,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'야간개장 준비',	'2018/05/19',	1,	'개인',	'마감',	null,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/20',	0,	'파트',	'오픈',	17,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'은행에서 잔돈 교환',	'2018/05/20',	0,	'파트',	'오픈',	12,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'연진이 피카츄 생일케이크 사오기',	'2018/05/20',	1,	'개인',	'yunjin',	null,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'이번달 프로모션 행사 홍보물 부착',	'2018/05/20',	0,	'파트',	'오픈',	24,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'에어컨 필터 교체',	'2018/05/20',	1,	'파트',	'미들',	21,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'대소변기 비데 및 센서점검',	'2018/05/20',	0,	'파트',	'미들',	34,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'메뉴판 업데이트 및 점검',	'2018/05/20',	0,	'파트',	'미들',	15,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'에어컨 필터 교체',	'2018/05/20',	1,	'파트',	'마감',	21,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'바닥 쓸기',	'2018/05/20',	0,	'파트',	'마감',	19,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'POS기 프로그램 업데이트',	'2018/05/20',	0,	'파트',	'마감',	16,	null,	null,	1	);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'근무태만 반성문 작성해오기',	'2018/05/20',	1,	'개인',	'taehun',	null,	null,	null,	1	);
 
-
+--커밋하실건가요?
+commit?

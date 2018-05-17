@@ -2,63 +2,74 @@ package com.itss.matrix.model;
 
 public class ManualVO {
 	/**member data*/
-	private int manualTasksSeq;
-	private String task;
+	private int manualTaskSeq;
+	private String manualTask;
 	private String repeatType;
 	private String repeatDetail;
 	private String spaceType;
 	private String taskType;
 	
-	/**constructor: null값 있는 경우*/
-	public ManualVO(int manualTasksSeq, String task, String spaceType, String taskType) {
-		setManualTasksSeq(manualTasksSeq);
-		setTask(task);
+	/**constructor: 반복 기준 없는 업무*/
+	public ManualVO(int manualTaskSeq, String manualTask, String spaceType, String taskType) {
+		setManualTaskSeq(manualTaskSeq);
+		setManualTask(manualTask);
 		setSpaceType(spaceType);
 		setTaskType(taskType);
 	}
 
-	/**constructor: null값 없는 경우*/
-	public ManualVO(int manualTasksSeq, String task, String repeatType, String repeatDetail, String spaceType, String taskType) {
-		this(manualTasksSeq, task, spaceType, taskType);
+	/**constructor: 반복 기준 있는 업무*/
+	public ManualVO(int manualTasksSeq, String manualTask, String repeatType, String repeatDetail, String spaceType, String taskType) {
+		this(manualTasksSeq, manualTask, spaceType, taskType);
 		setRepeatType(repeatType);
 		setRepeatDetail(repeatDetail);
 	}
 
+	
 	/**get(), set()*/
-	public int getManualTasksSeq() {
-		return manualTasksSeq;
+	public int getManualTaskSeq() {
+		return manualTaskSeq;
 	}
-	public String getTask() {
-		return task;
+
+	public String getManualTask() {
+		return manualTask;
 	}
+
 	public String getRepeatType() {
 		return repeatType;
 	}
+
 	public String getRepeatDetail() {
 		return repeatDetail;
 	}
+
 	public String getSpaceType() {
 		return spaceType;
 	}
+
 	public String getTaskType() {
 		return taskType;
 	}
 
-	private void setManualTasksSeq(int manualTasksSeq) {
-		this.manualTasksSeq = manualTasksSeq;
+	private void setManualTaskSeq(int manualTaskSeq) {
+		this.manualTaskSeq = manualTaskSeq;
 	}
-	private void setTask(String task) {
-		this.task = task;
+
+	private void setManualTask(String manualTask) {
+		this.manualTask = manualTask;
 	}
+
 	private void setRepeatType(String repeatType) {
 		this.repeatType = repeatType;
 	}
+
 	private void setRepeatDetail(String repeatDetail) {
 		this.repeatDetail = repeatDetail;
 	}
+
 	private void setSpaceType(String spaceType) {
 		this.spaceType = spaceType;
 	}
+
 	private void setTaskType(String taskType) {
 		this.taskType = taskType;
 	}
@@ -66,19 +77,20 @@ public class ManualVO {
 	/**toString()*/
 	@Override
 	public String toString() {
-		return "ManualVO [manualTasksSeq=" + manualTasksSeq + ", task=" + task + ", repeatType=" + repeatType
+		return "ManualVO [manualTaskSeq=" + manualTaskSeq + ", manualTask=" + manualTask + ", repeatType=" + repeatType
 				+ ", repeatDetail=" + repeatDetail + ", spaceType=" + spaceType + ", taskType=" + taskType + "]";
 	}
 
+	
+	/**equals()*/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + manualTasksSeq;
+		result = prime * result + manualTaskSeq;
 		return result;
 	}
 
-	/**equals()*/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,10 +100,11 @@ public class ManualVO {
 		if (getClass() != obj.getClass())
 			return false;
 		ManualVO other = (ManualVO) obj;
-		if (manualTasksSeq != other.manualTasksSeq)
+		if (manualTaskSeq != other.manualTaskSeq)
 			return false;
 		return true;
 	}
-
+	
+	
 	
 }
