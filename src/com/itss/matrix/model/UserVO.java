@@ -26,10 +26,11 @@ public class UserVO {
 		setAddressCity(addressCity);
 		setAddressGu(addressGu);
 		setAddressDong(addressDong);
+		setStatus(status);
 		setProfilePhoto(profilePhoto);
 	}
-	/*탈퇴*/
 
+	//set은
 	public String getUserId() {
 		return userId;
 	}
@@ -78,7 +79,7 @@ public class UserVO {
 		return profilePhoto;
 	}
 
-	private void setUserId(String userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -86,39 +87,43 @@ public class UserVO {
 		this.pw = pw;
 	}
 
-	private void setPhoneNum(String phoneNum) {
+	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
 
-	private void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	private void setBirth(String birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 
-	private void setGender(String gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	private void setAddressCity(String addressCity) {
+	public void setAddressCity(String addressCity) {
 		this.addressCity = addressCity;
 	}
 
-	private void setAddressGu(String addressGu) {
+	public void setAddressGu(String addressGu) {
 		this.addressGu = addressGu;
 	}
 
-	private void setAddressDong(String addressDong) {
+	public void setAddressDong(String addressDong) {
 		this.addressDong = addressDong;
 	}
 
-	private void setProfilePhoto(String profilePhoto) {
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public void setProfilePhoto(String profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
 
@@ -154,6 +159,4 @@ public class UserVO {
 				+ addressGu + ", addressDong=" + addressDong + ", status=" + status + ", profilePhoto=" + profilePhoto
 				+ "]";
 	}
-	
-	/*구현중*/
 }
