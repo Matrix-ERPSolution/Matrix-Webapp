@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
-public class UserDAO_yunjin {
+public class UserDAO {
 	
 /*로그인 + 현재 비밀번호 일치여부 검사(같은 쿼리문)*/
 public boolean login(String userId, String pw) {
