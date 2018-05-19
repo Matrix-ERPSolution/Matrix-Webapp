@@ -52,19 +52,19 @@
 	</update>
 
 	<select id="getAdminSlideInfo" parameterType="String" resultType="java.util.Map">
-		select  u.profile_photo, b.branch_name, a.branch_seq, u.name, 
-		from users u, admins a, branches b
-		where u.user_id= #{userId}
-		and u.user_id=a.admin_id
-		and a.branch_seq=b.branch_seq
-	</select>
-
-	<select id="getStaffSlideInfo" parameterType="String" resultType="java.util.Map">
-		select u.name, u.profile_photo, s.branch_seq, b.branch_name
+		select u.profile_photo, b.branch_name, u.name
 		from users u, staffs s, branches b
 		where u.user_id= #{userId}
 		and u.user_id=s.staff_id
 		and s.branch_seq=b.branch_seq
+	</select>
+
+	<select id="getStaffSlideInfo" parameterType="String" resultType="java.util.Map">
+		select u.profile_photo, b.branch_name, u.name
+		from users u, admins a, branches b
+		where u.user_id= #{userId}
+		and u.user_id=a.admin_id
+		and a.branch_seq=b.branch_seq
 	</select>
 	
 	<update id="removeUser"  parameterType="java.util.Map">
