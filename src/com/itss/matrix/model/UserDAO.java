@@ -132,7 +132,7 @@ public class UserDAO {
 	/*아이디에 해당하는 휴대폰 번호 보기*/
 	public String getUserPhoneNum(String userId){
 		SqlSession session = sqlSessionFactory.openSession();
-		String userPhoneNum="";
+		String userPhoneNum=null;
 		try {
 			//session.select...
 			userPhoneNum=session.selectOne("userMapper.getUserPhoneNum", userId);
@@ -251,31 +251,30 @@ public class UserDAO {
 		//주의) staffs, branches와 겹치는 것 있음
 	public Map<String, String> getAdminSlideInfo(String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, String> map = null;
-		
+		Map<String, String> input = null;
 		try {
-			//session.select...
+			input = session.selectOne("userMapper.getAdminSlideInfo", userId);
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
 
-		return map;
+		return input;
 	}
 	public Map<String, String> getStaffSlideInfo(String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, String> map = null;
+		Map<String, String> input = null;
 		
 		try {
-			//session.select...
+			input = session.selectOne("userMapper.getStaffSlideInfo", userId);
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
 
-		return map;
+		return input;
 	}
 	
 	/*탈퇴 - 연진*/

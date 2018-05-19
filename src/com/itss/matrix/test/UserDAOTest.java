@@ -34,9 +34,10 @@ public class UserDAOTest {
 		/*비밀번호 변경*/
 			//dao.setPw("newnew","tester01","tester"); //기능 ok
 		/*프로필사진, 속한 지점, 회원인증유형, 이름 보기--슬라이드용*/		
-			
+			//System.out.println(dao.getAdminSlideInfo("yunyoung")); //기능 ok
+			//System.out.println(dao.getStaffSlideInfo("yunjin")); //기능 ok
 		/*탈퇴*/
-			//dao.removeUser("yunjin", "yunjin1234"); //기능 ok
+			//dao.removeUser("yunjin", "yunjin1234"); //기능ok
 			//dao.removeUser("chulsoo", "chulsoo1234"); //이미 status=0인 레코드는 아무것도 안바뀜
 		System.out.println("\nend");
 	}
