@@ -20,7 +20,7 @@
 	</select>
 	
 	<update id="resetPw" parameterType="java.util.Map">
-		update users set pw=#{newPw} where user_id=#{oldPw}
+		update users set pw=#{newPw} where user_id=#{userId}
 	</update>
 	
 	<select id="getUserPhoneNum" parameterType="String" resultType="String">

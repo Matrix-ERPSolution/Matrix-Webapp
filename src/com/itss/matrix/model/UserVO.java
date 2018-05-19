@@ -21,6 +21,10 @@ public class UserVO {
 		
 	}
 	/*탈퇴*/
+
+	public String getUserId() {
+		return userId;
+	}
 	
 	/*구현중*/
 }

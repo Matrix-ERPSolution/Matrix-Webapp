@@ -2,6 +2,7 @@ package com.itss.matrix.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -25,21 +26,24 @@ public class UserDAO {
 	
 	/*로그인 + 현재 비밀번호 일치여부 검사 + 아이디저장(같은 쿼리문)*/
 	public boolean login(String userId, String pw) {
+		Map<String, String> input = new HashMap<>();
+		input.put("userId", userId);
+		input.put("pw", pw);
 		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			//session.select...
+		try { 
+			if (session.selectOne("userMapper.login", input) == userId ) {
+				return true;
+			}
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-		
 		return false;
 	}
 		
 	/*회원가입*/
-	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
+	/*public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
@@ -50,23 +54,37 @@ public class UserDAO {
 			session.close();
 		}
 		
-	}
-	/*public void addUser(UserVO vo) {
-	
 	}*/
+	public void addUser(UserVO vo) {
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			if (vo.getUserId() == null) {
+				session.insert("userMapper.addUser", vo);
+				session.commit();
+			} else {
+				//userId가 존재할 때
+			}
+		} catch (Exception e) {
+			
+		} finally {
+			session.close();
+		}
+	}
 	
 	/*휴대폰 번호 중복 검사*/
 	public boolean isUserPhoneNum(String phoneNum){
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			//session.select...
+			if (session.selectOne("userMapper.isUserPhoneNum", phoneNum) == phoneNum ) {
+				return true;
+			}
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-
 		return false;
 	}
 	
@@ -75,29 +93,35 @@ public class UserDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			//session.select...
+			if (session.selectOne("userMapper.isUserId", userId) == userId ) {
+				return true;
+			}
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-
 		return false;
 	}
 	
 	/*비밀번호 재설정*/
 	public void resetPw(String pw, String userId){
 		SqlSession session = sqlSessionFactory.openSession();
-		
+		Map<String, String> input = new HashMap<>();
+		input.put("Newpw", pw);
+		input.put("userId", userId);
 		try {
-			//session.select...
+			if (session.selectOne("userMapper.isUserId", userId) == userId ) {
+			session.update("userMapper.resetPw" , input);
+			session.commit();
+			} else {
+				//userId가 일치하지 않을 때
+			}
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
-		}
-
-	
+		}	
 	}
 	/*연진 여기까지*/
 	
@@ -222,18 +246,18 @@ public class UserDAO {
 		return map;
 	}
 	
-	/*탈퇴*/
+	/*탈퇴 - 연진*/
 	public void removeUser(String userId, String pw) {
+		Map<String, String> input = new HashMap<>();
+		input.put("userId", userId);
+		input.put("pw", pw);
 		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			//session.select...
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
+		if (session.update("userMapper.removeUser" , input) == 1) {
+			session.commit();
+		} else {
+			//removeUser에서 user-status가 0으로 업데이트 안됐을 때
 		}
-
+		session.close();
 	}
 	
 	
