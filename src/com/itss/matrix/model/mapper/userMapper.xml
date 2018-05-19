@@ -8,7 +8,7 @@
 	<insert id="addUser" parameterType="com.itss.matrix.model.UserVO">
 		insert into users 
 		(user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) 
-		values ( #{userId}, #{pw}, #{phoneNum}, #{name}, #{birth}, #{gender}, #{email}, #{addressCity}, #{addressGu}, #{addressDong}, 1, #{profilePhto})
+		values ( #{userId}, #{pw}, #{phoneNum}, #{name}, #{birth}, #{gender}, #{email}, #{addressCity}, #{addressGu}, #{addressDong}, 1, #{profilePhoto})
 	</insert>
 	
 	<select id="isUserPhoneNum" parameterType="String" resultType="String">

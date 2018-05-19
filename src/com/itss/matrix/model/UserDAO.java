@@ -99,6 +99,7 @@ public class UserDAO {
 
 	
 	}
+	/*연진 여기까지*/
 	
 	/*아이디에 해당하는 휴대폰 번호 보기*/
 	public String getUserPhoneNum(String userId){
@@ -174,6 +175,7 @@ public class UserDAO {
 		}
 
 	}//기본 회원정보 변경에 포함되어있으나 일단 엑셀에 있어서 안지웠음
+	/*태훈 여기까지*/
 	
 	/*비밀번호 변경*/
 	public void setPw(String userId, String pw){
