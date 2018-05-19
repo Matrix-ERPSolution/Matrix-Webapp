@@ -38,7 +38,7 @@
 	</update>
 	
 	<select id="getUserInfo" parameterType="String" resultType="java.util.Map">
-		select name, to_char(birth, 'yyyy/mm/dd'), email, address_city||' '||address_gu||' '||address_dong as address, phone_num, profile_photo 
+		select name, to_char(birth, 'yyyy/mm/dd') as birth, email, address_city||' '||address_gu||' '||address_dong as address, phone_num, profile_photo 
 		from users 
 		where user_id=#{userId}
 	</select>
@@ -48,7 +48,7 @@
 	</update>
 	
 	<update id="setPw"  parameterType="java.util.Map">
-		update users set pw=#{newPw} where user_id=#{userID} and pw=#{pw}
+		update users set pw=#{newPw} where user_id=#{userId} and pw=#{pw}
 	</update>
 
 	<select id="getAdminSlideInfo" parameterType="String" resultType="java.util.Map">
