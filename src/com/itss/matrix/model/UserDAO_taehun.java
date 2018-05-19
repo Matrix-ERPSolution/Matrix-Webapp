@@ -4,68 +4,74 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * @author COM
- *
  */
 public class UserDAO_taehun {
-	/**로그인 처리: 입력받은 id, pw를 users의 값과 조회 */
-	public boolean getLoginUser(String id, String pw){
+	/**로그인 select user_id from users where user_id=? And pw=?; */
+	public boolean getLoginUser(String userId, String pw){
 		return false;
 	}
 	
-	/**회원가입 처리:  */
-	public boolean addUser(String id, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status, String profilePhoto) {
+	/**회원가입 insert into users (user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ? );  */
+	public boolean addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status, String profilePhoto) {
 		return false;
 	}
 	
-	/**회원정보 변경 */
-	public boolean setUser(String id, String email, String addressCity, String addressGu, String addressDong, String phoneNum){
+	/**회원정보 변경 update users set email=?, address_city=?, address_gu=?, address_dong=?, phone_num=? where user_id=?;
+ */
+	public boolean setUser(String userId, String email, String addressCity, String addressGu, String addressDong, String phoneNum){
 		return false;
 	}
 	
-	/**ID 찾기 */
-	public Map<String, String> findId(String name, String phoneNum){
+	/**아이디 유무 검사 select count(user_id) from users where user_id = ?; */
+	public Map<String, String> finduserId(String name, String phoneNum){
 		return null;
 	}
 	
-	/**pw 찾기 */
-	public Map<String, String> findPw(String id, String phoneNum){
+	/**아이디에 해당하는 휴대폰 번호 보기	select phone_num from users where user_id=?; */
+	public Map<String, String> getPhoneNUm(String userId, String phoneNum){
 		return null;
 	}
 	
-	/**pw 재설정 */
-	public boolean setNewPw(String id, String pw){
+	
+	/**비밀번호 재확인 검사	select count(pw) from users where user_id=? and pw=?; */
+	public boolean findPw(String userId, String phoneNum){
+		return false;
+	}
+	
+	/**비밀번호 재설정 update users set pw=? where user_id=?; */
+	public boolean setNewPw(String userId, String pw){
 		return false;
 	}
 		
-	/**ID 중복 검사: 입력한 ID가 users에 이미 존재하는지. */
-	public boolean getDuplicationId(String id) {
+	/**아이디 중복 검사 select count(user_id) from users where user_id = ?; */
+	public boolean isExistUserId(String userId) {
 		return false;
 	}
 	
-	/**휴대폰 번호 중복 검사 */
-	public boolean getDuplicationPhone(String phoneNum) {
+	/**휴대폰 번호 중복 검사 select count(phone_num) from users where phone_num=?; */
+	public boolean isExistPhoneNum(String phoneNum) {
 		return false;
 	}
 	
-	/**인증 요청:직원 */
-	public boolean getCertificationStaff(String id, int branchSeq, String joinDate, String leaveDate, String bankName, String accountNum, String resumeFile, String healthFile, String bankFile){
+	/**직원 회원 인증 요청 insert into staffs(staff_seq, staff_id, branch_seq, bank_name, account_num, resume_file, health_file, bank_file) values(staff_seq.nextval, ?, ?, ?, ?, ?, ?, ?); */
+	public boolean getCertificationStaff(String userId, int branchSeq, String joinDate, String leaveDate, String bankName, String accountNum, String resumeFile, String healthFile, String bankFile){
 		return false;
 	}
 	
-	/**인증 요청:관리자 */
-	public boolean getCertificationAdmin(String id, String branchName){
+	/**관리자 회원 인증 요청	 insert into admins(admin_seq, admin_id, branch_seq) values(admin_seq.nextval, ?, (select branch_seq from branches where branch_name=?));  */
+	public boolean getCertificationAdmin(String userId, String branchName){
 		return false;
 	}
 	
-	/**휴대폰번호 유효성 검사 */
-	public boolean getValidationPhone(String phoneNum){
+/*	여기서 처리할 일이 아님. 서블릿 단에서 사용할 예정.
+ * *//**휴대폰번호 유효성 검사 *//*
+	public boolean getValuserIdationPhone(String phoneNum){
 		return false;
 	}
 	
-	/**이메일주소 유효성 검사 */
-	public boolean getValidationEmail(String email){
+	*//**이메일주소 유효성 검사 *//*
+	public boolean getValuserIdationEmail(String email){
 		return false;
 	}
-
+*/
 }
