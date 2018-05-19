@@ -38,7 +38,7 @@
 	</update>
 	
 	<select id="getUserInfo" parameterType="String" resultType="java.util.Map">
-		select name, birth, email, address_city||' '||address_gu||' '||address_dong as address, phone_num, profile_photo 
+		select name, to_char(birth, 'yyyy/mm/dd'), email, address_city||' '||address_gu||' '||address_dong as address, phone_num, profile_photo 
 		from users 
 		where user_id=#{userId}
 	</select>
