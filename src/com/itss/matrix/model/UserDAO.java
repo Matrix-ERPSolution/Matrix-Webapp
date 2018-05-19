@@ -108,7 +108,7 @@ public class UserDAO {
 	public void resetPw(String pw, String userId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> input = new HashMap<>();
-		input.put("Newpw", pw);
+		input.put("newPw", pw);
 		input.put("userId", userId);
 		try {
 			if (session.selectOne("userMapper.isUserId", userId) == userId ) {
