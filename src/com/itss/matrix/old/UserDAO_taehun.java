@@ -1,4 +1,4 @@
-package com.itss.matrix.model;
+package com.itss.matrix.old;
 
 import java.util.Collection;
 import java.util.Map;
