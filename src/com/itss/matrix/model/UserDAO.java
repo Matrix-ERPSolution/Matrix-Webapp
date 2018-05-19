@@ -77,7 +77,8 @@ public class UserDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			if (session.selectOne("userMapper.isUserPhoneNum", phoneNum) == phoneNum ) {
+			String str = (String) session.selectOne("userMapper.isUserPhoneNum", phoneNum);
+			if (str.equals(phoneNum)) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -93,7 +94,8 @@ public class UserDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			if (session.selectOne("userMapper.isUserId", userId) == userId ) {
+			String str = (String)session.selectOne("userMapper.isUserId", userId);
+			if (str.equals(userId)) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -111,8 +113,9 @@ public class UserDAO {
 		input.put("newPw", pw);
 		input.put("userId", userId);
 		try {
-			if (session.selectOne("userMapper.isUserId", userId) == userId ) {
-			session.update("userMapper.resetPw" , input);
+			String str = (String)session.selectOne("userMapper.isUserId", userId);
+			if (str.equals(userId)) {
+			session.update("userMapper.resetPw", input);
 			session.commit();
 			} else {
 				//userId가 일치하지 않을 때
