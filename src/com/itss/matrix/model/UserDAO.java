@@ -24,70 +24,70 @@ public class UserDAO {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	/*로그인 + 현재 비밀번호 일치여부 검사 + 아이디저장(같은 쿼리문)*/
-	public boolean login(String userId, String pw) {
-		Map<String, String> input = new HashMap<>();
-		input.put("userId", userId);
-		input.put("pw", pw);
-		SqlSession session = sqlSessionFactory.openSession();
-		try { 
-			if (session.selectOne("userMapper.login", input) == userId ) {
-				return true;
-			}
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
-		}
-		return false;
-	}
-		
+	 /*로그인 + 현재 비밀번호 일치여부 검사 + 아이디저장(같은 쿼리문)*/
+	   public boolean login(String userId, String pw) {
+	      boolean result=false;
+	      Map<String, String> input = new HashMap<>();
+	      input.put("userId", userId);
+	      input.put("pw", pw);
+	      SqlSession session = sqlSessionFactory.openSession();
+	      try {
+	         String str = session.selectOne("userMapper.login", input);
+	         if (str.equals(userId)) {
+	            result = true;
+	         }
+	      } catch (Exception e) {
+	         
+	      } finally {
+	         session.close();
+	      }
+	      return result;
+	   }
+	      
+
 	/*회원가입*/
-	/*public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			//session.select...
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
-		}
-		
-	}*/
-	public void addUser(UserVO vo) {
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			if (vo.getUserId() == null) {
-				session.insert("userMapper.addUser", vo);
-				session.commit();
-			} else {
-				//userId가 존재할 때
-			}
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
-		}
-	}
+	   /*public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
+	      SqlSession session = sqlSessionFactory.openSession();
+	      
+	      try {
+	         //session.select...
+	      } catch (Exception e) {
+	         
+	      } finally {
+	         session.close();
+	      }
+	      
+	   }*/
+	   public void addUser(UserVO vo) {
+	      SqlSession session = sqlSessionFactory.openSession();
+	      
+	      try {
+	         session.insert("userMapper.addUser", vo);
+	         session.commit();
+	      } catch (Exception e) {
+	         
+	      } finally {
+	         session.close();
+	      }
+	   }
 	
-	/*휴대폰 번호 중복 검사*/
-	public boolean isUserPhoneNum(String phoneNum){
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			String str = (String) session.selectOne("userMapper.isUserPhoneNum", phoneNum);
-			if (str.equals(phoneNum)) {
-				return true;
-			}
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
-		}
-		return false;
-	}
+	   /*휴대폰 번호 중복 검사*/
+	   public boolean isUserPhoneNum(String phoneNum){
+	      SqlSession session = sqlSessionFactory.openSession();
+	      
+	      try {
+	         String result = session.selectOne("userMapper.isUserPhoneNum", phoneNum); 
+	         if (result.equals(phoneNum)) {
+	            return true;
+	         }
+	      } catch (Exception e) {
+	         
+	      } finally {
+	         session.close();
+	      }
+	      return false;
+	   }
+	   
 	
 	/*아이디 중복 검사 + 아이디 유무 검사*/
 	public boolean isUserId(String userId) {
