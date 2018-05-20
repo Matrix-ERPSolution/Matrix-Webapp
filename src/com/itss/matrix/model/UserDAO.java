@@ -36,7 +36,7 @@ public class UserDAO {
 		try {
 			result = session.selectOne("userMapper.login", input).equals(userId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -55,7 +55,7 @@ public class UserDAO {
 			session.insert("userMapper.addUser", vo);
 			session.commit();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -69,7 +69,7 @@ public class UserDAO {
 		try {
 			result = session.selectOne("userMapper.isUserPhoneNum", phoneNum).equals(phoneNum);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -83,7 +83,7 @@ public class UserDAO {
 		try {
 			result = session.selectOne("userMapper.isUserId", userId).equals(userId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -104,7 +104,7 @@ public class UserDAO {
 				//userId가 일치하지 않을 때
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}	
@@ -117,7 +117,7 @@ public class UserDAO {
 		try {
 			userPhoneNum=session.selectOne("userMapper.getUserPhoneNum", userId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -135,7 +135,7 @@ public class UserDAO {
 				result=true;
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -160,7 +160,7 @@ public class UserDAO {
 				session.commit();
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -173,7 +173,7 @@ public class UserDAO {
 		try {
 			map= session.selectList("userMapper.getUserInfo", userId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -191,7 +191,7 @@ public class UserDAO {
 				session.commit();
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -213,7 +213,7 @@ public class UserDAO {
 				//input오류
 			}         
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -228,7 +228,7 @@ public class UserDAO {
 		try {
 			result = session.selectOne("userMapper.getAdminSlideInfo", userId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -241,7 +241,7 @@ public class UserDAO {
 		try {
 			result = session.selectOne("userMapper.getStaffSlideInfo", userId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
