@@ -70,12 +70,30 @@ public class DailyDAO {
 		}
 		return list;
 	}
-
+	
+	/** 업무 중복확인 */
+	public boolean isDailyTask(String dailyTask, String assignDate) {
+		boolean result=false;
+		Map<String, String> input = new HashMap<>();
+		input.put("dailyTask", dailyTask);
+		input.put("assignDate", assignDate);
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			if(session.selectOne("dailyMapper.isDailyTask", input) != null){
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
 	/** 업무 배정 */
 	public void addDailyTask(DailyVO vo) {
 		vo.setManualTaskSeq(new ManualDAO().getManualTaskSeq(vo.getDailyTask()));
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
 		try {
 			if (vo.getManualTaskSeq() == -1) {
 				sqlSession.insert("dailyMapper.addDailyTaskByInput", vo);
