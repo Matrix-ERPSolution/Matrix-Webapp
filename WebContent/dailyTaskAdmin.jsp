@@ -102,7 +102,7 @@ $(function(){
        
         if(dateText==(thisMonth+"월 "+thisDay+"일")) {
          $.ajax({
-          url : "todayTaskAdmin.jsp",
+          url : "assignTaskAdmin.jsp",
           data : {},
           success : function(result){
            $("#contents").html(result);
@@ -114,16 +114,6 @@ $(function(){
            date : {},
             success : function(result){
                $("#contents").html(result);
-            }
-        });
-        } else {
-        $.ajax({
-            url : "pastTaskAdmin.jsp", 
-            date : {},
-            success : function(result){
-               $("#contents").html(result);
-               $("#updateTask").hide();
-               $("#deleteTask").hide();
             }
         });
         }
