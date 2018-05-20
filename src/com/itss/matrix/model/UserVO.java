@@ -43,7 +43,7 @@ public class UserVO {
 		setAddressDong(addressDong);
 		setStatus(status);
 	}
-	//set은
+	//setPW만 private
 	public String getUserId() {
 		return userId;
 	}

@@ -4,7 +4,6 @@ import com.itss.matrix.model.UserDAO;
 import com.itss.matrix.model.UserVO;
 
 public class UserDAOTest {
-
 	public static void main(String[] args) {
 		UserDAO dao = new UserDAO();
 		/*로그인 + 현재 비밀번호 일치여부 검사 + 아이디저장(같은 쿼리문)*/
@@ -16,9 +15,9 @@ public class UserDAOTest {
 		/*회원가입*/
 			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));   //기능 ok
 			//dao.addUser("tester02", "tester", "01044556677", "테스터2", "2018/05/20", "M", "email2@email2.com", "서울시", "송파구", "문정동", 1, "profilePhoto2.png");	//기능 ok
-			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1)); 	//null항목을 안쓰면 오류	
-			//dao.addUser(new UserVO("tester02", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, null)); //기능ok, null 명시필요
-			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", null, null, null, 1, "profilePhoto2.png"));
+			//ao.addUser("tester03", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1); 	//null항목을 안써도 ok
+			//dao.addUser("tester02", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, null); //기능ok, null 명시필요
+			//dao.addUser("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", null, null, null, 1, "profilePhoto2.png");
 				//비기능-not null에 null값 입력시: cmd-선택된 레코드가 없습니다, console-org.apache.ibatis.exceptions.PersistenceException
 			//dao.addUser(new UserVO("yunjin", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));
 				//비기능-중복pk값 입력: cmd-선택된 레코드가 없습니다, console-java.sql.SQLException: ORA-00001: 무결성 제약 조건(HR.PK_USERS)에 위배됩니다
@@ -58,7 +57,7 @@ public class UserDAOTest {
 		/*현재 이름, 생년월일, 주소, 휴대폰번호, 프로필사진 보기*/
 			//System.out.println(dao.getUserInfo("taehun"));      //기능 ok (날짜 출력 양식 YYYY/MM/DD)
 			//System.out.println(dao.getUserInfo("dead")); //비기능: null 
-			//System.out.println(dao.getUserInfo(null)); //비기능: null
+			//ystem.out.println(dao.getUserInfo(null)); //비기능: null
 		/*프로필 사진 첨부*/
 			//dao.setProfilePhoto("newnewnew.jpg", "taehun");	//기능 ok
 			//dao.setProfilePhoto(null, "yunseok");   

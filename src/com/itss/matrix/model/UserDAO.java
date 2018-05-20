@@ -43,10 +43,14 @@ public class UserDAO {
 		return result;
 	}
 
-
 	/*회원가입*/
+	//전체 항목 NN
 	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status, String profilePhoto) {
 		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, status, profilePhoto));
+	}
+	//프로필사진 Null
+	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status) {
+		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, status));
 	}
 	public void addUser(UserVO vo) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -127,6 +131,7 @@ public class UserDAO {
 		}
 		return userPhoneNum;
 	}
+	
 	/*비밀번호 재확인 검사*/
 	public boolean isPw(String userId, String pw){
 		SqlSession session = sqlSessionFactory.openSession();
@@ -173,11 +178,11 @@ public class UserDAO {
 	}
 
 	/*현재 이름, 생년월일, 주소, 휴대폰번호, 프로필사진 보기*/
-	public Collection<Map<String, String>> getUserInfo(String userId){
+	public Map getUserInfo(String userId){
 		SqlSession session = sqlSessionFactory.openSession();
-		List<Map<String, String>> map = null;
+		Map map = null;
 		try {
-			map= session.selectList("userMapper.getUserInfo", userId);
+			map= session.selectOne("userMapper.getUserInfo", userId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -201,7 +206,6 @@ public class UserDAO {
 		} finally {
 			session.close();
 		}
-
 	}//기본 회원정보 변경에 포함되어있으나 일단 엑셀에 있어서 안지웠음
 
 	/*비밀번호 변경*/
@@ -222,7 +226,6 @@ public class UserDAO {
 		} finally {
 			session.close();
 		}
-
 	}
 
 	/*프로필사진, 속한 지점, 회원인증유형, 이름 보기--슬라이드용*/
@@ -259,13 +262,12 @@ public class UserDAO {
 		input.put("userId", userId);
 		input.put("pw", pw);
 		SqlSession session = sqlSessionFactory.openSession();
-		if (session.update("userMapper.removeUser" , input) == 1) {
+		if (session.update("userMapper.removeUser", input) == 1) {
 			session.commit();
 		} else {
 			//removeUser에서 user-status가 0으로 업데이트 안됐을 때
 		}
 		session.close();
 	}
-
 
 }
