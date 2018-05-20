@@ -43,4 +43,9 @@
 		delete daily_tasks 
 		where assign_date=#{assignDate} and assign_type=#{assignType} and assign_detail=#{assignDetail} and daily_task=#{dailyTask}
 	</delete>
+	<select id="isDailyTask" parameterType="java.util.Map" resultType="String">
+		select daily_task 
+		from daily_tasks 
+		where assign_date=#{assignDate} and daily_task=#{dailyTask}
+	</select>
 </mapper>

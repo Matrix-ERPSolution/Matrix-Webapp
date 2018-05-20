@@ -11,11 +11,11 @@ public class UserVO {
 	private String addressCity;
 	private String addressGu;
 	private String addressDong;
-	private int status;
+	private int status=-1;
 	private String profilePhoto;
 	
 	/*회원가입*/
-	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status, String profilePhoto) {
+	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
 		setUserId(userId);
 		setPw(pw);
 		setPhoneNum(phoneNum);
@@ -26,11 +26,10 @@ public class UserVO {
 		setAddressCity(addressCity);
 		setAddressGu(addressGu);
 		setAddressDong(addressDong);
-		setStatus(status);
 		setProfilePhoto(profilePhoto);
 	}
 	/*profilePhoto가 null일 때 회원가입*/
-	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status) {
+	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong) {
 		setUserId(userId);
 		setPw(pw);
 		setPhoneNum(phoneNum);
@@ -41,7 +40,6 @@ public class UserVO {
 		setAddressCity(addressCity);
 		setAddressGu(addressGu);
 		setAddressDong(addressDong);
-		setStatus(status);
 	}
 	//setPW만 private
 	public String getUserId() {

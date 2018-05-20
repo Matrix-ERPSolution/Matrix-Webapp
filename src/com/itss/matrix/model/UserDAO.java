@@ -26,7 +26,7 @@ public class UserDAO {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	/*로그인 + 현재 비밀번호 일치여부 검사 + 아이디저장(같은 쿼리문)*/
+	/*로그인 + 현재 비밀번호 일치여부 검사 + 비밀번호 재확인 검사(같은 쿼리문)*/
 	public boolean login(String userId, String pw) {
 		boolean result=false;
 		Map<String, String> input = new HashMap<>();
@@ -34,7 +34,9 @@ public class UserDAO {
 		input.put("pw", pw);
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			result = session.selectOne("userMapper.login", input).equals(userId);
+			if(session.selectOne("userMapper.login", input) != null){
+				result = true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -44,17 +46,11 @@ public class UserDAO {
 	}
 
 	/*회원가입*/
-	//전체 항목 NN
-	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status, String profilePhoto) {
-		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, status, profilePhoto));
-	}
-	//프로필사진 Null
-	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status) {
-		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, status));
+	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
+		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, profilePhoto));
 	}
 	public void addUser(UserVO vo) {
 		SqlSession session = sqlSessionFactory.openSession();
-
 		try {
 			if (vo.getProfilePhoto() != null) {
 				session.insert("userMapper.addUser", vo);
@@ -75,7 +71,9 @@ public class UserDAO {
 		boolean result = false;
 
 		try {
-			result = session.selectOne("userMapper.isUserPhoneNum", phoneNum).equals(phoneNum);
+			if(session.selectOne("userMapper.isUserPhoneNum", phoneNum) != null){
+				result = true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -89,7 +87,9 @@ public class UserDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		boolean result = false;
 		try {
-			result = session.selectOne("userMapper.isUserId", userId).equals(userId);
+			if(session.selectOne("userMapper.isUserId", userId) != null){
+				result = true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -99,17 +99,16 @@ public class UserDAO {
 	}
 
 	/*비밀번호 재설정*/
-	public void resetPw(String pw, String userId){
+	public void resetPw(String newPw, String userId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> input = new HashMap<>();
-		input.put("newPw", pw);
+		input.put("newPw", newPw);
 		input.put("userId", userId);
 		try {
-			if (session.selectOne("userMapper.isUserId", userId).equals(userId)) {
-				session.update("userMapper.resetPw", input);
+			if (session.update("userMapper.setPw", input) == 1) {
 				session.commit();
 			} else {
-				//userId가 일치하지 않을 때
+				// userId가 일치하지 않을 때
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,25 +131,6 @@ public class UserDAO {
 		return userPhoneNum;
 	}
 	
-	/*비밀번호 재확인 검사*/
-	public boolean isPw(String userId, String pw){
-		SqlSession session = sqlSessionFactory.openSession();
-		Map<String, String> input=new HashMap();
-		boolean result=false;
-		try {
-			input.put("userId", userId);
-			input.put("pw", pw);
-			if(session.selectOne("userMapper.isPw", input) != null) {
-				result=true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return result;
-	}
-
 	/*기본 회원정보 변경*/
 	public void setUserInfo(String birth, String email, String addressCity, String addressGu, String addressDong,  String phoneNum, String profilePhoto, String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -206,7 +186,7 @@ public class UserDAO {
 		} finally {
 			session.close();
 		}
-	}//기본 회원정보 변경에 포함되어있으나 일단 엑셀에 있어서 안지웠음
+	}//차후에 슬라이드메뉴에서 프로필사진 변경 기능 추가할 경우 사용
 
 	/*비밀번호 변경*/
 	public void setPw(String newPw, String userId, String pw){
@@ -216,7 +196,7 @@ public class UserDAO {
 		input.put("userId", userId);
 		input.put("pw", pw);
 		try {
-			if (session.update("userMapper.setPw", input) == 1){
+			if(session.selectOne("userMapper.login", input) != null && session.update("userMapper.setPw", input) == 1){
 				session.commit();
 			} else {
 				//input오류

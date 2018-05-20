@@ -15,7 +15,7 @@ public class UserDAOTest {
 		/*회원가입*/
 			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));   //기능 ok
 			//dao.addUser("tester02", "tester", "01044556677", "테스터2", "2018/05/20", "M", "email2@email2.com", "서울시", "송파구", "문정동", 1, "profilePhoto2.png");	//기능 ok
-			//ao.addUser("tester03", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1); 	//null항목을 안써도 ok
+			//ao.addUser("tester03", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1); 	//null항목을 안쓰면 안됨.
 			//dao.addUser("tester02", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, null); //기능ok, null 명시필요
 			//dao.addUser("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", null, null, null, 1, "profilePhoto2.png");
 				//비기능-not null에 null값 입력시: cmd-선택된 레코드가 없습니다, console-org.apache.ibatis.exceptions.PersistenceException
@@ -64,7 +64,7 @@ public class UserDAOTest {
 				//비기능: 예외 발생-org.apache.ibatis.exceptions.PersistenceEception, org.apache.ibatis.type.TypeException, java.sql.SQLException: 부적합한 열 유형
 				//'newProfilePhoto'에 null값을 매핑할 수 없어서 오류 발생:   profile_photo 컬럼: null 허용; sql 구문에는 문제 없음.   
 		/*비밀번호 변경*/
-			//dao.setPw("heyhey","tester01","newnew"); //기능 ok
+			//dao.setPw("newnew","tester01","heyhey"); //기능 ok
 			//dao.setPw("yunjin0000","yunjin","yunjin1234","moreParameter"); //비기능-매개인자 없음,부족, 초과: Exception
 		/*프로필사진, 속한 지점, 회원인증유형, 이름 보기--슬라이드용*/		
 			//System.out.println(dao.getAdminSlideInfo("yunyoung")); //기능 ok
