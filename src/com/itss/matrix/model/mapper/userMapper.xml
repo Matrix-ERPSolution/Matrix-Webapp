@@ -43,7 +43,7 @@
 	where user_id=#{userId}
 	</update>
 	
-	<update id="setUserInfoNotPhoto" parameterType="java.util.Map">
+	<update id="setUserInfoWithoutProfilePhoto" parameterType="java.util.Map">
 	update users 
 	set birth=#{newBirth}, email=#{newEmail}, address_city=#{newAddressCity}, address_gu=#{newAddressGu}, address_dong=#{newAddressDong}, phone_num=#{newPhoneNum}, profile_photo=null
 	where user_id=#{userId}
