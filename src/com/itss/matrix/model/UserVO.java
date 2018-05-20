@@ -29,7 +29,20 @@ public class UserVO {
 		setStatus(status);
 		setProfilePhoto(profilePhoto);
 	}
-
+	/*profilePhoto가 null일 때 회원가입*/
+	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status) {
+		setUserId(userId);
+		setPw(pw);
+		setPhoneNum(phoneNum);
+		setName(name);
+		setBirth(birth);
+		setGender(gender);
+		setEmail(email);
+		setAddressCity(addressCity);
+		setAddressGu(addressGu);
+		setAddressDong(addressDong);
+		setStatus(status);
+	}
 	//set은
 	public String getUserId() {
 		return userId;
