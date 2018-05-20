@@ -45,18 +45,9 @@ public class UserDAO {
 
 
 	/*회원가입*/
-	/*public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
-	      SqlSession session = sqlSessionFactory.openSession();
-
-	      try {
-	         //session.select...
-	      } catch (Exception e) {
-
-	      } finally {
-	         session.close();
-	      }
-
-	   }*/
+	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, int status, String profilePhoto) {
+		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, status, profilePhoto));
+	}
 	public void addUser(UserVO vo) {
 		SqlSession session = sqlSessionFactory.openSession();
 

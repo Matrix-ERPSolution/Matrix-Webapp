@@ -10,6 +10,7 @@ public class UserDAOTest {
 			//System.out.println(dao.login("chulsoo", "chulsoo1234"));   //기능 ok true
 		/*회원가입*/
 			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));   //기능 ok
+			//dao.addUser("tester02", "tester", "01044556677", "테스터2", "2018/05/20", "M", "email2@email2.com", "서울시", "송파구", "문정동", 1, "profilePhoto2.png");	//기능 ok
 		/*휴대폰 번호 중복 검사*/
 			//System.out.println(dao.isUserPhoneNum("01053710710")); //true, 기능 ok
 			//System.out.println(dao.isUserPhoneNum("01053710711")); //false, 기능 ok

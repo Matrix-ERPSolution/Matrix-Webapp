@@ -12,10 +12,10 @@ import java.util.Map;
 
 import com.itss.matrix.model.DailyVO;
 
-public class DailyDAO_old {
+public class DailyDAO_java {
 	private Connection conn;
 
-	public DailyDAO_old() throws ClassNotFoundException, SQLException {
+	public DailyDAO_java() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		String uri = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
 		String id = "hr";
