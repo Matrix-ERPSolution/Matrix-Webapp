@@ -52,8 +52,12 @@ public class UserDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 
 		try {
-			session.insert("userMapper.addUser", vo);
-			session.commit();
+			if (vo.getProfilePhoto() != null) {
+				session.insert("userMapper.addUser", vo);
+			} else {
+				session.insert("userMapper.addUserWithoutProfilePhoto", vo);
+			}
+			session.commit();	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -155,10 +159,12 @@ public class UserDAO {
 		map.put("newProfilePhoto", profilePhoto);
 		map.put("userId", userId);
 		try {
-			if(session.selectOne("userMapper.isUserId", userId).equals(userId)) {
+			if(profilePhoto != null) {
+				session.update("userMapper.setUserInfoNotPhoto", map);				
+			} else {
 				session.update("userMapper.setUserInfo", map);
-				session.commit();
 			}
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -207,7 +213,6 @@ public class UserDAO {
 		input.put("pw", pw);
 		try {
 			if (session.update("userMapper.setPw", input) == 1){
-				System.out.println();
 				session.commit();
 			} else {
 				//input오류

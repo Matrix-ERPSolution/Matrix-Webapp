@@ -16,9 +16,8 @@ public class UserDAOTest {
 		/*회원가입*/
 			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));   //기능 ok
 			//dao.addUser("tester02", "tester", "01044556677", "테스터2", "2018/05/20", "M", "email2@email2.com", "서울시", "송파구", "문정동", 1, "profilePhoto2.png");	//기능 ok
-			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1)); 
-			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, null)); 
-				//위2개**기능-프로필사진에 null 넣었을 때: cmd-선택된 레코드가 없습니다, console-org.apache.ibatis.exceptions.PersistenceException
+			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1)); 	//null항목을 안쓰면 오류	
+			//dao.addUser(new UserVO("tester02", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, null)); //기능ok, null 명시필요
 			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", null, null, null, 1, "profilePhoto2.png"));
 				//비기능-not null에 null값 입력시: cmd-선택된 레코드가 없습니다, console-org.apache.ibatis.exceptions.PersistenceException
 			//dao.addUser(new UserVO("yunjin", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));
@@ -54,12 +53,8 @@ public class UserDAOTest {
 			//System.out.println(dao.isPw(null, "taehun1234"));	//비기능: org.apache.ibatis.exceptions.PersistenceException, .TypeException 
 		/*기본 회원정보 변경*/
 			//dao.setUserInfo("1990/10/30", "newnewnew9999@naver.com", "경기도", "광명시", "철산동", "01032828508", "taehun", "taehun");	//기능 ok
-			//dao.setUserInfo("1990/11/09", "dametime@naver.com", "서울시", "용산구", "서계동", "01022223333", null, "yunseok");   
-				//비기능: 예외 발생-org.apache.ibatis.exceptions.PersistenceException, org.apache.ibatis.type.TypeException, java.sql.SQLException: 부적합한 열 유형 
-				//'newProfilePhoto'에 null값을 매핑할 수 없어서 오류 발생:   profile_photo 컬럼: null 허용; sql 구문에는 문제 없음.   
-			//dao.setUserInfo(null, "dametime@naver.com", "서울시", "용산구", "서계동", "01022223333", null, "yunseok");
-				//비기능: 예외 발생-org.apache.ibatis.exceptions.PersistenceException, org.apache.ibatis.type.TypeException, java.sql.SQLException: 부적합한 열 유형
-				//'myBatis 매퍼에서 'newBirth'에 값을 매핑할 수 없어서 오류 발생; birth 컬럼: not null
+			//dao.setUserInfo("1999/12/31", "oracle@naver.com", "강원도", "춘천시", "명동", "01043124312", "taehun.txt", "taehun");//기능 ok: profile_photo != null
+			//dao.setUserInfo("1999/12/31", "oracle@naver.com", "강원도", "춘천시", "명동", "01043124312", null, "taehun");//기능 ok: profile_photo == null
 		/*현재 이름, 생년월일, 주소, 휴대폰번호, 프로필사진 보기*/
 			//System.out.println(dao.getUserInfo("taehun"));      //기능 ok (날짜 출력 양식 YYYY/MM/DD)
 			//System.out.println(dao.getUserInfo("dead")); //비기능: null 

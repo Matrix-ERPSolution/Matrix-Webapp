@@ -11,6 +11,12 @@
 		values ( #{userId}, #{pw}, #{phoneNum}, #{name}, #{birth}, #{gender}, #{email}, #{addressCity}, #{addressGu}, #{addressDong}, 1, #{profilePhoto})
 	</insert>
 	
+	<insert id="addUserWithoutProfilePhoto" parameterType="com.itss.matrix.model.UserVO">
+		insert into users 
+		(user_id, pw, phone_num, name, birth, gender, email, address_city, address_gu, address_dong, status, profile_photo) 
+		values ( #{userId}, #{pw}, #{phoneNum}, #{name}, #{birth}, #{gender}, #{email}, #{addressCity}, #{addressGu}, #{addressDong}, 1, null)
+	</insert>
+	
 	<select id="isUserPhoneNum" parameterType="String" resultType="String">
 		select phone_num from users where phone_num= #{phoneNum}
 	</select>
@@ -32,13 +38,19 @@
 	</select>
 	
 	<update id="setUserInfo"  parameterType="java.util.Map">
-		update users 
-		set birth=#{newBirth}, email=#{newEmail}, address_city=#{newAddressCity}, address_gu=#{newAddressGu}, address_dong=#{newAddressDong}, phone_num=#{newPhoneNum}, profile_photo=#{newProfilePhoto}
-		where user_id=#{userId}
+	update users 
+	set birth=#{newBirth}, email=#{newEmail}, address_city=#{newAddressCity}, address_gu=#{newAddressGu}, address_dong=#{newAddressDong}, phone_num=#{newPhoneNum}, profile_photo=#{newProfilePhoto}
+	where user_id=#{userId}
+	</update>
+	
+	<update id="setUserInfoNotPhoto" parameterType="java.util.Map">
+	update users 
+	set birth=#{newBirth}, email=#{newEmail}, address_city=#{newAddressCity}, address_gu=#{newAddressGu}, address_dong=#{newAddressDong}, phone_num=#{newPhoneNum}, profile_photo=null
+	where user_id=#{userId}
 	</update>
 	
 	<select id="getUserInfo" parameterType="String" resultType="java.util.Map">
-		select name, to_char(birth, 'yyyy/mm/dd') as birth, email, address_city||' '||address_gu||' '||address_dong as address, phone_num, profile_photo 
+		select name, to_char(birth, 'yyyy/mm/dd') as birth, email, address_city, address_gu, address_dong, phone_num, profile_photo 
 		from users 
 		where user_id=#{userId}
 	</select>
