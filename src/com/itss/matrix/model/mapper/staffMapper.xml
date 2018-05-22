@@ -17,7 +17,7 @@
 		and leave_date is null
 	</select>
 	<select id="getPreStaffs" resultType="java.util.Map" parameterType="int">
-		select u.profile_photo, u.name, u.gender, u.birth 
+		select s.staff_id, u.profile_photo, u.name, u.gender, u.birth 
 		from users u, staffs s 
 		where s.branch_seq=#{branchSeq} 
 		and s.join_date is null 
@@ -25,7 +25,7 @@
 		order by u.name asc
 	</select> 
 	<select id="getLeavedStaffs" resultType="java.util.Map" parameterType="int">
-		select u.profile_photo, u.name, u.gender, u.birth 
+		select s.staff_id, u.profile_photo, u.name, u.gender, u.birth 
 		from users u, staffs s 
 		where s.branch_seq=#{branchSeq} 
 		and s.join_date is not null 
@@ -62,6 +62,7 @@
 		update staffs 
 		set resume_file=#{resumeFile}, health_file=#{healthFile}, bank_file=#{bankFile}, bank_name=#{bankName}, account_num=#{accountNum} 
 		where staff_id=#{staffId}
+		and branchSeq=#{branchSeq}
 	</update>
 	<update id="setWorkPart" parameterType="java.util.Map">
 		update staffs 

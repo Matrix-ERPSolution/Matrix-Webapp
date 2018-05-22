@@ -127,10 +127,11 @@ public class StaffDAO {
 	}
 	
 	/**직원 회원정보 변겅 - 모든 정보*/
-	public void setStaffInfo(String resumeFile, String healthFile, String bankFile, String bankName, String accountNum, String staffId){
+	public void setStaffInfo(String resumeFile, int branchSeq, String healthFile, String bankFile, String bankName, String accountNum, String staffId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map input = new HashMap<>();
 		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
 		input.put("bankName", bankName);
 		input.put("accountNum", accountNum);
 		input.put("resumeFile", resumeFile);
