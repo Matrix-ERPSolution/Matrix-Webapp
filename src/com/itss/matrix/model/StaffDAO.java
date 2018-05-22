@@ -44,7 +44,7 @@ public class StaffDAO {
 		return list;
 	}
 
-	/**직원 인증요청 목록 보기*/
+	/**직원 인증요청 목록 보기*/	// work_part
 	public Collection<Map<String, String>> getPreStaffs(int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<Map<String, String>> list = new ArrayList<>();
@@ -54,9 +54,12 @@ public class StaffDAO {
 	}
 	
 	/**직원 인증요청 수락  - 인증일은 시스템날짜*/
-	public void setJoinDate(String staffId){
+	public void setJoinDate(String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
-		if(session.update("staffMapper.setJoinDate", staffId) == 1){
+		Map input = new HashMap<>();
+		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
+		if(session.update("staffMapper.setJoinDate", input) == 1){
 			session.commit();
 		} else {
 			//오류 처리
@@ -70,6 +73,7 @@ public class StaffDAO {
 		if(session.delete("staffMapper.removeStaff", staffId) == 1){
 			session.commit();
 		} else {
+			
 			//오류 처리
 		}
 		
@@ -139,5 +143,22 @@ public class StaffDAO {
 			//오류 처리
 		}
 	}
+	
+	/**직원목록 - 재직 중인 직원들 소속파트 변경*/
+	public void setWorkPart(String workPart, String staffId, int branchSeq){
+		SqlSession session = sqlSessionFactory.openSession();
+		Map input = new HashMap<>();
+		input.put("workPart", workPart);
+		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
+	
+		if(session.update("staffMapper.setWorkPart", input) == 1){
+			session.commit();
+		} else {
+			//오류 처리
+		}
+		
+	}
+	
 	
 }
