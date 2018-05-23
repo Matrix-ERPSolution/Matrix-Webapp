@@ -42,33 +42,54 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+.inline {
+	display: inline;
+}
 
 .finisher {
- display: inline;
+	display: inline;
+	float: right;
 }
 ul {
- margin-left: -20pt;
- list-style: none;
+	margin-left: -20pt;
+	list-style: none;
 }
 li::before {
- font-size: 12pt;
- content: "•";
- color: gray;
- display: inline-block;
- width: 1em;
-   margin-left: -1em;
+	font-size: 12pt;
+	content: "•";
+	color: gray;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
 }
-li.selected::before {
- color: red;
+li.important::before {
+	color: red;
 }
 .ui-datepicker-trigger {
- width: 20pt;
-}
-.inline {
- display: inline-block;
+	width: 20pt;
 }
 #datemenu {
 	vertical-align: middle 
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 </style>
 <script type="text/javascript">
@@ -144,23 +165,24 @@ $(function(){
 <!-- 알맹이 -->
 <!-- <h2 id="dailyTaskTitle" style="text-align:center;">dailyTaskTitle</h2> --> <!-- 오늘/내일/과거 업무 보기 -->
 <div id="content">
+
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
- <ul>
-  <li class="selected">보건증 갱신<div class="finisher" style="float: right;">김태훈</div></li>
-  <li class="selected">통장사본 제출 <div class="finisher" style="float: right;">홍윤영</div></li>
-  <li>연진이 생일 케이크 사오기 (2호) <div class="finisher" style="float: right;">김수한무</div></li>
- </ul>
+	<ul>
+		<li class="important">보건증 갱신<div class="finisher changeable">김태훈</div></li>
+		<li class="important">통장사본 제출 <div class="finisher">홍윤영</div></li>
+		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher">김수한무</div></li>
+	</ul>
 </div>
 
 <div class="accordion" id="openTeam">오픈조</div>
 <div class="panel" >
- <ul>
-  <li>쇼케이스 점등 <div class="finisher" style="float: right;">장윤석</div></li>
-  <li>POS기 켜기 <div class="finisher" style="float: right;">장윤석</div></li>
-  <li>커피머신 켜기 <div class="finisher" style="float: right;">김태훈</div></li>
-  <li>딸기 씻기 <div class="finisher" style="float: right;">장윤석</div></li>
- </ul>
+	<ul>
+		<li>쇼케이스 점등 <div class="finisher">장윤석</div></li>
+		<li>POS기 켜기 <div class="finisher">장윤석</div></li>
+		<li>커피머신 켜기 <div class="finisher">김태훈</div></li>
+		<li>딸기 씻기 <div class="finisher">장윤석</div></li>
+	</ul>
 </div>
 
 <div class="accordion" id="middleTeam">미들조</div>
@@ -170,15 +192,26 @@ $(function(){
 <div class="accordion" id="closeTeam">마감조</div>
 <div class="panel">
 </div>
+
 <br>
 <div style="text-align: center;">
    <button id="updateTask">수정</button>
    <button id="deleteTask">삭제</button>
 </div>
+</div> <!-- end content -->
+
+<div id="myModal" class="modal">
+	<div class="modal-content">
+		content<br>
+		content<br>
+		content<br>
+		content<br>
+		content<br>
+		<%@ include file ="updateTaskAdmin.jsp" %>
+		<!-- or -->
+		<%-- <%@ include file ="reassignTaskAdmin.jsp" %> --%>
+	</div>
 </div>
-
- 
-
 <script>
 // 아코디언
 var acc = document.querySelectorAll(".accordion");
@@ -207,13 +240,13 @@ $.ajax({
    
 /**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 $("#scrollPast").on("click", function(){
- $("#datepicker").datepicker("setDate", "-1d");
- $("#date").html($("#datepicker").val());
- //오늘, 과거 업무 페이지일때 왼쪽 버튼 누르면 hide(내일 업무 페이지에서는 hideX.) //현재 제대로 구현 안됨
- if($("#date").html()!=(thisMonth+"월 "+(thisDay+1)+"일")){
-  $("#updateTask").hide();
-  $("#deleteTask").hide();
- }
+	$("#datepicker").datepicker("setDate", "-1d");
+	$("#date").html($("#datepicker").val());
+	//오늘, 과거 업무 페이지일때 왼쪽 버튼 누르면 hide(내일 업무 페이지에서는 hideX.) //현재 제대로 구현 안됨
+	if($("#date").html()!=(thisMonth+"월 "+(thisDay+1)+"일")){
+		$("#updateTask").hide();
+		$("#deleteTask").hide();
+	}
 });
 
 $("#scrollFuture").on("click", function(){
@@ -222,22 +255,49 @@ $("#scrollFuture").on("click", function(){
 });
 
 /**업무 수정, 삭제  기능*/
+$(".changeable").append('<i class="fa fa-edit update" hidden></i>');
+
+var updateFlag=0;
 $("#updateTask").click(function(){
-   alert('업무 수정');
+   //alert('업무 수정');
+	$(".update").toggle();
+	switch (updateFlag) {
+		case 0:
+			$("#updateTask").html("수정완료");
+			updateFlag=1;
+			$(".update").click(function(){
+				//location.href="";
+				//$(location).attr("href", "updateTaskAdmin.jsp/")
+				 $(".modal").css({
+					 "display":"block"
+				 });
+			});
+		break;
+		case 1:
+			$("#updateTask").html("수정");
+			updateFlag=0;
+		break;
+		default:
+			alert('오류');
+		break;
+	}
 });
+
 $("#deleteTask").click(function(){
    alert('업무 삭제');
 });
 /**assignTaskAdmin 페이지로 이동*/
-$("#assignTaskButton").click(
-		function(){
-			 $.ajax({
-			        url : "assignTaskAdmin.jsp", 
-			        success : function(result){
-			           $("#result").html(result);
-			        }
-			    });
-		});
+$("#assignTaskButton").click(function(){
+	$.ajax({
+        url : "assignTaskAdmin.jsp", 
+        success : function(result){
+           $("#result").html(result);
+        }
+    });
+});
+
+
+
 </script>
 
 </body>
