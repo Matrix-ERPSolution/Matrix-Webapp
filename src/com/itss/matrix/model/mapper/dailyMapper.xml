@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dailyMapper">	<!-- 클래스 역할 -->
 	<select id="getAssignedParts" parameterType="String" resultType="String">	<!-- 메소드 역할 -->
-		select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = #{date}
+		select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = #{assignDate}
 	</select>
 	<select id="getDailyTasksForParts" parameterType="java.util.Map" resultType="java.util.Map">
 		select importance, daily_task, finisher_id, finisher_name 
@@ -24,6 +24,9 @@
 		(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, admin_seq) 
 		values(daily_task_seq.nextval, #{dailyTask}, #{assignDate}, #{importance}, #{assignType}, #{assignDetail}, #{manualTaskSeq}, #{adminSeq})
 	</insert>
+	<select id="getDailyTasks" parameterType="String" resultType="String">
+		select daily_task from daily_tasks where assign_date=#{assignDate}
+	</select>
 	<update id="setDailyTaskByInput" parameterType="java.util.Map">
 		update daily_tasks
 		set daily_task=#{newDailyTask}, manual_task_seq = null
@@ -33,7 +36,7 @@
 		update daily_tasks
 		set daily_task=#{newDailyTask}, manual_task_seq = #{newManualTaskSeq}
 		where assign_date=#{assignDate} and assign_detail=#{assignDetail} and daily_task=#{oldDailyTask}
-	</update>
+	</update>	
 	<update id="setDailyAssign" parameterType="java.util.Map">
 		update daily_tasks 
 		set assign_type=#{newAssignType}, assign_detail=#{newAssignDetail} 

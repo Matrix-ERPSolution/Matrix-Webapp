@@ -112,6 +112,26 @@ public class DailyDAO {
 			String assignDetail, int adminSeq) {
 		addDailyTask(new DailyVO(dailyTask, assignDate, importance, assignType, assignDetail, adminSeq));
 	}
+	
+	
+	
+	///////////// 05/23 까지
+	
+	
+	/**특정 날짜에 배정된 업무 전체 출력*/
+	public List<String> getDailyTasks(String assignDate){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<String> list = null;
+		try {
+			list = session.selectList("dailyMapper.getDailyTasks", assignDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+	
 
 	/** 업무 수정 */
 	public void setDailyTask(String newDailyTask, String oldDailyTask, String assignDate, String assignDetail) {

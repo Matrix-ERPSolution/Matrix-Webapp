@@ -24,7 +24,7 @@ public class DailyDAOTest {
 			//System.out.println(dao.getDailyTasksForPerson("2400/10/10"));	//비기능 cmd:선택된 레코드가 없습니다. console:[]
 			
 			/** 업무 중복확인 */
-			System.out.println(dao.isDailyTask("직접해라직접", "2018/11/11"));
+			//System.out.println(dao.isDailyTask("직접해라직접", "2018/11/11"));
 			
 			/** 업무 배정 */
 			//dao.addDailyTask("직접해라직접", "2018/11/11", 1, "개인", "taehun", 1);	//직접입력-기능 ok
@@ -33,6 +33,7 @@ public class DailyDAOTest {
 			//dao.addDailyTask("누군지모르겠지만직접해라", "2018/11/11", 0, "파트", "밤샘", 1);	//직접입력-기능? 새로운 파트명으로 입력
 			//dao.addDailyTask("테라스 외부 청소", "2018/11/11", 0, "파트", "오픈", 1);	//매뉴얼입력-기능 ok
 			//비기능: 똑같은 쿼리문 오류 없이 여러번 들어감
+			//System.out.println(dao.getDailyTasks("2018/05/20"));
 			
 			/** 업무 수정 */
 			//dao.setDailyTask("새로운업무", "테라스 외부 청소", "2018/11/11", "오픈");	//기능 ok
