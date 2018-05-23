@@ -7,10 +7,10 @@
 		<table style="width: 220pt; margin-left: -20pt;">
 			<tr>
 				<td><img
-					class="profilePicture"
+					class="profilePhoto"
 					src="https://www.puriindahmall.co.id/assets/img/default.png"
 					width="30" height="30"></td>
-				<td align="left">윤제발</td>
+				<td align="left" class="staffConfirmName">윤제발</td>
 				<td style="min-width: 20pt" align="right">남</td>
 				<td style="min-width: 20pt" align="right">891024</td>
 				<td><input type="button" class="staffAcceptButton" value="승인"
@@ -20,10 +20,10 @@
 			</tr>
 			<tr>
 				<td><img
-					class="profilePicture"
+					class="profilePhoto"
 					src="https://www.puriindahmall.co.id/assets/img/default.png"
 					width="30" height="30"></td>
-				<td align="left">하승인</td>
+				<td align="left" class="staffConfirmName">하승인</td>
 				<td style="min-width: 20pt" align="right">남</td>
 				<td style="min-width: 20pt" align="right">971205</td>
 				<td><input type="button" class="staffAcceptButton" value="승인"
@@ -34,5 +34,14 @@
 		</table>
 	</div>
 </body>
-
+<script>
+$(".staffAcceptButton").click(
+		function(){
+			confirm(' 님을 직원으로 승인하시겠습니까?');
+		});
+$(".staffRejectButton").click(
+		function(){
+			confirm(' 님의 직원 승인을 거부하시겠습니까?');
+		});
+</script>
 </html>

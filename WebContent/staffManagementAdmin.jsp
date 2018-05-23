@@ -38,7 +38,7 @@ $(function() {
 $(".inline").css({
 	"display":"inline"
 });
-$(".profilePicture").click(
+$(".profilePhoto").click(
 		function(){
 			 $.ajax({
 			        url : "staffDetailAdmin.jsp", 
@@ -47,11 +47,7 @@ $(".profilePicture").click(
 			        }
 			    });
 		});
-/* $(function(){
-	$(".profilePicture").click(function(){
-		location.href ='staffDetailAdmin.jsp';
-	})
-}); */
+
 		
 </script>
 </body>

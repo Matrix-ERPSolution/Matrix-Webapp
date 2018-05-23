@@ -24,36 +24,42 @@
 }
  li {
   display: table-cell;
-  width: 100px;
+  width: 70%;
 }
 </style>
 </head>
 <body>
 
-<h2><i class="fa fa-chevron-left" aria-hidden="true" style="margin-right:25px"></i>직원 상세 정보</h2>
-<div style="float:left; "><i class="fa fa-user fa-5x" aria-hidden="true" ></i></div>
-<div >
+<h2><i id="backToStaffManagementAdmin" class="fa fa-chevron-left" aria-hidden="true" style="margin-right:25px"></i>직원 상세 정보</h2>
+<div  class="inline"><i class="fa fa-user fa-5x" aria-hidden="true" ></i></div>
+<div class="inline">
 	<ul>
-		<li>이름</li><li>김연진</li>
+		<li>이름</li><li>민형준</li>
 	</ul>
 	<ul>
-		<li>성별</li><li>여</li>
+		<li>성별</li><li>남</li>
 	</ul>
 	<ul>
-		<li>생년월일</li><li>1988/01/01</li>
+		<li>생일</li><li>1993/06/25</li>
 	</ul>
 </div>
 
-<div id="privateInfo">
+<div id="privateInfo" style="float:center;">
 <table>
 	<tr>
-		<td>휴대폰번호</td><td>010-1234-1234</td>
+		<td>파트</td><td>마감조</td>
 	</tr>
 	<tr>
-		<td>계좌번호</td><td>110-011-123412</td>
+		<td>휴대폰번호</td><td>010-4087-2442</td>
 	</tr>
 	<tr>
-		<td>입사날짜</td><td>2017/03/03</td>
+		<td>계좌번호</td><td>110-011-123456</td>
+	</tr>
+	<tr>
+		<td>입사날짜</td><td>2015/03/17</td>
+	</tr>
+	<tr>
+		<td>퇴사날짜</td><td>2016/12/30</td>
 	</tr>
 	<tr>
 		<td>통장사본</td><td><i class="fa fa-file-o" aria-hidden="true"></i><a href="">다운로드</a></td>
@@ -66,6 +72,19 @@
 	</tr>
 </table>
 </div>
-
 </body>
+<script>
+$(".inline").css({
+	"display":"inline"
+});
+$("#backToStaffManagementAdmin").click(
+		function(){
+			 $.ajax({
+			        url : "staffManagementAdmin.jsp", 
+			        success : function(result){
+			           $("#result").html(result);
+			        }
+			    });
+		});
+</script>
 </html>

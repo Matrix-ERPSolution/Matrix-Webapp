@@ -10,7 +10,7 @@
 		<table style="width: 230pt; margin-left: -20pt;">
 			<tr>
 				<td><img
-					class="profilePicture"
+					class="profilePhoto"
 					src="https://www.puriindahmall.co.id/assets/img/default.png"
 					width="30" height="30"></td>
 				<td align="left">김연진</td>
@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td><img
-					class="profilePicture"
+					class="profilePhoto"
 					src="https://www.puriindahmall.co.id/assets/img/default.png"
 					width="30" height="30"></td>
 				<td align="left">정알바</td>
@@ -38,7 +38,7 @@
 			</tr>
 			<tr>
 				<td><img
-					class="profilePicture"
+					class="profilePhoto"
 					src="https://www.puriindahmall.co.id/assets/img/default.png"
 					width="30" height="30"></td>
 				<td align="left">김태훈</td>
@@ -82,4 +82,10 @@
 	</div>
 
 </body>
+<script>
+$(".retireButton").click(
+		function(){
+			confirm(' 님을 퇴사 처리하시겠습니까?');
+		});
+</script>
 </html>
