@@ -49,6 +49,9 @@ public class UserDAO {
 	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
 		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, profilePhoto));
 	}
+	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong) {
+		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong));
+	}
 	public void addUser(UserVO vo) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
@@ -132,10 +135,9 @@ public class UserDAO {
 	}
 	
 	/*기본 회원정보 변경*/
-	public void setUserInfo(String birth, String email, String addressCity, String addressGu, String addressDong,  String phoneNum, String profilePhoto, String userId) {
+	public void setUserInfo(String email, String addressCity, String addressGu, String addressDong,  String phoneNum, String profilePhoto, String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> map=new HashMap();
-		map.put("newBirth", birth);
 		map.put("newEmail", email);
 		map.put("newAddressCity", addressCity);
 		map.put("newAddressGu", addressGu);
@@ -145,7 +147,7 @@ public class UserDAO {
 		map.put("userId", userId);
 		try {
 			if(profilePhoto != null) {
-				session.update("userMapper.setUserInfoNotPhoto", map);				
+				session.update("userMapper.setUserInfoWithoutProfilePhoto", map);				
 			} else {
 				session.update("userMapper.setUserInfo", map);
 			}
@@ -158,9 +160,9 @@ public class UserDAO {
 	}
 
 	/*현재 이름, 생년월일, 주소, 휴대폰번호, 프로필사진 보기*/
-	public Map getUserInfo(String userId){
+	public Map<String, String> getUserInfo(String userId){
 		SqlSession session = sqlSessionFactory.openSession();
-		Map map = null;
+		Map<String, String> map = null;
 		try {
 			map= session.selectOne("userMapper.getUserInfo", userId);
 		} catch (Exception e) {
@@ -187,7 +189,7 @@ public class UserDAO {
 			session.close();
 		}
 	}//차후에 슬라이드메뉴에서 프로필사진 변경 기능 추가할 경우 사용
-
+	
 	/*비밀번호 변경*/
 	public void setPw(String newPw, String userId, String pw){
 		SqlSession session = sqlSessionFactory.openSession();
@@ -248,6 +250,12 @@ public class UserDAO {
 			//removeUser에서 user-status가 0으로 업데이트 안됐을 때
 		}
 		session.close();
+	}
+	
+	public List<String> getUsers(){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<String> list = session.selectList("userMapper.getUsers");
+		return list;
 	}
 
 }

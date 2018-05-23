@@ -13,13 +13,13 @@ public class UserDAOTest {
 			//System.out.println(dao.login("hi", "hi1234", "moreParameter")); //비기능- 매개인자 초과: Exception
 			//System.out.println(dao.login("2018/05/23", "")); //비기능 - 잘못된 매개인자타입: NullPointerException, false
 		/*회원가입*/
-			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));   //기능 ok
-			//dao.addUser("tester02", "tester", "01044556677", "테스터2", "2018/05/20", "M", "email2@email2.com", "서울시", "송파구", "문정동", 1, "profilePhoto2.png");	//기능 ok
-			//ao.addUser("tester03", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1); 	//null항목을 안쓰면 안됨.
-			//dao.addUser("tester02", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, null); //기능ok, null 명시필요
-			//dao.addUser("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", null, null, null, 1, "profilePhoto2.png");
+			//dao.addUser(new UserVO("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", "profilePhoto.png"));   //기능 ok
+			//dao.addUser("tester02", "tester", "01044556677", "테스터2", "2018/05/20", "M", "email2@email2.com", "서울시", "송파구", "문정동", "profilePhoto2.png");	//기능 ok
+			//dao.addUser("tester03", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동"); 	//null항목을 안쓰면 안됨.
+			//dao.addUser("tester02", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", null); //기능ok, null 명시필요
+			//dao.addUser("tester01", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", null, null, null, "profilePhoto2.png");
 				//비기능-not null에 null값 입력시: cmd-선택된 레코드가 없습니다, console-org.apache.ibatis.exceptions.PersistenceException
-			//dao.addUser(new UserVO("yunjin", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", 1, "profilePhoto.png"));
+			//dao.addUser(new UserVO("yunjin", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", "profilePhoto.png"));
 				//비기능-중복pk값 입력: cmd-선택된 레코드가 없습니다, console-java.sql.SQLException: ORA-00001: 무결성 제약 조건(HR.PK_USERS)에 위배됩니다
 		/*휴대폰 번호 중복 검사*/
 			//System.out.println(dao.isUserPhoneNum("01053710710")); //true, 기능 ok
@@ -41,7 +41,7 @@ public class UserDAOTest {
 			//System.out.println(dao.getUserPhoneNum("taehun"));   //기능 ok
 			//System.out.println(dao.getUserPhoneNum("dead"));      //비기능: cmd-선택된 레코드가 없습니다. / console-null
 			//System.out.println(dao.getUserPhoneNum(null));      //비기능: cmd=SqlException, TypeException
-		/*비밀번호 재확인 검사*/
+		/*비밀번호 재확인 검사 - 메서드 로그인으로 합쳐짐.*/
 			//System.out.println(dao.isPw("taehun","taehun1234"));   //기능 ok
 			//System.out.println(dao.isPw("taehun", "dead"));      //비기능: cmd-선택된 레코드가 없습니다. / console-false
 			//System.out.println(dao.isPw("dead", "pool"));         //비기능: console-false

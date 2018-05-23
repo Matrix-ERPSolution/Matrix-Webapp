@@ -11,7 +11,6 @@ public class UserVO {
 	private String addressCity;
 	private String addressGu;
 	private String addressDong;
-	private int status=-1;
 	private String profilePhoto;
 	
 	/*회원가입*/
@@ -82,10 +81,6 @@ public class UserVO {
 		return addressDong;
 	}
 
-	public int getStatus() {
-		return status;
-	}
-
 	public String getProfilePhoto() {
 		return profilePhoto;
 	}
@@ -130,10 +125,6 @@ public class UserVO {
 		this.addressDong = addressDong;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
 	public void setProfilePhoto(String profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
@@ -167,7 +158,7 @@ public class UserVO {
 	public String toString() {
 		return "UserVO [userId=" + userId + ", phoneNum=" + phoneNum + ", name=" + name + ", birth="
 				+ birth + ", gender=" + gender + ", email=" + email + ", addressCity=" + addressCity + ", addressGu="
-				+ addressGu + ", addressDong=" + addressDong + ", status=" + status + ", profilePhoto=" + profilePhoto
+				+ addressGu + ", addressDong=" + addressDong + ", profilePhoto=" + profilePhoto
 				+ "]";
 	}
 }
