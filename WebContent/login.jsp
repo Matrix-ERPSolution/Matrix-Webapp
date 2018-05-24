@@ -10,8 +10,8 @@
 <body>
 <h1>Matrix</h1>
 
-<input type="text" id="id" name="id" placeholder="아이디"><div id="alertId"></div><br>
-<input type="password" id="pw" name="pw" placeholder="비밀번호"><div id="alertPw"></div><br>
+<input type="text" id="id" name="id" placeholder="아이디"><div id="idCheck"></div><br>
+<input type="password" id="pw" name="pw" placeholder="비밀번호"><div id="pwCheck"></div><br>
 <button id="login" >로그인</button><br>
 
 <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
@@ -70,24 +70,24 @@ $("saveID").checkboxradio();
 
 	//아이디 입력값 형식 검사: 
 	//아이디 : 6~16자 영소문자, 숫자/정규표현식: ^(?=.*[a-z]|(?=.*\d)).{6,16}$
-	var regExpId = new RegExp("^(?=.*[a-z]|(?=.*\d)).{6,16}$");
+	var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
 	
 	$("#id").keyup(function(){
 		if($("#id").val().length >=17 || !regExpId.test($("#id").val())) {
-			$(alertId).html("입력이 잘못되었습니다.");
-			$("#id").val("");
-			$("#id").focus();
+			$("#idCheck").html("입력이 잘못되었습니다.");
+		} else {
+			$("#idCheck").html("");
 		}
 	});
 	
 	//비밀번호 입력값 형식 검사
 	//비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z]|(?=.*\d)|(?=.*\W)).{6,16}$
-	var regExpPw = new RegExp("^(?=.*[a-zA-Z]|(?=.*\d)|(?=.*\W)).{6,16}$");
+	var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
 	$("#pw").keyup(function(){
 		if($("#pw").val().length >=17 || !regExpPw.test($("#pw").val())) {
-			$("#alertPw").html("입력이 잘못되었습니다.");
-			$("#pw").val("");
-			$("#id").focus();
+			$("#pwCheck").html("입력이 잘못되었습니다.");
+		} else {
+			$("#pwCheck").html("");
 		}
 	});
 	//자동로그인: #autologin check -> id, pw를 어디에 저장했다가 불러올건가?
