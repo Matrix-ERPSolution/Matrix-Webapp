@@ -106,7 +106,7 @@ $("saveID").checkboxradio();
 			$("#pwCheck").html("");
 		}
 	});
-	//자동로그인: #autologin check -> id, pw를 어디에 저장했다가 불러올건가?
+	//자동로그인: #autologin check -> id, pw를 어디에 저장했다가 불러올건가?!
 	
 </script>
 </body>
