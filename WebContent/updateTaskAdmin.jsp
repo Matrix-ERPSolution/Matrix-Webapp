@@ -25,17 +25,10 @@
 복붙해서 들어갈 부분 <br>
 </div>
 
-<div style="text-align: center;">
-	<button>수정완료</button>
-	<button id="cancel">취소</button>
-</div>
+
 
 <script>
-$("#cancel").click(function(){
-	$("#myModal").css({
-		"display":"none"
-	});
-});
+
 
 $("#importantTask").click(function(){
 	alert('중요도 토글 설정');

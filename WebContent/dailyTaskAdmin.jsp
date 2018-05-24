@@ -169,7 +169,7 @@ $(function(){
 <div class="accordion" id="personal">개인업무</div>
 <div class="panel">
 	<ul>
-		<li class="important">보건증 갱신<div class="finisher changeable">김태훈</div></li>
+		<li class="important changeable">보건증 갱신<div id="test1" class="finisher changeable">김태훈</div></li>
 		<li class="important">통장사본 제출 <div class="finisher">홍윤영</div></li>
 		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher">김수한무</div></li>
 	</ul>
@@ -202,17 +202,27 @@ $(function(){
 
 <div id="myModal" class="modal">
 	<div class="modal-content">
-		content<br>
-		content<br>
-		content<br>
-		content<br>
-		content<br>
-		<%@ include file ="updateTaskAdmin.jsp" %>
-		<!-- or -->
-		<%-- <%@ include file ="reassignTaskAdmin.jsp" %> --%>
+		<div id="updateContent"></div>
+		<div style="text-align: center;">
+			<button id="confirmUpdate">수정완료</button>
+			<button id="cancel">취소</button>
+		</div>
 	</div>
 </div>
+
 <script>
+$("#confirmUpdate").click(function(){
+	$("#myModal").css({
+		"display":"none"
+	});
+});
+
+$("#cancel").click(function(){
+	$("#myModal").css({
+		"display":"none"
+	});
+});
+
 // 아코디언
 var acc = document.querySelectorAll(".accordion");
 var i;
@@ -255,22 +265,27 @@ $("#scrollFuture").on("click", function(){
 });
 
 /**업무 수정, 삭제  기능*/
-$(".changeable").append('<i class="fa fa-edit update" hidden></i>');
+$(".changeable").append('<i class="fa fa-edit updateIcon" hidden></i>');
 
 var updateFlag=0;
 $("#updateTask").click(function(){
    //alert('업무 수정');
-	$(".update").toggle();
+	$(".updateIcon").toggle();
 	switch (updateFlag) {
 		case 0:
 			$("#updateTask").html("수정완료");
 			updateFlag=1;
-			$(".update").click(function(){
+			$(".updateIcon").click(function(){
 				//location.href="";
 				//$(location).attr("href", "updateTaskAdmin.jsp/")
 				 $(".modal").css({
 					 "display":"block"
 				 });
+				if($(".updateIcon").hasClass("finisher")) {
+					$("#updateContent").html("업무 재배정")
+				} else {
+					$("#updateContent").html("업무 수정")
+				}
 			});
 		break;
 		case 1:
