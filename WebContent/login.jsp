@@ -5,20 +5,36 @@
 <head>
 <%@include file="headSetting.jsp" %>
 <title>로그인</title>
+<style>
+#grad1 {
+    height: 640px;
+    background: #2E64FE;
+    background: linear-gradient(#2E64FE, white);
+	text-align: center;
+}
+.roundBox {
+	width: 200px;
+	height: 30px;
+	border-radius: 20px;
+	text-align: center;
+}
+</style>
 <script type="text/javascript"></script>
 </head>
-<body>
-<h1>Matrix</h1>
 
-<input type="text" id="id" name="id" placeholder="아이디"><div id="idCheck"></div><br>
-<input type="password" id="pw" name="pw" placeholder="비밀번호"><div id="pwCheck"></div><br>
-<button id="login" >로그인</button><br>
+<body id="grad1">
+<div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"></div>
+
+<input type="text" id="id" name="id" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
+<input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
+<button id="login" class="roundBox">로그인</button><br>
 
 <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
 <input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
 <br>
-<button id="findIdPassword" >아이디/비밀번호찾기</button><br>
-<button id="addUser" >신규 회원가입</button>
+<button id="findIdPassword"  class="roundBox">아이디/비밀번호찾기</button><br>
+<button id="addUser"  class="roundBox">신규 회원가입</button>
+
 
 <script type="text/javascript">
 
@@ -44,7 +60,7 @@ $("saveID").checkboxradio();
 				localStorage.setItem("loginId", $("#id").val());
 				//alert($("#id").val());
 			}
-			/* 	$.ajax({
+			 	/* $.ajax({
 				 url: "",
 				 data: {
 				 id : $("#id").val(), 
@@ -52,7 +68,7 @@ $("saveID").checkboxradio();
 				 },
 				 success: function( result ) {
 				 location.href="headerAdmin.jsp"
-				 })*/
+				 }) */
 		} else {
 			alert("입력한 정보를 다시 확인해주세요");
 		}
