@@ -68,8 +68,8 @@
 		<option value="더미동2">더미동2</option>
 		<option value="더미동3">더미동3</option>
 	</select> 
-	<div id="addressCheck"></div><br> 프로필 사진 첨부<input type="file" name="profilePhoto"
-		id=profilePhoto><br>
+	<div id="addressCheck"></div><br> 
+	프로필 사진 첨부<input type="text" name="profilePhoto"	id=profilePhoto><br>
 </div>
 <!-- privacy end -->
 	<button id="certification" class="ui-button ui-widget ui-corner-all">가입하기</button>
