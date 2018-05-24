@@ -7,8 +7,7 @@ public class StaffDAOTest {
 	public static void main(String[] args) {
 		StaffDAO dao = new StaffDAO();
 		
-		System.out.println(dao.getWorkParts(1));
-
+		//System.out.println(dao.getWorkParts(1));
 	}
 
 }

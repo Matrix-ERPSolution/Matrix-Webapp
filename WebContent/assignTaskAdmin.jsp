@@ -48,6 +48,13 @@ li:hover, .selected {
 .manual {
 	display: none;
 }
+
+.ui-autocomplete-category {
+   font-weight: bold;
+   padding: .2em .4em;
+   margin: .8em 0 .2em;
+   line-height: 1.5;
+}
 </style>
 </head>
 <body>
@@ -80,56 +87,57 @@ li:hover, .selected {
 	</div>
 </div>
 
-	<div id="taskFromManual">
-		<h4 id="">매뉴얼에서 선택하기</h4>
-		<div id="searchTaskFromManual">
-			<input id="search" type="text" placeholder="업무 목록 검색">
-			<button>검색</button>
+<div id="taskFromManual">
+	<h4 id="">매뉴얼에서 선택하기</h4>
+	<div id="searchTaskFromManual">
+		<input id="search" type="text" placeholder="업무 목록 검색">
+		<button id="addTaskFromSearch">추가</button>
+	</div>
+	
+	<div id="manualList">매뉴얼 전체보기</div>
+	<div class="manual">
+	<div class="accordion manual" id="counterControl" >카운터</div>
+	<div class="panel">
+		<div class="subAccordion">
+			<div>청결관리</div>
 		</div>
-		<div id="manualList">매뉴얼 전체보기</div>
-		<div class="manual">
-		<div class="accordion manual" id="counterControl" >카운터</div>
-		<div class="panel">
-			<div class="subAccordion">
-				<div>청결관리</div>
-			</div>
-			<div class="subPanel" id="kitchenTask">
-				<ul>
-					<li>카운터 닦기 <span class="interval" style="float: right;">마감 시</span></li>
-				</ul>
-			</div>
-			<div class="subAccordion">
-				<div>시재관리</div>
-			</div>
-			<div class="subPanel" id="hallTask">
-				<ul>
-					<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
-				</ul>
-			</div>
+		<div class="subPanel" id="kitchenTask">
+			<ul>
+				<li>카운터 닦기 <span class="interval" style="float: right;">마감 시</span></li>
+			</ul>
 		</div>
+		<div class="subAccordion">
+			<div>시재관리</div>
+		</div>
+		<div class="subPanel" id="hallTask">
+			<ul>
+				<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
+			</ul>
+		</div>
+	</div>
 
-		<div class="accordion manual" id="stockControl">주방</div>
-		<div class="panel">
-			<div class="subAccordion">
-				<div>청결관리</div>
-			</div>
-			<div class="subPanel" id="kitchenTask">
-				<ul>
-					<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감시</span></li>
-					<li>싱크대 닦기 <span class="interval" style="float: right;">마감시</span></li>
-					<li>행주 소독 <span class="interval" style="float: right;">마감시</span></li>
-					<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
-				</ul>
-			</div>
-			<div class="subAccordion">
-				<div>재고관리</div>
-			</div>
-			<div class="subPanel" id="hallTask">
-				<ul>
-					<li>딸기 재고 확인 <span class="interval" style="float: right;">3일</span></li>
-				</ul>
-			</div>
+	<div class="accordion manual" id="stockControl">주방</div>
+	<div class="panel">
+		<div class="subAccordion">
+			<div>청결관리</div>
 		</div>
+		<div class="subPanel" id="kitchenTask">
+			<ul>
+				<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감시</span></li>
+				<li>싱크대 닦기 <span class="interval" style="float: right;">마감시</span></li>
+				<li>행주 소독 <span class="interval" style="float: right;">마감시</span></li>
+				<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
+			</ul>
+		</div>
+		<div class="subAccordion">
+			<div>재고관리</div>
+		</div>
+		<div class="subPanel" id="hallTask">
+			<ul>
+				<li>딸기 재고 확인 <span class="interval" style="float: right;">3일</span></li>
+			</ul>
+		</div>
+	</div>
 	
 	<div class="accordion manual" id="moneyControl" >홀</div>
 	<div class="panel" >
@@ -138,12 +146,9 @@ li:hover, .selected {
 		</div>
 		<div class="subPanel" id="kitchenTask">
 			<ul>
-				<li>대걸레 청소 <span class="interval" style="float: right;">마감
-						시</span></li>
-				<li>테이블 위 닦기 <span class="interval" style="float: right;">마감
-						시</span></li>
-				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감
-						시</span></li>
+				<li>대걸레 청소 <span class="interval" style="float: right;">마감	시</span></li>
+				<li>테이블 위 닦기 <span class="interval" style="float: right;">마감시</span></li>
+				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감시</span></li>
 			</ul>
 		</div>
 		<div class="subAccordion">
@@ -156,157 +161,179 @@ li:hover, .selected {
 			</ul>
 		</div>
 	</div>
-</div>	
+	</div>	
 </div>
 		
-	<div id="taskFromTyping">
-		<h4>직접 입력하기</h4>
-		<div id="taskTyping">
-			<input type="text" id="addTaskFromTypingInput"
-				placeholder="일시적 업무 입력">
-			<button id="addTaskFromTyping">추가</button>
-		</div>
+<div id="taskFromTyping">
+	<h4>직접 입력하기</h4>
+	<div id="taskTyping">
+		<input type="text" id="addTaskFromTypingInput"
+			placeholder="일시적 업무 입력">
+		<button id="addTaskFromTyping">추가</button>
 	</div>
-	<div id="selectedTasks">
-		<ul id="selectedTasksList"></ul>
-	</div>
-	<script>
-		var acc = document.querySelectorAll(".accordion");
-		var i;
-	
-		for (i = 0; i < acc.length; i++) {
-		  acc[i].addEventListener("click", function() {
-		    this.classList.toggle("active");
-		    var panel = this.nextElementSibling;
-		    if (panel.style.maxHeight){
-		      panel.style.maxHeight = null;
-		    } else {
-		      panel.style.maxHeight = panel.scrollHeight + "px";
-		    } 
-		  });
-		}
-	
-		var subAcc = document.querySelectorAll(".subAccordion");
-	
-		for (i = 0; i < subAcc.length; i++) {
-			subAcc[i].addEventListener("click", function() {
-		    this.classList.toggle("active");
-		    var panel = this.nextElementSibling;
-		    if (panel.style.maxHeight){
-		      panel.style.maxHeight = null;
-		    } else {
-		      panel.style.maxHeight = panel.scrollHeight + "px";
-		    } 
-		    
-		    var motherPanel = this.parentNode;
-		    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-	
-		  });
-		}
-		
-		
-		//매뉴얼목록 토글; 작성중
-		$("#manualList").click(function() {
-			$(".manual").toggle();
-			$("#manualList").toggleClass("selected");
-		});
-		
-		
+</div>
 
-		//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
-		var li = document.querySelectorAll("li");
-		var i;
+<!-- 선택된 업무 출력 -->
+<div id="selectedTasks">
+	<ul id="selectedTasksList"></ul>
+</div>
 
-		for (i = 0; i < li.length; i++) {
-			li[i].addEventListener("click", function() {
-				if(!this.classList.contains("selected") && document.querySelector("#selectedTasksList").innerHTML){
-					return;
-				}
-				this.classList.toggle("selected");
-				if (this.classList.contains("selected")) {
-					var addLi = document.createElement("li");
-					var nodes = this.childNodes;
-					for (var j = 0; j < nodes.length; j++) {
-						addLi.appendChild(nodes[j].cloneNode(true));
-					}
-					document.querySelector("#selectedTasksList").appendChild(addLi);
-				} else {
-					document.querySelector("#selectedTasksList").innerHTML = "";
-				}
-			})
+<script>
+var acc = document.querySelectorAll(".accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+
+var subAcc = document.querySelectorAll(".subAccordion");
+
+for (i = 0; i < subAcc.length; i++) {
+	subAcc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+    
+    var motherPanel = this.parentNode;
+    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
+
+  });
+}
+
+//매뉴얼목록 토글; 작성중
+$("#manualList").click(function() {
+	$(".manual").toggle();
+	$("#manualList").toggleClass("selected");
+});
+
+//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
+var li = document.querySelectorAll("li");
+var i;
+
+for (i = 0; i < li.length; i++) {
+	li[i].addEventListener("click", function() {
+		if(!this.classList.contains("selected") && document.querySelector("#selectedTasksList").innerHTML){
+			return;
 		}
-
-		//직접 입력하여 업무 추가
-		var addTask = document.querySelector("#addTaskFromTyping");
-		addTask.onclick = function() {
-			var task = document.querySelector("#addTaskFromTypingInput");
-			if (task.value != "") {
-				var addLi = document.createElement("li");
-				addLi.appendChild(document.createTextNode(task.value));
-				document.querySelector("#selectedTasksList").appendChild(addLi);
-				task.value = "";
+		this.classList.toggle("selected");
+		if (this.classList.contains("selected")) {
+			var addLi = document.createElement("li");
+			var nodes = this.childNodes;
+			for (var j = 0; j < nodes.length; j++) {
+				addLi.appendChild(nodes[j].cloneNode(true));
 			}
+			document.querySelector("#selectedTasksList").appendChild(addLi);
+		} else {
+			document.querySelector("#selectedTasksList").innerHTML = "";
 		}
+	})
+}
 
-		//선택or입력된 업무를 리스트에서 지우기
+//직접 입력하여 업무 추가
+var addTask = document.querySelector("#addTaskFromTyping");
+addTask.onclick = function() {
+	var task = document.querySelector("#addTaskFromTypingInput");
+	if (task.value != "") {
+		var addLi = document.createElement("li");
+		addLi.appendChild(document.createTextNode(task.value));
+		document.querySelector("#selectedTasksList").appendChild(addLi);
+		task.value = "";
+	}
+}
 
-		//자동완성
-		$(function() {
-			$.widget("custom.catcomplete", $.ui.autocomplete, {
-				_create : function() {
-					this._super();
-					this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
-				},
-				_renderMenu : function(ul, items) {
-					var that = this, currentCategory = "";
-					$.each(items, function(index, item) {
-						var li;
-						if (item.category != currentCategory) {
-							ul.append("<li class='ui-autocomplete-category'>"
-									+ item.category + "</li>");
-							currentCategory = item.category;
-						}
-						li = that._renderItemData(ul, item);
-						if (item.category) {
-							li.attr("aria-label", item.category + " : "
-									+ item.label);
-						}
-					});
+//선택or입력된 업무를 리스트에서 지우기
+
+//자동완성
+$(function() {
+	$.widget("custom.catcomplete", $.ui.autocomplete, {
+		_create : function() {
+			this._super();
+			this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+		},
+		_renderMenu : function(ul, items) {
+			var that = this, currentCategory = "";
+			$.each(items, function(index, item) {
+				var li;
+				if (item.category != currentCategory) {
+					ul.append("<li class='ui-autocomplete-category'>"
+							+ item.category + "</li>");
+					currentCategory = item.category;
+				}
+				li = that._renderItemData(ul, item);
+				if (item.category) {
+					li.attr("aria-label", item.category + " : "
+							+ item.label);
 				}
 			});
-			var data = [ {
-				label : "셀프 바 빨대 재고량 확인",
-				category : "홀"
-			}, {
-				label : "셀프 바 시럽 채우기",
-				category : "홀"
-			}, {
-				label : "바닥 쓸기",
-				category : "홀"
-			}, {
-				label : "바닥 닦기",
-				category : "홀"
-			}, {
-				label : "에어컨 필터 교체",
-				category : "홀"
-			}, {
-				label : "테이블 및 좌석 점검",
-				category : "홀"
-			}, {
-				label : "시즌별 메뉴 포스터 부착",
-				category : "홀"
-			}, {
-				label : "이번달 프로모션 행사 홍보물 부착",
-				category : "홀"
-			} ];
-			$("#search").catcomplete({
-				delay : 0,
-				source : data
-			});
-		});
+		}
+	});
 
-		//업무검색
-	</script>
+//자동완성 데이터
+var data = [ {
+	label : "셀프 바 빨대 재고량 확인",
+	category : "홀"
+}, {
+	label : "셀프 바 시럽 채우기",
+	category : "홀"
+}, {
+	label : "바닥 쓸기",
+	category : "홀"
+}, {
+	label : "바닥 쓸기1",
+	category : "홀"
+}, {
+	label : "바닥 쓸기2",
+	category : "홀"
+}, {
+	label : "바닥 쓸기3",
+	category : "홀"
+}, {
+	label : "바닥 쓸기4",
+	category : "홀"
+}, {
+	label : "바닥 쓸기5",
+	category : "홀"
+} , {
+	label : "바닥 닦기",
+	category : "홀"
+}, {
+	label : "에어컨 필터 교체",
+	category : "홀"
+}, {
+	label : "테이블 및 좌석 점검",
+	category : "홀"
+}, {
+	label : "시즌별 메뉴 포스터 부착",
+	category : "홀"
+}, {
+	label : "이번달 프로모션 행사 홍보물 부착",
+	category : "홀"
+} ];
+	$("#search").catcomplete({
+		delay : 0,
+		source : data
+	});
+});
+
+$("#addTaskFromSearch").click(function(){
+	//if($("#search").val()==데이터에 있으면??DB에 있으면??)
+	$("#selectedTasksList").html($("#search").val());
+});
+
+//업무검색
+</script>
 
 </body>
 </html>

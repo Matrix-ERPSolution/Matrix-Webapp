@@ -145,7 +145,7 @@ public class StaffDAO {
 		}
 	}
 	
-	/**직원목록 - 재직 중인 직원들 소속파트 변경*/
+	/**직원목록 - 재직 중인 직원 소속파트 변경*/
 	public void setWorkPart(String workPart, String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map input = new HashMap<>();
@@ -160,6 +160,5 @@ public class StaffDAO {
 		}
 		
 	}
-	
 	
 }

@@ -5,7 +5,12 @@ public class StaffVO {
 	private String workPart;
 	private String staffName;
 	private String staffId;
-	
+	private int branchSeq;
+	private String bankName;
+	private String accountNum;
+	private String resumeFile;
+	private String healthFile;
+	private String bankFile;
 	/**constructor*/
 	public StaffVO(String workPart, String staffName) {
 		setWorkPart(workPart);
