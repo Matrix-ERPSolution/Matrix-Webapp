@@ -8,9 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   
  <style type="text/css">
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1} 
-/* 찬영오빠 위의 코드는 어디에 쓰이는 건지 잘 모르겠어요 일단 살려둠 from 연진*/
+
 .w3-bar-block {
 	font-size: small;
 	font-weight: bold;
@@ -64,7 +62,15 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-
+$("#logo").click(
+		function(){
+			 $.ajax({
+			        url : "dailyTaskAdmin.jsp", 
+			        success : function(result){
+			           $("#result").html(result);
+			        }
+			    });
+		});
 </script>
 
 </body>
