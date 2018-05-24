@@ -78,13 +78,7 @@
 			location.href="addUserNext.jsp";
 		}
 	});
-	
-	
-		
 
-
-	
-	
 </script>
 </body>
 </html>
