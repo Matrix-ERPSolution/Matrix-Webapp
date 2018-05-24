@@ -2,10 +2,12 @@
 	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>업무 배정</title>
 <%@include file="headSetting.jsp" %>
 <style>
+html, body { height:100%; margin:0; padding:0;}
 .accordion, .subAccordion, #manualList {
     background-color: #e6f2ff;
     font-weight: bold;
@@ -89,10 +91,6 @@ li:hover, .selected {
 
 <div id="taskFromManual">
 	<h4 id="">매뉴얼에서 선택하기</h4>
-	<div id="searchTaskFromManual">
-		<input id="search" type="text" placeholder="업무 목록 검색">
-		<button id="addTaskFromSearch">추가</button>
-	</div>
 	
 	<div id="manualList">매뉴얼 전체보기</div>
 	<div class="manual">
@@ -163,21 +161,29 @@ li:hover, .selected {
 	</div>
 	</div>	
 </div>
-		
 <div id="taskFromTyping">
-	<h4>직접 입력하기</h4>
-	<div id="taskTyping">
-		<input type="text" id="addTaskFromTypingInput"
-			placeholder="일시적 업무 입력">
-		<button id="addTaskFromTyping">추가</button>
+	<h4>직접 입력하기/매뉴얼에서 검색하기</h4>
+	<div id="addTaskFromTyping" class="w3-dropdown-hover">
+		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요">
+		<div class="w3-dropdown-content w3-bar-block w3-border">
+     		<a href="#" class="w3-bar-item w3-button">Link 1</a>
+    		<a href="#" class="w3-bar-item w3-button">Link 2</a>
+    		<a href="#" class="w3-bar-item w3-button">Link 3</a>
+  		</div>
+		<button id="addTask">추가</button>
 	</div>
+	
 </div>
 
 <!-- 선택된 업무 출력 -->
-<div id="selectedTasks">
-	<ul id="selectedTasksList"></ul>
+<div id="selectedTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);bottom: 50px;">
 </div>
+<div id="selectedTaskPopup" style="z-index:4;position:fixed;outline:0;width:100%; background-color: #99ccff; bottom: 0px; height: 50px; display:none;">
+    <span id="selectedTask"></span>
+    <span id="closeModal" class="w3-button" style="pad; top:0; padding:3px 6px;">&times;</span>
+    <span id="goNext" class="w3-button" style="pad; position:absolute; right:0;top:0; padding:3px 6px;">다음 단계<img alt="next" src="images/rightTriangle.png" width="15pt"></span>
 
+  </div>
 <script>
 var acc = document.querySelectorAll(".accordion");
 var i;
@@ -224,115 +230,70 @@ var i;
 
 for (i = 0; i < li.length; i++) {
 	li[i].addEventListener("click", function() {
-		if(!this.classList.contains("selected") && document.querySelector("#selectedTasksList").innerHTML){
-			return;
-		}
-		this.classList.toggle("selected");
-		if (this.classList.contains("selected")) {
-			var addLi = document.createElement("li");
-			var nodes = this.childNodes;
-			for (var j = 0; j < nodes.length; j++) {
-				addLi.appendChild(nodes[j].cloneNode(true));
-			}
-			document.querySelector("#selectedTasksList").appendChild(addLi);
-		} else {
-			document.querySelector("#selectedTasksList").innerHTML = "";
-		}
+		$("#selectedTask").html(this.firstChild.cloneNode(true));
+		$("#selectedTaskModal").css({display: "block"});
+		$("#selectedTaskPopup").css({display: "block"});
 	})
 }
 
 //직접 입력하여 업무 추가
-var addTask = document.querySelector("#addTaskFromTyping");
+/* var addTask = document.querySelector("#addTask");
 addTask.onclick = function() {
 	var task = document.querySelector("#addTaskFromTypingInput");
 	if (task.value != "") {
-		var addLi = document.createElement("li");
-		addLi.appendChild(document.createTextNode(task.value));
-		document.querySelector("#selectedTasksList").appendChild(addLi);
+		document.querySelector("#selectedTask").appendChild(this.childNodes.clone());
 		task.value = "";
+		$("#selectedTaskModal").css({display: "block"});
 	}
-}
+} */
+$("#addTask").click(function(){
+	if($("#addTaskFromTypingInput").val() != ""){
+		$("#selectedTask").html($("#addTaskFromTypingInput").val());
+		$("#selectedTaskModal").css({display: "block"});
+		$("#selectedTaskPopup").css({display: "block"});
+	}
+});
 
+$(".w3-bar-item.w3-button").click(function(){
+	$("#selectedTask").html($(this).html());
+	$("#selectedTaskModal").css({display: "block"});
+	$("#selectedTaskPopup").css({display: "block"});
+});
 //선택or입력된 업무를 리스트에서 지우기
+
+
+
+$("#closeModal").on("click", function(){
+	$("#selectedTaskModal").css({display: "none"});
+	$("#selectedTaskPopup").css({display: "none"});
+});
+
+$("#goNext").on("click", function(){
+	location.href = "assignTaskNextAdmin.jsp";
+});
 
 //자동완성
 $(function() {
-	$.widget("custom.catcomplete", $.ui.autocomplete, {
-		_create : function() {
-			this._super();
-			this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
-		},
-		_renderMenu : function(ul, items) {
-			var that = this, currentCategory = "";
-			$.each(items, function(index, item) {
-				var li;
-				if (item.category != currentCategory) {
-					ul.append("<li class='ui-autocomplete-category'>"
-							+ item.category + "</li>");
-					currentCategory = item.category;
-				}
-				li = that._renderItemData(ul, item);
-				if (item.category) {
-					li.attr("aria-label", item.category + " : "
-							+ item.label);
-				}
-			});
-		}
-	});
-
-//자동완성 데이터
-var data = [ {
-	label : "셀프 바 빨대 재고량 확인",
-	category : "홀"
-}, {
-	label : "셀프 바 시럽 채우기",
-	category : "홀"
-}, {
-	label : "바닥 쓸기",
-	category : "홀"
-}, {
-	label : "바닥 쓸기1",
-	category : "홀"
-}, {
-	label : "바닥 쓸기2",
-	category : "홀"
-}, {
-	label : "바닥 쓸기3",
-	category : "홀"
-}, {
-	label : "바닥 쓸기4",
-	category : "홀"
-}, {
-	label : "바닥 쓸기5",
-	category : "홀"
-} , {
-	label : "바닥 닦기",
-	category : "홀"
-}, {
-	label : "에어컨 필터 교체",
-	category : "홀"
-}, {
-	label : "테이블 및 좌석 점검",
-	category : "홀"
-}, {
-	label : "시즌별 메뉴 포스터 부착",
-	category : "홀"
-}, {
-	label : "이번달 프로모션 행사 홍보물 부착",
-	category : "홀"
-} ];
-	$("#search").catcomplete({
-		delay : 0,
-		source : data
-	});
+	$(function(){
+	    $.ajax({
+	     url: "data.json",
+	     dataType: "json",
+	     success: function(data){
+	      //json의 경우는 data는 파싱된 결과
+	      //alert(data[0].num);
+	      $.each(data, function(index, item){
+	       $("#selectBox").append("<option value='1'>Apples</option>"); 
+	       //객체를 가져다가 파싱
+	       //var ar=data["fields"];
+	       //var ar1=data["records"];
+	       //alert(ar[0].id+ar1[0].재산구분)
+	      })
+	      
+	     }
+	    })
+	   })
 });
 
-$("#addTaskFromSearch").click(function(){
-	//if($("#search").val()==데이터에 있으면??DB에 있으면??)
-	$("#selectedTasksList").html($("#search").val());
-});
-
-//업무검색
 </script>
 
 </body>
