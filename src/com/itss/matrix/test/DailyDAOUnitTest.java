@@ -14,7 +14,7 @@ public class DailyDAOUnitTest {
 	public static void DAO_생성자() throws Exception{
 		dao=new DailyDAO();
 	}
-	
+
 	@Test
 	public void correct() {
 		assertNotNull(dao.getAssignedParts("2018/05/10"));
@@ -30,6 +30,22 @@ public class DailyDAOUnitTest {
 		count=dao.getDailyTasks("2018/11/11").size();
 		dao.addDailyTask("테라스 외부 청소", "2018/11/11", 0, "파트", "마감", 1); // 매뉴얼업무, 중요x, 파트
 		assertEquals(++count, dao.getDailyTasks("2018/11/11").size());
+		
+		//업무수정 - setDailyTaskByManual
+		dao.setDailyTask("바닥 쓸기", "화장실 소독", "2018/01/01", "마감");
+		assertFalse(dao.isDailyTask("화장실 소독", "2018/01/01"));
+		
+		//업무수정 - setDailyTaskByInput
+		dao.setDailyTask("행주소독을 직접입력업무로수정", "행주 소독", "2018/01/01", "미들");
+		assertTrue(dao.isDailyTask("행주소독을 직접입력업무로수정", "2018/01/01"));
+		
+		
+		
+		
+		/////////////// 여기부터 다시
+		//업무 재배정   
+		dao.setDailyAssign("파트", "미들", "2018/01/01", "파트", "마감", "행주 소독");
+		assertEquals(dao.getAssignedDetail)
 	}
 	
 	@Test
@@ -56,26 +72,85 @@ public class DailyDAOUnitTest {
 	@Test
 	public void addDailyTaskWithWrongImportance(){
 		//중요도 0, 1 이 아닌경우
+		int count=0;
+		count=dao.getDailyTasks("2018/11/11").size();
+		dao.addDailyTask("중요도 0,1이 아닌경우 exception", "2018/11/11", 3, "개인", "yunseok", 1);
+		assertEquals(count, dao.getDailyTasks("2018/11/11").size());
 	}
 	
 	@Test
 	public void addDailyTaskWithWrongPart(){
 		//없는 파트
+		int count=0;
+		count=dao.getDailyTasks("2018/11/11").size();
+		dao.addDailyTask("없는 파트에 업무배정 exception", "2018/11/11", 1, "파트", "없는파트", 1);
+		assertEquals(count, dao.getDailyTasks("2018/11/11").size());
 	}
 	
 	@Test
 	public void addDailyTaskWithWrongStaff(){
-		//없는 개인
+		//없는 직원
+		int count=0;
+		count=dao.getDailyTasks("2018/11/11").size();
+		dao.addDailyTask("없는 직원에 업무배정 exception", "2018/11/11", 1, "개인", "없는직원", 1);
+		assertEquals(count, dao.getDailyTasks("2018/11/11").size());
 	}
 	
 	@Test
-	public void addDailyTaskWithWrongBranchSeq(){
-		//없는 지점코드
+	public void addDailyTaskWithWrongAdminSeq(){
+		//없는 관리자코드 - ADMIN_SEQ는 FK - SQL exception
+		int count=0;
+		count=dao.getDailyTasks("2018/11/11").size();
+		dao.addDailyTask("없는 관리자코드에 업무배정 exception", "2018/11/11", 1, "파트", "마감", 10);
+		assertEquals(count, dao.getDailyTasks("2018/11/11").size());
 	}
 	
 	@Test
 	public void addDailyTaskWithDuplicate(){
-		//동일한 쿼리문 중복 입력가능
+		//동일한 쿼리문 중복 입력가능 - 같은 날, 동일업무
+		int count=0;
+		count=dao.getDailyTasks("2018/11/11").size();
+		dao.addDailyTask("같은날 동일업무 exception", "2018/11/11", 1, "개인", "yunjin", 1);
+		assertEquals(++count, dao.getDailyTasks("2018/11/11").size());
+		
+		count=dao.getDailyTasks("2018/11/11").size();
+		dao.addDailyTask("같은날 동일업무 exception", "2018/11/11", 1, "개인", "yunjin", 1);
+		assertEquals(count, dao.getDailyTasks("2018/11/11").size());
+	}
+	
+	@Test
+	public void setDailyTaskWrongWithNonExistTask(){
+		//선택날짜에 없는 업무를 바꾸려는 경우
+		dao.setDailyTask("바꾸려는업무", "없는업무", "2018/01/01", "마감");
+		assertFalse(dao.isDailyTask("바꾸려는업무", "2018/01/01"));
 	}
 
+	@Test
+	public void setDailyTaskWrongWithChangeAssignDetail(){
+		//매뉴얼 업무에 해당하는 assign_detail을 바꾸려는 경우
+		dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "오픈");
+		assertFalse(dao.isDailyTask("손 세정제 리필", "2018/01/01"));
+	}
+	
+	@Test
+	public void setDailyTaskWrongWithOverDataSize(){
+		//직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다
+		dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "환풍기 청소", "2018/01/01", "yunseok");
+		assertFalse(dao.isDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01"));
+	}
+
+/*	
+	@Test
+	public void setDailyAssignWrongWithNonExistPart (){
+		//없는 파트에 재배정
+		dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "미들", "행주 소독");
+	}
+	*/
+	
+	
+	
+	
+	
+	
+	
 }
