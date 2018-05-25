@@ -5,6 +5,9 @@ public class ActionFactory {
 		Action a = null;
 		
 		switch(cmd){
+		case "homeUI":
+			a = new HomeUI();
+			break;
 		case "loginUI":
 			a = new LoginUI();
 			break;

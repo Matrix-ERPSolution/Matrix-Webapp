@@ -21,7 +21,7 @@ public class FrontController extends HttpServlet {
 		
 		String page = "index.html";
 		if(action != null) {
-			page = action.excute(request);
+			page = action.execute(request);
 		}
 		
 		request.getRequestDispatcher("/"+page).forward(request, response);
