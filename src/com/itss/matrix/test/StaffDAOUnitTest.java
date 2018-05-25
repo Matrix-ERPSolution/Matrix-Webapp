@@ -28,29 +28,24 @@ public class StaffDAOUnitTest {
 		
 		assertNotNull(dao.getPreStaffs(1));
 		
-		//setJoinDate
-		//isStaff 확인 하기 위한 sql문
-		//select branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
-		assertTrue(dao.isStaffDate("chanyoung", 1, null, null));
-		dao.setJoinDate("chanyoung", 1);
-		assertTrue(dao.isStaffDate("chanyoung", 1, "2018/05/25", null));
+		//dao.setJoinDate("chanyoung", 2);	//ok
+		//assertFalse(dao.isStaffDate("chanyoung", 2, "2018/05/25", null));
 		
-		//removeStaff
+		//removeStaff 미구현
 		
-		//setLeaveDate
-		assertFalse(dao.isStaffDate("chanyoung", 1, "2018/01/19", null));
-		dao.setLeaveDate("chanyoung", 1);
+		//dao.setLeaveDate("chanyoung", 1);
+		//assertFalse(dao.isStaffDate("chanyoung", 1, "2018/05/25", "2018/05/25"));
+		//테스트과정getLeftStaffs로 수정해야함
 		
-		//getLeftStaffs
-		assertNotNull(dao.getStaffDetail("chanyoung", 1));
+		assertNotNull(dao.getLeftStaffs(1));
 		
 		//addStaff
 		//cmd 창에서 확인은 되는데 void 확인 코드를 어떻게 작성할지 미구현
-		dao.addStaff("chanyoung", 1, null, null, null, null, null);
+		//dao.addStaff("chanyoung", 3, null, null, null, null, null);
 		
-		//setStaffInfo
+		//setStaffInfo 미구현
 		
-		//setWorkPart
+		//setWorkPart 미구현
 		
 	}
 	
@@ -78,16 +73,44 @@ public class StaffDAOUnitTest {
 		assertEquals(dao.getPreStaffs(99).size(), 0);
 	}
 	
-	/**재직중인 직원인데 인증요청하는 경우(인증요청 안 한 경우는 UI에서 처리)*/
+	/**이미 인증요청 수락한(재직중인) 직원을 재수락하는 경우*/
+	@Test
+	public void setJoinDateWithExistStaff(){
+		//dao.setJoinDate("chanyoung", 2);
+		assertFalse(dao.isStaffDate("chanyoung", 2, "2018/05/25", null));
+	}
+	
+	/**인증요청하지 않은 직원의 입사일을 등록하는 경우(users에는 있지만 staffs에는 없는 경우)*/
+	@Test
+	public void setJoinDateWithoutAddStaff(){
+		//dao.setJoinDate("tester01", 1);
+		assertFalse(dao.isStaffDate("testser01", 1, "2018/05/25", null));
+	}
+	
+	/**재직중인 직원인데 인증요청하는 경우(입사일을 덮어씌우는 경우)-예외처리 필요*/
 	@Test
 	public void addExistStaff(){
-		//dao.addStaff("chanyoung", 1, null, null, null, null, null);
-	}
+		//dao.addStaff("chanyoung", 2, null, null, null, null, null);
+		assertFalse(dao.isStaffDate("chanyoung", 2, null, null));
+	} //JUnit:failure
+	
+	/**인증요청한 직원이 계속 인증요청 하는 경우-예외처리 필요*/
+	@Test
+	public void addStaffAgain(){
+		Collection<Map<String,String>> list = dao.getPreStaffs(3);
+		//dao.addStaff("chanyoung", 3, null, null, null, null, null);
+		assertEquals(list, dao.getPreStaffs(3));
+	}	//JUnit:failure
+	
+	/**
+	@Test
+	public void 비기능_테스트_메소드명(){
+		//assert....
+	}*/
 	
 	/**비기능테스트명
 	@Test
 	public void 비기능_테스트_메소드명(){
 		//assert....
 	}*/
-	
 }

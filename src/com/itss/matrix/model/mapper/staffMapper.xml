@@ -25,7 +25,7 @@
 		order by u.name asc
 	</select> 
 	<select id="getLeftStaffs" resultType="java.util.Map" parameterType="int">
-		select s.staff_id, u.profile_photo, u.name, u.gender, u.birth 
+		select distinct s.staff_id, u.profile_photo, u.name, u.gender, u.birth 
 		from users u, staffs s 
 		where s.branch_seq=#{branchSeq} 
 		and s.join_date is not null 
@@ -92,7 +92,7 @@
 		where staff_id=#{staffId} 
 		and branch_seq=#{branchSeq}
 		<choose>
-		<when test="#{joinDate} == null">
+		<when test="joinDate == null" >
 			and join_date is null
 		</when>
 		<otherwise>
@@ -100,7 +100,7 @@
 		</otherwise>
 		</choose>
 		<choose>
-		<when test="#{leaveDate} == null">
+		<when test="leaveDate == null">
 			and leave_date is null
 		</when>
 		<otherwise>
