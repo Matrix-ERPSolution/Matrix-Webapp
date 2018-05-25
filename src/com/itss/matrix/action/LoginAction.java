@@ -12,15 +12,20 @@ public class LoginAction implements Action {
 
 	@Override
 	public String excute(HttpServletRequest request) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String result = "";
-		if(new UserDAO().login(id,pw)){
+		boolean result = false; 
+		result = new UserDAO().login(id,pw);
+		
+		String page = "error.jsp";
+		
+		if(result) {
+			page = "headerAdmin.jsp";
+			HttpSession session = request.getSession(true);
 			session.setAttribute("userId", id);
-			result = "controller?cmd=headerAdminUI";
 		}
-		return result;
+		
+		return page;
 	}
 
 }
