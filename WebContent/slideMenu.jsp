@@ -48,7 +48,7 @@
 
 <header class="w3-container w3-large">
   <a href="javascript:void(0)" class="w3-button w3-margin-right w3-large" onclick="w3_open()">☰</a>
-    <span><img id="logo" src="images/logo.png"></span>
+    <a href="controller?cmd=homeUI"><img id="logo" src="images/logo.png"></a>
 </header>
 
 <script>
@@ -62,15 +62,6 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-$("#logo").click(
-		function(){
-			 $.ajax({
-			        url : "dailyTaskAdmin.jsp", 
-			        success : function(result){
-			           $("#result").html(result);
-			        }
-			    });
-		});
 </script>
 
 </body>

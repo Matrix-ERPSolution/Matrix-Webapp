@@ -11,7 +11,7 @@ import com.itss.matrix.model.UserDAO;
 public class LoginAction implements Action {
 
 	@Override
-	public String excute(HttpServletRequest request) throws ServletException, IOException {
+	public String execute(HttpServletRequest request) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		boolean result = false; 
