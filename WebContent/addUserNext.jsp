@@ -5,26 +5,37 @@
 <head>
 <%@include file="headSetting.jsp" %>
 <title>회원가입</title>
+<style>
+#grad1 {
+    height: 640px;
+    background: #2E64FE;
+    background: linear-gradient(#2E64FE, white);
+	text-align: center;
+}
+.roundBox {
+	width: 200px;
+	height: 30px;
+	border-radius: 20px;
+	text-align: center;
+}
+
+</style>
 </head>
+<body id="grad1">
 <div>
 	<img class="inline" src="images/back.png" width="30pt" align="left"/>
 	<h1 class="inline" align="center">회원가입</h1>
 </div>
 <div id="newMember">
-아이디 
-	<input type="text" id="id" required="required"><div id="idCheck"></div><br>
-비밀번호
-	<input type="password" id="pw" required="required"><div id="pwCheck"></div><br>
-비밀번호 확인
-	<input type="password" id="pw2" required="required"><div id="pwCheck2"></div>
-</div>
+	<input type="text" id="id" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
+	<input type="password" id="pw" class="roundBox" required="required" placeholder="비밀번호"><div id="pwCheck"></div><br>
+	<input type="password" id="pw2" class="roundBox" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div>
+</div><br>
 <!-- newMember end -->
 
 <div id="privacy">
-	이름
-	<input name="name" id="name" required="required"> <div id="nameCheck"></div><br>
-	생년월일	
-	
+	<input name="name" id="name" class="roundBox" required="required" placeholder="이름"> <div id="nameCheck"></div><br>
+	<div align="left">생년월일</div>
 	<select name="birthYear" id="birthYear" required="required">
 		<option value="">년</option>
 	</select> <select name="birthMonth" id="birthMonth" required="required">
@@ -33,12 +44,11 @@
 		<option value="">일</option>
 	</select> 
 	<div id="birthCheck"></div><br> 
-	성별	 
+	<div align="left">성별</div>
 	<input type="radio" name="gender" checked="checked" value="M" id="genderM">남자 
 	<input type="radio" name="gender" value="F"	id="genderF">여자 <div id="genderCheck"></div>
 	<br> 
-	이메일
-	<input name="emailId" id="emailId" required="required">@<input type="text" name="emailDomain" id="emailDomain" disabled required="required">
+	<input name="emailId" id="emailId" class="roundBox" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" disabled required="required">
 	<select name="selectDomain" id="selectDomain">
 		<option selected>선택</option>
 		<option value="naver.com">naver.com</option>
@@ -48,8 +58,7 @@
 		<option value="selfInput">직접입력</option>
 	</select>
 		<div id="emailIdCheck"></div><div id="emailDomainCheck"></div><br> 
-	 <br> 
-	주소
+	<div align="left">주소</div><br>
 	<select name="addressCity" id="addressCity"	required="required">
 		<option selected>시/도</option>
 		<option value="더미시1">더미시1</option>
@@ -69,10 +78,10 @@
 		<option value="더미동3">더미동3</option>
 	</select> 
 	<div id="addressCheck"></div><br> 
-	프로필 사진 첨부<input type="text" name="profilePhoto"	id=profilePhoto><br>
+	<input type="text" name="profilePhoto"	id=profilePhoto class="roundBox" placeholder="프로필 사진 첨부"><br>
 </div>
 <!-- privacy end -->
-	<button id="certification" class="ui-button ui-widget ui-corner-all">가입하기</button>
+	<button id="certification" class="roundBox" >가입하기</button>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".inline").css({
@@ -195,7 +204,7 @@
 	//생년월일 선택여부 검사	
 	$("#birthDay").click(function() {
 		if ($("#birthMonth").val() == "") {
-			alert('월을 먼저 선택해주세요.');
+			alert("월을 먼저 선택해주세요.");
 		} 
 	});
 
@@ -284,6 +293,7 @@
 						birthYear: $("#birthYear").val(),
 						birthMonth: $("#birthMonth").val(),
 						birthDay: $("#birthDay").val(),
+						gender: $("gender").val(),
 						emailId: $("#emailId").val(),
 						emailDomain: $("#emailDomain").val();
 						addressCity: $("#addressCity").val(),

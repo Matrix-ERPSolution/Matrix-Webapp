@@ -18,14 +18,13 @@
 	border-radius: 20px;
 	text-align: center;
 }
+
 </style>
 <script type="text/javascript"></script>
 </head>
-
-
-<input type="text" id="id" name="id" placeholder="아이디"><div id="idCheck"></div><br>
+<!-- <input type="text" id="id" name="id" placeholder="아이디"><div id="idCheck"></div><br>
 <input type="password" id="pw" name="pw" placeholder="비밀번호"><div id="pwCheck"></div><br>
-<button id="login">로그인</button><br>
+<button id="login">로그인</button><br> -->
 <body id="grad1">
 <div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"></div>
 
@@ -42,8 +41,6 @@
 
 
 <script type="text/javascript">
-
-
 $("button").button();
 $("saveID").checkboxradio();
 
@@ -148,8 +145,6 @@ $("saveID").checkboxradio();
 	});
 
 	//자동로그인: #autologin check -> id, pw를 어디에 저장했다가 불러올건가?!
-
-	
 </script>
 </body>
 </html>
