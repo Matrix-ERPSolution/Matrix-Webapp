@@ -150,6 +150,29 @@ public class DailyDAO {
 		sqlSession.close();
 	}
 	
+	public Collection<Map<String, String>> getDailyTask(String assignDate, String )
+	
+	
+	
+	
+	
+	public boolean isDailyTask(String dailyTask, String assignDate) {
+		boolean result=false;
+		Map<String, String> input = new HashMap<>();
+		input.put("dailyTask", dailyTask);
+		input.put("assignDate", assignDate);
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			if(session.selectOne("dailyMapper.isDailyTask", input) != null){
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 
 	/** 업무 재배정 */
 	public void setDailyAssign(String newAssignType, String newAssignDetail, String assignDate, String oldAssignType, String oldAssignDetail,

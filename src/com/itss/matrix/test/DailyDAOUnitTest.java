@@ -44,8 +44,9 @@ public class DailyDAOUnitTest {
 		
 		/////////////// 여기부터 다시
 		//업무 재배정   
+		String str=dao.getAssignedDetail("2018/01/01", '업무명');
 		dao.setDailyAssign("파트", "미들", "2018/01/01", "파트", "마감", "행주 소독");
-		assertEquals(dao.getAssignedDetail)
+		assertEquals(str, dao.getAssignedDetail);
 	}
 	
 	@Test
