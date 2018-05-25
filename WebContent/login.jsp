@@ -4,17 +4,21 @@
 <html>
 <head>
 <%@include file="headSetting.jsp" %>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <title>로그인</title>
 <style>
+html, body {
+  	height: 100%;
+}
 #grad1 {
-    height: 640px;
-    background: #2E64FE;
-    background: linear-gradient(#2E64FE, white);
+	position: absolute;
+ 	height: 100%;
+    background: linear-gradient(#3284E2, #b1c4e2);
 	text-align: center;
 }
 .roundBox {
 	width: 200px;
-	height: 30px;
+	padding: 10px;
 	border-radius: 20px;
 	text-align: center;
 }
@@ -24,20 +28,19 @@
 
 <body id="grad1">
 <div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"></div>
-
+<br><br>
 <input type="text" id="id" name="id" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
 <input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
-<button id="login" class="roundBox">로그인</button><br>
-
+<button id="login" class="roundBox" style="background: rgba(255, 255, 255, 0.3);">로그인</button><br>
+<br>
 <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
 <input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
-<br>
-<button id="findIdPassword"  class="roundBox">아이디/비밀번호찾기</button><br>
-<button id="addUser"  class="roundBox">신규 회원가입</button>
+<br><br>
+<a id="findIdPassword" href="#">아이디/비밀번호찾기</a><br>
+<a id="addUser" href="#">회원가입</a>
 
 
 <script type="text/javascript">
-
 
 $("button").button();
 $("saveID").checkboxradio();
@@ -67,27 +70,6 @@ $("saveID").checkboxradio();
 		}
 	});
 	
-	/* document.querySelector("#login").onclick=function(){
-	alert("아이디 저장?");
-	if(document.querySelector("#saveId").checked){
-		localStorage.setItem("loginId", document.querySelector("#id").value);
-		alert(document.querySelector("#id").value);		
-	}
-	} */
-	//로그인: db로 id, pw 전달
-	document.querySelector("#login").onclick=function(){
-		$.ajax({
-			url: "controller?cmd=loginAction",
-			data: {
-					id : $("#id").val(), 
-					pw : $("#pw").val()
-			},
-			success: function( result ) {
-				location.href="headerAdmin.jsp"
-			}
-		});
-	}
-	
 	//아이디 저장: saveId 체크박스를 클릭하면 ID를 로컬 스토리지에 저장
 	$("#login").on("click", function() {
 		var check = true;
@@ -102,8 +84,9 @@ $("saveID").checkboxradio();
 						id : $("#id").val(), 
 						pw : $("#pw").val()
 				},
-				success: function( result ) {
-					location.href=result;
+				success: function(result) {
+					location.href = "headerAdmin.jsp";
+					//$("body").html(result);
 				}
 			});
 		} else {

@@ -8,6 +8,9 @@ public class ActionFactory {
 		case "loginUI":
 			a = new LoginUI();
 			break;
+		case "loginAction":
+			a = new LoginAction();
+			break;
 		case "headerAdminUI":
 			a = new HeaderAdminUI();
 			break;
