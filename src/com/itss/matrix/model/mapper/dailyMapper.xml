@@ -51,4 +51,15 @@
 		from daily_tasks 
 		where assign_date=#{assignDate} and daily_task=#{dailyTask}
 	</select>
+	<select id="getDailyTask" parameterType="java.util.Map" resultType="java.util.Map">
+		select daily_task, assign_type, assign_detail 
+		from daily_tasks 
+		where assign_date=#{assignDate} 
+		<if test="#{dailyTask} != null">
+			and daily_task=#{dailyTask}
+		</if>
+		<if test="#{assignDetail} != null">
+			and assign_detail=#{assignDetail}
+		</if>
+	</select>
 </mapper>

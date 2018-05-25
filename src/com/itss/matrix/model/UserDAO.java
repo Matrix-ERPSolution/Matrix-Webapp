@@ -147,9 +147,9 @@ public class UserDAO {
 		map.put("userId", userId);
 		try {
 			if(profilePhoto != null) {
-				session.update("userMapper.setUserInfoWithoutProfilePhoto", map);				
+				session.update("userMapper.setUserInfo", map);				
 			} else {
-				session.update("userMapper.setUserInfo", map);
+				session.update("userMapper.setUserInfoWithoutProfilePhoto", map);
 			}
 			session.commit();
 		} catch (Exception e) {

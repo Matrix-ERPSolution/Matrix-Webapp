@@ -29,22 +29,24 @@ public class StaffDAOUnitTest {
 		assertNotNull(dao.getPreStaffs(1));
 		
 		//setJoinDate
-		//Collection<Map> list = dao.getStaffHistory("chanyoung");
-		//dao.setJoinDate("chanyoung", 1);
+		//isStaff 확인 하기 위한 sql문
+		//select branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
+		assertTrue(dao.isStaffDate("chanyoung", 1, null, null));
+		dao.setJoinDate("chanyoung", 1);
+		assertTrue(dao.isStaffDate("chanyoung", 1, "2018/05/25", null));
 		
 		//removeStaff
 		
 		//setLeaveDate
-		
+		assertFalse(dao.isStaffDate("chanyoung", 1, "2018/01/19", null));
+		dao.setLeaveDate("chanyoung", 1);
 		
 		//getLeftStaffs
-		
 		assertNotNull(dao.getStaffDetail("chanyoung", 1));
 		
 		//addStaff
-		//여기부터
-		//현재상황
-		//dao.getStaffHistory("chanyoung")
+		//cmd 창에서 확인은 되는데 void 확인 코드를 어떻게 작성할지 미구현
+		dao.addStaff("chanyoung", 1, null, null, null, null, null);
 		
 		//setStaffInfo
 		
@@ -73,16 +75,13 @@ public class StaffDAOUnitTest {
 	/**있는 지점에 인증요청한 직원이 없는 경우*/
 	@Test
 	public void getNonexistPreStaffs(){
-		assertEquals(dao.getPreStaffs(2).size(), 0);
+		assertEquals(dao.getPreStaffs(99).size(), 0);
 	}
 	
-	/**한 지점에 이미 등록된 직원인데 같은 지점에 인증요청하는 경우*/
+	/**재직중인 직원인데 인증요청하는 경우(인증요청 안 한 경우는 UI에서 처리)*/
 	@Test
 	public void addExistStaff(){
-		int cnt = dao.getStaffHistory("chanyoung").size();
-		dao.addStaff("chanyoung", 1, null, null, null, null, null);
-		assertEquals(cnt, dao.getStaffHistory("chanyoung").size());
-		//예외처리 미구현
+		//dao.addStaff("chanyoung", 1, null, null, null, null, null);
 	}
 	
 	/**비기능테스트명

@@ -35,17 +35,29 @@
 	background-color: white;
 	overflow: auto;	
 }
+#grad1 {
+    height: 640px;
+    background: #2E64FE;
+    background: linear-gradient(#2E64FE, white);
+	text-align: center;
+}
+.roundBox {
+	width: 200px;
+	height: 30px;
+	border-radius: 20px;
+	text-align: center;
+}
 </style>
 </head>
-<body>
-<img class="inline" src="images/back.png" width="30pt" align="left"/>
-	<h1>직원 회원 인증</h1>
-지점명<input type="text" id="branchName" name="branchName" required><a href="#modalFindBranch">지점찾기</a>
+<body id="grad1">
+<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
+	<h4 class="inline" align="center">직원 회원 인증</h4>
+지점명<input type="text" id="branchName" name="branchName" class="roundBox" required><a href="#modalFindBranch">지점찾기</a>
 <div id="branchNameCheck"></div>
 <br>
-이력서<input type="text" id="resumeFile" name="resumeFile"><br>
-보건증<input type="text" id="healthFile" name="healthFile"><br>
-통장사본<input type="text" id="bankFile" name="bankFile"><br>
+이력서<input type="text" id="resumeFile" name="resumeFile" class="roundBox" ><br>
+보건증<input type="text" id="healthFile" name="healthFile" class="roundBox"><br>
+통장사본<input type="text" id="bankFile" name="bankFile" class="roundBox"><br>
 계좌번호<select id="bankNameSelect">
 <option selected>선택</option>
 <option value="신한">신한</option>
@@ -59,7 +71,7 @@
 
 	<!-- 모달 -->
 	<div id="modalFindBranch" class="modalBranch">
-	<header><a href="#close">닫기</a></header>
+	<header><a href="#close" align="right">닫기</a></header>
 		<div>
 				<%@include file="findBranch.jsp" %>
 		</div>
@@ -68,10 +80,7 @@
 <script type="text/javascript">
 		/*	
 		 직원인증정보	STAFFS	insert	StaffDAO		
-		 지점 검색		findBranch.jsp		본사 DB	HEAD_BRANCHES	select			
-		 시/도 선택지 보기				주소	ADDRESSES	select			
-		 구/군 선택지 보기				주소	ADDRESSES	select			
-		 선택한 지역의 지점 목록 보기				본사 DB	HEAD_BRANCHES	select			
+		 		
 		 이력서 파일 첨부									파일첨부 질문!!!!!#####
 		 보건증 파일 첨부									
 		 통장사본 파일 첨부									

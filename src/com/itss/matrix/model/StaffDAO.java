@@ -213,17 +213,24 @@ public class StaffDAO {
 		}
 	}
 	
-	/**한 직원의 입사/퇴사 기록 조회*/
-	public Collection<Map> getStaffHistory(String staffId) {
+	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회*/
+	public boolean isStaffDate(String staffId, int branchSeq, String joinDate, String leaveDate) {
 		SqlSession session = sqlSessionFactory.openSession();
-		Collection<Map> list = null;
+		Map<Object, Object> input = new HashMap<>();
+		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
+		input.put("joinDate", joinDate);
+		input.put("leaveDate", leaveDate);
+		boolean result = false;
 		try {
-			list=session.selectList("staffMapper.getStaffHistory", staffId);
+			if(session.selectOne("staffMapper.isStaffDate", input)!=null) {
+				result=true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return list;
+		return result;
 	}
 }

@@ -165,7 +165,7 @@ li:hover, .selected {
 	<h4>직접 입력하기/매뉴얼에서 검색하기</h4>
 	<div id="addTaskFromTyping" class="w3-dropdown-hover">
 		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요">
-		<div class="w3-dropdown-content w3-bar-block w3-border">
+		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border">
      		<a href="#" class="w3-bar-item w3-button">Link 1</a>
     		<a href="#" class="w3-bar-item w3-button">Link 2</a>
     		<a href="#" class="w3-bar-item w3-button">Link 3</a>
@@ -273,8 +273,10 @@ $("#goNext").on("click", function(){
 });
 
 //자동완성
-$(function() {
-	$(function(){
+$("#searchFromManual").width($("#addTaskFromTypingInput").width());
+$("#addTaskFromTypingInput").on("keyup", function() {
+	// $("#searchFromManual").html("");	//ajax에서 실시간으로 select result가져오게 되면 기존값을 계속 리셋해줘야함
+	 $("#searchFromManual").css({display: "block"});
 	    $.ajax({
 	     url: "data.json",
 	     dataType: "json",
@@ -282,7 +284,7 @@ $(function() {
 	      //json의 경우는 data는 파싱된 결과
 	      //alert(data[0].num);
 	      $.each(data, function(index, item){
-	       $("#selectBox").append("<option value='1'>Apples</option>"); 
+	       $("#searchFromManual").append('<a href="#" class="w3-bar-item w3-button">' + item + '</a>'); 
 	       //객체를 가져다가 파싱
 	       //var ar=data["fields"];
 	       //var ar1=data["records"];
@@ -291,7 +293,9 @@ $(function() {
 	      
 	     }
 	    })
-	   })
+});
+$("#addTaskFromTypingInput").focusout(function(){
+	$("#searchFromManual").css({display: "none"});
 });
 
 </script>
