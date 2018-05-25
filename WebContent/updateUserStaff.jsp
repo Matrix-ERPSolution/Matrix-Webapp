@@ -56,13 +56,27 @@ $(function() {
 <div id="commonMenu">
 	<%@include file="updateUserNext.jsp" %>
 </div>
-<div class="accordion">
-	<p class="inline" align="left">직원 정보 변경</p>
-	<div id="changeInformationAdmin">
-		직원 정보 변경 페이지 내용
-	</div>	<!-- end changeInformationAdmin -->
-</div>	<!-- accordion end -->
-
+	<div class="accordion">직원 정보 변경</div>
+	<div class="panel" id="changeInformationAdmin">
+		직원 정보 수정 내용
+		<button id="certification" class="ui-button ui-widget ui-corner-all">수정완료</button>
+	</div>	<!-- panel changeInformationAdmin end -->
 
 </body>
+<script>
+var acc = document.querySelectorAll(".accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+		} else {
+			panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+	});
+}
+</script>
 </html>
