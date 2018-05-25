@@ -30,8 +30,13 @@ public class StaffDAO {
 	public Collection<String> getWorkParts(int branchSeq) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<String> list = new ArrayList<>();
-		list = session.selectList("staffMapper.getWorkParts", branchSeq);
-		
+		try {
+			list = session.selectList("staffMapper.getWorkParts", branchSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 	
@@ -39,8 +44,13 @@ public class StaffDAO {
 	public Collection<Map<String, String>> getWorkingStaffs(int branchSeq) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<Map<String, String>> list = new ArrayList<>();
-		list = session.selectList("staffMapper.getWorkingStaffs", branchSeq);
-		
+		try {
+			list = session.selectList("staffMapper.getWorkingStaffs", branchSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 
@@ -48,117 +58,172 @@ public class StaffDAO {
 	public Collection<Map<String, String>> getPreStaffs(int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<Map<String, String>> list = new ArrayList<>();
-		list = session.selectList("staffMapper.getPreStaffs", branchSeq);
-		
+		try {
+			list = session.selectList("staffMapper.getPreStaffs", branchSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 	
 	/**직원 인증요청 수락  - 인증일은 시스템날짜*/
 	public void setJoinDate(String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
-		Map input = new HashMap<>();
+		Map<Object, Object> input = new HashMap<>();
 		input.put("staffId", staffId);
 		input.put("branchSeq", branchSeq);
-		if(session.update("staffMapper.setJoinDate", input) == 1){
-			session.commit();
-		} else {
-			//오류 처리
+		try {
+			if(session.update("staffMapper.setJoinDate", input) == 1){
+				session.commit();
+			} else {
+				//오류 처리
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
 	}
 	
 	/**직원 인증요청 거부*/
 	public void removeStaff(String staffId){
 		SqlSession session = sqlSessionFactory.openSession();
-		if(session.delete("staffMapper.removeStaff", staffId) == 1){
-			session.commit();
-		} else {
-			
-			//오류 처리
+		try {
+			if(session.delete("staffMapper.removeStaff", staffId) == 1){
+				session.commit();
+			} else {
+				//오류 처리
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
 	}
 
 	/**퇴사 직원 등록 - 퇴사일은 시스템날짜*/
-	public void setLeaveDate(String staffId){
+	public void setLeaveDate(String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
-		if(session.update("staffMapper.setLeaveDate", staffId) == 1){
-			session.commit();
-		} else {
-			//오류 처리
+		Map<Object, Object> input = new HashMap<>();
+		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
+		try {
+			if(session.update("staffMapper.setLeaveDate", input) == 1){
+				session.commit();
+			} else {
+				//오류 처리
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 	}
 	
 	/**퇴사한 직원 목록 보기 - sql 손봐야한다.*/
-	public Collection<Map<String, String>> getLeavedStaffs(int branchSeq){
+	public Collection<Map<String, String>> getLeftStaffs(int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<Map<String, String>> list = new ArrayList<>();
-		list = session.selectList("staffMapper.getLeavedStaffs", branchSeq);
-		
+		try {
+			list = session.selectList("staffMapper.getLeftStaffs", branchSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 	
-	/**직원 상세 정보 보기, 직원정보변경 시 기존정보 출력 - sql 손봐야한다.*/
-	public Collection<Map<String, String>> getStaffDetail(String staffId){
+	/**직원 상세 정보 보기, 직원정보변경 시 기존정보 해당 지점의 가장 최근 내역 1건 출력(null있으면 null이 최근) - sql 손봐줌.*/
+	public Map<Object, Object> getStaffDetail(String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
-		Collection<Map<String, String>> list = new ArrayList<>();
-		list = session.selectList("staffMapper.getStaffDetail", staffId);
-		
-		return list;
+		Map<Object, Object> input = new HashMap<>();
+		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
+		Map<Object, Object> output = null;
+		try {
+			output = session.selectOne("staffMapper.getStaffDetail", input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return output;
 	}
 	
 	/**직원 등록(승인요청)*/
 	public void addStaff(String staffId, int branchSeq, String bankName, String accountNum, String resumeFile, String healthFile, String bankFile){
+		addStaff(new StaffVO(staffId, branchSeq, bankName, accountNum, resumeFile, healthFile, bankFile));
+	}
+	public void addStaff(StaffVO vo){
 		SqlSession session = sqlSessionFactory.openSession();
-		Map input = new HashMap<>();
-		input.put("staffId", staffId);
-		input.put("branchSeq", branchSeq);
-		input.put("bankName", bankName);
-		input.put("accountNum", accountNum);
-		input.put("resumeFile", resumeFile);
-		input.put("healthFile", healthFile);
-		input.put("bankFile", bankFile);
 		
-		if(session.insert("staffMapper.addStaff", input) == 1){
-			session.commit();
-		} else {
-			//오류 처리
+		try {
+			if(session.insert("staffMapper.addStaff", vo) == 1){
+				session.commit();
+			} else {
+				//오류 처리
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 	}
 	
 	/**직원 회원정보 변겅 - 모든 정보*/
 	public void setStaffInfo(String resumeFile, int branchSeq, String healthFile, String bankFile, String bankName, String accountNum, String staffId){
+		setStaffInfo(new StaffVO(staffId, branchSeq, bankName, accountNum, resumeFile, healthFile, bankFile));
+	}
+	public void setStaffInfo(StaffVO vo){
 		SqlSession session = sqlSessionFactory.openSession();
-		Map input = new HashMap<>();
-		input.put("staffId", staffId);
-		input.put("branchSeq", branchSeq);
-		input.put("bankName", bankName);
-		input.put("accountNum", accountNum);
-		input.put("resumeFile", resumeFile);
-		input.put("healthFile", healthFile);
-		input.put("bankFile", bankFile);
 		
-		if(session.update("staffMapper.setStaffInfo", input) == 1){
-			session.commit();
-		} else {
-			//오류 처리
+		try {
+			if(session.update("staffMapper.setStaffInfo", vo) == 1){
+				session.commit();
+			} else {
+				//오류 처리
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 	}
 	
 	/**직원목록 - 재직 중인 직원 소속파트 변경*/
 	public void setWorkPart(String workPart, String staffId, int branchSeq){
+		setWorkPart(new StaffVO(workPart, staffId, branchSeq));
+	}
+	public void setWorkPart(StaffVO vo){
 		SqlSession session = sqlSessionFactory.openSession();
-		Map input = new HashMap<>();
-		input.put("workPart", workPart);
-		input.put("staffId", staffId);
-		input.put("branchSeq", branchSeq);
 	
-		if(session.update("staffMapper.setWorkPart", input) == 1){
-			session.commit();
-		} else {
-			//오류 처리
+		try {
+			if(session.update("staffMapper.setWorkPart", vo) == 1){
+				session.commit();
+			} else {
+				//오류 처리
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
 	}
 	
+	/**한 직원의 입사/퇴사 기록 조회*/
+	public Collection<Map> getStaffHistory(String staffId) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Collection<Map> list = null;
+		try {
+			list=session.selectList("staffMapper.getStaffHistory", staffId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 }

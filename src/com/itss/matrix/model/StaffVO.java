@@ -11,39 +11,107 @@ public class StaffVO {
 	private String resumeFile;
 	private String healthFile;
 	private String bankFile;
-	/**constructor*/
-	public StaffVO(String workPart, String staffName) {
-		setWorkPart(workPart);
-		setStaffName(staffName);
+	
+	/**직원등록요청, 직원회원정보변경용*/
+	public StaffVO(String staffId, int branchSeq, String bankName, String accountNum, String resumeFile, String healthFile, String bankFile) {
+		setStaffId(staffId);
+		setBranchSeq(branchSeq);
+		setBankName(bankName);
+		setAccountNum(accountNum);
+		setResumeFile(resumeFile);
+		setHealthFile(healthFile);
+		setBankFile(bankFile);
 	}
 	
+	/**직원목록 용*/
+	public StaffVO(String workPart, String staffId, int branchSeq) {
+		setWorkPart(workPart);
+		setStaffId(staffId);
+		setBranchSeq(branchSeq);
+	}
+
 	/**get(), set()*/
 	public String getWorkPart() {
 		return workPart;
 	}
+
+	public void setWorkPart(String workPart) {
+		this.workPart = workPart;
+	}
+
 	public String getStaffName() {
 		return staffName;
 	}
+
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
+	}
+
 	public String getStaffId() {
 		return staffId;
 	}
-	
-	private void setWorkPart(String workPart) {
-		this.workPart = workPart;
-	}
-	private void setStaffName(String staffName) {
-		this.staffName = staffName;
-	}
-	private void setStaffId(String staffId) {
+
+	public void setStaffId(String staffId) {
 		this.staffId = staffId;
+	}
+
+	public int getBranchSeq() {
+		return branchSeq;
+	}
+
+	public void setBranchSeq(int branchSeq) {
+		this.branchSeq = branchSeq;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getAccountNum() {
+		return accountNum;
+	}
+
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
+	}
+
+	public String getResumeFile() {
+		return resumeFile;
+	}
+
+	public void setResumeFile(String resumeFile) {
+		this.resumeFile = resumeFile;
+	}
+
+	public String getHealthFile() {
+		return healthFile;
+	}
+
+	public void setHealthFile(String healthFile) {
+		this.healthFile = healthFile;
+	}
+
+	public String getBankFile() {
+		return bankFile;
+	}
+
+	public void setBankFile(String bankFile) {
+		this.bankFile = bankFile;
 	}
 
 	/**toString()*/
 	@Override
 	public String toString() {
-		return "StaffVO [workPart=" + workPart + ", staffName=" + staffName + ", staffId=" + staffId + "]";
+		return "StaffVO [workPart=" + workPart + ", staffName=" + staffName + ", staffId=" + staffId + ", branchSeq="
+				+ branchSeq + ", bankName=" + bankName + ", accountNum=" + accountNum + ", resumeFile=" + resumeFile
+				+ ", healthFile=" + healthFile + ", bankFile=" + bankFile + "]";
 	}
 
+	/**hashCode() & equals()*/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,7 +120,6 @@ public class StaffVO {
 		return result;
 	}
 
-	/**equals()*/
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

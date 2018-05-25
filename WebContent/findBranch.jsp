@@ -3,20 +3,16 @@
 <!DOCTYPE>
 <html>
 <head>
-<%@include file="headSetting.jsp" %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>지점 검색</title>
 </head>
 <body>
 	<h1>지점관리</h1>
-	<fieldset>
 	<select>
 		<option value="">시/도</option>
 	</select>
 	<select>
 		<option value="">시/군/구</option>
 	</select>
-	<a href="">검색</a>
 	<div id="resultBranch">		<!-- 지점검색; 이하는 더미 데이터. -->
 		<table id="branchList" border="2">
 			<tr>
@@ -39,9 +35,7 @@
 				<td>잠실동 40-1</td>
 			</tr>
 		</table>
-		</fieldset>
 	</div>	<!-- resultBranch end-->
-
 
 </body>
 </html>

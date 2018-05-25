@@ -11,21 +11,29 @@
 <div>
 	<img class="inline" src="images/back.png" width="30pt" align="left"/>
 </div>
-<h3>Store Manager</h3>
+<h3>Matrix</h3>
 <h1>회원가입을 환영합니다!</h1>
 
 <i class="fa fa-user" aria-hidden="true"></i><!-- 직원용 그림-->
-<button href="" class="ui-button ui-widget ui-corner-all">직원 인증</button>
+<button id="certifyStaff" class="ui-button ui-widget ui-corner-all">직원 인증</button>
 
 <i class="fa fa-user-circle-o" aria-hidden="true"></i><!-- 관리자용 그림 -->
-<button href="" class="ui-button ui-widget ui-corner-all">관리자 인증</button>
+<button id="certifyAdmin" class="ui-button ui-widget ui-corner-all">관리자 인증</button>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".inline").css({
-			"display" : "inline"
-		})
-	});
-</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".inline").css({
+				"display" : "inline"
+			})
+		});
+		//이동.	
+		$("#certifyStaff").click(function() {
+			location.href = "certifyStaff.jsp";
+		});
+
+		$("#certifyAdmin").click(function() {
+			location.href = "certifyAdmin.jsp";
+		});
+	</script>
 </body>
 </html>
