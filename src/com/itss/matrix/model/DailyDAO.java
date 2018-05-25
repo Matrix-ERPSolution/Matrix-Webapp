@@ -155,17 +155,16 @@ public class DailyDAO {
 	
 	
 	
-	
-	public boolean isDailyTask(String dailyTask, String assignDate) {
-		boolean result=false;
+	/** 업무 한가지 검색 */
+	public Map<String, String> getDailyTask(String dailyTask, String assignDate, String assignDetail) {
+		Map<String, String> result= null;
 		Map<String, String> input = new HashMap<>();
 		input.put("dailyTask", dailyTask);
 		input.put("assignDate", assignDate);
+		input.put("assignDetail", assignDetail);
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			if(session.selectOne("dailyMapper.isDailyTask", input) != null){
-				result = true;
-			}
+			result = session.selectOne("dailyMapper.getDailyTask", input);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
