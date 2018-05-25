@@ -23,8 +23,9 @@
 </head>
 <body id="grad1">
 <div>
-	<img class="inline" src="images/back.png" width="30pt" align="left"/>
-	<h1 class="inline" align="center">회원가입</h1>
+	<!-- <img class="inline" src="images/back.png" width="30pt" align="left"/> -->
+	<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
+	<h4 class="inline" align="center">회원가입</h4>
 </div>
 <div id="newMember">
 	<input type="text" id="id" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
