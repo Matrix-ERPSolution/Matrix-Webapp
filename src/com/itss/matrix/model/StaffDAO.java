@@ -213,7 +213,10 @@ public class StaffDAO {
 		}
 	}
 	
-	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회*/
+	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회
+	 * 참고sql)
+	 * select staff_id, branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
+	 * */
 	public boolean isStaffDate(String staffId, int branchSeq, String joinDate, String leaveDate) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<Object, Object> input = new HashMap<>();
