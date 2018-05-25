@@ -86,10 +86,26 @@
 		and join_date is not null
 		and leave_date is null
 	</update>
-	<select id="getStaffHistory" parameterType="String" resultType="java.util.Map">
+	<select id="isStaffDate" parameterType="java.util.Map" resultType="java.util.Map">
 		select staff_id, branch_seq, join_date, leave_date 
 		from staffs 
 		where staff_id=#{staffId} 
-		order by join_date desc
+		and branch_seq=#{branchSeq}
+		<choose>
+		<when test="#{joinDate} == null">
+			and join_date is null
+		</when>
+		<otherwise>
+			and join_date=#{joinDate}
+		</otherwise>
+		</choose>
+		<choose>
+		<when test="#{leaveDate} == null">
+			and leave_date is null
+		</when>
+		<otherwise>
+			and leave_date=#{leaveDate} 
+		</otherwise>
+		</choose>
 	</select>
 </mapper>
