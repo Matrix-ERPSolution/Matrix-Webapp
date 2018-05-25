@@ -19,7 +19,7 @@ public class DailyDAOUnitTest {
 
 	@Test
 	public void correct() {
-		/*assertNotNull(dao.getAssignedParts("2018/05/10"));
+		assertNotNull(dao.getAssignedParts("2018/05/10"));
 		assertNotNull(dao.getDailyTasksForParts("2018/05/20", "마감"));
 		assertNotNull(dao.getDailyTasksForPerson("2018/05/18"));
 		assertFalse(dao.isDailyTask("바닥 쓸기", "2018/05/25"));
@@ -41,8 +41,8 @@ public class DailyDAOUnitTest {
 		dao.setDailyTask("행주소독을 직접입력업무로수정", "행주 소독", "2018/01/01", "미들");
 		assertTrue(dao.isDailyTask("행주소독을 직접입력업무로수정", "2018/01/01"));
 		
-		*/
-		/*
+		
+		
 		//업무 재배정(파트,오픈 -> 파트,마감)   
 		Map<String, String> tmp1=dao.getDailyTask("에어컨 필터 교체", "2018/01/01", "오픈");
 		dao.setDailyAssign("파트", "마감", "2018/01/01", "파트", "오픈", "에어컨 필터 교체");
@@ -52,13 +52,20 @@ public class DailyDAOUnitTest {
 		Map<String, String> tmp2=dao.getDailyTask("은행에서 잔돈 교환", "2018/01/01", "오픈");
 		dao.setDailyAssign("개인", "yunseok", "2018/01/01", "파트", "오픈", "은행에서 잔돈 교환");
 		assertNotEquals(tmp2, dao.getDailyTask("은행에서 잔돈 교환", "2018/01/01", "yunseok"));
-		*/
+		
 		//업무 재배정(개인,chanyoung -> 파트,마감)
 		Map<String, String> tmp3=dao.getDailyTask("메뉴판 업데이트 및 점검", "2018/01/01", "chanyoung");
 		dao.setDailyAssign("파트", "마감", "2018/01/01", "개인", "chanyoung", "메뉴판 업데이트 및 점검");
 		assertNotEquals(tmp3, dao.getDailyTask("메뉴판 업데이트 및 점검", "2018/01/01", "마감"));
+
+		
+		//업무 삭제
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.removeDailyTask("바닥 닦기", "2018/01/01", "파트", "마감");
+		assertEquals(count-1, dao.getDailyTasks("2018/01/01").size());
+		
 	}
-	/*
+	
 	@Test
 	public void nonExistAssignedParts(){
 		assertEquals(dao.getAssignedParts("2018/12/30").size(), 0);
@@ -166,11 +173,33 @@ public class DailyDAOUnitTest {
 		dao.setDailyAssign("개인", "pikachu", "2018/01/01", "파트", "미들", "카운터 선반 닦기");
 		assertEquals(tmp, dao.getDailyTask("카운터 선반 닦기", "2018/01/01", "pikachu"));
 	}
-	*/
 	
 	
+	//업무삭제 - 없는 업무
+	@Test
+	public void removeDailyTaskWorngWithNonExistDailyTask (){
+		int count=0;
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.removeDailyTask("창고정리", "2018/01/01", "파트", "마감");
+		assertNotEquals(count-1, dao.getDailyTasks("2018/01/01").size());
+	}
 	
+	//업무삭제 - assign_type다른경우
+	@Test
+	public void removeDailyTaskWorngWithAssignType (){
+		int count=0;
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.removeDailyTask("블루투스 스피커 점검", "2018/01/01", "파트", "yunseok");
+		assertNotEquals(count-1, dao.getDailyTasks("2018/01/01").size());
+	}
 	
-	
-	
+	//업무삭제 - assign_detail다른경우
+	@Test
+	public void removeDailyTaskWorngWithAssignDetail (){
+		int count=0;
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.removeDailyTask("블루투스 스피커 점검", "2018/01/01", "개인", "chanyoung");
+		assertNotEquals(count-1, dao.getDailyTasks("2018/01/01").size());
+	}
+		
 }
