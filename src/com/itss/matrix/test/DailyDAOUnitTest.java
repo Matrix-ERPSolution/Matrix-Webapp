@@ -2,6 +2,8 @@ package com.itss.matrix.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Map;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,7 +19,7 @@ public class DailyDAOUnitTest {
 
 	@Test
 	public void correct() {
-		assertNotNull(dao.getAssignedParts("2018/05/10"));
+		/*assertNotNull(dao.getAssignedParts("2018/05/10"));
 		assertNotNull(dao.getDailyTasksForParts("2018/05/20", "마감"));
 		assertNotNull(dao.getDailyTasksForPerson("2018/05/18"));
 		assertFalse(dao.isDailyTask("바닥 쓸기", "2018/05/25"));
@@ -39,16 +41,24 @@ public class DailyDAOUnitTest {
 		dao.setDailyTask("행주소독을 직접입력업무로수정", "행주 소독", "2018/01/01", "미들");
 		assertTrue(dao.isDailyTask("행주소독을 직접입력업무로수정", "2018/01/01"));
 		
+		*/
+		/*
+		//업무 재배정(파트,오픈 -> 파트,마감)   
+		Map<String, String> tmp1=dao.getDailyTask("에어컨 필터 교체", "2018/01/01", "오픈");
+		dao.setDailyAssign("파트", "마감", "2018/01/01", "파트", "오픈", "에어컨 필터 교체");
+		assertNotEquals(tmp1, dao.getDailyTask("에어컨 필터 교체", "2018/01/01", "마감"));
 		
-		
-		
-		/////////////// 여기부터 다시
-		//업무 재배정   
-		String str=dao.getAssignedDetail("2018/01/01", '업무명');
-		dao.setDailyAssign("파트", "미들", "2018/01/01", "파트", "마감", "행주 소독");
-		assertEquals(str, dao.getAssignedDetail);
+		//업무 재배정(파트,오픈 -> 개인,yunseok)
+		Map<String, String> tmp2=dao.getDailyTask("은행에서 잔돈 교환", "2018/01/01", "오픈");
+		dao.setDailyAssign("개인", "yunseok", "2018/01/01", "파트", "오픈", "은행에서 잔돈 교환");
+		assertNotEquals(tmp2, dao.getDailyTask("은행에서 잔돈 교환", "2018/01/01", "yunseok"));
+		*/
+		//업무 재배정(개인,chanyoung -> 파트,마감)
+		Map<String, String> tmp3=dao.getDailyTask("메뉴판 업데이트 및 점검", "2018/01/01", "chanyoung");
+		dao.setDailyAssign("파트", "마감", "2018/01/01", "개인", "chanyoung", "메뉴판 업데이트 및 점검");
+		assertNotEquals(tmp3, dao.getDailyTask("메뉴판 업데이트 및 점검", "2018/01/01", "마감"));
 	}
-	
+	/*
 	@Test
 	public void nonExistAssignedParts(){
 		assertEquals(dao.getAssignedParts("2018/12/30").size(), 0);
@@ -140,14 +150,23 @@ public class DailyDAOUnitTest {
 		assertFalse(dao.isDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01"));
 	}
 
-/*	
+	
 	@Test
 	public void setDailyAssignWrongWithNonExistPart (){
 		//없는 파트에 재배정
-		dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "미들", "행주 소독");
+		Map<String, String> tmp=dao.getDailyTask("야간개장 준비", "2018/01/01", "마감");
+		dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "마감", "야간개장 준비");
+		assertEquals(tmp, dao.getDailyTask("야간개장 준비", "2018/01/01", "새벽"));
+	}
+	
+	@Test
+	public void setDailyAssignWrongWithNonExistStaff (){
+		//없는 직원에 재배정
+		Map<String, String> tmp=dao.getDailyTask("카운터 선반 닦기", "2018/01/01", "미들");
+		dao.setDailyAssign("개인", "pikachu", "2018/01/01", "파트", "미들", "카운터 선반 닦기");
+		assertEquals(tmp, dao.getDailyTask("카운터 선반 닦기", "2018/01/01", "pikachu"));
 	}
 	*/
-	
 	
 	
 	

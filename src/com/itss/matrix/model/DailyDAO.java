@@ -150,10 +150,6 @@ public class DailyDAO {
 		sqlSession.close();
 	}
 	
-	public Collection<Map<String, String>> getDailyTask(String assignDate, String )
-	
-	
-	
 	
 	/** 업무 한가지 검색 */
 	public Map<String, String> getDailyTask(String dailyTask, String assignDate, String assignDetail) {
