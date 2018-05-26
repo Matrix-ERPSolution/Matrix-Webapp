@@ -80,4 +80,13 @@
 		from users
 		where status=1
 	</select>
+	
+	<select id="isCertifiedAdmin" parameterType="String" resultType="String">
+		select branch_seq from admins where admin_id=#{userId}
+	</select>
+	
+	<select id="isCertifiedStaff" parameterType="String" resultType="String">
+		select branch_seq from staffs where staff_id=#{userId}
+	</select>
+	
 </mapper>

@@ -257,5 +257,38 @@ public class UserDAO {
 		List<String> list = session.selectList("userMapper.getUsers");
 		return list;
 	}
+	
+	/**관리자 or 직원 or 미인증자 여부 확인*/
+	public Map getCertifiedInfo(String userId){
+		SqlSession session = sqlSessionFactory.openSession();
+		Map result = new HashMap<>();
+		String branchSeq = null;
+		try {
+			branchSeq = session.selectOne("userMapper.isCertifiedAdmin", userId);
+			if(branchSeq == null){
+				branchSeq = session.selectOne("userMapper.isCertifiedStaff", userId);
+				if(branchSeq != null){
+					result.put("type", "staff");
+					result.put("branchSeq", branchSeq);
+				} else{
+					return null;
+				}
+			} else {
+				result.put("type", "admin");
+				result.put("branchSeq", branchSeq);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 
 }
