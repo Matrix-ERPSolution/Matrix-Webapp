@@ -28,7 +28,7 @@
 	<h4 class="inline" align="center">회원가입</h4>
 </div>
 <div id="newMember">
-	<input type="text" id="id" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
+	<input type="text" id="userId" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
 	<input type="password" id="pw" class="roundBox" required="required" placeholder="비밀번호"><div id="pwCheck"></div><br>
 	<input type="password" id="pw2" class="roundBox" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div>
 </div><br>
@@ -94,8 +94,8 @@
 	//아이디 : 6~16자 영소문자, 숫자-영소문자 1자 반드시 포함/정규표현식: ^(?=.*[a-z])[a-z0-9]{6,16}$
 	var regExpId = new RegExp("^(?=.*[a-z])[a-zA-Z0-9]{6,16}$");
 
-	$("#id").keyup(function() {
-		if ($("#id").val().length >= 17 || !regExpId.test($("#id").val())) {
+	$("#userId").keyup(function() {
+		if ($("#userId").val().length >= 17 || !regExpId.test($("#userId").val())) {
 			$("#idCheck").html("입력이 잘못되었습니다.");
 		} else {
 			$("#idCheck").html("");
@@ -103,19 +103,23 @@
 	});
 	
 	//아이디 중복 검사 - 중복/사용가능한 아이디; 일단 alert으로 처리.
-	/* $.ajax(function(){
-		url: "",
-		data: {
-			id: $("#id").val();
-		},
-		success: function(result) {
-			if($("#id").val()!=result) {
-				alert("이미 존재하는 아이디입니다.");
-			} else {
-				alert("사용할 수 있는 아이디입니다.")
+	$("#userId").mouseleave(function(){
+		$.ajax({
+			url: "controller?cmd=isUserIdAction",
+			data: {
+				userId: $("#userId").val()
+			},
+			success: function(result) {
+				var result = JSON.parse(result);
+				if(result["result"] == "false") {
+					alert("사용가능한 아이디입니다");
+				} else {
+					alert("사용중인 아이디입니다.")
+					$("#userId").val("");
+				}
 			}
-		}
-	}); */
+		})	
+	});  
 	
 	//비밀번호 입력값 형식 검사
 	//비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$
@@ -265,7 +269,7 @@
 	//다음페이지 이동 = 회원가입 처리 / 입력받아야 할 파트 null 체크
 	$("#certification").click(
 			function() {
-				if ($("#id").val() == "") {
+				if ($("#userId").val() == "") {
 					$("#idCheck").html("아이디를 입력해주세요");
 				} else if ($("#pw").val() == "") {
 					$("#pwCheck").html("비밀번호를 입력해주세요");
@@ -285,10 +289,10 @@
 						|| ($("#addressDong").val() == "")) {
 					$("#addressCheck").html("주소를 입력해주세요");
 				}
-				/* $.ajax(function(){
+				/* $.ajax({
 					url:"",
 					data: {
-						id: $("#id").val(), 
+						userId: $("#userId").val(), 
 						pw: $("#pw").val(),
 						name: $("#name").val(),
 						birthYear: $("#birthYear").val(),
@@ -310,8 +314,8 @@
 					}	
 					}
 				})*/
-				location.href="certification.jsp";
-			});
+				location.href="certification.jsp";	//회원가입 처리 ajax 구현 시 지울 것.
+			}); 
 </script>
 </body>
 </html>
