@@ -100,7 +100,7 @@ public class UserDAOUnitTest {
 	public void isUserIdWithWrongFormat(){
 		assertFalse(dao.isUserId("0000"));
 	}
-	
+
 	//@Test	//Exception 아직 적용 안됨. 해야함.
 	public void resetPwWithWrongFormat(){
 		dao.resetPw("0000", "yunjin");
@@ -130,13 +130,13 @@ public class UserDAOUnitTest {
 	public void getUserInfoWithWrongId(){
 		assertNull(dao.getUserInfo("dead"));
 	}
-	
+
 	@Test
 	public void setPwWithWrongOldPw(){
 		dao.setPw("newpassword","taehun","wrongpassword");
-		dao.login("taehun", "newpassword");
+		assertFalse(dao.login("taehun", "newpassword"));
 	}
-	
+
 	@Test
 	public void getAdminSlideInfoWithWrongId(){
 		assertNull(dao.getAdminSlideInfo("wrongid"));
