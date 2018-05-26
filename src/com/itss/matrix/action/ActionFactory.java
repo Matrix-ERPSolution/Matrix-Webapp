@@ -20,7 +20,6 @@ public class ActionFactory {
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
 			break;
-		//180526 태훈;
 		case "isUserPhoneAction":
 			a= new IsUserPhoneAction();
 			break;
@@ -33,7 +32,18 @@ public class ActionFactory {
 		case "addUserNextAction":
 			a=new AddUserNextAction();
 			break;
-
+		case "getSpaceTypesAction":
+			a = new GetSpaceTypesAction();
+			break;
+		case "getTaskTypesAction":
+			a = new GetTaskTypesAction();
+			break;
+		case "getTaskTypesBySpaceTypeAction":
+			a = new GetTaskTypesBySpaceTypeAction();
+			break;
+		case "getSpaceTypesByTaskTypeAction":
+			a = new GetSpaceTypesByTaskTypeAction();
+			break;
 		}
 		return a;
 	}

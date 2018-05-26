@@ -95,6 +95,9 @@ public class DailyDAO {
 		vo.setManualTaskSeq(new ManualDAO().getManualTaskSeq(vo.getDailyTask()));
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
+			if(vo.getDailyTask() == null){
+				throw new RuntimeException("입력된 업무가 없습니다.");
+			}
 			if (vo.getManualTaskSeq() == -1) {
 				sqlSession.insert("dailyMapper.addDailyTaskByInput", vo);
 			} else {
