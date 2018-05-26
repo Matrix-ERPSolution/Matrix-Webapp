@@ -84,7 +84,7 @@
 		where staff_id=#{staffId}
 		and branch_seq=#{branchSeq} 
 		and join_date is not null
-		and leave_date is null
+		and leave_date is null	
 	</update>
 	<select id="isStaffDate" parameterType="java.util.Map" resultType="java.util.Map">
 		select staff_id, branch_seq, join_date, leave_date 
@@ -108,4 +108,5 @@
 		</otherwise>
 		</choose>
 	</select>
+	
 </mapper>

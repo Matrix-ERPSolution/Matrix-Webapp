@@ -193,7 +193,9 @@ public class StaffDAO {
 		}
 	}
 	
-	/**직원목록 - 재직 중인 직원 소속파트 변경*/
+	/**직원목록 - 직원 소속파트 배정/변경
+	 * select staff_seq, branch_seq, work_part, join_date, leave_date from staffs where staff_id='chanyoung';
+	 * */
 	public void setWorkPart(String workPart, String staffId, int branchSeq){
 		setWorkPart(new StaffVO(workPart, staffId, branchSeq));
 	}
@@ -213,9 +215,8 @@ public class StaffDAO {
 		}
 	}
 	
-	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회
-	 * 참고sql)
-	 * select staff_id, branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
+	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회(테스트 보조 메소드)
+	 * select staff_seq, branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
 	 * */
 	public boolean isStaffDate(String staffId, int branchSeq, String joinDate, String leaveDate) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -236,4 +237,5 @@ public class StaffDAO {
 		}
 		return result;
 	}
+	
 }
