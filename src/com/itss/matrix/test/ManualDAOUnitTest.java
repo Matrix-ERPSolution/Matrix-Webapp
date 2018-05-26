@@ -27,22 +27,22 @@ public class ManualDAOUnitTest {
 	}
 	
 	@Test
-	public void nonExistTaskTypesBySpaceType(){
+	public void getTaskTypesWithWrongNonExistSpaceType(){
 		assertEquals(dao.getTaskTypesBySpaceType("지하 300층").size(), 0);
 	}
 	
 	@Test
-	public void nonExistSpaceTypesByTaskType(){
+	public void getSpaceTypesWithWrongNonExistTaskType(){
 		assertEquals(dao.getSpaceTypesByTaskType("멘탈관리").size(), 0);
 	}
 	
 	@Test
-	public void nonExistTasksBySpaceTypeByTaskType(){
-		assertEquals(dao.getTasks("테라스", "고객관리").size(), 0);
+	public void getTasksWithWrongNonExistSpaceTypeTaskType(){
+		assertEquals(dao.getTasks("지하 300층", "멘탈관리").size(), 0);
 	}
 	
 	@Test
-	public void nonExistManualTaskSeq(){
+	public void getManualTaskSeqWithWrongNonExistTask(){
 		assertEquals(dao.getManualTaskSeq("마지막 나가는 손님 엉덩이 주 차버리기"), -1);
 	}
 	

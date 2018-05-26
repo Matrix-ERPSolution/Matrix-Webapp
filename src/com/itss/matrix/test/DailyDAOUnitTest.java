@@ -67,23 +67,28 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
-	public void nonExistAssignedParts(){
+	public void getAssignedPartsWithWrongAssignDate(){
 		assertEquals(dao.getAssignedParts("2018/12/30").size(), 0);
 	}
 	
 	@Test
-	public void nonExistDailyTasksForParts(){
+	public void getDailyTasksForPartsWithWrongAssignDateAssignDetail(){
 		assertEquals(dao.getDailyTasksForParts("2440/12/31", "홀에 산소 주입").size(), 0);
 	}
 	
 	@Test
-	public void nonExistDailyTasksForPerson(){
+	public void getDailyTasksForPersonWithWrongAssignDate(){
 		assertEquals(dao.getDailyTasksForPerson("2400/10/10").size(), 0);
 	}
 	
 	@Test
-	public void ExistDailyTask(){
+	public void isDailyTaskWithExistDailyTask(){
 		assertTrue(dao.isDailyTask("바닥 쓸기", "2018/05/20"));
+	}
+	
+	@Test
+	public void isDailyTaskWithWithWrongAssignDate(){
+		assertFalse(dao.isDailyTask("바닥 쓸기", "2400/20/20"));
 	}
 	
 	
@@ -137,21 +142,21 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
-	public void setDailyTaskWrongWithNonExistTask(){
+	public void setDailyTaskWithWrongNonExistTask(){
 		//선택날짜에 없는 업무를 바꾸려는 경우
 		dao.setDailyTask("바꾸려는업무", "없는업무", "2018/01/01", "마감");
 		assertFalse(dao.isDailyTask("바꾸려는업무", "2018/01/01"));
 	}
 
 	@Test
-	public void setDailyTaskWrongWithChangeAssignDetail(){
+	public void setDailyTaskWithWrongChangeAssignDetail(){
 		//매뉴얼 업무에 해당하는 assign_detail을 바꾸려는 경우
 		dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "오픈");
 		assertFalse(dao.isDailyTask("손 세정제 리필", "2018/01/01"));
 	}
 	
 	@Test
-	public void setDailyTaskWrongWithOverDataSize(){
+	public void setDailyTaskWithWrongOverDataSize(){
 		//직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다
 		dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "환풍기 청소", "2018/01/01", "yunseok");
 		assertFalse(dao.isDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01"));
@@ -159,7 +164,7 @@ public class DailyDAOUnitTest {
 
 	
 	@Test
-	public void setDailyAssignWrongWithNonExistPart (){
+	public void setDailyAssignWithWrongNonExistPart (){
 		//없는 파트에 재배정
 		Map<String, String> tmp=dao.getDailyTask("야간개장 준비", "2018/01/01", "마감");
 		dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "마감", "야간개장 준비");
@@ -167,7 +172,7 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
-	public void setDailyAssignWrongWithNonExistStaff (){
+	public void setDailyAssignWithWrongNonExistStaff (){
 		//없는 직원에 재배정
 		Map<String, String> tmp=dao.getDailyTask("카운터 선반 닦기", "2018/01/01", "미들");
 		dao.setDailyAssign("개인", "pikachu", "2018/01/01", "파트", "미들", "카운터 선반 닦기");
@@ -186,7 +191,7 @@ public class DailyDAOUnitTest {
 	
 	//업무삭제 - assign_type다른경우
 	@Test
-	public void removeDailyTaskWorngWithAssignType (){
+	public void removeDailyTaskWithWrongAssignType (){
 		int count=0;
 		count=dao.getDailyTasks("2018/01/01").size();
 		dao.removeDailyTask("블루투스 스피커 점검", "2018/01/01", "파트", "yunseok");
@@ -195,7 +200,7 @@ public class DailyDAOUnitTest {
 	
 	//업무삭제 - assign_detail다른경우
 	@Test
-	public void removeDailyTaskWorngWithAssignDetail (){
+	public void removeDailyTaskWithWrongAssignDetail (){
 		int count=0;
 		count=dao.getDailyTasks("2018/01/01").size();
 		dao.removeDailyTask("블루투스 스피커 점검", "2018/01/01", "개인", "chanyoung");

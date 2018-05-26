@@ -151,6 +151,7 @@ public class UserDAOUnitTest {
 		int cnt = dao.getUsers().size();
 		dao.removeUser("wrongid", "password");
 		assertEquals(cnt, dao.getUsers().size());
+	}
 	
 	
 	@Test
