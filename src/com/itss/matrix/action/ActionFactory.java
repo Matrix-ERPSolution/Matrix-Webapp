@@ -20,6 +20,19 @@ public class ActionFactory {
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
 			break;
+		case "isUserPhoneAction":
+			a= new IsUserPhoneAction();
+			break;
+		case "isUserIdAction":
+			a=new IsUserIdAction();
+			break;
+		case "getUserPhoneAction":
+			a=new GetUserPhoneAction();
+			break;
+		case "addUserNextAction":
+			a=new AddUserNextAction();
+			break;
+			
 		}
 		return a;
 	}
