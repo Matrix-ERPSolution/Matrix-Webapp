@@ -17,6 +17,9 @@ public class ActionFactory {
 		case "headerAdminUI":
 			a = new HeaderAdminUI();
 			break;
+		case "getSlideInfoAction":
+			a = new GetSlideInfoAction();
+			break;
 		}
 		return a;
 	}
