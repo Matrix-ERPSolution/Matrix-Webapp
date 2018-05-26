@@ -28,11 +28,11 @@
 	<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
 	<h4 class="inline" align="center">회원가입</h4>
 </div>
-	<div id="cellPhoneCertify">
-		<input type="text" id="cellPhone" class="roundBox" required="required" placeholder="휴대폰 번호만 입력">
+	<div id="phoneNumCertify">
+		<input type="text" id="phoneNum" class="roundBox" required="required" placeholder="휴대폰 번호만 입력">
 		<div id="certifyResult"></div>
 		<button id="certify1" class="roundBox">인증</button>
-		</div><!-- cellPhoneCertify end -->
+		</div><!-- phoneNumCertify end -->
 		<br>
 		<div id="certifier">
 	<input type="text" id="inputCertification" class="roundBox" placeholder="인증번호입력"><br>
@@ -55,34 +55,35 @@
 	//휴대폰 번호 입력값 형식 검사/정규표현식: 01[016-9]{1}[1-9]{1}[0-9]{2,3}[0-9]{4}
 	var regExpPhone = new RegExp("01[016-9]{1}[1-9]{1}[0-9]{2,3}[0-9]{4}");
 
-		$("#cellPhone").keyup(function() {
-			if ($("#cellPhone").val().length>=12 || !regExpPhone.test($("#cellPhone").val())) {
+		$("#phoneNum").keyup(function() {
+			if ($("#phoneNum").val().length>=12 || !regExpPhone.test($("#phoneNum").val())) {
 				$("#certifyResult").html("휴대폰 번호를 다시 입력해주세요");
 			} else {
 				$("#certifyResult").html("");
 			}
 		});
 		
-	//휴대폰 중복여부
-	/* $("#certify1").click(function(){
-		if($("#cellPhone").val()==""){
+	//휴대폰 중복여부: 구현 끝.
+	$("#certify1").click(function(){
+		if($("#phoneNum").val()==""){
 			alert("휴대폰 번호를 입력해주세요");
 		} else {
-			$.ajax(function(){
-				url:"",
+			$.ajax({
+				url: "controller?cmd=isUserPhoneAction",
 				data: {
-					cellPhone:$("#cellPhone").val()
+					phoneNum : $("#phoneNum").val()
 				}, 
-				success: function(result){
-					if($("#cellPhone").val() == result) {
-						alert("이미 인증된 휴대폰 번호입니다.")
+				success: function(result) {	//dao에서 result는 boolean으로 리턴될 것; false: DB에 없음=인증가능
+					var result = JSON.parse(result);
+					if(result["result"] == "false") {
+						alert("인증번호가 발송되었습니다");
 					} else {
-						alert("인증번호가 발송되었습니다.")
+						alert("이미 인증된 번호입니다")
 					}
 				}
-			})	
+			});	
 		}
-	}); */
+	});
 			
 	//인증번호 입력값 형식 검사 - 차후 구현			
 
@@ -90,7 +91,7 @@
 
 	//다음 단계 페이지 보여주기
 	$("#addUserNext").click(function(){
-		if($("#cellPhone").val()=="") {
+		if($("#phoneNum").val()=="") {
 			alert("휴대폰 인증을 진행하세요");
 		} else if($("#inputCertification").val()=="") {
 			alert("인증번호를 입력하세요");
