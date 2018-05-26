@@ -29,7 +29,7 @@
   	<table>
   		<tr>
   			<td><img alt="프로필사진" src="images/defaultProfile.png" style="width: 70px; height: 70px;"></td>
-  			<td><h6><b>가락시장점<br>관리자<br>홍윤영 님</b></h6></td>
+  			<td><span id="branchName"></span>점<br>관리자<br><span id="name"></span>님</td>
 		</tr>
   	</table>
   </div>
@@ -62,6 +62,15 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
+
+$.ajax({
+	url: "controller?cmd=getSlideInfoAction",
+	success: function(result) {
+		result = JSON.parse(result);
+		$("#branchName").html(result["branchName"]);
+		$("#name").html(result["name"]);
+	}
+});
 </script>
 
 </body>
