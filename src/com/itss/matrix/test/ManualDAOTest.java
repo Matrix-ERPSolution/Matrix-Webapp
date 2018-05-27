@@ -1,5 +1,9 @@
 package com.itss.matrix.test;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.itss.matrix.model.ManualDAO;
 
 public class ManualDAOTest {
@@ -17,5 +21,11 @@ public class ManualDAOTest {
 		//System.out.println(dao.getTasks("테라스", "고객관리"));	//비기능 cmd:선택된 레코드가 없습니다. console:[]
 		//System.out.println(dao.getManualTaskSeq("바닥 쓸기"));	//기능 ok
 		//System.out.println(dao.getManualTaskSeq("매뉴얼에 이런 업무가 있을까"));	//비기능  cmd:선택된 레코드가 없습니다.  console: -1
+		/*List<Map> list =dao.getTasks("바", "위생관리");
+		for(Map map : list){
+			Set keys = map.keySet();
+			for(Object key : keys)
+			System.out.println(map.get(key));
+		}*/
 	}
 }

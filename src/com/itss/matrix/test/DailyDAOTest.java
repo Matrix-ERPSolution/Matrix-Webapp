@@ -15,16 +15,17 @@ public class DailyDAOTest {
 			//System.out.println(dao.getAssignedParts("2018/05/15"));	//기능 ok
 			//System.out.println(dao.getAssignedParts("2440/12/31"));	//비기능 cmd:선택된 레코드가 없습니다. console: []
 			
-			/** 파트별 - 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
+			/** 파트별 - 선택한 날짜, 배정대상에 해당하는 업무 목록 보기 */
 			//System.out.println(dao.getDailyTasksForParts("2018/05/20", "마감"));	//기능 ok. cmd & console:null항목은 아예 출력 안됨
 			//System.out.println(dao.getDailyTasksForParts("2440/12/31", "지구종말"));	//비기능 cmd:선택된 레코드가 없습니다. console:[]
 			
-			/** 개인별 - 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
+			/** 개인별 - 선택한 날짜에 해당하는 업무 목록 보기 */
 			//System.out.println(dao.getDailyTasksForPerson("2018/05/18"));	//기능 ok
 			//System.out.println(dao.getDailyTasksForPerson("2400/10/10"));	//비기능 cmd:선택된 레코드가 없습니다. console:[]
 			
 			/** 업무 중복확인 */
 			//System.out.println(dao.isDailyTask("직접해라직접", "2018/11/11"));
+			System.out.println(dao.isDailyTask("바닥 쓸기", "2400/20/20"));
 			
 			/** 업무 배정 */
 			//dao.addDailyTask("직접해라직접", "2018/11/11", 1, "개인", "taehun", 1);	//직접입력-기능 ok

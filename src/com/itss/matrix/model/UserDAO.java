@@ -2,7 +2,6 @@ package com.itss.matrix.model;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class UserDAO {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	/*로그인 + 현재 비밀번호 일치여부 검사 + 비밀번호 재확인 검사(같은 쿼리문)*/
+	/**로그인 + 현재 비밀번호 일치여부 검사 + 비밀번호 재확인 검사(같은 쿼리문)*/
 	public boolean login(String userId, String pw) {
 		boolean result=false;
 		Map<String, String> input = new HashMap<>();
@@ -45,7 +44,7 @@ public class UserDAO {
 		return result;
 	}
 
-	/*회원가입*/
+	/**회원가입*/
 	public void addUser(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
 		addUser(new UserVO(userId, pw, phoneNum, name, birth, gender, email, addressCity, addressGu, addressDong, profilePhoto));
 	}
@@ -68,7 +67,7 @@ public class UserDAO {
 		}
 	}
 
-	/*휴대폰 번호 중복 검사*/
+	/**휴대폰 번호 중복 검사*/
 	public boolean isUserPhoneNum(String phoneNum){
 		SqlSession session = sqlSessionFactory.openSession();
 		boolean result = false;
@@ -85,7 +84,7 @@ public class UserDAO {
 		return result;
 	}
 
-	/*아이디 중복 검사 + 아이디 유무 검사*/
+	/**아이디 중복 검사 + 아이디 유무 검사*/
 	public boolean isUserId(String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
 		boolean result = false;
@@ -101,7 +100,7 @@ public class UserDAO {
 		return result;
 	}
 
-	/*비밀번호 재설정*/
+	/**비밀번호 재설정*/
 	public void resetPw(String newPw, String userId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> input = new HashMap<>();
@@ -119,22 +118,36 @@ public class UserDAO {
 			session.close();
 		}	
 	}
-
-	/*아이디에 해당하는 휴대폰 번호 보기*/
-	public String getUserPhoneNum(String userId){
+	
+	/**휴대폰 번호에 해당하는 아이디 보기*/
+	public String getUserIdByPhoneNum(String phoneNum){
 		SqlSession session = sqlSessionFactory.openSession();
-		String userPhoneNum=null;
+		String result=null;
 		try {
-			userPhoneNum=session.selectOne("userMapper.getUserPhoneNum", userId);
+			result=session.selectOne("userMapper.getUserIdByPhoneNum", phoneNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return userPhoneNum;
+		return result;
+	}
+
+	/**아이디에 해당하는 휴대폰 번호 보기*/
+	public String getUserPhoneNum(String userId){
+		SqlSession session = sqlSessionFactory.openSession();
+		String result=null;
+		try {
+			result=session.selectOne("userMapper.getUserPhoneNum", userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 	
-	/*기본 회원정보 변경*/
+	/**기본 회원정보 변경*/
 	public void setUserInfo(String email, String addressCity, String addressGu, String addressDong,  String phoneNum, String profilePhoto, String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> map=new HashMap();
@@ -159,7 +172,7 @@ public class UserDAO {
 		}
 	}
 
-	/*현재 이름, 생년월일, 주소, 휴대폰번호, 프로필사진 보기*/
+	/**현재 이름, 생년월일, 주소, 휴대폰번호, 프로필사진 보기*/
 	public Map<String, String> getUserInfo(String userId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> map = null;
@@ -173,7 +186,7 @@ public class UserDAO {
 		return map;
 	}
 
-	/*프로필 사진 첨부*/
+	/**프로필 사진 첨부*/
 	public void setProfilePhoto (String profilePhoto, String userId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> map=new HashMap();
@@ -190,7 +203,7 @@ public class UserDAO {
 		}
 	}//차후에 슬라이드메뉴에서 프로필사진 변경 기능 추가할 경우 사용
 	
-	/*비밀번호 변경*/
+	/**비밀번호 변경*/
 	public void setPw(String newPw, String userId, String pw){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<String, String> input = new HashMap<>();
@@ -210,7 +223,7 @@ public class UserDAO {
 		}
 	}
 
-	/*프로필사진, 속한 지점, 회원인증유형, 이름 보기--슬라이드용*/
+	/**프로필사진, 속한 지점, 회원인증유형, 이름 보기--슬라이드용*/
 	//주의) staffs, branches와 겹치는 것 있음
 	public Map<String, String> getAdminSlideInfo(String userId) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -238,7 +251,7 @@ public class UserDAO {
 		return result;
 	}
 
-	/*탈퇴 - 연진*/
+	/**회원 탈퇴*/
 	public void removeUser(String userId, String pw) {
 		Map<String, String> input = new HashMap<>();
 		input.put("userId", userId);
@@ -252,10 +265,44 @@ public class UserDAO {
 		session.close();
 	}
 	
+	/**회원 전체 아이디 목록 보기*/
 	public List<String> getUsers(){
 		SqlSession session = sqlSessionFactory.openSession();
 		List<String> list = session.selectList("userMapper.getUsers");
 		return list;
 	}
+	
+	/**관리자 or 직원 or 미인증자 여부 확인*/
+	public Map getCertifiedInfo(String userId){
+		SqlSession session = sqlSessionFactory.openSession();
+		Map result = new HashMap<>();
+		String branchSeq = null;
+		try {
+			branchSeq = session.selectOne("userMapper.isCertifiedAdmin", userId);
+			if(branchSeq == null){
+				branchSeq = session.selectOne("userMapper.isCertifiedStaff", userId);
+				if(branchSeq != null){
+					result.put("type", "staff");
+					result.put("branchSeq", branchSeq);
+				} else{
+					return null;
+				}
+			} else {
+				result.put("type", "admin");
+				result.put("branchSeq", branchSeq);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 
 }

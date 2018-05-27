@@ -19,6 +19,7 @@ public class UserDAOUnitTest {
 	
 	@Test
 	public void correctUnitTest(){
+		
 		assertTrue(dao.login("chulsoo", "chulsoo1234"));
 		
 		assertNotNull(dao.getUsers());
@@ -73,7 +74,10 @@ public class UserDAOUnitTest {
 		cnt = dao.getUsers().size();
 		dao.removeUser("minsu", "minsu1234");
 		assertEquals(cnt-1, dao.getUsers().size());
+		
+		assertNotNull(dao.getCertifiedInfo("yunyoung"));
 	}
+	
 	@Test
 	public void loginWithWrongId() {
 		assertFalse(dao.login("hi", "hi1234"));
@@ -148,4 +152,11 @@ public class UserDAOUnitTest {
 		dao.removeUser("wrongid", "password");
 		assertEquals(cnt, dao.getUsers().size());
 	}
+	
+	
+	@Test
+	public void getCertifiedInfo(){
+		assertNull(dao.getCertifiedInfo("ssss"));
+	}
+	
 }

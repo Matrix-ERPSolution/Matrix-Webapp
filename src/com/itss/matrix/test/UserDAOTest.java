@@ -80,6 +80,8 @@ public class UserDAOTest {
 			//dao.removeUser("tester", "tester2"); //비기능-없는 사용자: 아무것도 안바뀜
 			//dao.removeUser("yunjin", "yunjin88"); //비기능-잘못된 비밀번호: 아무것도 안바뀜
 			//dao.removeUser(null, null); //비기능-하나 이상 null값 입력: org.apache.ibatis.type.TypeException
+		System.out.println(dao.getCertifiedInfo("dd"));
+		
 		System.out.println("end");
 	}
 

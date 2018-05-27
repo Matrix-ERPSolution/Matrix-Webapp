@@ -7,7 +7,7 @@
 	<select id="getSpaceTypes" resultType="String">
 		select space_type from space_types
 	</select>
-	<select id="getTaskTypesBySpaceType" resultType="java.util.Map" parameterType="String">
+	<select id="getTaskTypesBySpaceType" resultType="String" parameterType="String">
 		select distinct task_type from manual_tasks m, space_types s, task_types t where m.space_type_seq = s.space_type_seq and m.task_type_seq = t.task_type_seq and s.space_type=#{spaceType}
 	</select> 
 	<select id="getTaskTypes" resultType="String">
