@@ -2,10 +2,10 @@ package com.itss.matrix.model;
 
 public class StaffVO {
 	/**member data*/
-	private String workPart;
-	private String staffName;
 	private String staffId;
+	private String staffName;
 	private int branchSeq;
+	private String workPart;
 	private String bankName;
 	private String accountNum;
 	private String resumeFile;
@@ -23,11 +23,11 @@ public class StaffVO {
 		setBankFile(bankFile);
 	}
 	
-	/**직원목록 용*/
-	public StaffVO(String workPart, String staffId, int branchSeq) {
-		setWorkPart(workPart);
+	/**직원목록 조회용*/
+	public StaffVO(String staffId, int branchSeq, String workPart) {
 		setStaffId(staffId);
 		setBranchSeq(branchSeq);
+		setWorkPart(workPart);
 	}
 
 	/**get(), set()*/

@@ -1,5 +1,6 @@
 package com.itss.matrix.model;
 
+import static com.itss.matrix.model.FormatCheckSolution.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -88,10 +89,13 @@ public class StaffDAO {
 	}
 	
 	/**직원 인증요청 거부*/
-	public void removeStaff(String staffId){
+	public void removeStaff(String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
+		Map<Object, Object> input = new HashMap<>();
+		input.put("staffId", staffId);
+		input.put("branchSeq", branchSeq);
 		try {
-			if(session.delete("staffMapper.removeStaff", staffId) == 1){
+			if(session.delete("staffMapper.removeStaff", input) == 1){
 				session.commit();
 			} else {
 				//오류 처리
@@ -122,7 +126,7 @@ public class StaffDAO {
 		}
 	}
 	
-	/**퇴사한 직원 목록 보기 - sql 손봐야한다.*/
+	/**퇴사한 직원 목록 보기 - sql 손봄.*/
 	public Collection<Map<String, String>> getLeftStaffs(int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<Map<String, String>> list = new ArrayList<>();
@@ -136,7 +140,7 @@ public class StaffDAO {
 		return list;
 	}
 	
-	/**직원 상세 정보 보기, 직원정보변경 시 기존정보 해당 지점의 가장 최근 내역 1건 출력(null있으면 null이 최근) - sql 손봐줌.*/
+	/**직원 상세 정보 보기, 직원정보변경 시 기존정보 출력(유지)용. 해당 지점의 가장 최근 내역 1건 출력(null있으면 null이 최근) - sql 손봐줌.*/
 	public Map<Object, Object> getStaffDetail(String staffId, int branchSeq){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<Object, Object> input = new HashMap<>();
@@ -161,6 +165,12 @@ public class StaffDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
+			if(!isFileFormat(vo.getResumeFile())||!isFileFormat(vo.getHealthFile())||!isFileFormat(vo.getBankFile())) {
+				throw new RuntimeException("파일형식블라블라");
+			}
+			if(!isNumberFormat(vo.getAccountNum())) {
+				throw new NumberFormatException("번호어쩌구");
+			}
 			if(session.insert("staffMapper.addStaff", vo) == 1){
 				session.commit();
 			} else {
@@ -173,14 +183,20 @@ public class StaffDAO {
 		}
 	}
 	
-	/**직원 회원정보 변겅 - 모든 정보*/
-	public void setStaffInfo(String resumeFile, int branchSeq, String healthFile, String bankFile, String bankName, String accountNum, String staffId){
+	/**직원 회원정보 변경 - 모든 정보*/
+	public void setStaffInfo(String staffId, int branchSeq, String bankName, String accountNum, String resumeFile, String healthFile, String bankFile){
 		setStaffInfo(new StaffVO(staffId, branchSeq, bankName, accountNum, resumeFile, healthFile, bankFile));
 	}
 	public void setStaffInfo(StaffVO vo){
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
+			if(!isFileFormat(vo.getResumeFile())||!isFileFormat(vo.getHealthFile())||!isFileFormat(vo.getBankFile())) {
+				throw new RuntimeException("파일형식블라블라");
+			}
+			if(!isNumberFormat(vo.getAccountNum())) {
+				throw new NumberFormatException("번호어쩌구");
+			}
 			if(session.update("staffMapper.setStaffInfo", vo) == 1){
 				session.commit();
 			} else {
@@ -196,8 +212,8 @@ public class StaffDAO {
 	/**직원목록 - 직원 소속파트 배정/변경
 	 * select staff_seq, branch_seq, work_part, join_date, leave_date from staffs where staff_id='chanyoung';
 	 * */
-	public void setWorkPart(String workPart, String staffId, int branchSeq){
-		setWorkPart(new StaffVO(workPart, staffId, branchSeq));
+	public void setWorkPart(String staffId, int branchSeq, String workPart){
+		setWorkPart(new StaffVO(staffId, branchSeq, workPart));
 	}
 	public void setWorkPart(StaffVO vo){
 		SqlSession session = sqlSessionFactory.openSession();
