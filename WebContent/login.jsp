@@ -46,6 +46,11 @@ $("button").button();
 $("saveID").checkboxradio();
 
 
+if(localStorage.getItem("loginId")){
+	$("#id").val(localStorage.getItem("loginId"));
+	$("#saveId").prop("checked", true);
+}
+
 
 	//아이디 입력값 형식 검사: 
 	//아이디 : 6~16자 영소문자, 숫자/정규표현식: ^(?=.*[a-z]|(?=.*\d)).{6,16}$
@@ -76,6 +81,10 @@ $("saveID").checkboxradio();
 		if (check) {
 			if ($("#saveId").prop("checked")) {
 				localStorage.setItem("loginId", $("#id").val());
+			} else {
+				if(localStorage.getItem("loginId")){
+					localStorage.removeItem("loginId");
+				}
 			}
 			
 			$.ajax({
