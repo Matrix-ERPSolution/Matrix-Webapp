@@ -17,7 +17,6 @@ public class GetSlideInfoAction implements Action {
 
 		Map<String, String> result = new HashMap();
 		result = new UserDAO().getAdminSlideInfo(id);
-		System.out.println(result);
 		request.setAttribute("info", result);
 		
 		String page = "results/getSlideInfo.jsp";
