@@ -60,6 +60,12 @@
 li:hover, .selected {
 	background-color: #99ccff;
 }
+
+li {
+	list-style: none;
+	font-size: 12pt;
+	margin-left: -40pt;
+}
 </style>
 </head>
 <body>
@@ -72,54 +78,6 @@ li:hover, .selected {
 <button id="taskMode">업무별</button>
 <br><br>
 <div id="manual">
-	<div class="accordion" id="accordion1">accordion1</div>
-	<div class="panel">
-		<div class="subAccordion">
-			<div>subAccordion1</div>
-		</div>
-		<div class="subPanel">
-			<ul>
-				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
-				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>
-				<li>taskContent3 <span class="interval" style="float: right;">taskPeriod3</span></li>
-				<li>taskContent4 <span class="interval" style="float: right;">taskPeriod4</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>subAccordion2</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
-				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="accordion" id="accordion2">accordion2</div>
-	<div class="panel">
-		<div class="subAccordion">
-			<div>subAccordion1</div>
-		</div>
-		<div class="subPanel">
-			<ul>
-				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
-				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>
-				<li>taskContent3 <span class="interval" style="float: right;">taskPeriod3</span></li>
-				<li>taskContent4 <span class="interval" style="float: right;">taskPeriod4</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>subAccordion2</div>
-		</div>
-		<div class="subPanel">
-			<ul>
-				<li>taskContent1 <span class="interval" style="float: right;">taskPeriod1</span></li>
-				<li>taskContent2 <span class="interval" style="float: right;">taskPeriod2</span></li>	
-				<li>taskContent3 <span class="interval" style="float: right;">taskPeriod3</span></li>				
-			</ul>
-		</div>
-	</div>
 </div>
 <script>
 var manualSpaceMode = function(){
@@ -149,69 +107,75 @@ $("#taskMode").click(function(){
 	manualTaskMode();
 });
 
-
-/* 
-var acc = document.querySelectorAll(".accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
+var activateAcc = function(input){
+    input.classList.toggle("active");
+    var panel = input.nextElementSibling;
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+      if(input.classList.contains("spaceType")){
+    		$.ajax({
+    	        url : "controller?cmd=getTaskTypesBySpaceTypeAction", 
+    	        data: {
+    				spaceType : input.id, 
+    			},
+    	        success : function(result){
+    	        	panel.innerHTML = result;
+    	        	panel.style.maxHeight = panel.scrollHeight + "px";
+    	        }
+    	    });
+    	}
+
+      if(input.classList.contains("taskType")){
+    		$.ajax({
+    	        url : "controller?cmd=getSpaceTypesByTaskTypeAction", 
+    	        data: {
+    				taskType : input.id, 
+    			},
+    	        success : function(result){
+    	        	panel.innerHTML = result;
+    	        	panel.style.maxHeight = panel.scrollHeight + "px";
+    	        }
+    	    });
+    	}
+      
     } 
-  });
 }
 
-var subAcc = document.querySelectorAll(".subAccordion");
-
-for (i = 0; i < subAcc.length; i++) {
-	subAcc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
+var activateSubAcc = function(input){
+    input.classList.toggle("active");
+    var panel = input.nextElementSibling;
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+    	var space = "";
+    	var task = "";
+    	if(input.classList.contains('taskType')){
+    		task = input.id;
+    		space = input.parentNode.previousElementSibling.id;
+    	} else if(input.classList.contains('spaceType')){
+    		space = input.id;
+    		task = input.parentNode.previousElementSibling.id;
+    	}
+    	$.ajax({
+	        url : "controller?cmd=getTasksAction", 
+	        data: {
+				spaceType : space, 
+				taskType : task
+			},
+	        success : function(result){
+	        	panel.innerHTML = result;
+	        	panel.style.maxHeight = panel.scrollHeight + "px";
+	        	var motherPanel = input.parentNode;
+	            motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
+	        }
+	    });
     } 
     
-    var motherPanel = this.parentNode;
-    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-
-  });
+    
 }
 
-
-
-$(".spaceType").click(function(){
-	console.log("spacetype")
-	$.ajax({
-        url : "controller?cmd=getTaskTypesBySpaceTypeAction", 
-        data: {
-			spaceType : $(this).html(), 
-		},
-        success : function(result){
-           $(this).children(".panel").html(result);
-        }
-    });
-});
-
-
-$(".taskType").click(function(){
-	console.log("tasktype")
-	$.ajax({
-        url : "controller?cmd=getSpaceTypesByTaskTypeAction", 
-        data: {
-			taskType : $(this).html(), 
-		},
-        success : function(result){
-        	$(this).children(".panel").html(result);
-        }
-    });
-}); */
 </script>
+
 </body>
 </html>
