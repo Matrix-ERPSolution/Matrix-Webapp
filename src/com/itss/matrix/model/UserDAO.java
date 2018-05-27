@@ -125,7 +125,7 @@ public class UserDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		String result=null;
 		try {
-			result=session.selectOne("userMapper.getUserPhoneNum", phoneNum);
+			result=session.selectOne("userMapper.getUserIdByPhoneNum", phoneNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -5,14 +5,27 @@
 <head>
 <%@include file="headSetting.jsp" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>회원가입</title>
+<style>
+#grad1 {
+    height: 640px;
+    background: #2E64FE;
+    background: linear-gradient(#2E64FE, white);
+	text-align: center;
+}
+.roundBox {
+	width: 200px;
+	height: 30px;
+	border-radius: 20px;
+	text-align: center;
+}
+</style>
 </head>
-<body>
+<body id="grad1">
 <div>
-	<img class="inline" src="images/back.png" width="30pt" align="left"/>
+	<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
+	<h4 class="inline" align="center">회원가입을 환영합니다!</h4>
 </div>
-<h3>Matrix</h3>
-<h1>회원가입을 환영합니다!</h1>
+
 
 <i class="fa fa-user" aria-hidden="true"></i><!-- 직원용 그림-->
 <button id="certifyStaff" class="ui-button ui-widget ui-corner-all">직원 인증</button>

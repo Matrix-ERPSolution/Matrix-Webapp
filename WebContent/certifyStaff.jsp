@@ -5,35 +5,26 @@
 <html>
 <head>
 <%@include file="headSetting.jsp" %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .modalBranch {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
     left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-.modalBranch:target {
-    opacity:1;
-    pointer-events: auto;
-}
-.modalBranch > div {
-	position: absolute;
-	top: 25%;
-	left: 25%;
-	width: 50%;
-	height: 50%;
-	padding: 16px;
-	border: 16px solid orange;
-	background-color: white;
-	overflow: auto;	
+.modalBranch-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 #grad1 {
     height: 640px;
@@ -50,15 +41,19 @@
 </style>
 </head>
 <body id="grad1">
-<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
-	<h4 class="inline" align="center">직원 회원 인증</h4>
-지점명<input type="text" id="branchName" name="branchName" class="roundBox" required><a href="#modalFindBranch">지점찾기</a>
+	<div>
+		<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top: 100px;"><br>
+		<h4 class="inline" align="center">직원 회원 인증</h4>
+	</div>
+
+<input type="text" id="branchName" name="branchName" class="roundBox" required placeholder="지점명"><br>
+<a href="#modalFindBranch" class="roundBox">지점찾기</a>
 <div id="branchNameCheck"></div>
 <br>
-이력서<input type="text" id="resumeFile" name="resumeFile" class="roundBox" ><br>
-보건증<input type="text" id="healthFile" name="healthFile" class="roundBox"><br>
-통장사본<input type="text" id="bankFile" name="bankFile" class="roundBox"><br>
-계좌번호<select id="bankNameSelect">
+<input type="text" id="resumeFile" name="resumeFile" class="roundBox" placeholder="이력서"><br>
+<input type="text" id="healthFile" name="healthFile" class="roundBox" placeholder="보건증"><br>
+<input type="text" id="bankFile" name="bankFile" class="roundBox" placeholder="통장사본"><br>
+<select id="bankNameSelect">
 <option selected>선택</option>
 <option value="신한">신한</option>
 <option value="국민">국민</option>
@@ -66,17 +61,15 @@
 <option value="우리">우리</option>
 <option value="농협">농협</option>
 <option value="기업">기업</option>
-</select> <input type="text" id="accountNum" name="accountName"><br>
-<button id="certify" class="ui-button ui-widget ui-corner-all" >인증요청</button>
+</select> <input type="text" id="accountNum" name="accountName" class="roundBox" placeholder="계좌번호"><br>
+<button id="certify" class="roundBox" >인증요청</button>
 
 	<!-- 모달 -->
 	<div id="modalFindBranch" class="modalBranch">
-	<header><a href="#close" align="right">닫기</a></header>
-		<div>
-				<%@include file="findBranch.jsp" %>
+		<div class="modal-content">
+		<%@include file="findBranch.jsp" %>
 		</div>
-				
-	</div><!-- modal end -->
+	</div><!-- modalBranch end -->
 <script type="text/javascript">
 		/*	
 		 직원인증정보	STAFFS	insert	StaffDAO		
@@ -88,8 +81,7 @@
 		 본사 DB	HEAD_BRANCHES	select			
 		 */
 
-		//지점검색
-		
+		//지점검색: 모달로 구현;
 	</script>
 
 </body>
