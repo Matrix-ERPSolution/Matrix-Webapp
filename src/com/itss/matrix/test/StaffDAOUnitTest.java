@@ -60,31 +60,31 @@ public class StaffDAOUnitTest {
 		
 	}
 	
-	/**(공통)지점코드 입력 가능범위 초과 시-결과값: <[]>
+	/**(공통)지점코드 입력 가능범위 초과 시-DAO 예외처리
 	@Test
 	public void getWorkPartsWithOutofboundsBranchSeq(){
 		assertEquals(dao.getWorkParts(83374949).size(),0);	
 	}*/
 	
-	/**없는 지점의 소속파트 가져오기-현재UI에서 불가능한 기능-결과값: []	
+	/**없는 지점의 소속파트 가져오기-현재UI에서 불가능한 기능-DAO 예외처리	
 	@Test
 	public void getWorkPartsWithWrongBranchSeq(){
 		assertEquals(dao.getWorkParts(99).size(), 0);
 	}*/
 	
-	/**없는 지점의 직원목록 가져오기-결과값: []
+	/**없는 지점의 직원목록 가져오기-DAO 예외처리
 	@Test
 	public void getWorkingStaffsWithWrongBranchSeq(){
 		assertEquals(dao.getWorkingStaffs(99).size(), 0);
 	}*/
 	
-	/**없는 지점의 직원 인증요청 목록 가져오기-결과값: []
+	/**없는 지점의 직원 인증요청 목록 가져오기-DAO 예외처리
 	@Test
 	public void getPreStaffsWithNonexistBranchSeq(){
 		assertEquals(dao.getPreStaffs(99).size(), 0);
 	}*/
 	
-	/**이미 인증요청 수락한(재직중인) 직원을 재수락하는 경우-결과: DB 수정 안됨
+	/**이미 인증요청 수락한(재직중인) 직원을 재수락하는 경우-DAO 예외처리
 	@Test
 	public void setJoinDateWithExistStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 2);
@@ -92,7 +92,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 2));
 	}*/
 	
-	/**인증요청하지 않은 직원의 입사일을 등록하는 경우(회원이지만 인증요청X|비회원)-결과: DB 수정 안됨
+	/**인증요청하지 않은 직원의 입사일을 등록하는 경우(회원이지만 인증요청X|비회원)-DAO 예외처리
 	@Test
 	public void setJoinDateWithoutAddStaff(){
 		Map staff = dao.getStaffDetail("tester01", 1);
@@ -100,7 +100,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("tester01", 1));
 	}*/
 	
-	/**이미 퇴사한 직원을 퇴사시키려는 경우-결과: DB 수정 안됨
+	/**이미 퇴사한 직원을 퇴사시키려는 경우-DAO 예외처리
 	@Test
 	public void setLeaveDateWithLeftStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 3);
@@ -108,7 +108,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
-	/**인증요청만 하고 승인 안 된 직원을 퇴사시키는 경우-결과: DB 수정 안됨
+	/**인증요청만 하고 승인 안 된 직원을 퇴사시키는 경우-DAO 예외처리
 	@Test
 	public void setLeaveDateWithPreStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 1);
@@ -116,7 +116,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 1));
 	}*/
 	
-	/**인증요청하지 않은 직원의 퇴사일을 등록하는 경우/존재하지 않는 회원의 경우-결과: DB 수정 안됨
+	/**인증요청하지 않은 직원의 퇴사일을 등록하는 경우/존재하지 않는 회원의 경우-DAO 예외처리
 	@Test
 	public void setLeaveDateWithWrongStaff(){
 		Map staff = dao.getStaffDetail("tester01", 1);
@@ -124,19 +124,19 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("tester01", 1));
 	}*/
 	
-	/**없는 지점의 퇴사직원 목록 조회-결과값: []
+	/**없는 지점의 퇴사직원 목록 조회-DAO 예외처리
 	@Test
 	public void getLeftStaffsWithWrongBranchSeq(){
 		assertEquals(dao.getLeftStaffs(99).size(), 0);
 	}*/
 
-	/**없는 지점의 직원 상세 보기-결과값: null
+	/**없는 지점의 직원 상세 보기-DAO 예외처리 
 	@Test
 	public void getStaffDetailWithWrongBranchSeq(){
 		assertNull(dao.getStaffDetail("chanyoung", 99));
 	}*/
 	
-	/**없는 직원 상세 보기-결과값: null
+	/**없는 직원 상세 보기-DAO 예외처리 
 	@Test
 	public void getStaffDetailWithWrongStaffId(){
 		assertNull(dao.getStaffDetail("tester99", 1));
@@ -181,7 +181,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
-	/**없는 직원의 직원정보 변경-결과: DB 수정 안됨
+	/**없는 직원의 직원정보 변경-DAO 예외처리
 	@Test
 	public void setStaffInfoWithWrongStaff(){
 		Map staff = dao.getStaffDetail("tester99", 1);
@@ -205,7 +205,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
-	/**이미 승인 처리받은 직원(재직) 의 요청을 거부하려고 하는 경우-결과:DB 수정 안됨
+	/**이미 승인 처리받은 직원(재직) 의 요청을 거부하려고 하는 경우-DAO 예외처리
 	@Test
 	public void removeStaffWithJoinedStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 2);
@@ -213,7 +213,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 2));
 	}*/
 	
-	/**인증요청하지 않은 경우(or 없는 직원의 경우)-결과:DB 수정 안됨
+	/**인증요청하지 않은 경우(or 없는 직원의 경우)-DAO 예외처리
 	@Test
 	public void removeStaffWithWrongStaffId(){
 		Map staff = dao.getStaffDetail("tester99", 1);
@@ -221,7 +221,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("tester99", 1));
 	}*/
 
-	/**퇴사한 직원의 인증을 거부하는 경우-결과:DB 수정 안됨
+	/**퇴사한 직원의 인증을 거부하는 경우-DAO 예외처리
 	@Test
 	public void removeStaffWithLeftStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 3);

@@ -33,6 +33,9 @@ public class StaffDAO {
 		Collection<String> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getWorkParts", branchSeq);
+			if(list.isEmpty()) {
+				throw new RuntimeException("getWorkParts 결과:empty");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -47,6 +50,9 @@ public class StaffDAO {
 		Collection<Map<String, String>> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getWorkingStaffs", branchSeq);
+			if(list.isEmpty()){
+				throw new RuntimeException("getWorkingStaffs 결과:empty");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -61,6 +67,9 @@ public class StaffDAO {
 		Collection<Map<String, String>> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getPreStaffs", branchSeq);
+			if(list.isEmpty()){
+				throw new RuntimeException("getPreStaffs 결과:empty");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -79,7 +88,7 @@ public class StaffDAO {
 			if(session.update("staffMapper.setJoinDate", input) == 1){
 				session.commit();
 			} else {
-				//오류 처리
+				throw new RuntimeException("setJoinDate update 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +107,7 @@ public class StaffDAO {
 			if(session.delete("staffMapper.removeStaff", input) == 1){
 				session.commit();
 			} else {
-				//오류 처리
+				throw new RuntimeException("removeStaff delete 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,7 +126,7 @@ public class StaffDAO {
 			if(session.update("staffMapper.setLeaveDate", input) == 1){
 				session.commit();
 			} else {
-				//오류 처리
+				throw new RuntimeException("setLeaveDate update 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,6 +141,9 @@ public class StaffDAO {
 		Collection<Map<String, String>> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getLeftStaffs", branchSeq);
+			if(list.isEmpty()){
+				throw new RuntimeException("getLeftStaffs 결과:empty");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -149,6 +161,9 @@ public class StaffDAO {
 		Map<Object, Object> output = null;
 		try {
 			output = session.selectOne("staffMapper.getStaffDetail", input);
+			if(output==null){
+				throw new RuntimeException("getStaffDetail 결과:null");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -166,28 +181,25 @@ public class StaffDAO {
 		Map staff = getStaffDetail(vo.getStaffId(), vo.getBranchSeq());
 		try {
 			if(!isInputLength(vo.getAccountNum(), 0, 20)||!isInputLength(vo.getResumeFile(), 0, 40)||!isInputLength(vo.getHealthFile(), 0, 40)||!isInputLength(vo.getBankFile(), 0, 40)){
-				throw new RuntimeException("입력값 길이 제한을 초과하였습니다.");
+				throw new RuntimeException("입력값 길이 제한 초과");
 			}
 			if((staff.get("JOIN_DATE")==null)&&(staff.get("LEAVE_DATE")==null)) {
-				throw new RuntimeException("이미 승인요청하였습니다.");
+				throw new RuntimeException("addStaff 실패:이미 승인요청함");
 			}
 			if(staff.get("JOIN_DATE")!=null){
-				throw new RuntimeException("이미 재직중인 직원입니다.");
+				throw new RuntimeException("addStaff 실패:이미 재직중인 직원");
 			}
 			if(!isBranchSeq(vo.getBranchSeq())){
-				throw new RuntimeException("없는지점임");
+				throw new RuntimeException("addStaff 실패:없는 지점임");
 			}
 			if(!isFileFormat(vo.getResumeFile())||!isFileFormat(vo.getHealthFile())||!isFileFormat(vo.getBankFile())) {
-				throw new RuntimeException("파일형식블라블라");
+				throw new RuntimeException("addStaff insert 실패:파일형식 오류");
 			}
 			if(!isNumberFormat(vo.getAccountNum())) {
-				throw new NumberFormatException("번호어쩌구");
+				throw new NumberFormatException("addStaff 실패:계좌번호 형식 오류");
 			}
-			if(session.insert("staffMapper.addStaff", vo) == 1){
-				session.commit();
-			} else {
-				//오류 처리
-			}
+			session.insert("staffMapper.addStaff", vo);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -204,15 +216,15 @@ public class StaffDAO {
 		
 		try {
 			if(!isFileFormat(vo.getResumeFile())||!isFileFormat(vo.getHealthFile())||!isFileFormat(vo.getBankFile())) {
-				throw new RuntimeException("파일형식블라블라");
+				throw new RuntimeException("setStaffInfo 실패:파일형식 오류");
 			}
 			if(!isNumberFormat(vo.getAccountNum())) {
-				throw new NumberFormatException("번호어쩌구");
+				throw new NumberFormatException("setStaffInfo 실패:계좌번호 형식 오류");
 			}
 			if(session.update("staffMapper.setStaffInfo", vo) == 1){
 				session.commit();
 			} else {
-				//오류 처리
+				throw new RuntimeException("setStaffInfo update 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -221,9 +233,7 @@ public class StaffDAO {
 		}
 	}
 	
-	/**직원목록 - 직원 소속파트 배정/변경
-	 * select staff_seq, branch_seq, work_part, join_date, leave_date from staffs where staff_id='chanyoung';
-	 * */
+	/**직원목록 - 직원 소속파트 배정/변경*/
 	public void setWorkPart(String staffId, int branchSeq, String workPart){
 		setWorkPart(new StaffVO(staffId, branchSeq, workPart));
 	}
@@ -234,7 +244,7 @@ public class StaffDAO {
 			if(session.update("staffMapper.setWorkPart", vo) == 1){
 				session.commit();
 			} else {
-				//오류 처리
+				throw new RuntimeException("setWorkPart update 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -243,9 +253,7 @@ public class StaffDAO {
 		}
 	}
 	
-	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회
-	 * select staff_seq, branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
-	 * */
+	/**특정 직원의 입사/퇴사 날짜 존재여부 조회*/
 	public boolean isStaffDate(String staffId, int branchSeq, String joinDate, String leaveDate) {
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<Object, Object> input = new HashMap<>();
