@@ -73,7 +73,7 @@ li.selected::before {
 <div class="accordion">오픈조</div>
 	<div class="panel">
 		<ul>
-			<li>쇼케이스 점등</li>
+			<li>내일의 업무</li>
 			<li>POS기 켜기</li>
 			<li>커피머신 켜기</li>
 			<li>딸기 씻기</li>

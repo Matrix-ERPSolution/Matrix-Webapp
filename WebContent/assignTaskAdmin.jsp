@@ -269,7 +269,7 @@ $("#closeModal").on("click", function(){
 });
 
 $("#goNext").on("click", function(){
-	location.href = "assignTaskNextAdmin.jsp";
+	location.href = "controller?cmd=assignTaskNextAdminUI";
 });
 
 //자동완성

@@ -5,7 +5,9 @@
 <head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@include file="headSetting.jsp"%>
 <title>직원상세정보</title>
 <style>
 table {
@@ -99,7 +101,9 @@ li {
 	});
 	$("#backToStaffManagementAdmin").click(function() {
 		$.ajax({
-			url : "staffManagementAdmin.jsp",
+			url : "controller?cmd=staffManagementAdminUI",
+			data: {
+			},
 			success : function(result) {
 				$("#result").html(result);
 			}

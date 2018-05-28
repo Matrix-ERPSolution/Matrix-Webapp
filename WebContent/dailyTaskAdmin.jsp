@@ -304,7 +304,7 @@ $("#deleteTask").click(function(){
 /**assignTaskAdmin 페이지로 이동*/
 $("#assignTaskButton").click(function(){
 	$.ajax({
-        url : "assignTaskAdmin.jsp", 
+        url : "controller?cmd=assignTaskAdminUI", 
         success : function(result){
            $("#result").html(result);
         }

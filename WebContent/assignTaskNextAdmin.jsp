@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>업무 배정</title>
@@ -136,8 +137,10 @@
 
 <hr> <br>
 <div style="text-align: center;">
-<button>배정하기</button>
-<button>취소</button>
+<!-- <input type="button" class="assignButton" value="배정하기">
+<input type="button" class="assignCancelButton" value="취소"> -->
+<button id="assignButton">배정하기</button>
+<button id="assignCancelButton">취소</button>
 </div>
 <script>
 var acc = document.querySelectorAll(".accordion");
@@ -197,8 +200,21 @@ for (i = 0; i < li.length; i++) {
 			 }
 		 }
 	})
-}
-
+};
+$('#assignButton').on('click',function (){
+	 $.ajax({
+	        //url : "controller?cmd=assignTaskAdminAction", 
+	        //data : {  }
+	        success : function(result) {
+	        	confirm("~를 ~에게 배정합니다.");
+				location.href = "controller?cmd=headerAdminUI";
+	        }
+	 });
+});
+$('#assignCancelButton').on('click',function (){
+	        	alert("홈화면으로 돌아갑니다.");
+				location.href = "controller?cmd=headerAdminUI";
+});
 </script>
 </body>
 </html>

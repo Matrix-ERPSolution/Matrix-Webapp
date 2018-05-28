@@ -110,7 +110,15 @@ li:hover, .selected {
 	$("#test").on("click", function(){
     	alert($("#bizNumber").val());	
     }) */
-    
+    $("#certification").click(function() {
+    	$.ajax({
+    		//url : "",
+    		//data: {},
+    		success : function(result) {
+    			location.href = "controller?cmd=homeUI";
+    		}
+    	});
+    });
 </script>
 </body>
 </html>

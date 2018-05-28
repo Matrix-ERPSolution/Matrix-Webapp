@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -61,7 +62,19 @@
 	<input type="text" name="profilePhoto"	id=profilePhoto class="roundBox" placeholder="프로필 사진 첨부"><br>
 </div>
 <!-- privacy end -->
-	<button id="certification" class="roundBox" >가입하기</button>
+	<button id="addUserButton" class="roundBox" >가입하기</button>
 
 </body>
+<script>
+$('#addUserButton').on('click',function (){
+	 $.ajax({
+	        //url : "controller?cmd=가입하는 Action", 
+	        //data : {  }
+	        success : function(result) {
+	        	alert("홈화면으로 돌아갑니다.");
+				location.href = "controller?cmd=headerAdminUI";
+	        }
+	 });
+});
+</script>
 </html>

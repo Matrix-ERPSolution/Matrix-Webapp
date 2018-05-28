@@ -78,5 +78,14 @@ for (i = 0; i < acc.length; i++) {
 		}
 	});
 }
+$("#certification").click(function() {
+	$.ajax({
+		//url : "",
+		//data: {},
+		success : function(result) {
+			location.href = "controller?cmd=homeUI";
+		}
+	});
+});
 </script>
 </html>

@@ -28,15 +28,15 @@ check기능
 </fieldSet>
 <script type="text/javascript">
 $("#login").on("click", function(){
-	location.href="menuAdmin.jsp";
+	location.href="controller?cmd=headerAdminUI";
 });
 
 $("#findIdPassword").on("click", function(){
-	location.href="findIdPassword.jsp";
+	location.href="controller?cmd=findIdPasswordUI";
 });
 
 $("#addMember").on("click", function(){
-	location.href="addMember.jsp";
+	location.href="controller?cmd=addUserUI";
 });
 
 $("button").button();
