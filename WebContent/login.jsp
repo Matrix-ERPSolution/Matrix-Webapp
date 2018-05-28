@@ -44,88 +44,90 @@ html, body {
 
 $("button").button();
 $("saveID").checkboxradio();
+//아이디 : 6~16자 영소문자, 숫자/정규표현식: ^(?=.*[a-z]|(?=.*\d)).{6,16}$
+//비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z]|(?=.*\d)|(?=.*\W)).{6,16}$
 
-//세션에서 아이디값 받아오기
-if(localStorage.getItem("loginId")){
-	$("#userId").val(localStorage.getItem("loginId"));
-	$("#saveId").prop("checked", true);
-}
+//아이디가 저장되어 있다면 세션에서 아이디값 받아오기.
+	if (localStorage.getItem("loginId")) {
+		$("#userId").val(localStorage.getItem("loginId"));
+		$("#saveId").prop("checked", true);
+	}
 
-
-	//아이디 입력값 형식 검사: 
-	//아이디 : 6~16자 영소문자, 숫자/정규표현식: ^(?=.*[a-z]|(?=.*\d)).{6,16}$
-	
+//아이디, 패스워드 길이 점검
 	$("#userId").keyup(function() {
-		if($("#userId").val()=="") {
+		if ($("#userId").val() != "") {
 			$("#idCheck").html("");
 		}
 	});
-	
-	//비밀번호 입력값 형식 검사
-	//비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z]|(?=.*\d)|(?=.*\W)).{6,16}$
+
 	$("#pw").keyup(function() {
-		if($("#pw").val()!="") {
+		if ($("#pw").val() != "") {
 			$("#pwCheck").html("");
 		}
 	});
-	
-	//로그인 단계: 1. null check -> 2. 형식 검사 -> 3. session에 아이디 저장 -> 4.ajax: 로그인 처리
-	$("#login").on("click", function() {
+
+	//로그인
+	$("#login").on("click",	function() {
 		var check = true;
-		if(check) {
-			if($("#userId").val()=="") {
+		//1. null check
+		if (check) {
+			if ($("#userId").val() == "") {
 				$("#idCheck").html("아이디를 입력해주세요");
 				$("#userId").focus();
-				check=false;
-			} else if($("#pw").val()=="") {
+				check = false;
+			} else if ($("#pw").val() == "") {
 				$("#pwCheck").html("비밀번호를 입력해주세요");
 				$("#pw").focus();
-				check=false;
+				check = false;
 			}
 		}
+		//2. 형식 검사
 		var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
 		var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
-		if(check) {
-			if(!regExpId.test($("#userId").val()) || !regExpPw.test($("#pw").val())) {
-				alert("아이디, 비밀번호를 확인해주세요");
-				check=false;
-			} 
+		if (check) {
+			if (!regExpId.test($("#userId").val()) || !regExpPw.test($("#pw").val())) {
+				check = false;
+			}
 		}
+						
+		//3. 아이디 저장 체크 여부
 		if (check) {
 			if ($("#saveId").prop("checked")) {
 				localStorage.setItem("loginId", $("#userId").val());
 			} else {
-				if(localStorage.getItem("loginId")){
+				if (localStorage.getItem("loginId")) {
 					localStorage.removeItem("loginId");
 				}
 			}
-			
+		}
+		//4. ajax
+		if(check) {
 			$.ajax({
-				url: "controller?cmd=loginAction",
-				data: {
-						userId : $("#userId").val(), 
-						pw : $("#pw").val()
+				url : "controller?cmd=loginAction",
+				data : {
+					userId : $("#userId").val(),
+					pw : $("#pw").val()
 				},
-				success: function(result) {
+				success : function(result) {
 					$("body").html(result);
-				}
-			});
-		} 
+					}
+				});	
+		} else {
+			alert("아이디, 비밀번호를 확인해주세요.");
+		}
 	});
 
 	//비밀번호 찾기 페이지 이동
-	$("#findIdPassword").on("click", function(){
-	 location.href="findIdPassword.jsp";
-	 }); 
+	$("#findIdPassword").on("click", function() {
+		location.href = "controller?cmd=findIdPasswordUI";
+	});
 
 	//회원가입 페이지 이동
-	 $("#addUser").on("click", function(){
-	 location.href="addUser.jsp";
-	 });
+	$("#addUser").on("click", function() {
+		location.href = "controller?cmd=addUserUI";
+	});
 
-	
 	//자동로그인: #autologin check -> id, pw를 어디에 저장했다가 불러올건가?
-	
 </script>
 </body>
 </html>
