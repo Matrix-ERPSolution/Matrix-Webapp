@@ -62,4 +62,21 @@
 			and assign_detail=#{assignDetail}
 		</if>
 	</select>
+	<select id="getBranchSeq" parameterType="int" resultType="int">
+		select distinct branch_seq
+		from daily_tasks d, admins a
+		where d.admin_seq = a.admin_seq
+		and d.admin_seq=#{adminSeq}
+	</select>
+	<select id="getAdminSeqs" resultType="int">
+		select distinct admin_seq from admins
+		where approve_date is not null
+		and revoke_date is null
+	</select>
+	<select id="getAssignDetail" parameterType="java.util.Map" resultType="String">
+		select assign_detail from daily_tasks
+		where daily_task=#{oldDailyTask} 
+		and assign_date=#{assignDate}
+	</select>
+	
 </mapper>
