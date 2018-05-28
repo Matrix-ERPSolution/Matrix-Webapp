@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import com.itss.matrix.model.UserDAO;
 
@@ -12,20 +11,14 @@ public class LoginAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String userId = request.getParameter("userId");
 		String pw = request.getParameter("pw");
-		boolean result = false; 
-		result = new UserDAO().login(id,pw);
-		
-		String page = "error.jsp";
-		
-		if(result) {
-			page = "headerAdmin.jsp";
-			HttpSession session = request.getSession(true);
-			session.setAttribute("userId", id);
+		String page = "results/loginError.jsp";	
+		if(new UserDAO().login(userId, pw)) {
+			request.getSession().setAttribute("userId", userId);
+			page= "results/loginOK.jsp";
 		}
-		
+				
 		return page;
 	}
-
 }

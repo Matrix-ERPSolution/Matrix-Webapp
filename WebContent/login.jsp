@@ -29,15 +29,15 @@ html, body {
 <body id="grad1">
 <div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"></div>
 <br><br>
-<input type="text" id="id" name="id" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
+<input type="text" id="userId" name="userId" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
 <input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
 <button id="login" class="roundBox" style="background: rgba(255, 255, 255, 0.3);">로그인</button><br>
 <br>
 <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
 <input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
 <br><br>
-<a id="findIdPassword" href="#">아이디/비밀번호찾기</a><br>
-<a id="addUser" href="#">회원가입</a>
+<a id="findIdPassword">아이디/비밀번호찾기</a><br>
+<a id="addUser" >회원가입</a>
 
 
 <script type="text/javascript">
@@ -45,42 +45,55 @@ html, body {
 $("button").button();
 $("saveID").checkboxradio();
 
-
+//세션에서 아이디값 받아오기
 if(localStorage.getItem("loginId")){
-	$("#id").val(localStorage.getItem("loginId"));
+	$("#userId").val(localStorage.getItem("loginId"));
 	$("#saveId").prop("checked", true);
 }
 
 
 	//아이디 입력값 형식 검사: 
 	//아이디 : 6~16자 영소문자, 숫자/정규표현식: ^(?=.*[a-z]|(?=.*\d)).{6,16}$
-	var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
 	
-	$("#id").keyup(function(){
-		if($("#id").val().length >=17 || !regExpId.test($("#id").val())) {
-			$("#idCheck").html("입력이 잘못되었습니다.");
-		} else {
+	$("#userId").keyup(function() {
+		if($("#userId").val()=="") {
 			$("#idCheck").html("");
 		}
 	});
 	
 	//비밀번호 입력값 형식 검사
 	//비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z]|(?=.*\d)|(?=.*\W)).{6,16}$
-	var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
-	$("#pw").keyup(function(){
-		if($("#pw").val().length >=17 || !regExpPw.test($("#pw").val())) {
-			$("#pwCheck").html("입력이 잘못되었습니다.");
-		} else {
+	$("#pw").keyup(function() {
+		if($("#pw").val()!="") {
 			$("#pwCheck").html("");
 		}
 	});
 	
-	//아이디 저장: saveId 체크박스를 클릭하면 ID를 로컬 스토리지에 저장
+	//로그인 단계: 1. null check -> 2. 형식 검사 -> 3. session에 아이디 저장 -> 4.ajax: 로그인 처리
 	$("#login").on("click", function() {
 		var check = true;
+		if(check) {
+			if($("#userId").val()=="") {
+				$("#idCheck").html("아이디를 입력해주세요");
+				$("#userId").focus();
+				check=false;
+			} else if($("#pw").val()=="") {
+				$("#pwCheck").html("비밀번호를 입력해주세요");
+				$("#pw").focus();
+				check=false;
+			}
+		}
+		var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
+		var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
+		if(check) {
+			if(!regExpId.test($("#userId").val()) || !regExpPw.test($("#pw").val())) {
+				alert("아이디, 비밀번호를 확인해주세요");
+				check=false;
+			} 
+		}
 		if (check) {
 			if ($("#saveId").prop("checked")) {
-				localStorage.setItem("loginId", $("#id").val());
+				localStorage.setItem("loginId", $("#userId").val());
 			} else {
 				if(localStorage.getItem("loginId")){
 					localStorage.removeItem("loginId");
@@ -90,28 +103,24 @@ if(localStorage.getItem("loginId")){
 			$.ajax({
 				url: "controller?cmd=loginAction",
 				data: {
-						id : $("#id").val(), 
+						userId : $("#userId").val(), 
 						pw : $("#pw").val()
 				},
 				success: function(result) {
-					location.href = "controller?cmd=headerAdminUI";
-					//$("body").html(result);
+					$("body").html(result);
 				}
 			});
-		} else {
-			alert("입력한 정보를 다시 확인해주세요");
-		}
-		
-	})
+		} 
+	});
 
 	//비밀번호 찾기 페이지 이동
 	$("#findIdPassword").on("click", function(){
-	 location.href="controller?cmd=findIdPasswordUI";
+	 location.href="findIdPassword.jsp";
 	 }); 
 
 	//회원가입 페이지 이동
 	 $("#addUser").on("click", function(){
-	 location.href="controller?cmd=addUserUI";
+	 location.href="addUser.jsp";
 	 });
 
 	

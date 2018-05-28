@@ -14,6 +14,9 @@ public class ActionFactory {
 		case "loginAction":
 			a = new LoginAction();
 			break;
+		case "getCertifiedInfoAction":
+			a = new GetCertifiedInfoAction();
+			break;
 		case "addUserUI":
 			a = new AddUserUI();
 			break;
@@ -31,6 +34,9 @@ public class ActionFactory {
 			break;
 		case "headerAdminUI":
 			a = new HeaderAdminUI();
+			break;
+		case "headerStaffUI":
+			a = new HeaderStaffUI();
 			break;
 		case "dailyTaskAdminUI":
 			a = new DailyTaskAdminUI();
