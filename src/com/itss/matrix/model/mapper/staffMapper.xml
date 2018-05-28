@@ -116,5 +116,11 @@
 		</otherwise>
 		</choose>
 	</select>
-	
+	<select id="isBranchSeq" parameterType="int" resultType="String">
+		select distinct branch_seq 
+		from admins 
+		where branch_seq=#{branchSeq} 
+		and approve_date is not null 
+		and revoke_date is null
+	</select>
 </mapper>
