@@ -73,7 +73,7 @@ public class DailyDAOUnitTest {
 	
 	@Test
 	public void getDailyTasksForPartsWithWrongAssignDateAssignDetail(){
-		assertEquals(dao.getDailyTasksForParts("2440/12/31", "홀에 산소 주입").size(), 0);
+		assertEquals(dao.getDailyTasksForParts("2440/12/31", "새벽").size(), 0);
 	}
 	
 	@Test
@@ -87,7 +87,7 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
-	public void isDailyTaskWithWithWrongAssignDate(){
+	public void isDailyTaskWithWrongAssignDate(){
 		assertFalse(dao.isDailyTask("바닥 쓸기", "2400/20/20"));
 	}
 	
@@ -149,8 +149,8 @@ public class DailyDAOUnitTest {
 	}
 
 	@Test
-	public void setDailyTaskWithWrongChangeAssignDetail(){
-		//매뉴얼 업무에 해당하는 assign_detail을 바꾸려는 경우
+	public void setDailyTaskWithWrongAssignDetail(){
+		//바꾸려는 배정한 업무의 assign_detail이 다른 경우
 		dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "오픈");
 		assertFalse(dao.isDailyTask("손 세정제 리필", "2018/01/01"));
 	}
@@ -161,7 +161,13 @@ public class DailyDAOUnitTest {
 		dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "환풍기 청소", "2018/01/01", "yunseok");
 		assertFalse(dao.isDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01"));
 	}
-
+	@Test
+	public void setDailyAssignWithWrongNonInput(){
+		//assign_type, assign_detail 미 입력 상태에서 배정할 경우
+		Map<String, String> tmp=dao.getDailyTask("야간개장 준비", "2018/01/01", "마감");
+		dao.setDailyAssign(null, null, "2018/01/01", "파트", "새벽", "야간개장 준비");
+		assertEquals(tmp, dao.getDailyTask("야간개장 준비", "2018/01/01", "새벽"));
+	}
 	
 	@Test
 	public void setDailyAssignWithWrongNonExistPart (){

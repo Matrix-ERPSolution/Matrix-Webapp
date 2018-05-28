@@ -45,10 +45,10 @@ public class StaffDAOUnitTest {
 //		assertNotNull(dao.getLeftStaffs(1));
 		//퇴사한 직원이 없는 경우 결과값 <[]>
 		
-		assertNotNull(dao.getStaffDetail("chanyoung", 1));
+//		assertNotNull(dao.getStaffDetail("chanyoung", 1));
 		
 //		cnt = dao.getPreStaffs(3).size();
-//		dao.addStaff("chanyoung", 3, null, null, null, null, null);
+//		dao.addStaff("chanyoung", 1, null, null, null, null, null);
 //		assertEquals(cnt+1, dao.getPreStaffs(3).size());
 		
 //		staff = dao.getStaffDetail("chanyoung", 2);
@@ -59,108 +59,129 @@ public class StaffDAOUnitTest {
 //		dao.setWorkPart(null, "chanyoung", 2);	//소속파트를 없음(null)로 변경
 		
 	}
-	/**(공통)지점코드 입력 가능범위 초과 시
+	
+	/**(공통)지점코드 입력 가능범위 초과 시-결과값: <[]>
 	@Test
 	public void getWorkPartsWithOutofboundsBranchSeq(){
-		assertEquals(dao.getWorkParts(83374949).size(),0);	//결과값: <[]>
+		assertEquals(dao.getWorkParts(83374949).size(),0);	
 	}*/
 	
-	/**없는 지점의 소속파트 가져오기
+	/**없는 지점의 소속파트 가져오기-현재UI에서 불가능한 기능-결과값: []	
 	@Test
 	public void getWorkPartsWithWrongBranchSeq(){
 		assertEquals(dao.getWorkParts(99).size(), 0);
 	}*/
 	
-	/**없는 지점의 직원목록 가져오기
+	/**없는 지점의 직원목록 가져오기-결과값: []
 	@Test
 	public void getWorkingStaffsWithWrongBranchSeq(){
 		assertEquals(dao.getWorkingStaffs(99).size(), 0);
 	}*/
 	
-	/**없는 지점의 직원 인증요청 목록 가져오기
+	/**없는 지점의 직원 인증요청 목록 가져오기-결과값: []
 	@Test
 	public void getPreStaffsWithNonexistBranchSeq(){
 		assertEquals(dao.getPreStaffs(99).size(), 0);
 	}*/
 	
-	/**이미 인증요청 수락한(재직중인) 직원을 재수락하는 경우
+	/**이미 인증요청 수락한(재직중인) 직원을 재수락하는 경우-결과: DB 수정 안됨
 	@Test
-	public void setJoinDateWithPreStaff(){
+	public void setJoinDateWithExistStaff(){
+		Map staff = dao.getStaffDetail("chanyoung", 2);
 		dao.setJoinDate("chanyoung", 2);
-		assertFalse(dao.isStaffDate("chanyoung", 2, "2018/05/25", null));
+		assertEquals(staff, dao.getStaffDetail("chanyoung", 2));
 	}*/
 	
-	/**인증요청하지 않은 직원의 입사일을 등록하는 경우(회원이지만 인증요청X|비회원)
+	/**인증요청하지 않은 직원의 입사일을 등록하는 경우(회원이지만 인증요청X|비회원)-결과: DB 수정 안됨
 	@Test
 	public void setJoinDateWithoutAddStaff(){
+		Map staff = dao.getStaffDetail("tester01", 1);
 		dao.setJoinDate("tester01", 1);
-		assertFalse(dao.isStaffDate("testser01", 1, "2018/05/25", null));
+		assertEquals(staff, dao.getStaffDetail("tester01", 1));
 	}*/
 	
-	/**이미 퇴사한 직원을 퇴사시키려는 경우-예외처리 필요
+	/**이미 퇴사한 직원을 퇴사시키려는 경우-결과: DB 수정 안됨
 	@Test
 	public void setLeaveDateWithLeftStaff(){
-		dao.setLeaveDate("chanyoung", 1);	//안되야하는데 됨
-		assertFalse(dao.isStaffDate("chanyoung", 1, "2018/03/25", "2018/05/26"));
-	}*/
-	
-	/**인증요청만 하고 승인 안 된 직원을 퇴사시키는 경우
-	@Test
-	public void setLeaveDateWithPreStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 3);
 		dao.setLeaveDate("chanyoung", 3);
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
-	/**인증요청하지 않은 직원의 퇴사일을 등록하는 경우/존재하지 않는 회원의 경우
+	/**인증요청만 하고 승인 안 된 직원을 퇴사시키는 경우-결과: DB 수정 안됨
 	@Test
-	public void setLeaveDateWithWrongStaff(){
-		dao.setLeaveDate("tester01", 1);
-		assertFalse(dao.isStaffDate("tester01", 1, null	, "2018/05/26"));
+	public void setLeaveDateWithPreStaff(){
+		Map staff = dao.getStaffDetail("chanyoung", 1);
+		dao.setLeaveDate("chanyoung", 1);
+		assertEquals(staff, dao.getStaffDetail("chanyoung", 1));
 	}*/
 	
-	/**없는 지점의 퇴사직원 목록 조회
+	/**인증요청하지 않은 직원의 퇴사일을 등록하는 경우/존재하지 않는 회원의 경우-결과: DB 수정 안됨
+	@Test
+	public void setLeaveDateWithWrongStaff(){
+		Map staff = dao.getStaffDetail("tester01", 1);
+		dao.setLeaveDate("tester01", 1);
+		assertEquals(staff, dao.getStaffDetail("tester01", 1));
+	}*/
+	
+	/**없는 지점의 퇴사직원 목록 조회-결과값: []
 	@Test
 	public void getLeftStaffsWithWrongBranchSeq(){
 		assertEquals(dao.getLeftStaffs(99).size(), 0);
 	}*/
 
-	/**없는 지점의 직원 상세 보기
+	/**없는 지점의 직원 상세 보기-결과값: null
 	@Test
 	public void getStaffDetailWithWrongBranchSeq(){
 		assertNull(dao.getStaffDetail("chanyoung", 99));
 	}*/
 	
-	/**없는 직원 상세 보기
+	/**없는 직원 상세 보기-결과값: null
 	@Test
 	public void getStaffDetailWithWrongStaffId(){
 		assertNull(dao.getStaffDetail("tester99", 1));
 	}*/
 	
-	/**재직중인 직원인데 인증요청하는 경우(입사일을 덮어씌우는 경우)-예외처리 필요
+	/**없는 지점에 인증요청하는 경우-DB 무결성제약조건, DAO 예외처리 
+	@Test
+	public void addStaffWithWrongBranchSeq(){
+		Map staff = dao.getStaffDetail("chanyoung", 99);
+		dao.addStaff("chanyoung", 99, null, null, null, null, null);
+		assertEquals(staff, dao.getStaffDetail("chanyoung", 99));
+	}*/
+	
+	/**재직중인 직원인데 인증요청하는 경우(입사일을 덮어씌우는 경우)-DAO 예외처리
 	@Test
 	public void addStaffWithJoinedStaff(){
 		dao.addStaff("chanyoung", 2, null, null, null, null, null);
 		assertFalse(dao.isStaffDate("chanyoung", 2, null, null));
-	}*/ //JUnit:failure
-	
-	/**인증요청한 직원이 계속 인증요청 하는 경우-예외처리 필요
-	@Test
-	public void addStaffWithPreStaff(){
-		int cnt = dao.getPreStaffs(3).size();
-		dao.addStaff("chanyoung", 3, null, null, null, null, null);
-		assertNotEquals(cnt+1, dao.getPreStaffs(3).size());
-	}*/	//JUnit:failure
-	
-	/**인증 승인 대기중인 직원의 직원정보 변경-UI에서 할 수가 없음
-	@Test
-	public void setStaffInfoWithPreStaff(){
-		Map staff = dao.getStaffDetail("chanyoung", 3);
-		dao.setStaffInfo("chanyoung", 3, null, null, null, "3333333.png", null);
-		assertNotEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
-	/**없는 직원의 직원정보 변경
+	/**인증요청하고 승인대기중인 직원이 계속 인증요청 하는 경우-DAO 예외처리-확인은 어떻게???
+	@Test
+	public void addStaffWithPreStaff(){
+		int cnt = dao.getPreStaffs(1).size();
+		dao.addStaff("chanyoung", 1, null, null, null, null, null);
+		assertNotEquals(cnt+1, dao.getPreStaffs(1).size());
+	}*/
+	
+	/**인증 승인 대기중인 직원의 직원정보 변경-현재 UI에서 할 수가 없음-exception 필요없음
+	@Test
+	public void setStaffInfoWithPreStaff(){
+		Map staff = dao.getStaffDetail("chanyoung", 1);
+		dao.setStaffInfo("chanyoung", 1, null, null, null, "1111111111.png", null);
+		assertEquals(staff, dao.getStaffDetail("chanyoung", 1));
+	}*/
+	
+	/**퇴직 직원의 직원정보 변경-현재 UI에서 할 수가 없음-exception 필요없음
+	@Test
+	public void setStaffInfoWithLeftStaff(){
+		Map staff = dao.getStaffDetail("chanyoung", 3);
+		dao.setStaffInfo("chanyoung", 3, null, null, null, "333333333.png", "333333333.png");
+		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
+	}*/
+	
+	/**없는 직원의 직원정보 변경-결과: DB 수정 안됨
 	@Test
 	public void setStaffInfoWithWrongStaff(){
 		Map staff = dao.getStaffDetail("tester99", 1);
@@ -168,7 +189,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("tester99", 1));		
 	}*/
 	
-	/**부적절한 파일형식으로 변경하는 경우
+	/**부적절한 파일형식으로 변경하는 경우-DAO 예외처리
 	@Test
 	public void setStaffInfoWithWrongFileFormat(){
 		Map staff = dao.getStaffDetail("chanyoung", 1);
@@ -176,7 +197,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 1));
 	}*/
 	
-	/**부적절한 계좌번호 형식으로 변경하는 경우
+	/**부적절한 계좌번호 형식으로 변경하는 경우-DAO 예외처리
 	@Test
 	public void setStaffInfoWithWrongAccountNumFormat(){
 		Map staff = dao.getStaffDetail("chanyoung", 3);
@@ -184,7 +205,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
-	/**이미 승인 처리받은 직원(재직) 의 요청을 거부하려고 하는 경우
+	/**이미 승인 처리받은 직원(재직) 의 요청을 거부하려고 하는 경우-결과:DB 수정 안됨
 	@Test
 	public void removeStaffWithJoinedStaff(){
 		Map staff = dao.getStaffDetail("chanyoung", 2);
@@ -192,7 +213,7 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("chanyoung", 2));
 	}*/
 	
-	/**인증요청하지 않은 경우(or 없는 직원의 경우)
+	/**인증요청하지 않은 경우(or 없는 직원의 경우)-결과:DB 수정 안됨
 	@Test
 	public void removeStaffWithWrongStaffId(){
 		Map staff = dao.getStaffDetail("tester99", 1);
@@ -200,12 +221,12 @@ public class StaffDAOUnitTest {
 		assertEquals(staff, dao.getStaffDetail("tester99", 1));
 	}*/
 
-	/**퇴사한 직원의 인증을 거부하는 경우
+	/**퇴사한 직원의 인증을 거부하는 경우-결과:DB 수정 안됨
 	@Test
 	public void removeStaffWithLeftStaff(){
-		Map staff = dao.getStaffDetail("chanyoung", 1);
-		dao.removeStaff("chanyoung", 1);
-		assertEquals(staff, dao.getStaffDetail("chanyoung", 1));
+		Map staff = dao.getStaffDetail("chanyoung", 3);
+		dao.removeStaff("chanyoung", 3);
+		assertEquals(staff, dao.getStaffDetail("chanyoung", 3));
 	}*/
 	
 }

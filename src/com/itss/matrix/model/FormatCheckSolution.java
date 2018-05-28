@@ -3,7 +3,7 @@ package com.itss.matrix.model;
 public class FormatCheckSolution {
 	public FormatCheckSolution(){}
 	
-	/**파일형식 제한 확인*/
+	/**파일형식 검사*/
 	public static boolean isFileFormat(String file) {
 		boolean result = false;
 		if(file==null) {
@@ -38,6 +38,19 @@ public class FormatCheckSolution {
 			Integer.parseInt(num);
 			result = true;
 		} catch(NumberFormatException e){
+		}
+		
+		return result;
+	}
+	
+	/**입력값 길이 검사*/
+	public static boolean isInputLength(String input, int min, int max) {
+		boolean result = false;
+		if(input==null) {
+			return true;
+		}
+		if((input.length()>=min)&&(input.length()<=max)){
+			result=true;
 		}
 		
 		return result;

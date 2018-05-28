@@ -40,6 +40,30 @@ public class ManualDAO {
 		return list;
 	}
 
+		/** 매뉴얼 업무 검색 (자동완성)*/
+	public List<Map> searchManualTasks(String inputText) {
+		if(inputText == null){
+			return null;
+		}
+		String[] inputs = inputText.split(" ");
+		inputText = "%";
+		for(String i : inputs){
+			inputText += i+"%";
+		}
+		System.out.println(inputText);
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Map> list = null;
+		
+		try {
+			list = session.selectList("manualMapper.searchManualTasks", inputText);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+	
 	/** (대분류)공간분류 보기: 업무배정, 업무수정, 매뉴얼 보기 */
 	public List<String> getSpaceTypes() {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -57,6 +81,9 @@ public class ManualDAO {
 
 	/** (중분류)선택한 공간에 속한 업무분류 보기: 업무배정, 업무수정, 매뉴얼 보기 */
 	public List<String> getTaskTypesBySpaceType(String spaceType) {
+		if(spaceType == null){
+			return null;
+		}
 		SqlSession session = sqlSessionFactory.openSession();
 		List<String> list = null;
 
@@ -87,6 +114,9 @@ public class ManualDAO {
 
 	/** (중분류)선택한 업무에 속한 공간분류 보기: 매뉴얼 보기 */
 	public List<String> getSpaceTypesByTaskType(String taskType) {
+		if(taskType == null){
+			return null;
+		}
 		SqlSession session = sqlSessionFactory.openSession();
 		List<String> list = null;
 
@@ -121,17 +151,18 @@ public class ManualDAO {
 	/** i: 업무명, o: ManualTaskSeq 단 값이 -1인경우는 해당 없다.*/
 	public int getManualTaskSeq(String searchTask) {
 		SqlSession session = sqlSessionFactory.openSession();
-		int manualTaskSeq = -1;
+		String manualTaskSeq = null;
 		try {
 			manualTaskSeq = session.selectOne("manualMapper.getManualTaskSeq", searchTask);
-		} catch (NullPointerException e){
-			//매뉴얼에 없는 업무일 경우 아무일도 안할거야. 디폴트값인 -1이 리턴될거야.
+			if(manualTaskSeq == null){
+				manualTaskSeq = "-1";
+			}
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return manualTaskSeq;
+		return Integer.parseInt(manualTaskSeq);
 	}
 
 }

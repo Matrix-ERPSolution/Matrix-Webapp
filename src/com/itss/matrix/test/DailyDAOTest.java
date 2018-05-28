@@ -25,7 +25,7 @@ public class DailyDAOTest {
 			
 			/** 업무 중복확인 */
 			//System.out.println(dao.isDailyTask("직접해라직접", "2018/11/11"));
-			System.out.println(dao.isDailyTask("바닥 쓸기", "2400/20/20"));
+			//System.out.println(dao.isDailyTask("바닥 쓸기", "2400/20/20"));
 			
 			/** 업무 배정 */
 			//dao.addDailyTask("직접해라직접", "2018/11/11", 1, "개인", "taehun", 1);	//직접입력-기능 ok
@@ -40,6 +40,26 @@ public class DailyDAOTest {
 			//dao.setDailyTask("새로운업무", "테라스 외부 청소", "2018/11/11", "오픈");	//기능 ok
 			//비기능: addDailyTask로 같은 쿼리문으로 여러번 들어간 경우 update 안됨
 			
+			
+			/*DAO예외처리 테스트*/
+			//dao.addDailyTask(null, "2018/01/01", 1, "개인", "taehun", 1);
+			//dao.addDailyTask("환풍기 청소", "2018/01/01", 0, "파트", "오픈", 1);
+			//dao.addDailyTask("test", "2018/01/01", 0, "파트", "오픈", 1);
+			//dao.addDailyTask("test2", "2018/01/01", 0, "없는배정유형", "몰라", 1);
+			//System.out.println(dao.getAssignedParts("2020/12/12"));
+			//System.out.println(dao.getDailyTasksForParts("2440/12/31", "새벽"));
+			//System.out.println(dao.getDailyTasksForPerson("2440/12/31"));
+			//System.out.println(dao.isDailyTask("에어컨 필터 교체", "2018/01/01"));
+			//System.out.println(dao.isDailyTask("에어컨 필터 교체", "2020/31/11"));
+			//dao.addDailyTask("중요도 0,1이 아닌경우", "2018/01/01", 3, "개인", "yunseok", 1);
+			//dao.addDailyTask("", "2018/01/01", 3, "개인", "yunseok", 1);
+			//dao.addDailyTask("없는파트에 업무배정1", "2018/01/01", 1, "파트", "없는파트", 1);
+			//dao.addDailyTask("없는 직원에 업무배정 test", "2018/01/01", 1, "개인", "yunseok", 1);
+			//dao.addDailyTask("없는 관리자코드에 업무배정 exception", "2018/01/01", 1, "파트", "마감", 10);
+			//dao.setDailyTask("바꾸려는업무", "test23", "2018/01/01", "오픈");
+			//dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "미들"); // 현금 새재 확인 - 미들
+			//dao.setDailyAssign(null, null, "2018/01/01", "파트", "새벽", "야간개장 준비");
+			dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "마감", "야간개장 준비");
 			System.out.println("\nend");
 	}
 }

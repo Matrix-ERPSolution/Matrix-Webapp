@@ -163,8 +163,20 @@ public class StaffDAO {
 	}
 	public void addStaff(StaffVO vo){
 		SqlSession session = sqlSessionFactory.openSession();
-		
+		Map staff = getStaffDetail(vo.getStaffId(), vo.getBranchSeq());
 		try {
+			if(!isInputLength(vo.getAccountNum(), 0, 20)||!isInputLength(vo.getResumeFile(), 0, 40)||!isInputLength(vo.getHealthFile(), 0, 40)||!isInputLength(vo.getBankFile(), 0, 40)){
+				throw new RuntimeException("입력값 길이 제한을 초과하였습니다.");
+			}
+			if((staff.get("JOIN_DATE")==null)&&(staff.get("LEAVE_DATE")==null)) {
+				throw new RuntimeException("이미 승인요청하였습니다.");
+			}
+			if(staff.get("JOIN_DATE")!=null){
+				throw new RuntimeException("이미 재직중인 직원입니다.");
+			}
+			if(!isBranchSeq(vo.getBranchSeq())){
+				throw new RuntimeException("없는지점임");
+			}
 			if(!isFileFormat(vo.getResumeFile())||!isFileFormat(vo.getHealthFile())||!isFileFormat(vo.getBankFile())) {
 				throw new RuntimeException("파일형식블라블라");
 			}
@@ -231,7 +243,7 @@ public class StaffDAO {
 		}
 	}
 	
-	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회(테스트 보조 메소드)
+	/**한 지점 내 한 직원의 입사/퇴사 날짜 조회
 	 * select staff_seq, branch_seq, join_date, leave_date from staffs where staff_id='chanyoung';
 	 * */
 	public boolean isStaffDate(String staffId, int branchSeq, String joinDate, String leaveDate) {
@@ -254,4 +266,21 @@ public class StaffDAO {
 		return result;
 	}
 	
+	/**있는 지점인지 검사*/
+	public boolean isBranchSeq(int branchSeq) {
+		boolean result = false;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			if(session.selectOne("staffMapper.isBranchSeq", branchSeq)!=null) {
+				result=true;
+			};
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
+
 }
