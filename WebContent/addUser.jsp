@@ -329,7 +329,7 @@
 					},
 					success: function(result){
 					if(result) {
-						location.href="certificationUI";
+						location.href="controller?cmd=certificationUI";
 					} else {
 						alert("회원가입 실패");
 					}	
