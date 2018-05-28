@@ -218,7 +218,7 @@ for (i = 0; i < subAcc.length; i++) {
   });
 }
 
-//매뉴얼목록 토글; 작성중
+//매뉴얼목록 토글
 $("#manualList").click(function() {
 	$(".manual").toggle();
 	$("#manualList").toggleClass("selected");
