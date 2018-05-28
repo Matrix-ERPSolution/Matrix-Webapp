@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
+<%@include file="headSetting.jsp"%>
 <script>
 $(function() {
 	$(".accordion").accordion({  
@@ -41,7 +42,7 @@ $(".inline").css({
 $(".profilePhoto").click(
 		function(){
 			 $.ajax({
-			        url : "staffDetailAdmin.jsp", 
+			        url : "controller?cmd=staffDetailAdminUI", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }

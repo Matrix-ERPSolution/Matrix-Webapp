@@ -232,7 +232,7 @@ $("#updatePassword").hide();
 				},
 				success: function(result){
 					alert("비밀번호가 변경되었습니다. 다시 로그인해주세요.")
-					location.href="login.jsp";
+					location.href="controller?cmd=loginUI";
 				}
 			});		
 		});

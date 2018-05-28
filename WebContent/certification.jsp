@@ -41,11 +41,11 @@
 		});
 		//이동.	
 		$("#certifyStaff").click(function() {
-			location.href = "certifyStaff.jsp";
+			location.href = "controller?cmd=certifyStaffUI";
 		});
 
 		$("#certifyAdmin").click(function() {
-			location.href = "certifyAdmin.jsp";
+			location.href = "controller?cmd=certifyAdminUI";
 		});
 	</script>
 </body>

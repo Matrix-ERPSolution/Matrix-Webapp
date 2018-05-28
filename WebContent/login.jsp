@@ -94,7 +94,7 @@ if(localStorage.getItem("loginId")){
 						pw : $("#pw").val()
 				},
 				success: function(result) {
-					location.href = "headerAdmin.jsp";
+					location.href = "controller?cmd=headerAdminUI";
 					//$("body").html(result);
 				}
 			});
@@ -106,12 +106,12 @@ if(localStorage.getItem("loginId")){
 
 	//비밀번호 찾기 페이지 이동
 	$("#findIdPassword").on("click", function(){
-	 location.href="findIdPassword.jsp";
+	 location.href="controller?cmd=findIdPasswordUI";
 	 }); 
 
 	//회원가입 페이지 이동
 	 $("#addUser").on("click", function(){
-	 location.href="addUser.jsp";
+	 location.href="controller?cmd=addUserUI";
 	 });
 
 	

@@ -44,7 +44,7 @@ $(".inline").css({
 $("#dailyTaskTab").click(
 		function(){
 			 $.ajax({
-			        url : "dailyTaskAdmin.jsp", 
+			        url : "controller?cmd=dailyTaskAdminUI", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }
@@ -53,7 +53,7 @@ $("#dailyTaskTab").click(
 $("#manualTab").click(
 		function(){
 			 $.ajax({
-			        url : "manualAdmin.jsp", 
+			        url : "controller?cmd=manualAdminUI", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }
@@ -62,7 +62,7 @@ $("#manualTab").click(
 $("#staffManagementTab").click(
 		function(){
 			 $.ajax({
-			        url : "staffManagementAdmin.jsp", 
+			        url : "controller?cmd=staffManagementAdminUI", 
 			        success : function(result){
 			           $("#result").html(result);
 			        }

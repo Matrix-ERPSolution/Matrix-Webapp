@@ -29,7 +29,7 @@
   	<table>
   		<tr>
   			<td><img alt="프로필사진" src="images/defaultProfile.png" style="width: 70px; height: 70px;"></td>
-  			<td><span id="branchName"></span>점<br>관리자<br><span id="name"></span>님</td>
+  			<td><span id="branchName"></span><br>관리자<br><span id="name"></span>님</td>
 		</tr>
   	</table>
   </div>

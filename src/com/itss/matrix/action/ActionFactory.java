@@ -14,8 +14,41 @@ public class ActionFactory {
 		case "loginAction":
 			a = new LoginAction();
 			break;
+		case "addUserUI":
+			a = new AddUserUI();
+			break;
+		case "certificationUI":
+			a = new CertificationUI();
+			break;
+		case "certifyStaffUI":
+			a = new CertifyStaffUI();
+			break;
+		case "certifyAdminUI":
+			a = new CertifyAdminUI();
+			break;
+		case "findIdPasswordUI":
+			a = new FindIdPasswordUI();
+			break;
 		case "headerAdminUI":
 			a = new HeaderAdminUI();
+			break;
+		case "dailyTaskAdminUI":
+			a = new DailyTaskAdminUI();
+			break;
+		case "assignTaskAdminUI":
+			a = new AssignTaskAdminUI();
+			break;
+		case "assignTaskNextAdminUI":
+			a = new AssignTaskNextAdminUI();
+			break;
+		case "manualAdminUI":
+			a = new ManualAdminUI();
+			break;
+		case "staffManagementAdminUI":
+			a = new StaffManagementAdminUI();
+			break;
+		case "staffDetailAdminUI":
+			a = new staffDetailAdminUI();
 			break;
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
