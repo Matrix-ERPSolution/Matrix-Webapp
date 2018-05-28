@@ -4,6 +4,13 @@
 	<select id="getManualTasks" resultType="java.util.Map">
 		select m.MANUAL_TASK, s.SPACE_TYPE from MANUAL_TASKS m, SPACE_TYPES s where m.space_type_seq=s.space_type_seq order by m.space_type_seq asc, m.manual_task_seq asc
 	</select>
+	<select id="searchManualTasks" resultType="java.util.Map" parameterType="String">
+		select m.MANUAL_TASK, s.SPACE_TYPE, t.TASK_TYPE
+		from MANUAL_TASKS m, SPACE_TYPES s, TASK_TYPES t 
+		where m.space_type_seq=s.space_type_seq
+		and m.task_type_seq=t.task_type_seq
+		and m.MANUAL_TASK like #{inputText}
+	</select>
 	<select id="getSpaceTypes" resultType="String">
 		select space_type from space_types
 	</select>

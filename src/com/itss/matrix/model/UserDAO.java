@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -54,6 +56,9 @@ public class UserDAO {
 	public void addUser(UserVO vo) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
+			if(!vo.getGender().equals("M") && vo.getGender().equals("F")){
+				throw new RuntimeException("wrongGenderFormat");
+			}
 			if (vo.getProfilePhoto() != null) {
 				session.insert("userMapper.addUser", vo);
 			} else {
@@ -298,11 +303,6 @@ public class UserDAO {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
+
 
 }

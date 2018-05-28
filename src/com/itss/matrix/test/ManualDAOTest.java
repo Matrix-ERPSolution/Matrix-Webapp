@@ -27,5 +27,6 @@ public class ManualDAOTest {
 			for(Object key : keys)
 			System.out.println(map.get(key));
 		}*/
+		System.out.println(dao.searchManualTasks("바닥"));
 	}
 }
