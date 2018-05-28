@@ -86,11 +86,19 @@
 	</select>
 	
 	<select id="isCertifiedAdmin" parameterType="String" resultType="String">
-		select branch_seq from admins where admin_id=#{userId}
+		select branch_seq 
+		from admins 
+		where admin_id=#{userId}
+		and APPROVE_DATE is not null
+		and REVOKE_DATE is null
 	</select>
 	
 	<select id="isCertifiedStaff" parameterType="String" resultType="String">
-		select branch_seq from staffs where staff_id=#{userId}
+		select branch_seq 
+		from staffs 
+		where staff_id=#{userId}
+		and JOIN_DATE is not null
+		and LEAVE_DATE is null
 	</select>
 	
 </mapper>
