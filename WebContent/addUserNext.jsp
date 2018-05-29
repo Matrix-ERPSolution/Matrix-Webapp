@@ -66,16 +66,232 @@
 
 </body>
 <script>
-//회원가입 처리; script code는 addUser로 몰아넣음.
-/* $('#addUserButton').on('click',function (){
-	 $.ajax({
-	        //url : "controller?cmd=가입하는 Action", 
-	        //data : {  }
-	        success : function(result) {
-	        	alert("홈화면으로 돌아갑니다.");
-				location.href = "controller?cmd=headerAdminUI";
-	        }
-	 });
-}); */
+//아이디 입력값 형식 검사: 
+//아이디 : 6~16자 영소문자, 숫자-영소문자 1자 반드시 포함/정규표현식: ^(?=.*[a-z])[a-z0-9]{6,16}$
+$("#userId").keyup(function() {
+	var regExpId = new RegExp("^(?=.*[a-z])[a-zA-Z0-9]{6,16}$");
+	if ($("#userId").val().length >= 17) {
+		$("#idCheck").html("아이디는 6~16자여야 합니다.");
+	} else if(!regExpId.test($("#userId").val())) {
+		$("#idCheck").html("아이디는 영문 소문자, 숫자만 사용가능합니다.");
+	} else {
+		$("#idCheck").html("");
+	}
+});
+
+//아이디 중복 검사 - 중복/사용가능한 아이디; 일단 alert으로 처리.
+$("#userId").mouseleave(function(){
+	$.ajax({
+		url: "controller?cmd=isUserIdAction",
+		data: {
+			userId: $("#userId").val()
+		},
+		success: function(result) {
+			var result = JSON.parse(result);
+			if(result["result"] == "false") {
+				alert("사용가능한 아이디입니다");
+			} else {
+				alert("사용중인 아이디입니다.")
+				$("#userId").val("");
+			}
+		}
+	})	
+});  
+
+//비밀번호 입력값 형식 검사
+//비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$
+$("#pw").keyup(function(){
+	var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
+	if($("#pw").val().length >=17) {
+		$("#pwCheck").html("비밀번호는 6~16자여야 합니다.");
+	} else if( !regExpPw.test($("#pw").val())) {
+		$("#pwCheck").html("비밀번호는 영문 대소문자, 숫자, 특수문자로 구성되어야 합니다.");
+	} else {
+		$("#pwCheck").html("");
+	}
+});
+
+//비밀번호 확인 일치여부 검사
+$("#pw2").keyup(function(){
+	if($("#pw").val()!=$("#pw2").val()){
+		$("#pwCheck2").html("불일치")
+	} else {
+		$("#pwCheck2").html("");
+	}
+});
+
+//이름 입력값 형식 검사: 2~12자의 한글, 영문만 사용 가능합니다.
+//[가-힣a-z]{2,12}
+$("#name").keyup(function(){
+	var regExpName=new RegExp("[가-힣a-z]{2,12}");
+	if($("#name").val.length >=13) {
+		$("#nameCheck").html("이름은 2~12자여야 합니다.");
+	} else if(!regExpName.test($("#name").val()))  {
+		$("#nameCheck").html("이름은 한글, 영소문자만 사용 가능합니다.");
+	} else {
+		$("#nameCheck").html("");
+	}
+});
+
+//생년월일 도메인 선택지 보기
+
+var choice = function(flag) {
+	return "<option value=\"\">" + flag + "</option>";
+}
+
+var list = "";
+var addOption = function(option) {
+	return "<option value="+ option + ">" + option + "</option>";
+}
+
+for (var i = 2018; i >= 1920; i--) {
+	list += addOption(i);
+}
+
+$("#birthYear").html(choice("생년") + list)
+
+list = "";
+for (var i = 1; i <= 12; i++) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	list += addOption(i);
+}
+$("#birthMonth").html(choice("월") + list);
+
+var dayOption = function() {
+	list = "";
+	var max = 31;
+
+	switch ($("#birthMonth").val()) {
+	case '02':
+		max = 28;
+		break;
+	case '04':
+	case '06':
+	case '09':
+	case '11':
+		max = 30;
+		break;
+	}
+
+	for (var i = 1; i <= max; i++) {
+		if (i < 10) {
+			i = "0" + i;
+		}
+		list += addOption(i);
+	}
+	$("#birthDay").html(choice("일") + list);
+}
+$("#birthMonth").change(function() {
+	dayOption();
+});
+
+//생년월일 선택여부 검사	
+$("#birthDay").click(function() {
+	if ($("#birthMonth").val() == "") {
+		alert("월을 먼저 선택해주세요.");
+	} 
+});
+
+//이메일 도메인 선택지 보기: html 파트에서 구현.
+
+//이메일 도메인 선택여부 검사	: 직접입력-선택	
+$('#selectDomain').change(function() {
+	$("#selectDomain option:selected").each(function() {
+		if ($(this).val() == "selfInput") { //직접입력일 경우 
+			$("#emailDomain").val(''); //값 초기화 
+			$("#emailDomain").attr("disabled", false); //활성화 
+		} else { //직접입력이 아닐경우 
+			$("#emailDomain").val($(this).text()); //선택값 입력 
+			$("#emailDomain").attr("disabled", true); //비활성화 
+		}
+	})
+});
+
+//이메일 입력값 형식 검사
+//이메일: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+//이메일 아이디: /^([\w-]+(?:\.[\w-_]+)*)$/i
+//이메일 도메인: /^((?:[\w-]+\.)*\w[\w-_]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+/* var regExpEmail=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+$("#emailId").click(function(){
+	var emailIdText=$("#emailId").text();
+	$("#email").val(emailIdText);
+}) */
+$("#emailId").keyup(function() {
+	var regExpEmailId = /^([\w-]+(?:\.[\w-]+)*)$/i;
+	if ($("#emailId").val().length < 3 || !regExpEmailId.test($("#emailId").val())) {
+		$("#emailIdCheck").html("이메일 아이디를 입력하세요");
+	} else {
+		$("#emailIdCheck").html("");
+	}
+});
+
+$("#emailDomain").keyup(function() {
+	var regExpEmailDomain = /^((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	if ($("#emailDomain").val().length < 5 || !regExpEmailId.test($("#emailDomain").val())) {
+		$("#emailDomainCheck").html("이메일 도메인을 입력하세요");
+	} else {
+		$("#emailDomainCheck").html("");
+	}
+});
+
+//주소 선택지 보기: 더미데이터 퉁. kill'em all
+
+//주소 선택여부 검사: 더미데이터 퉁.
+
+//프로필 사진 첨부
+
+//다음페이지 이동 = 입력받아야 할 파트 null 체크 -> 회원가입 처리 / servlet 단에서 형식 체크 거쳐야 함.
+$("#addUserButton").click(
+		function() {
+			if ($("#userId").val() == "") {
+				$("#idCheck").html("아이디를 입력해주세요");
+			} else if ($("#pw").val() == "") {
+				$("#pwCheck").html("비밀번호를 입력해주세요");
+			} else if ($("#name").val() == "") {
+				$("#nameCheck").html("이름을 입력해주세요");
+			} else if (($("#birthYear").val() == "")
+					|| ($("#birthMonth").val() == "")
+					|| ($("#birthDay").val() == "")) {
+				$("#birthCheck").html("생년월일을 입력해주세요");
+			} else if ($("gender").val() == "") {
+				$("#genderCheck").html("성별을 입력해주세요");
+			} else if (($("#emailId").val() == "")
+					|| ($("#emailDomain").val() == "")) {
+				$("#emailCheck").html("이메일을 입력해주세요");
+			} else if (($("#addressCity").val() == "")
+					|| ($("#addressGu").val() == "")
+					|| ($("#addressDong").val() == "")) {
+				$("#addressCheck").html("주소를 입력해주세요");
+			}
+			$.ajax({
+				url:"controller?cmd=addUserAction",
+				data: {
+					userId: $("#userId").val(), 
+					pw: $("#pw").val(),
+					phoneNum: $("#phoneNum").val(),
+					name: $("#name").val(),
+					birthYear: $("#birthYear").val(),
+					birthMonth: $("#birthMonth").val(),
+					birthDay: $("#birthDay").val(),
+					gender: $("gender").val(),
+					emailId: $("#emailId").val(),
+					emailDomain: $("#emailDomain").val(),
+					addressCity: $("#addressCity").val(),
+					addressGu: $("#addressGu").val(),
+					addressDong: $("#addressDong").val(),
+					profilePhoto: $("#profilePhoto").val()
+				},
+				success: function(result){
+				if(result) {
+					alert("Matrix의 회원이 되신 것을 환영합니다!")
+					location.href="controller?cmd=certificationUI";
+				} else {
+					alert("회원가입에 실패하였습니다.");
+				}	
+				}
+			});				
+		});
 </script>
 </html>
