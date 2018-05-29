@@ -84,7 +84,7 @@ public class ActionFactory {
 			a = new GetSpaceTypesByTaskTypeAction();
 			break;
 		case "getTasksAction":
-			a = new GetTasks();
+			a = new GetTasksAction();
 			break;
 		case "getUserIdByPhoneNumAction":
 			a=new GetUserIdByPhoneNumAction();

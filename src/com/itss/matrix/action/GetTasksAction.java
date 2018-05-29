@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.itss.matrix.model.ManualDAO;
 
-public class GetTasks implements Action {
+public class GetTasksAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
