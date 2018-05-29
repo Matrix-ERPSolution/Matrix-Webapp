@@ -47,7 +47,7 @@ html, body { height:100%; margin:0; padding:0;}
 li:hover, .selected {
 	background-color: #99ccff;
 }
-.manual {
+#manual {
 	display: none;
 }
 
@@ -93,72 +93,7 @@ li:hover, .selected {
 	<h4 id="">매뉴얼에서 선택하기</h4>
 	
 	<div id="manualList">매뉴얼 전체보기</div>
-	<div class="manual">
-	<div class="accordion manual" id="counterControl" >카운터</div>
-	<div class="panel">
-		<div class="subAccordion">
-			<div>청결관리</div>
-		</div>
-		<div class="subPanel" id="kitchenTask">
-			<ul>
-				<li>카운터 닦기 <span class="interval" style="float: right;">마감 시</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>시재관리</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>영업 준비금 환전 <span class="interval" style="float: right;">3일</span></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="accordion manual" id="stockControl">주방</div>
-	<div class="panel">
-		<div class="subAccordion">
-			<div>청결관리</div>
-		</div>
-		<div class="subPanel" id="kitchenTask">
-			<ul>
-				<li>음식물 쓰레기 버리기 <span class="interval" style="float: right;">마감시</span></li>
-				<li>싱크대 닦기 <span class="interval" style="float: right;">마감시</span></li>
-				<li>행주 소독 <span class="interval" style="float: right;">마감시</span></li>
-				<li>냉장고 성에 제거 <span class="interval" style="float: right;">1개월</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>재고관리</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>딸기 재고 확인 <span class="interval" style="float: right;">3일</span></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="accordion manual" id="moneyControl" >홀</div>
-	<div class="panel" >
-		<div class="subAccordion">
-			<div>청결관리</div>
-		</div>
-		<div class="subPanel" id="kitchenTask">
-			<ul>
-				<li>대걸레 청소 <span class="interval" style="float: right;">마감	시</span></li>
-				<li>테이블 위 닦기 <span class="interval" style="float: right;">마감시</span></li>
-				<li>쓰레기통 비우기 <span class="interval" style="float: right;">마감시</span></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>재고관리</div>
-		</div>
-		<div class="subPanel" id="hallTask">
-			<ul>
-				<li>냅킨 재고 채우기 <span class="interval" style="float: right;">3일</span></li>
-				<li>빨대 채우기 <span class="interval" style="float: right;">3일</span></li>
-			</ul>
-		</div>
-	</div>
+	<div id="manual">
 	</div>	
 </div>
 <div id="taskFromTyping">
@@ -185,67 +120,78 @@ li:hover, .selected {
 
   </div>
 <script>
-var acc = document.querySelectorAll(".accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
-
-var subAcc = document.querySelectorAll(".subAccordion");
-
-for (i = 0; i < subAcc.length; i++) {
-	subAcc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-    
-    var motherPanel = this.parentNode;
-    motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-
-  });
-}
 
 //매뉴얼목록 토글
 $("#manualList").click(function() {
-	$(".manual").toggle();
+	$("#manual").toggle();
 	$("#manualList").toggleClass("selected");
 });
 
-//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
-var li = document.querySelectorAll("li");
-var i;
-
-for (i = 0; i < li.length; i++) {
-	li[i].addEventListener("click", function() {
-		$("#selectedTask").html(this.firstChild.cloneNode(true));
-		$("#selectedTaskModal").css({display: "block"});
-		$("#selectedTaskPopup").css({display: "block"});
-	})
+var activateli = function(input){
+	//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
+	$("#selectedTask").html(input.childNodes[0].nodeValue);
+	$("#selectedTaskModal").css({display: "block"});
+	$("#selectedTaskPopup").css({display: "block"});
 }
+//매뉴얼 db연결
+var manualSpaceMode = function(){
+	 $.ajax({
+       url : "controller?cmd=getSpaceTypesAction", 
+       success : function(result){
+          $("#manual").html(result);
+       }
+   });
+}
+manualSpaceMode();
 
+var activateAcc = function(input){
+    input.classList.toggle("active");
+    var panel = input.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+    		$.ajax({
+    	        url : "controller?cmd=getTaskTypesBySpaceTypeAction", 
+    	        data: {
+    				spaceType : input.id, 
+    			},
+    	        success : function(result){
+    	        	panel.innerHTML = result;
+    	        	panel.style.maxHeight = panel.scrollHeight + "px";
+    	        }
+    	    });
+    }
+}; 
+    	
+var activateSubAcc = function(input){
+    input.classList.toggle("active");
+    var panel = input.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+    	var space = "";
+    	var task = "";
+    	if(input.classList.contains('taskType')){
+    		task = input.id;
+    		space = input.parentNode.previousElementSibling.id;
+    	} 
+    	$.ajax({
+	        url : "controller?cmd=getTasksAction", 
+	        data: {
+				spaceType : space, 
+				taskType : task
+			},
+	        success : function(result){
+	        	panel.innerHTML = result;
+	        	panel.style.maxHeight = panel.scrollHeight + "px";
+	        	var motherPanel = input.parentNode;
+	            motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
+	             //#### 페이지가 이벤트 처리이후 데이터를 실시간으로 가져올 때는 이후 관련 이벤트도 같이 연결 = getTasks.jsp로 코드 이동
+	        }
+	    });
+    } 
+}  
 //직접 입력하여 업무 추가
-/* var addTask = document.querySelector("#addTask");
-addTask.onclick = function() {
-	var task = document.querySelector("#addTaskFromTypingInput");
-	if (task.value != "") {
-		document.querySelector("#selectedTask").appendChild(this.childNodes.clone());
-		task.value = "";
-		$("#selectedTaskModal").css({display: "block"});
-	}
-} */
 $("#addTask").click(function(){
 	if($("#addTaskFromTypingInput").val() != ""){
 		$("#selectedTask").html($("#addTaskFromTypingInput").val());
