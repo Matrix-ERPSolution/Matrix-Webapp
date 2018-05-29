@@ -66,7 +66,8 @@
 
 </body>
 <script>
-$('#addUserButton').on('click',function (){
+//회원가입 처리; script code는 addUser로 몰아넣음.
+/* $('#addUserButton').on('click',function (){
 	 $.ajax({
 	        //url : "controller?cmd=가입하는 Action", 
 	        //data : {  }
@@ -75,6 +76,6 @@ $('#addUserButton').on('click',function (){
 				location.href = "controller?cmd=headerAdminUI";
 	        }
 	 });
-});
+}); */
 </script>
 </html>

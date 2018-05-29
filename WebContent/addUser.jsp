@@ -97,9 +97,9 @@
 		} */ else if($("#certifyResult").html() =="") {
 			$.ajax({
 				url:"controller?cmd=addUserNextAction",
-				data: {
+				/* data: {
 					phoneNum:$("#phoneNum").val()
-				}, 
+				}, */ 
 				success: function(result){
 					$("#phoneNumCertify").hide();
 					$("#next").html(result);
@@ -287,7 +287,7 @@
 	//프로필 사진 첨부
 
 	//다음페이지 이동 = 회원가입 처리 / 입력받아야 할 파트 null 체크
-	$("#certification").click(
+	$("#addUserButton").click(
 			function() {
 				if ($("#userId").val() == "") {
 					$("#idCheck").html("아이디를 입력해주세요");
