@@ -5,41 +5,64 @@ public class UserVO {
 	private String pw;
 	private String phoneNum;
 	private String name;
-	private String birth;
+	private String birthYear;
+	private String birthMonth;
+	private String birthDay;
 	private String gender;
-	private String email;
+	private String emailAccount;
+	private String emailDomain;
 	private String addressCity;
 	private String addressGu;
 	private String addressDong;
 	private String profilePhoto;
 	
-	/*회원가입*/
-	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong, String profilePhoto) {
+	/**회원가입*/
+	public UserVO(String userId, String pw, String phoneNum, String name, String birthYear, String birthMonth, String birthDay, String gender, String emailAccount, String emailDomain, String addressCity, String addressGu, String addressDong, String profilePhoto) {
 		setUserId(userId);
 		setPw(pw);
 		setPhoneNum(phoneNum);
 		setName(name);
-		setBirth(birth);
+		setBirthYear(birthYear);
+		setBirthMonth(birthMonth);
+		setBirthDay(birthDay);
 		setGender(gender);
-		setEmail(email);
+		setEmailAccount(emailAccount);
+		setEmailDomain(emailDomain);
 		setAddressCity(addressCity);
 		setAddressGu(addressGu);
 		setAddressDong(addressDong);
 		setProfilePhoto(profilePhoto);
 	}
-	/*profilePhoto가 null일 때 회원가입*/
-	public UserVO(String userId, String pw, String phoneNum, String name, String birth, String gender, String email, String addressCity, String addressGu, String addressDong) {
+	
+	/**profilePhoto가 null일 때 회원가입*/
+	public UserVO(String userId, String pw, String phoneNum, String name, String birthYear, String birthMonth, String birthDay, String gender, String emailAccount, String emailDomain, String addressCity, String addressGu, String addressDong) {
 		setUserId(userId);
 		setPw(pw);
 		setPhoneNum(phoneNum);
 		setName(name);
-		setBirth(birth);
+		setBirthYear(birthYear);
+		setBirthMonth(birthMonth);
+		setBirthDay(birthDay);
 		setGender(gender);
-		setEmail(email);
+		setEmailAccount(emailAccount);
+		setEmailDomain(emailDomain);
 		setAddressCity(addressCity);
 		setAddressGu(addressGu);
 		setAddressDong(addressDong);
 	}
+	
+	/**회원정보 변경용*/
+	public UserVO(String userId, String emailAccount, String emailDomain, String addressCity, String addressGu, String addressDong,  String phoneNum, String profilePhoto){
+		setUserId(userId);
+		setEmailAccount(emailAccount);
+		setEmailDomain(emailDomain);
+		setAddressCity(addressCity);
+		setAddressGu(addressGu);
+		setAddressDong(addressDong);
+		setPhoneNum(phoneNum);
+		setProfilePhoto(profilePhoto);
+	}
+	
 	//setPW만 private
 	public String getUserId() {
 		return userId;
@@ -57,16 +80,28 @@ public class UserVO {
 		return name;
 	}
 
-	public String getBirth() {
-		return birth;
+	public String getBirthYear() {
+		return birthYear;
+	}
+	
+	public String getBirthMonth() {
+		return birthMonth;
+	}
+	
+	public String getBirthDay() {
+		return birthDay;
 	}
 
 	public String getGender() {
 		return gender;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmailAccount() {
+		return emailAccount;
+	}
+	
+	public String getEmailDomain() {
+		return emailDomain;
 	}
 
 	public String getAddressCity() {
@@ -101,18 +136,30 @@ public class UserVO {
 		this.name = name;
 	}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+	}
+
+	public void setBirthMonth(String birthMonth) {
+		this.birthMonth = birthMonth;
+	}
+
+	public void setBirthDay(String birthDay) {
+		this.birthDay = birthDay;
 	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAccount(String emailAccount) {
+		this.emailAccount = emailAccount;
 	}
-
+	
+	public void setEmailDomain(String emailDomain) {
+		this.emailDomain = emailDomain;
+	}
+	
 	public void setAddressCity(String addressCity) {
 		this.addressCity = addressCity;
 	}
@@ -154,11 +201,5 @@ public class UserVO {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "UserVO [userId=" + userId + ", phoneNum=" + phoneNum + ", name=" + name + ", birth="
-				+ birth + ", gender=" + gender + ", email=" + email + ", addressCity=" + addressCity + ", addressGu="
-				+ addressGu + ", addressDong=" + addressDong + ", profilePhoto=" + profilePhoto
-				+ "]";
-	}
+
 }

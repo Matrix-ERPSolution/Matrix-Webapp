@@ -44,13 +44,33 @@ public class FormatCheckSolution {
 	}
 	
 	/**입력값 길이 검사*/
-	public static boolean isInputLength(String input, int min, int max) {
+	public static boolean isInputLength(String input, int minDigit, int maxDigit) {
 		boolean result = false;
 		if(input==null) {
 			return true;
 		}
-		if((input.length()>=min)&&(input.length()<=max)){
+		if((input.length()>=minDigit)&&(input.length()<=maxDigit)){
 			result=true;
+		}
+		
+		return result;
+	}
+	
+	/**이메일 도메인 형식 검사*/
+	public static boolean isDomainFormat(String emailDomain) {
+		boolean result = false;
+		if(emailDomain==null){
+			return true;
+		} 
+		emailDomain = emailDomain.toLowerCase();
+		String[] texts = emailDomain.split("\\.");
+		String domain = texts[texts.length-1];
+		switch(domain) {
+		case "com":
+		case "net":
+		case "kr":
+			result=true;
+			break;
 		}
 		
 		return result;

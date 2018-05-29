@@ -17,7 +17,7 @@ public class UserDAOUnitTest {
 		dao = new UserDAO();
 	}
 	
-	@Test
+	/*@Test
 	public void correctUnitTest(){
 		
 		assertTrue(dao.login("chulsoo", "chulsoo1234"));
@@ -76,7 +76,7 @@ public class UserDAOUnitTest {
 		assertEquals(cnt-1, dao.getUsers().size());
 		
 		assertNotNull(dao.getCertifiedInfo("yunyoung"));
-	}
+	}*/
 	
 	@Test
 	public void loginWithWrongId() {
@@ -91,7 +91,7 @@ public class UserDAOUnitTest {
 	@Test
 	public void addUserWithExistId(){
 		int cnt = dao.getUsers().size();
-		dao.addUser(new UserVO("yunjin", "tester", "01099887766", "테스터", "2018/05/19", "F", "email@email.com", "서울시", "송파구", "가락동", "profilePhoto.png"));
+		dao.addUser(new UserVO("yunjin", "tester", "01099887766", "테스터", "2018","05","19", "F", "email","email.com", "서울시", "송파구", "가락동", "profilePhoto.png"));
 		assertEquals(cnt, dao.getUsers().size());
 	}
 	
@@ -104,8 +104,8 @@ public class UserDAOUnitTest {
 	public void isUserIdWithWrongFormat(){
 		assertFalse(dao.isUserId("0000"));
 	}
-
-	//@Test	//Exception 아직 적용 안됨. 해야함.
+	
+	@Test	//Exception 아직 적용 안됨. 해야함.
 	public void resetPwWithWrongFormat(){
 		dao.resetPw("0000", "yunjin");
 		assertFalse(dao.login("yunjin", "0000"));
@@ -119,28 +119,27 @@ public class UserDAOUnitTest {
 	@Test
 	public void setUserInfoWithWrongId(){
 		Map<String, String> user = dao.getUserInfo("wrongid");
-		dao.setUserInfo("newnewnew9999@naver.com", "경기도", "광명시", "철산동", "01032828508", "taehun.jpg", "wrongid");
+		dao.setUserInfo("wrongid", "newnewnew9999","naver.com", "경기도", "광명시", "철산동", "01032828508", "taehun.jpg");
 		assertEquals(user, dao.getUserInfo("wrongid"));
 	}
-	
-	//@Test	//첨부파일형식  Exception 아직 구현 안됨. 해야함.
+	@Test	//첨부파일형식  Exception 구현함.
 	public void setUserInfoWithWrongPhotoFormat(){
-		Map<String, String> user = dao.getUserInfo("taehun");
-		dao.setUserInfo("oracle@naver.com", "강원도", "춘천시", "명동", "01043124312", "taehun.txt", "taehun");
-		assertEquals(user, dao.getUserInfo("taehun"));
+		Map<String, String> user = dao.getUserInfo("wrongid");
+		dao.setUserInfo("wrongid", "newnewnew9999","naver.com", "경기도", "광명시", "철산동", "01032828508", "taehun.txt");
+		assertEquals(user, dao.getUserInfo("wrongid"));
 	}
 	
 	@Test
 	public void getUserInfoWithWrongId(){
 		assertNull(dao.getUserInfo("dead"));
 	}
-
+	
 	@Test
 	public void setPwWithWrongOldPw(){
-		dao.setPw("newpassword","taehun","wrongpassword");
-		assertFalse(dao.login("taehun", "newpassword"));
+		dao.setPw("newpassword","tester05","old");
+		assertFalse(dao.login("tester05", "newpassword"));
 	}
-
+	
 	@Test
 	public void getAdminSlideInfoWithWrongId(){
 		assertNull(dao.getAdminSlideInfo("wrongid"));
@@ -152,7 +151,6 @@ public class UserDAOUnitTest {
 		dao.removeUser("wrongid", "password");
 		assertEquals(cnt, dao.getUsers().size());
 	}
-	
 	
 	@Test
 	public void getCertifiedInfo(){
