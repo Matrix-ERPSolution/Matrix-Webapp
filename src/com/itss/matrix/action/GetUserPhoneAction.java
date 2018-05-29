@@ -15,7 +15,7 @@ public class GetUserPhoneAction implements Action {
 		String result=new UserDAO().getUserPhoneNum(userId);
 		request.setAttribute("result", result);
 		
-		return "results/getUserPhoneNum.jsp";
+		return "results/getContent.jsp";
 	}
 
 }
