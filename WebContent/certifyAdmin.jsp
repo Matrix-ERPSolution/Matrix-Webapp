@@ -41,13 +41,20 @@
 		 
 	 //사업자 등록번호 입력값 형식 검사
 	 //정규식[1-9]{1}[0-9]{2}-[0-9]{2}-[0-9]{5}
-	 var regExpLicense=new RegExp("[1-9]{1}[0-9]{2}[0-9]{2}[0-9]{5}");
-		 
+	 //숫자만 입력되도록 유도.
 	 $("#licenseNum").keyup(function(){
-		 if($("#licenseNum").val().length>10 || !regExpLicense.test($("#licenseNum").val())) {
+		var regExpLicense=new RegExp("[1-9]{1}[0-9]{2}[0-9]{2}[0-9]{5}");
+		var licenseNumber = $("#licenseNum").val();
+		licenseNumber = licenseNumber.replace(/[^0-9]/g,'');
+		licenseNumber = licenseNumber.trim();
+		 if(licenseNumber.length>=12) {
 			 $("#licenseNumCheck").html("사업자등록번호를 정확히 입력해주세요.");
+		 } else if(!regExpLicense.test(licenseNumber)) {
+			 $("#licenseNumCheck").html("바르지 않은 형식입니다.");
 		 } else {
+			 $("#licenseNum").val(licenseNumber);
 			 $("#licenseNumCheck").html("");
+			 
 		 } 
 	 });
 	 
