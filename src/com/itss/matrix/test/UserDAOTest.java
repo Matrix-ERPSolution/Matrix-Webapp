@@ -2,6 +2,7 @@ package com.itss.matrix.test;
 
 import com.itss.matrix.model.UserDAO;
 import com.itss.matrix.model.UserVO;
+import static com.itss.matrix.model.FormatCheckSolution.*;
 
 public class UserDAOTest {
 	public static void main(String[] args) {
@@ -80,7 +81,12 @@ public class UserDAOTest {
 			//dao.removeUser("tester", "tester2"); //비기능-없는 사용자: 아무것도 안바뀜
 			//dao.removeUser("yunjin", "yunjin88"); //비기능-잘못된 비밀번호: 아무것도 안바뀜
 			//dao.removeUser(null, null); //비기능-하나 이상 null값 입력: org.apache.ibatis.type.TypeException
-		System.out.println(dao.getCertifiedInfo("dd"));
+		//System.out.println(dao.getCertifiedInfo("dd"));
+		//System.out.println(isInputLength("123", 0, 3));
+		//dao.addUser("tester05", "tester", "01012341234", "테스터", "1999", "12", "31", "M", "testerAccount", "gmail.com", "OO시", "OO구", "OO동", "testPhoto.jpg");
+		//System.out.println(Integer.MAX_VALUE);
+		//System.out.println(isDomainFormat("address@domain.해킹하겠.다"));
+		//dao.setUserInfo("tester05", "newAccount", "newnew.com", "newCity", "newGu", "newDong", "01033334444", "newnew.png");
 		
 		System.out.println("end");
 	}
