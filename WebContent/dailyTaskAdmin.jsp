@@ -132,13 +132,13 @@ $(function(){
 <!-- 날짜선택바 -->
 <div id="dateMenu" class="w3-center" style="vertial-align:center; padding:1px;">
    <div class="inline">
-      <input type="text" id="datepicker">
-      <input type="text" id="alterDate">
+      <input type="text" id="datepicker" hidden="hidden">
+      <input type="text" id="alterDate" hidden="hidden">
    </div>
    <div class="inline">
       <img id="scrollPast" src="images/leftTriangle.png" width="15pt" />
    </div>
-   <h2 id="date" class="inline">n월 n일</h2>
+   <h2 id="date" class="inline"></h2>
    <div class="inline">
       <img id="scrollFuture" src="images/rightTriangle.png" width="15pt" />
    </div>
@@ -214,16 +214,17 @@ var activateAcc = function(input){
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-		/* $.ajax({
-	        url : "controller?cmd=getDailyTasks", 
+		$.ajax({
+	        url : "controller?cmd=getDailyTasksAction", 
 	        data: {
-				spaceType : input.id, 
+	        	date : $("#datepicker").val(),
+				part : input.id
 			},
 	        success : function(result){
 	        	panel.innerHTML = result;
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
-	    }); */
+	    });
     	panel.style.maxHeight = panel.scrollHeight + "px";
     } 
 }
@@ -249,9 +250,7 @@ var contentLoad = function(){
 	});
 }
 $(document).ready(function(){
-	$("#datepicker").datepicker("setDate", (thisMonth + "/" + thisDay + "/" + thisYear));
-	console.log(thisMonth + "/" + 27 + "/" + thisYear)
-	console.log($("#datepicker").val())
+	$("#datepicker").datepicker("setDate", "0d");
 	contentLoad();
 });
 
@@ -260,12 +259,14 @@ $("#scrollPast").on("click", function(){
 	var dateVal = $("#datepicker").datepicker("getDate");
 	dateVal.setDate(dateVal.getDate()-1);
 	$("#datepicker").datepicker("setDate", dateVal);
+	contentLoad();
 });
 
 $("#scrollFuture").on("click", function(){
 	var dateVal = $("#datepicker").datepicker("getDate");
 	dateVal.setDate(dateVal.getDate()+1);
 	$("#datepicker").datepicker("setDate", dateVal);
+	contentLoad();
 });
 
 /**업무 수정, 삭제  기능*/

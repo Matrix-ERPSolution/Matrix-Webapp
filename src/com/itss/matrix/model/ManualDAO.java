@@ -131,7 +131,7 @@ public class ManualDAO {
 	}
 
 	/** (공통 소분류)선택한 공간/업무분류에 속한 업무 목록 보기: 업무배정, 업무수정, 매뉴얼 보기 */
-	public List<Map> getTasks(String spaceType, String taskType) {
+	public List<Map> getManualTasks(String spaceType, String taskType) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Map> list = null;
 		Map<String, String> input = new HashMap();

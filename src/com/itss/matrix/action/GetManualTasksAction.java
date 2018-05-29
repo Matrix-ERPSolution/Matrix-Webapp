@@ -16,7 +16,7 @@ public class GetManualTasksAction implements Action {
 		String spaceType = request.getParameter("spaceType");
 		String taskType = request.getParameter("taskType");
 		List<Map> tasks = null;
-		tasks = new ManualDAO().getTasks(spaceType, taskType);
+		tasks = new ManualDAO().getManualTasks(spaceType, taskType);
 		request.setAttribute("tasks", tasks);
 		return "results/getManualTasks.jsp";
 	}

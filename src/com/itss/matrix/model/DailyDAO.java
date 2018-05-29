@@ -2,12 +2,14 @@ package com.itss.matrix.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.websocket.Session;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -30,13 +32,17 @@ public class DailyDAO {
 
 	/** 선택한 날짜에 해당하는 배정대상 목록 보기 */
 	public List<String> getAssignedParts(String assignDate) {
+		
 		SqlSession session = sqlSessionFactory.openSession();
 		List<String> list = null;
 		try {
-			list = session.selectList("dailyMapper.getAssignedParts", assignDate);
-			if(list.size()==0){
-				throw new RuntimeException("날짜를 다시 확인해주세요.");
+			Calendar cal = new GregorianCalendar();
+			cal.add(Calendar.DATE, +1);
+			Date tomorrow = cal.getTime();
+			if(new SimpleDateFormat("yyyy/MM/dd").parse(assignDate).after(tomorrow)){
+				throw new RuntimeException("내일 이후는 조회 불가");
 			}
+			list = session.selectList("dailyMapper.getAssignedParts", assignDate);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

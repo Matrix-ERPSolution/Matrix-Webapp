@@ -22,7 +22,7 @@ public class ManualDAOUnitTest {
 		assertNotNull(dao.getTaskTypesBySpaceType("카운터"));
 		assertNotNull(dao.getTaskTypes());
 		assertNotNull(dao.getSpaceTypesByTaskType("설비관리"));
-		assertNotNull(dao.getTasks("카운터", "설비관리"));
+		assertNotNull(dao.getManualTasks("카운터", "설비관리"));
 		assertNotEquals(dao.getManualTaskSeq("바닥 쓸기"), -1);
 	}
 	
@@ -38,7 +38,7 @@ public class ManualDAOUnitTest {
 	
 	@Test
 	public void getTasksWithWrongNonExistSpaceTypeTaskType(){
-		assertEquals(dao.getTasks("지하 300층", "멘탈관리").size(), 0);
+		assertEquals(dao.getManualTasks("지하 300층", "멘탈관리").size(), 0);
 	}
 	
 	@Test

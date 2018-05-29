@@ -59,7 +59,8 @@ public class DailyDAOTest {
 			//dao.setDailyTask("바꾸려는업무", "test23", "2018/01/01", "오픈");
 			//dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "미들"); // 현금 새재 확인 - 미들
 			//dao.setDailyAssign(null, null, "2018/01/01", "파트", "새벽", "야간개장 준비");
-			dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "마감", "야간개장 준비");
+			//dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "마감", "야간개장 준비");
+			dao.getAssignedParts("2018/05/31");
 			System.out.println("\nend");
 	}
 }

@@ -62,6 +62,9 @@ public class ActionFactory {
 		case "getAssignedPartsAction":
 			a = new GetAssignedPartsAction();
 			break;
+		case "getDailyTasksAction":
+			a = new GetDailyTasksAction();
+			break;
 		case "getSpaceTypesAction":
 			a = new GetSpaceTypesAction();
 			break;
