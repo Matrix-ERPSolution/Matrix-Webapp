@@ -93,9 +93,10 @@ li.important::before {
 }
 </style>
 <script type="text/javascript">
-var currentDate = new Date();
-var thisMonth=currentDate.getMonth()+1;
-var thisDay=currentDate.getDate();
+var now = new Date();
+var thisYear=now.getFullYear();
+var thisMonth=now.getMonth()+1;
+var thisDay=now.getDate();
 
 $(function(){
    $("#datepicker").datepicker({
@@ -107,7 +108,9 @@ $(function(){
       closeText : '닫기',
       nextText : "다음 달",
       prevText : "이전 달",
-      dateFormat : "m"+"월 "+"d"+"일",
+      dateFormat : "yy/mm/dd",
+      altField: "#alterDate",
+      altFormat: "m"+"월 "+"d"+"일",
       showMonthAfterYear : true,
       showOtherMonths : true,
       selectOtherMonths : true,
@@ -119,28 +122,9 @@ $(function(){
         yearSuffix: "년",
       maxDate: "+1d",
       onSelect : function(dateText, inst){
-       $("#date").html(dateText);
-       
-        if(dateText==(thisMonth+"월 "+thisDay+"일")) {
-         $.ajax({
-          url : "assignTaskAdmin.jsp",
-          data : {},
-          success : function(result){
-           $("#contents").html(result);
-          }
-         })
-        } else if(dateText==(thisMonth+"월 "+(thisDay+1)+"일")) {
-         $.ajax({
-            url : "futureTaskAdmin.jsp",
-           date : {},
-            success : function(result){
-               $("#contents").html(result);
-            }
-        });
-        }
+       contentLoad();
     }
    });
-   $("#datepicker").hide();
 });
 </script>
 </head>
@@ -149,6 +133,7 @@ $(function(){
 <div id="dateMenu" class="w3-center" style="vertial-align:center; padding:1px;">
    <div class="inline">
       <input type="text" id="datepicker">
+      <input type="text" id="alterDate">
    </div>
    <div class="inline">
       <img id="scrollPast" src="images/leftTriangle.png" width="15pt" />
@@ -165,39 +150,38 @@ $(function(){
 <!-- 알맹이 -->
 <!-- <h2 id="dailyTaskTitle" style="text-align:center;">dailyTaskTitle</h2> --> <!-- 오늘/내일/과거 업무 보기 -->
 <div id="content">
-
-<div class="accordion" id="personal">개인업무</div>
-<div class="panel">
-	<ul>
-		<li class="important changeable">보건증 갱신<div id="test1" class="finisher changeable">김태훈</div></li>
-		<li class="important">통장사본 제출 <div class="finisher">홍윤영</div></li>
-		<li>연진이 생일 케이크 사오기 (2호) <div class="finisher">김수한무</div></li>
-	</ul>
-</div>
-
-<div class="accordion" id="openTeam">오픈조</div>
-<div class="panel" >
-	<ul>
-		<li>쇼케이스 점등 <div class="finisher">장윤석</div></li>
-		<li>POS기 켜기 <div class="finisher">장윤석</div></li>
-		<li>커피머신 켜기 <div class="finisher">김태훈</div></li>
-		<li>딸기 씻기 <div class="finisher">장윤석</div></li>
-	</ul>
-</div>
-
-<div class="accordion" id="middleTeam">미들조</div>
-<div class="panel">
-</div>
-
-<div class="accordion" id="closeTeam">마감조</div>
-<div class="panel">
-</div>
-
-<br>
-<div style="text-align: center;">
-   <button id="updateTask">수정</button>
-   <button id="deleteTask">삭제</button>
-</div>
+	<div class="accordion" id="personal">개인업무</div>
+	<div class="panel">
+		<ul>
+			<li class="important changeable">보건증 갱신<div id="test1" class="finisher changeable">김태훈</div></li>
+			<li class="important">통장사본 제출 <div class="finisher">홍윤영</div></li>
+			<li>연진이 생일 케이크 사오기 (2호) <div class="finisher">김수한무</div></li>
+		</ul>
+	</div>
+	
+	<div class="accordion" id="openTeam">오픈조</div>
+	<div class="panel" >
+		<ul>
+			<li>쇼케이스 점등 <div class="finisher">장윤석</div></li>
+			<li>POS기 켜기 <div class="finisher">장윤석</div></li>
+			<li>커피머신 켜기 <div class="finisher">김태훈</div></li>
+			<li>딸기 씻기 <div class="finisher">장윤석</div></li>
+		</ul>
+	</div>
+	
+	<div class="accordion" id="middleTeam">미들조</div>
+	<div class="panel">
+	</div>
+	
+	<div class="accordion" id="closeTeam">마감조</div>
+	<div class="panel">
+	</div>
+	
+	<br>
+	<div style="text-align: center;">
+	   <button id="updateTask">수정</button>
+	   <button id="deleteTask">삭제</button>
+	</div>
 </div> <!-- end content -->
 
 <div id="myModal" class="modal">
@@ -224,44 +208,64 @@ $("#cancel").click(function(){
 });
 
 // 아코디언
-var acc = document.querySelectorAll(".accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
+var activateAcc = function(input){
+    input.classList.toggle("active");
+    var panel = input.nextElementSibling;
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+		/* $.ajax({
+	        url : "controller?cmd=getDailyTasks", 
+	        data: {
+				spaceType : input.id, 
+			},
+	        success : function(result){
+	        	panel.innerHTML = result;
+	        	panel.style.maxHeight = panel.scrollHeight + "px";
+	        }
+	    }); */
+    	panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-  });
 }
 
-/**오늘의 업무 페이지 로드 + 오늘 날짜 설정*/
-$.ajax({
-   url:"todayTaskAdmin.jsp",
-   success:function(result){
-      $("#contents").html(result);
-      $("#date").html(thisMonth+"월 "+thisDay+"일");
-   }
+/**일일업무 컨텐츠 로드 및 UI 설정*/
+var contentLoad = function(){
+	$("#date").html($("#alterDate").val());
+	if($("#datepicker").val() != (thisMonth + "/" + thisDay + "/" + thisYear)){
+			$("#updateTask").hide();
+			$("#deleteTask").hide();
+	} else {
+			$("#updateTask").show();
+			$("#deleteTask").show();
+	}
+	$.ajax({
+	   url:"controller?cmd=getAssignedPartsAction",
+	   data:{
+		 date : $("#datepicker").val()
+		},
+	   success:function(result){
+	      $("#content").html(result);
+	   }
+	});
+}
+$(document).ready(function(){
+	$("#datepicker").datepicker("setDate", (thisMonth + "/" + thisDay + "/" + thisYear));
+	console.log(thisMonth + "/" + 27 + "/" + thisYear)
+	console.log($("#datepicker").val())
+	contentLoad();
 });
-   
+
 /**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 $("#scrollPast").on("click", function(){
-	$("#datepicker").datepicker("setDate", "-1d");
-	$("#date").html($("#datepicker").val());
-	//오늘, 과거 업무 페이지일때 왼쪽 버튼 누르면 hide(내일 업무 페이지에서는 hideX.) //현재 제대로 구현 안됨
-	if($("#date").html()!=(thisMonth+"월 "+(thisDay+1)+"일")){
-		$("#updateTask").hide();
-		$("#deleteTask").hide();
-	}
+	var dateVal = $("#datepicker").datepicker("getDate");
+	dateVal.setDate(dateVal.getDate()-1);
+	$("#datepicker").datepicker("setDate", dateVal);
 });
 
 $("#scrollFuture").on("click", function(){
-    $("#datepicker").datepicker("setDate", "+1d");
-    $("#date").html($("#datepicker").val());
+	var dateVal = $("#datepicker").datepicker("getDate");
+	dateVal.setDate(dateVal.getDate()+1);
+	$("#datepicker").datepicker("setDate", dateVal);
 });
 
 /**업무 수정, 삭제  기능*/

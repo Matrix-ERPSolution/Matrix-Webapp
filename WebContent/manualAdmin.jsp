@@ -158,7 +158,7 @@ var activateSubAcc = function(input){
     		task = input.parentNode.previousElementSibling.id;
     	}
     	$.ajax({
-	        url : "controller?cmd=getTasksAction", 
+	        url : "controller?cmd=getManualTasksAction", 
 	        data: {
 				spaceType : space, 
 				taskType : task

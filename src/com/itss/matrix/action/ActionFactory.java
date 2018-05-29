@@ -5,17 +5,12 @@ public class ActionFactory {
 		Action a = null;
 
 		switch(cmd){
+		/*UI*/
 		case "homeUI":
 			a = new HomeUI();
 			break;
 		case "loginUI":
 			a = new LoginUI();
-			break;
-		case "loginAction":
-			a = new LoginAction();
-			break;
-		case "getCertifiedInfoAction":
-			a = new GetCertifiedInfoAction();
 			break;
 		case "addUserUI":
 			a = new AddUserUI();
@@ -56,6 +51,32 @@ public class ActionFactory {
 		case "staffDetailAdminUI":
 			a = new staffDetailAdminUI();
 			break;
+			
+		/*Action*/
+		case "loginAction":
+			a = new LoginAction();
+			break;
+		case "getCertifiedInfoAction":
+			a = new GetCertifiedInfoAction();
+			break;
+		case "getAssignedPartsAction":
+			a = new GetAssignedPartsAction();
+			break;
+		case "getSpaceTypesAction":
+			a = new GetSpaceTypesAction();
+			break;
+		case "getTaskTypesAction":
+			a = new GetTaskTypesAction();
+			break;
+		case "getTaskTypesBySpaceTypeAction":
+			a = new GetTaskTypesBySpaceTypeAction();
+			break;
+		case "getSpaceTypesByTaskTypeAction":
+			a = new GetSpaceTypesByTaskTypeAction();
+			break;
+		case "getManualTasksAction":
+			a = new GetManualTasksAction();
+			break;
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
 			break;
@@ -70,21 +91,6 @@ public class ActionFactory {
 			break;
 		case "addUserNextAction":
 			a=new AddUserNextAction();
-			break;
-		case "getSpaceTypesAction":
-			a = new GetSpaceTypesAction();
-			break;
-		case "getTaskTypesAction":
-			a = new GetTaskTypesAction();
-			break;
-		case "getTaskTypesBySpaceTypeAction":
-			a = new GetTaskTypesBySpaceTypeAction();
-			break;
-		case "getSpaceTypesByTaskTypeAction":
-			a = new GetSpaceTypesByTaskTypeAction();
-			break;
-		case "getTasksAction":
-			a = new GetTasksAction();
 			break;
 		case "getUserIdByPhoneNumAction":
 			a=new GetUserIdByPhoneNumAction();

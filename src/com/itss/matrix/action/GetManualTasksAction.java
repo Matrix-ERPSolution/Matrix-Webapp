@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.itss.matrix.model.ManualDAO;
 
-public class GetTasksAction implements Action {
+public class GetManualTasksAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
@@ -18,7 +18,7 @@ public class GetTasksAction implements Action {
 		List<Map> tasks = null;
 		tasks = new ManualDAO().getTasks(spaceType, taskType);
 		request.setAttribute("tasks", tasks);
-		return "results/getTasks.jsp";
+		return "results/getManualTasks.jsp";
 	}
 
 }
