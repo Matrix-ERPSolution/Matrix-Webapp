@@ -82,9 +82,9 @@ $("saveID").checkboxradio();
 			}
 		}
 		//2. 형식 검사
-		var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
-		var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
 		if (check) {
+			var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
+			var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
 			if (!regExpId.test($("#userId").val()) || !regExpPw.test($("#pw").val())) {
 				check = false;
 			}
