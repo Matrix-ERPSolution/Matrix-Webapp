@@ -70,33 +70,28 @@
 //아이디 : 6~16자 영소문자, 숫자-영소문자 1자 반드시 포함/정규표현식: ^(?=.*[a-z])[a-z0-9]{6,16}$
 $("#userId").keyup(function() {
 	var regExpId = new RegExp("^(?=.*[a-z])[a-zA-Z0-9]{6,16}$");
-	if ($("#userId").val().length >= 17) {
-		$("#idCheck").html("아이디는 6~16자여야 합니다.");
-	} else if(!regExpId.test($("#userId").val())) {
-		$("#idCheck").html("아이디는 영문 소문자, 숫자만 사용가능합니다.");
-	} else {
-		$("#idCheck").html("");
+		if ($("#userId").val().length >= 17) {
+			$("#idCheck").html("아이디는 6~16자여야 합니다.");
+		} else if(!regExpId.test($("#userId").val())) {
+			$("#idCheck").html("아이디는 영문 소문자, 숫자만 사용가능합니다.");
+		} else {
+		//아이디 중복검사
+		$.ajax({
+			url: "controller?cmd=isUserIdAction",
+			data: {
+				userId: $("#userId").val()
+			},
+			success: function(result) {
+				var result = JSON.parse(result);
+				if(result["result"] == "false") {
+					$("#idCheck").html("");
+				} else {
+					$("#idCheck").html("사용중인 아이디입니다.")
+				}
+			}
+		});
 	}
 });
-
-//아이디 중복 검사 - 중복/사용가능한 아이디; 일단 alert으로 처리.
-$("#userId").mouseleave(function(){
-	$.ajax({
-		url: "controller?cmd=isUserIdAction",
-		data: {
-			userId: $("#userId").val()
-		},
-		success: function(result) {
-			var result = JSON.parse(result);
-			if(result["result"] == "false") {
-				alert("사용가능한 아이디입니다");
-			} else {
-				alert("사용중인 아이디입니다.")
-				$("#userId").val("");
-			}
-		}
-	})	
-});  
 
 //비밀번호 입력값 형식 검사
 //비밀번호 : 6~16자의 영문 대 소문자, 숫자, 특수문자/정규표현식: ^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$
@@ -190,7 +185,7 @@ $("#birthMonth").change(function() {
 //생년월일 선택여부 검사	
 $("#birthDay").click(function() {
 	if ($("#birthMonth").val() == "") {
-		alert("월을 먼저 선택해주세요.");
+		$("#birthCheck").html("월을 먼저 선택해주세요.");
 	} 
 });
 
@@ -242,56 +237,115 @@ $("#emailDomain").keyup(function() {
 
 //프로필 사진 첨부
 
-//다음페이지 이동 = 입력받아야 할 파트 null 체크 -> 회원가입 처리 / servlet 단에서 형식 체크 거쳐야 함.
-$("#addUserButton").click(
-		function() {
-			if ($("#userId").val() == "") {
-				$("#idCheck").html("아이디를 입력해주세요");
-			} else if ($("#pw").val() == "") {
-				$("#pwCheck").html("비밀번호를 입력해주세요");
-			} else if ($("#name").val() == "") {
-				$("#nameCheck").html("이름을 입력해주세요");
-			} else if (($("#birthYear").val() == "")
-					|| ($("#birthMonth").val() == "")
-					|| ($("#birthDay").val() == "")) {
-				$("#birthCheck").html("생년월일을 입력해주세요");
-			} else if ($("gender").val() == "") {
-				$("#genderCheck").html("성별을 입력해주세요");
-			} else if (($("#emailId").val() == "")
-					|| ($("#emailDomain").val() == "")) {
-				$("#emailCheck").html("이메일을 입력해주세요");
-			} else if (($("#addressCity").val() == "")
-					|| ($("#addressGu").val() == "")
-					|| ($("#addressDong").val() == "")) {
-				$("#addressCheck").html("주소를 입력해주세요");
-			}
-			$.ajax({
-				url:"controller?cmd=addUserAction",
-				data: {
-					userId: $("#userId").val(), 
-					pw: $("#pw").val(),
-					phoneNum: $("#phoneNum").val(),
-					name: $("#name").val(),
-					birthYear: $("#birthYear").val(),
-					birthMonth: $("#birthMonth").val(),
-					birthDay: $("#birthDay").val(),
-					gender: $("gender").val(),
-					emailId: $("#emailId").val(),
-					emailDomain: $("#emailDomain").val(),
-					addressCity: $("#addressCity").val(),
-					addressGu: $("#addressGu").val(),
-					addressDong: $("#addressDong").val(),
-					profilePhoto: $("#profilePhoto").val()
-				},
-				success: function(result){
-				if(result) {
+//다음페이지 이동 = 입력받아야 할 파트 null + xxxCheck 파트 체크 -> 다 입력되어야 ajax로 가입처리
+$("#addUserButton").click(function() {
+	var check=true;
+	if(check){
+		if ($("#userId").val() == "" || $("#userId").html() != "") {
+			$("#idCheck").html("아이디를 다시 확인해주세요");
+			$("#userId").focus();
+			check=false;
+		}
+	}
+	
+	if(check){
+		if ($("#pw").val() == "" || $("#pwCheck").html()!="") {
+			$("#pwCheck").html("비밀번호를 다시 확인해주세요");
+			$("#pw").focus();
+			check=false;
+		}
+	}
+	
+	if(check) {
+		if($("#phoneNum").val()=="" || $("#certifyResult").html()!="") {
+			$("#certifyResult").html("휴대폰 번호를 다시 확인해주세요");
+			$("#phoneNum").focus();
+			check=false;
+		}
+	}
+	
+	if(check) {
+		if ($("#name").val() == "" || $("#nameCheck").html()!="") {
+			$("#nameCheck").html("이름을 다시 확인해주세요");
+			$("#name").focus();
+			check=false;
+		}
+	}
+	if(check){
+		if (($("#birthYear").val() == "")
+				|| ($("#birthMonth").val() == "")
+				|| ($("#birthDay").val() == "")
+				) {
+			$("#birthCheck").html("생년월일을 다시 확인해주세요");
+			$("#birthYear").focus();
+			check=false;
+		} 
+	}
+	
+	if(check){
+		if (($("gender").val() == "") || ($("#genderCheck").html() != "")) {
+			$("#genderCheck").html("성별을 다시 확인해주세요");
+			$("#gender").focus();
+			check=false;
+		}	
+	}
+	
+	if(check) {
+		if (($("#emailId").val() == "")) {
+			$("#emailIdCheck").html("이메일 아이디를 다시 확인해주세요");
+			$("#emailId").focus();
+			check=false;
+		} 
+	}
+	
+	if(check) {
+		if($("#emailDomain").val() == ""){
+			$("#emailDomainCheck").html("이메일 도메인을 다시 확인해주세요");
+			$("#emailDomain").focus();
+			check=false;
+		} 
+	}
+	
+	if(check) {
+		if (($("#addressCity").val() == "")
+				|| ($("#addressGu").val() == "")
+				|| ($("#addressDong").val() == "") 
+				|| ($("#addressCheck").html!="")) {
+			$("#addressCheck").html("주소를 다시 확인해주세요");
+			$("#addressCity").focus();
+			check=false;
+		}
+	}
+	
+	if(check) {
+		$.ajax({
+			url : "controller?cmd=addUserAction",
+			data : {
+					userId : $("#userId").val(),
+					pw : $("#pw").val(),
+					phoneNum : $("#phoneNum").val(),
+					name : $("#name").val(),
+					birthYear : $("#birthYear").val(),
+					birthMonth : $("#birthMonth").val(),
+					birthDay : $("#birthDay").val(),
+					gender : $("gender").val(),
+					emailId : $("#emailId").val(),
+					emailDomain : $("#emailDomain").val(),
+					addressCity : $("#addressCity").val(),
+					addressGu : $("#addressGu").val(),
+					addressDong : $("#addressDong").val(),
+					profilePhoto : $("#profilePhoto").val()
+					},
+			success : function(result) {
+			if (result) {
 					alert("Matrix의 회원이 되신 것을 환영합니다!")
-					location.href="controller?cmd=certificationUI";
-				} else {
-					alert("회원가입에 실패하였습니다.");
-				}	
-				}
-			});				
-		});
+					location.href = "controller?cmd=certificationUI";
+				} 
+			}
+		});	
+	} else {
+		alert("회원가입에 실패하였습니다.");
+	}
+});
 </script>
 </html>

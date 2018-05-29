@@ -6,38 +6,53 @@
 <head>
 <%@include file="headSetting.jsp" %>
 <style>
-.modalBranch {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-.modalBranch-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
 #grad1 {
-    height: 640px;
-    background: #2E64FE;
-    background: linear-gradient(#2E64FE, white);
+	height: 640px;
+	background: #2E64FE;
+	background: linear-gradient(#2E64FE, white);
 	text-align: center;
 }
+
 .roundBox {
 	width: 200px;
 	height: 30px;
 	border-radius: 20px;
 	text-align: center;
 }
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgv(0,0,0);
+	background-color: rgba(0, 0, 0, 0.4)
+}
+
+.modal-content {
+	background: #2E64FE;
+	background: linear-gradient(#2E64FE, white);
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 85%;
+	height: 300px;
+	position: relative;
+	outline: 0;	
+}
+
+.w3-display-topright {
+	position: absolute;
+	right: 0;
+	top: 0
+}
+
+
 </style>
 </head>
 <body id="grad1">
@@ -46,8 +61,9 @@
 		<h4 class="inline" align="center">직원 회원 인증</h4>
 	</div>
 
-<input type="text" id="branchName" name="branchName" class="roundBox" required placeholder="지점명"><br>
-<a href="#modalFindBranch" class="roundBox">지점찾기</a>
+<input type="text" id="branchName" name="branchName" class="roundBox" required="required" placeholder="지점명"><br>
+<button id="findBranch" class="roundBox">지점찾기</button>
+
 <div id="branchNameCheck"></div>
 <br>
 <input type="text" id="resumeFile" name="resumeFile" class="roundBox" placeholder="이력서"><br>
@@ -65,24 +81,70 @@
 <button id="certify" class="roundBox" >인증요청</button>
 
 	<!-- 모달 -->
-	<div id="modalFindBranch" class="modalBranch">
-		<div class="modal-content">
-		<%@include file="findBranch.jsp" %>
-		</div>
-	</div><!-- modalBranch end -->
+	<div id="modalFindBranch" class="modal">
+    <div class="modal-content">
+      <header> 
+        <span id="closeMark" class="w3-button w3-display-topright">&times;</span>
+        <h2>지점찾기</h2>
+      </header>
+      <div>
+        <%@ include file="findBranch.jsp" %>
+      </div>
+      <footer>
+      	<div id="selectedBranchName"></div>
+      </footer>
+    </div>
+  </div>
 <script type="text/javascript">
-		/*	
-		 직원인증정보	STAFFS	insert	StaffDAO		
-		 		
-		 이력서 파일 첨부									파일첨부 질문!!!!!#####
-		 보건증 파일 첨부									
-		 통장사본 파일 첨부									
-		 은행 선택지 보기									ui에서 처리? 더미 db필요?
-		 본사 DB	HEAD_BRANCHES	select			
-		 */
+	
+	/*	
+	 직원인증정보	STAFFS	insert	StaffDAO		
+	 		
+	 이력서 파일 첨부									파일첨부 질문!!!!!#####
+	 보건증 파일 첨부									
+	 통장사본 파일 첨부									
+	 은행 선택지 보기									ui에서 처리? 더미 db필요?
+	 본사 DB	HEAD_BRANCHES	select			
+	 */
 
-		//지점검색: 모달로 구현;
-	</script>
+	//지점검색: 모달로 구현;
+	
+	var modal = document.querySelector("#modalFindBranch");
+	//모달 띄우기
+	document.querySelector("#findBranch").onclick=function(){
+		modal.style.display="block";
+	};
+	//모달 닫기
+	document.querySelector("#closeMark").onclick=function(){
+		modal.style.display="none";
+	}
+	
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	//jquery로 모달 컨트롤하려던 부분.
+	/* $("#findBranch").click(function(){
+		$("#modalFindBranch").css({
+			"display" : "block"
+		});
+	}); */
+	
+	/* $("#closeMark").click(function(){
+		$("#modalFindBranch").css({
+			"display" : "none"
+		});
+	}); */
+
+	/* $("body").on("click", function(event) {
+		if (event.target() == $("#modalFindBranch")) {
+			$("#modalFindBranch").css({
+				"display" : "none"
+			});
+		} 
+	}); */
+</script>
 
 </body>
 </html>
