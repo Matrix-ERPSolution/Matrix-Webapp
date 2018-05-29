@@ -52,17 +52,19 @@ public class DailyDAO {
 	}
 
 	/** 파트별 - 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
-	public Collection<Map<String, String>> getDailyTasksForParts(String assignDate, String assignDetail) {
+	public List<Map<String, String>> getDailyTasksForParts(String assignDate, String assignDetail) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, String> input = new HashMap<>();
 		input.put("assignDate", assignDate);
 		input.put("assignDetail", assignDetail);
 		List<Map<String, String>> list = null;
 		try {
+			Calendar cal = new GregorianCalendar();
+			cal.add(Calendar.DATE, +1);
+			if(new SimpleDateFormat("yyyy/MM/dd").parse(assignDate).after(cal.getTime())){
+				throw new RuntimeException("내일 이후 날짜는 조회 불가");
+			}
 			list = sqlSession.selectList("dailyMapper.getDailyTasksForParts", input);
-			if(list.size()==0){
-				throw new RuntimeException("날짜와 배정대상을 확인해주세요.");
-				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -72,14 +74,16 @@ public class DailyDAO {
 	}
 
 	/** 개인별 - 선택한 날짜, 배정대상에 속한 업무 목록 보기 */
-	public Collection<Map<String, String>> getDailyTasksForPerson(String assignDate) {
+	public List<Map<String, String>> getDailyTasksForPerson(String assignDate) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Map<String, String>> list = null;
 		try {
-			list = sqlSession.selectList("dailyMapper.getDailyTasksForPerson", assignDate);
-			if(list.size()==0){
-				throw new RuntimeException("날짜를 확인해주세요.");
+			Calendar cal = new GregorianCalendar();
+			cal.add(Calendar.DATE, +1);
+			if(new SimpleDateFormat("yyyy/MM/dd").parse(assignDate).after(cal.getTime())){
+				throw new RuntimeException("내일 이후 날짜는 조회 불가");
 			}
+			list = sqlSession.selectList("dailyMapper.getDailyTasksForPerson", assignDate);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

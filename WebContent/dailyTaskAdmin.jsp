@@ -96,6 +96,7 @@ li.important::before {
 var now = new Date();
 var thisYear=now.getFullYear();
 var thisMonth=now.getMonth()+1;
+thisMonth = thisMonth >= 10 ? thisMonth : '0' + thisMonth;
 var thisDay=now.getDate();
 
 $(function(){
@@ -147,42 +148,13 @@ $(function(){
    </div>
 </div>
 
-<!-- 알맹이 -->
 <!-- <h2 id="dailyTaskTitle" style="text-align:center;">dailyTaskTitle</h2> --> <!-- 오늘/내일/과거 업무 보기 -->
-<div id="content">
-	<div class="accordion" id="personal">개인업무</div>
-	<div class="panel">
-		<ul>
-			<li class="important changeable">보건증 갱신<div id="test1" class="finisher changeable">김태훈</div></li>
-			<li class="important">통장사본 제출 <div class="finisher">홍윤영</div></li>
-			<li>연진이 생일 케이크 사오기 (2호) <div class="finisher">김수한무</div></li>
-		</ul>
-	</div>
-	
-	<div class="accordion" id="openTeam">오픈조</div>
-	<div class="panel" >
-		<ul>
-			<li>쇼케이스 점등 <div class="finisher">장윤석</div></li>
-			<li>POS기 켜기 <div class="finisher">장윤석</div></li>
-			<li>커피머신 켜기 <div class="finisher">김태훈</div></li>
-			<li>딸기 씻기 <div class="finisher">장윤석</div></li>
-		</ul>
-	</div>
-	
-	<div class="accordion" id="middleTeam">미들조</div>
-	<div class="panel">
-	</div>
-	
-	<div class="accordion" id="closeTeam">마감조</div>
-	<div class="panel">
-	</div>
-	
-	<br>
-	<div style="text-align: center;">
-	   <button id="updateTask">수정</button>
-	   <button id="deleteTask">삭제</button>
-	</div>
-</div> <!-- end content -->
+<div id="content"></div>
+
+<div style="text-align: center;">
+   <button id="updateTask">수정</button>
+   <button id="deleteTask">삭제</button>
+</div>
 
 <div id="myModal" class="modal">
 	<div class="modal-content">
@@ -218,26 +190,31 @@ var activateAcc = function(input){
 	        url : "controller?cmd=getDailyTasksAction", 
 	        data: {
 	        	assignDate : $("#datepicker").val(),
-				assignDetail : input.id
+	        	assignType : input.id
 			},
 	        success : function(result){
 	        	panel.innerHTML = result;
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
 	    });
-    	panel.style.maxHeight = panel.scrollHeight + "px";
     } 
 }
 
 /**일일업무 컨텐츠 로드 및 UI 설정*/
 var contentLoad = function(){
 	$("#date").html($("#alterDate").val());
-	if($("#datepicker").val() != (thisMonth + "/" + thisDay + "/" + thisYear)){
-			$("#updateTask").hide();
-			$("#deleteTask").hide();
+	if($("#datepicker").val() == (thisYear + "/" +thisMonth + "/" + thisDay)){
+		$("#updateTask").show();
+		$("#deleteTask").show();
+		$("#scrollFuture").show();
+	} else if($("#datepicker").val() == (thisYear + "/" +thisMonth + "/" + (thisDay+1))){
+		$("#updateTask").show();
+		$("#deleteTask").show();
+		$("#scrollFuture").hide();
 	} else {
-			$("#updateTask").show();
-			$("#deleteTask").show();
+		$("#updateTask").hide();
+		$("#deleteTask").hide();
+		$("#scrollFuture").show();
 	}
 	$.ajax({
 	   url:"controller?cmd=getAssignedPartsAction",

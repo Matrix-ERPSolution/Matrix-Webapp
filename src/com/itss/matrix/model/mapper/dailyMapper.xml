@@ -5,14 +5,18 @@
 		select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = #{assignDate}
 	</select>
 	<select id="getDailyTasksForParts" parameterType="java.util.Map" resultType="java.util.Map">
-		select importance, daily_task, finisher_id, finisher_name 
-		from daily_tasks 
-		where assign_date=#{assignDate} and assign_type='파트' and assign_detail=#{assignDetail}
-	</select>
-	<select id="getDailyTasksForPerson" parameterType="java.util.Map" resultType="java.util.Map">
 		select importance, daily_task, assign_detail, finisher_id, finisher_name 
 		from daily_tasks 
-		where assign_date=#{assignDate} and assign_type='개인'
+		where assign_date=#{assignDate} 
+		and assign_type='파트' 
+		and assign_detail=#{assignDetail}
+	</select>
+	<select id="getDailyTasksForPerson" parameterType="java.util.Map" resultType="java.util.Map">
+		select importance, daily_task, assign_detail, name as assign_name, finisher_id, finisher_name 
+		from daily_tasks, users 
+		where assign_date=#{assignDate} 
+		and assign_type='개인'
+		and daily_tasks.assign_detail = users.user_id
 	</select>
 	<insert id="addDailyTaskByInput" parameterType="com.itss.matrix.model.DailyVO">
 		insert into daily_tasks 
