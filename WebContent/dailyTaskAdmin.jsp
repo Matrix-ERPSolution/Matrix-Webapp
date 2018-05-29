@@ -217,8 +217,8 @@ var activateAcc = function(input){
 		$.ajax({
 	        url : "controller?cmd=getDailyTasksAction", 
 	        data: {
-	        	date : $("#datepicker").val(),
-				part : input.id
+	        	assignDate : $("#datepicker").val(),
+				assignDetail : input.id
 			},
 	        success : function(result){
 	        	panel.innerHTML = result;
