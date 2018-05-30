@@ -14,7 +14,10 @@
 		<span class="assignDetail" id="${task.FINISHER_ID}" style="float: right;">${task.FINISHER_NAME}</span>
 	</c:if>
 	<c:if test="${task.FINISHER_ID == null}">
-		<span class="assignDetail unFinished" id="${task.ASSIGN_DETAIL}" style="float: right;">${task.ASSIGN_NAME}</span>
+		<i class="fa fa-edit" onclick="activateTask(this)" style="display: none;"></i>
+		<span class="assignDetail unfinished" id="${task.ASSIGN_DETAIL}" style="float: right;">${task.ASSIGN_NAME}</span>
+		<i class="fa fa-edit" onclick="activateAssign(this)" style="float: right; display: none;"></i>
 	</c:if>
+		</li>
 </c:forEach>
 </ul>

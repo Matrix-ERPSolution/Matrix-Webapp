@@ -213,7 +213,6 @@ public class DailyDAO {
 	/** 업무 수정 */
 	public void setDailyTask(String newDailyTask, String oldDailyTask, String assignDate, String assignDetail) {
 		SqlSession session = sqlSessionFactory.openSession();
-		//System.out.println(newDailyTask);
 		int result = -1;
 		Map input = new HashMap<>();
 		List<String> list=getDailyTasks(assignDate);
