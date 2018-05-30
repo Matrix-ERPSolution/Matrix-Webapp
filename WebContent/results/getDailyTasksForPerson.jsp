@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<ul>
+<c:forEach var="task" items="${tasks}">
+	<c:if test="${task.IMPORTANCE == 1}">
+		<li class="personal important">
+	</c:if>
+	<c:if test="${task.IMPORTANCE == 0}">
+		<li class="personal">
+	</c:if>
+	${task.DAILY_TASK}
+	<c:if test="${task.FINISHER_ID != null}">
+		<span class="assignDetail" id="${task.FINISHER_ID}" style="float: right;">${task.FINISHER_NAME}</span>
+	</c:if>
+	<c:if test="${task.FINISHER_ID == null}">
+		<span class="assignDetail unFinished" id="${task.ASSIGN_DETAIL}" style="float: right;">${task.ASSIGN_NAME}</span>
+	</c:if>
+</c:forEach>
+</ul>

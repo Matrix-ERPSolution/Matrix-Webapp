@@ -5,5 +5,11 @@
  	<div class="accordion assignedPart" id="${part}" onclick="activateAcc(this)">${part} 파트</div>
  	<div class="panel"></div>
 </c:forEach>
- 	<div class="accordion assignedPart" id="개인" onclick="activateAcc(this)">개인 업무</div>
+<c:if test="${personal}">
+	<div class="accordion assignedPart" id="개인" onclick="activateAcc(this)">개인 업무</div>
  	<div class="panel"></div>
+</c:if>
+<c:if test="${!personal && empty parts}">
+	배정된 업무가 없습니다.
+</c:if>
+ 	
