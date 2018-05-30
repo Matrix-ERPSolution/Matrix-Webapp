@@ -26,12 +26,12 @@
 	</select> 
 	<div id="birthCheck"></div><br> 
 	<div align="left">성별</div>
-	<input type="radio" name="gender" checked="checked" value="M" id="genderM">남자 
-	<input type="radio" name="gender" value="F"	id="genderF">여자 <div id="genderCheck"></div>
+	<input type="radio" name="gender" value="M" id="genderM" checked="checked">남자 
+	<input type="radio" name="gender" value="F" id="genderF" >여자
 	<br> 
-	<input name="emailId" id="emailId" class="roundBox" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" disabled required="required">
-	<select name="selectDomain" id="selectDomain">
-		<option selected>선택</option>
+	<input name="emailId" id="emailId" class="roundBox" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
+	<select name="selectDomain" id="selectDomain" required="required">
+		<option selected value=''>선택</option>
 		<option value="naver.com">naver.com</option>
 		<option value="daum.net">daum.net</option>
 		<option value="gmail.com">gmail.com</option>
@@ -57,8 +57,8 @@
 		<option value="더미동1">더미동1</option>
 		<option value="더미동2">더미동2</option>
 		<option value="더미동3">더미동3</option>
-	</select> 
-	<div id="addressCheck"></div><br> 
+	</select> <br>
+	<div id="addressCheck">asdf</div><br> 
 	<input type="text" name="profilePhoto"	id=profilePhoto class="roundBox" placeholder="프로필 사진 첨부"><br>
 </div>
 <!-- privacy end -->
@@ -68,6 +68,7 @@
 <script>
 //아이디 입력값 형식 검사: 
 //아이디 : 6~16자 영소문자, 숫자-영소문자 1자 반드시 포함/정규표현식: ^(?=.*[a-z])[a-z0-9]{6,16}$
+
 $("#userId").keyup(function() {
 	var regExpId = new RegExp("^(?=.*[a-z])[a-zA-Z0-9]{6,16}$");
 		if ($("#userId").val().length >= 17) {
@@ -186,50 +187,46 @@ $("#birthMonth").change(function() {
 $("#birthDay").click(function() {
 	if ($("#birthMonth").val() == "") {
 		$("#birthCheck").html("월을 먼저 선택해주세요.");
-	} 
+	} else if($("#birthYear").val()!="" && $("#birthMonth").val()!="" && $("#birthDay").val()!="") {
+		$("#birthCheck").html("");
+	}
 });
 
-//이메일 도메인 선택지 보기: html 파트에서 구현.
-
-//이메일 도메인 선택여부 검사	: 직접입력-선택	
-$('#selectDomain').change(function() {
-	$("#selectDomain option:selected").each(function() {
-		if ($(this).val() == "selfInput") { //직접입력일 경우 
-			$("#emailDomain").val(''); //값 초기화 
-			$("#emailDomain").attr("disabled", false); //활성화 
-		} else { //직접입력이 아닐경우 
-			$("#emailDomain").val($(this).text()); //선택값 입력 
-			$("#emailDomain").attr("disabled", true); //비활성화 
-		}
-	})
-});
-
-//이메일 입력값 형식 검사
-//이메일: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
-//이메일 아이디: /^([\w-]+(?:\.[\w-_]+)*)$/i
-//이메일 도메인: /^((?:[\w-]+\.)*\w[\w-_]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
-/* var regExpEmail=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-$("#emailId").click(function(){
-	var emailIdText=$("#emailId").text();
-	$("#email").val(emailIdText);
-}) */
+//이메일 아이디 입력
 $("#emailId").keyup(function() {
 	var regExpEmailId = /^([\w-]+(?:\.[\w-]+)*)$/i;
-	if ($("#emailId").val().length < 3 || !regExpEmailId.test($("#emailId").val())) {
-		$("#emailIdCheck").html("이메일 아이디를 입력하세요");
+	if ($("#emailId").val().length < 3) {
+		$("#emailIdCheck").html("이메일 아이디를 다시 입력해주세요");
+	} else if(!regExpEmailId.test($("#emailId").val())) {
+		$("#emailIdCheck").html("형식에 맞지 않는 이메일 아이디입니다");
 	} else {
 		$("#emailIdCheck").html("");
 	}
 });
 
+//이메일 도메인 선택지 보기: html 파트에서 구현.
+
+//이메일 도메인 선택여부 검사	: 직접입력-선택	
+	$('#selectDomain').change(function() {
+		$("#selectDomain option:selected").each(function() {
+			if ($(this).val() == "selfInput") { //도메인을 직접 입력할 경우 
+				$("#emailDomain").val(''); 		//값 초기화 
+				$("#emailDomain").removeAttr("readonly"); 
+			} else { 							//도메인을 선택할 경우 
+				$("#emailDomain").val($(this).text()); //선택값 입력 
+				$("#emailDomain").attr("readonly", "true");  
+			}
+		})
+	});
+
 $("#emailDomain").keyup(function() {
 	var regExpEmailDomain = /^((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	if ($("#emailDomain").val().length < 5 || !regExpEmailId.test($("#emailDomain").val())) {
+	if ($("#emailDomain").val().length < 5) {
+		$("#emailDomainCheck").html("이메일 도메인을 다시 입력해주세요");
+	} else if(!regExpEmailDomain.test($("#emailDomain").val())) {
 		$("#emailDomainCheck").html("이메일 도메인을 입력하세요");
-	} else {
-		$("#emailDomainCheck").html("");
-	}
-});
+	} $("#emailDomainCheck").html("");
+}); 
 
 //주소 선택지 보기: 더미데이터 퉁. kill'em all
 
@@ -241,7 +238,11 @@ $("#emailDomain").keyup(function() {
 $("#addUserButton").click(function() {
 	var check=true;
 	if(check){
-		if ($("#userId").val() == "" || $("#userId").html() != "") {
+		if ($("#userId").val() == "") {
+			$("#idCheck").html("아이디를 입력해주세요");
+			$("#userId").focus();
+			check=false;
+		} else if($("#idCheck").html() != "") {
 			$("#idCheck").html("아이디를 다시 확인해주세요");
 			$("#userId").focus();
 			check=false;
@@ -249,23 +250,31 @@ $("#addUserButton").click(function() {
 	}
 	
 	if(check){
-		if ($("#pw").val() == "" || $("#pwCheck").html()!="") {
+		if ($("#pw").val() == "") {
+			$("#pwCheck").html("비밀번호를 입력해주세요");
+			$("#pw").focus();
+			check=false;
+		} else if($("#pw2").val()=="") {
+			$("#pwCheck2").html("비밀번호 확인을 입력해주세요");
+			$("#pw2").focus();
+			check=false;
+		} else if ($("#pwCheck").html()!="") {
 			$("#pwCheck").html("비밀번호를 다시 확인해주세요");
 			$("#pw").focus();
 			check=false;
-		}
-	}
-	
-	if(check) {
-		if($("#phoneNum").val()=="" || $("#certifyResult").html()!="") {
-			$("#certifyResult").html("휴대폰 번호를 다시 확인해주세요");
-			$("#phoneNum").focus();
+		} else if ($("#pwCheck2").html()!="") {
+			$("#pwCheck2").html("비밀번호 확인을 다시 진행해주세요");
+			$("#pw2").focus();
 			check=false;
 		}
 	}
-	
+		
 	if(check) {
-		if ($("#name").val() == "" || $("#nameCheck").html()!="") {
+		if ($("#name").val() == "") { 
+			$("#nameCheck").html("이름을 입력해주세욧");
+			$("#name").focus();
+			check=false;
+		} else if($("#nameCheck").html()!="") {
 			$("#nameCheck").html("이름을 다시 확인해주세요");
 			$("#name").focus();
 			check=false;
@@ -276,50 +285,64 @@ $("#addUserButton").click(function() {
 				|| ($("#birthMonth").val() == "")
 				|| ($("#birthDay").val() == "")
 				) {
+			$("#birthCheck").html("생년월일을 선택해주세요");
+			$("#birthYear").focus();
+			check=false;
+		} else if($("#birthCheck").html()!=""){
 			$("#birthCheck").html("생년월일을 다시 확인해주세요");
 			$("#birthYear").focus();
 			check=false;
-		} 
-	}
-	
-	if(check){
-		if (($("gender").val() == "") || ($("#genderCheck").html() != "")) {
-			$("#genderCheck").html("성별을 다시 확인해주세요");
-			$("#gender").focus();
-			check=false;
-		}	
+		}
 	}
 	
 	if(check) {
-		if (($("#emailId").val() == "")) {
+		if ($("#emailId").val() == "") {
+			$("#emailIdCheck").html("이메일 아이디를 입력해주세요");
+			$("#emailId").focus();
+			check=false;
+		} else if($("#emailIdCheck").html()!="") {
 			$("#emailIdCheck").html("이메일 아이디를 다시 확인해주세요");
 			$("#emailId").focus();
 			check=false;
-		} 
-	}
+		}
+	} 
 	
 	if(check) {
 		if($("#emailDomain").val() == ""){
+			$("#emailDomainCheck").html("이메일 도메인을 입력해주세요");
+			$("#emailDomain").focus();
+			check=false;
+		} else if($("#emailDomainCheck").html()!="") {
 			$("#emailDomainCheck").html("이메일 도메인을 다시 확인해주세요");
 			$("#emailDomain").focus();
 			check=false;
-		} 
-	}
+		}
+	} 
 	
 	if(check) {
-		if (($("#addressCity").val() == "")
-				|| ($("#addressGu").val() == "")
-				|| ($("#addressDong").val() == "") 
-				|| ($("#addressCheck").html!="")) {
+		if ($("#addressCity").val() == "") {
+			$("#addressCheck").html("시/도를 선택해주세요");
+			$("#addressCity").focus();
+			check=false;
+		} else if($("#addressGu").val() == "") {
+			$("#addressCheck").html("시/군/구를 선택해주세요");
+			$("#addressGu").focus();
+			check=false;
+		} else if($("#addressDong").val() == "") {
+			$("#addressCheck").html("동/읍/면을 선택해주세요");
+			$("#addressDong").focus();
+			check=false;
+		} else if($("#addressCheck").html()!="") {
 			$("#addressCheck").html("주소를 다시 확인해주세요");
 			$("#addressCity").focus();
 			check=false;
 		}
 	}
 	
-	if(check) {
+	 if(check) {
 		$.ajax({
 			url : "controller?cmd=addUserAction",
+			type: "POST",
 			data : {
 					userId : $("#userId").val(),
 					pw : $("#pw").val(),
@@ -328,7 +351,7 @@ $("#addUserButton").click(function() {
 					birthYear : $("#birthYear").val(),
 					birthMonth : $("#birthMonth").val(),
 					birthDay : $("#birthDay").val(),
-					gender : $("gender").val(),
+					gender : $("input:radio:checked").val(),
 					emailId : $("#emailId").val(),
 					emailDomain : $("#emailDomain").val(),
 					addressCity : $("#addressCity").val(),
@@ -342,7 +365,7 @@ $("#addUserButton").click(function() {
 					location.href = "controller?cmd=certificationUI";
 				} 
 			}
-		});	
+		}); 	
 	} else {
 		alert("회원가입에 실패하였습니다.");
 	}
