@@ -10,15 +10,17 @@
 <%@include file="headSetting.jsp"%>
 <title>직원상세정보</title>
 <style>
-table {
-	width: 250px;
+.detailedTable {
+	width: 300px;
 	border: 1px solid #444444;
 	border-collapse: collapse;
+	margin-top: 15px;
+	font-size: 11pt;
 }
 
-th, td {
+table.detailedTable td {	/* 적용안됨*/
 	border: 1px solid #444444;
-	padding: 10px;
+	padding: 5px;
 }
 
 ul {
@@ -35,42 +37,49 @@ li {
 </style>
 </head>
 <body>
-
+	<div align="center">
 	<h2>
-		<i id="backToStaffManagementAdmin" class="fa fa-chevron-left"
-			aria-hidden="true" style="margin-right: 25px"></i>직원 상세 정보
+		<i id="backToStaffManagementAdmin" class="fa fa-chevron-left" aria-hidden="true" style="margin-right: 25px"></i>직원 상세 정보
 	</h2>
-	<div class="inline">
-		<i class="fa fa-user fa-5x" aria-hidden="true"></i>
-	</div>
-	<div class="inline">
-		<ul>
-			<li>이름</li>
-			<li>민형준</li>
-		</ul>
-		<ul>
-			<li>성별</li>
-			<li>남</li>
-		</ul>
-		<ul>
-			<li>생일</li>
-			<li>1993/06/25</li>
-		</ul>
-	</div>
-
+	<table>
+		<tr>
+			<td>
+				<img class="profilePhoto inline" src="https://www.puriindahmall.co.id/assets/img/default.png" width="80" height="80">
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>이름</td>
+						<td id="staffDetailName">민형준</td>
+					</tr>
+					<tr>
+						<td>성별</td>
+						<td id="staffDetailName">남</td>
+					</tr>
+					<tr>
+						<td>생년월일</td>
+						<td id="staffDetailBirthday">1993/06/25</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
 	<div id="privateInfo" style="float: center;">
-		<table>
+		<table class="detailedTable" style="float: center;">
 			<tr>
 				<td>파트</td>
 				<td>마감조</td>
 			</tr>
 			<tr>
 				<td>휴대폰번호</td>
-				<td>010-4087-2442</td>
+				<td><span>010-4087-2442</span>
+					<img src="https://cdn3.iconfinder.com/data/icons/trico-circles-solid/24/Circle-Solid-Phone-256.png"
+					id="detailStaffCall" width="30" height="30" style="float: right;">
+				</td>
 			</tr>
 			<tr>
 				<td>계좌번호</td>
-				<td>110-011-123456</td>
+				<td><span>110-011-123456</span><span style="float: right;">신한은행</span></td>
 			</tr>
 			<tr>
 				<td>입사날짜</td>
@@ -82,20 +91,25 @@ li {
 			</tr>
 			<tr>
 				<td>통장사본</td>
-				<td><i class="fa fa-file-o" aria-hidden="true"></i><a href="">다운로드</a></td>
+				<td>bank.pdf</td>
 			</tr>
 			<tr>
 				<td>이력서</td>
-				<td><i class="fa fa-file-o" aria-hidden="true"></i><a href="">다운로드</a></td>
+				<td>resume.doc</td>
 			</tr>
 			<tr>
 				<td>보건증</td>
-				<td><i class="fa fa-file-o" aria-hidden="true"></i><a href="">다운로드</a></td>
+				<td>health.png</td>
 			</tr>
 		</table>
 	</div>
+	</div>
 </body>
 <script>
+	$("#detailStaffCall").click(function(){
+		alert("전화연결");	
+	});
+	
 	$(".inline").css({
 		"display" : "inline"
 	});
