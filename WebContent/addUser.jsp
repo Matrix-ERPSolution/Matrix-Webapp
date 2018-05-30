@@ -83,7 +83,7 @@
 					if(result["result"] == "false") {
 						alert("인증번호가 발송되었습니다");
 					} else {
-						alert("이미 인증된 번호입니다")
+						$("#certifyResult").html("이미 인증된 번호입니다");
 					}
 				}
 			});	
@@ -96,23 +96,31 @@
 
 	//다음 단계 페이지 보여주기: addUserNext에 phoneNum값을 같이 전송 -> addUserNext를 nav 태그 안에 뿌려주는 식으로.
 	$("#addUserNext").click(function(){
-		if($("#phoneNum").val()=="") {
-			alert("휴대폰 인증을 진행하세요");
-		} /* else if($("#inputCertification").val()=="") {
-			alert("인증번호를 입력하세요");
-		} */ else if($("#certifyResult").html() =="") {
+		var check=true;
+		if(check) {
+			if($("#phoneNum").val()=="") {
+				$("#certifyResult").html("휴대폰 번호를 입력해주세요");
+				$("#phoneNum").focus();
+				check=false;
+			} else if($("#certifyResult").html()!="") {
+				$("#certifyResult").html("휴대폰 번호를 다시 확인해주세요");
+				$("#phoneNum").focus();
+				check=false;
+			}
+			
+		if(check) {
 			$.ajax({
 				url:"controller?cmd=addUserNextAction",
-				/* data: {
-					phoneNum:$("#phoneNum").val()
-				}, */ 
 				success: function(result){
 					$("#phoneNumCertify").hide();
 					$("#next").html(result);
 				}
 			});
-		}
-	});
+		} else {
+			alert("휴대폰 인증 실패");
+		}	
+	} 
+});
 	 
 </script>
 
