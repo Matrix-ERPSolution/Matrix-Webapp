@@ -110,6 +110,9 @@ public class ActionFactory {
 		case "getUserIdByPhoneNumAction":
 			a=new GetUserIdByPhoneNumAction();
 			break;
+		case "getPreStaffsAction":
+			a=new GetPreStaffsAction();
+			break;
 		}
 		return a;
 	}
