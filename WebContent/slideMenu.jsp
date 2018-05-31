@@ -8,15 +8,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   
  <style type="text/css">
-
 .w3-bar-block {
 	font-size: small;
 	font-weight: bold;
-}
-#logo {
-	width: 150px;
-	height: 35px;
-	text-align:center; 
 }
 </style> 
 
@@ -37,7 +31,7 @@
     <a href="#updateUser" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">회원 정보 수정</a> 
     <a href="#notifications" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">알림 설정</a> 
     <a href="#help" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">도움말</a> 
-    <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 ver 1.10</a> 
+    <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 ver 1.0.0</a> 
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
   </div>
 </div>
@@ -47,8 +41,8 @@
 
 
 <header class="w3-container w3-large">
-  <a href="javascript:void(0)" class="w3-button w3-margin-right w3-large" onclick="w3_open()">☰</a>
-    <a href="controller?cmd=homeUI"><img id="logo" src="images/logo.png"></a>
+  <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()">☰</a>
+  <a href="controller?cmd=homeUI"><img src="images/logo.png" style="width: 160px;"></a>
 </header>
 
 <script>
@@ -63,13 +57,15 @@ function w3_close() {
     document.getElementById("myOverlay").style.display = "none";
 }
 
-$.ajax({
+$( document ).ready(function() {
+	$.ajax({
 	url: "controller?cmd=getSlideInfoAction",
 	success: function(result) {
 		result = JSON.parse(result);
 		$("#branchName").html(result["branchName"]);
 		$("#name").html(result["name"]);
 	}
+	});
 });
 </script>
 
