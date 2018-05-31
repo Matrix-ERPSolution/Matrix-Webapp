@@ -7,13 +7,8 @@
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <title>로그인</title>
 <style>
-html, body {
-  	height: 100%;
-}
-#grad1 {
-	position: absolute;
- 	height: 100%;
-    background: linear-gradient(#3284E2, #b1c4e2);
+body {
+    background: #3284E2;
 	text-align: center;
 }
 .roundBox {
@@ -26,7 +21,7 @@ html, body {
 <script type="text/javascript"></script>
 </head>
 
-<body id="grad1">
+<body>
 <div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"></div>
 <br><br>
 <input type="text" id="userId" name="userId" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
