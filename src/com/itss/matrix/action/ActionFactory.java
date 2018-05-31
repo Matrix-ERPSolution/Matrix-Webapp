@@ -36,6 +36,12 @@ public class ActionFactory {
 		case "dailyTaskAdminUI":
 			a = new DailyTaskAdminUI();
 			break;
+		case "setDailyTaskUI":
+			a = new SetDailyTaskUI();
+			break;
+		case "setDailyAssignUI":
+			a = new SetDailyAssignUI();
+			break;
 		case "assignTaskAdminUI":
 			a = new AssignTaskAdminUI();
 			break;
@@ -64,6 +70,12 @@ public class ActionFactory {
 			break;
 		case "getDailyTasksAction":
 			a = new GetDailyTasksAction();
+			break;
+		case "setDailyTaskAction":
+			a = new SetDailyTaskAction();
+			break;
+		case "setDailyAssignAction":
+			a = new SetDailyAssignAction();
 			break;
 		case "getSpaceTypesAction":
 			a = new GetSpaceTypesAction();

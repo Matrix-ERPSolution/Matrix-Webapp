@@ -16,6 +16,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+
 public class DailyDAO {
 	private SqlSessionFactory sqlSessionFactory;
 
@@ -251,7 +252,7 @@ public class DailyDAO {
 			}
 			if (result == 1) {
 				session.commit();
-			}
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

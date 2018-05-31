@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-
-</style>
-</head>
-<body>
 <h2>업무 수정</h2>
+${param.oldDailyTask}
+${param.oldAssignDetail}
+${param.assignDate}
 <div>
 <!-- 중요체크 부분 -->
 <p>중요</p>
@@ -31,8 +26,6 @@
 
 
 $("#importantTask").click(function(){
-	alert('중요도 토글 설정');
+	alert('중요도 토글 설정'); 
 });
 </script>
-</body>
-</html>

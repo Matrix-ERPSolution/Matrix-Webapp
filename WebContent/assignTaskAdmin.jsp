@@ -117,8 +117,7 @@ li:hover, .selected {
     <span id="selectedTask"></span>
     <span id="closeModal" class="w3-button" style="pad; top:0; padding:3px 6px;">&times;</span>
     <span id="goNext" class="w3-button" style="pad; position:absolute; right:0;top:0; padding:3px 6px;">다음 단계<img alt="next" src="images/rightTriangle.png" width="15pt"></span>
-
-  </div>
+</div>
 <script>
 
 //매뉴얼목록 토글

@@ -159,29 +159,15 @@ $(function(){
    <button id="deleteTask">삭제</button>
 </div>
 
-<div id="myModal" class="modal">
-	<div class="modal-content">
-		<div id="updateContent"></div>
-		<div style="text-align: center;">
-			<button id="confirmUpdate">수정완료</button>
-			<button id="cancel">취소</button>
-		</div>
-	</div>
+<div id="selectedTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);">
+</div>
+<div id="selectedTaskPopup" style="z-index:4;position:fixed;outline:0;width:100%; background-color: white; display:none;">
+    <span id="updatePopup"></span>
+    <span id="closeModal" class="w3-button" style="pad; top:0; padding:3px 6px;">&times;</span>
+    <span id="update" class="w3-button" style="pad; position:absolute; padding:3px 6px;">수정완료</span>
 </div>
 
 <script>
-$("#confirmUpdate").click(function(){
-	$("#myModal").css({
-		"display":"none"
-	});
-});
-
-$("#cancel").click(function(){
-	$("#myModal").css({
-		"display":"none"
-	});
-});
-
 // 아코디언
 var activateAcc = function(input){
     input.classList.toggle("active");
@@ -250,7 +236,6 @@ $("#scrollFuture").on("click", function(){
 });
 
 /**업무 수정, 삭제  기능*/
-
 $("#updateTask").click(function(){
 	$(this).toggleClass("clicked");
 	if($(this).hasClass("clicked")){
@@ -268,16 +253,51 @@ $("#updateTask").click(function(){
 	}
 });
 
+$("#closeModal").on("click", function(){
+	$("#selectedTaskModal").css({display: "none"});
+	$("#selectedTaskPopup").css({display: "none"});
+});
+
 var activateTask = function(input){
-	alert('ajax 업무수정'+input.parentElement.innerHTML)
+	$.ajax({
+        url : "controller?cmd=setDailyTaskUI", 
+        data: {
+        	oldDailyTask : $(input).parent().text(),
+        	oldAssignDetail : $(input).next().id,
+        	assignDate : $("#datepicker").val()
+		},
+        success : function(result){
+        	$("#updatePopup").html(result);
+        }
+    });
+	$("#selectedTaskModal").css({display: "block"});
+	$("#selectedTaskPopup").css({display: "block"});
 }
 var activateAssign = function(input){
-	alert('ajax 업무재배정'+input.parentElement.innerHTML)
+	var assignType = '파트';
+	if($(input).parent().hasClass("personal")){
+		assignType = '개인';
+	}
+	$.ajax({
+        url : "controller?cmd=setDailyAssignUI", 
+        data: {
+        	oldAssignType : assignType,
+        	oldAssignDetail : $(input).next().id,
+        	dailyTask :  $(input).parent().text(),
+        	assignDate : $("#datepicker").val()
+		},
+        success : function(result){
+        	$("#updatePopup").html(result);
+        }
+    });
+	$("#selectedTaskModal").css({display: "block"});
+	$("#selectedTaskPopup").css({display: "block"});
 }
 
 $("#deleteTask").click(function(){
    alert('업무 삭제');
 });
+
 /**assignTaskAdmin 페이지로 이동*/
 $("#assignTaskButton").click(function(){
 	$.ajax({
