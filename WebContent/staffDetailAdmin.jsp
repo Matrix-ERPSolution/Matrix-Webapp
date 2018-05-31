@@ -18,7 +18,7 @@
 	font-size: 11pt;
 }
 
-table.detailedTable td {	/* 적용안됨*/
+table.detailedTable td {
 	border: 1px solid #444444;
 	padding: 5px;
 }

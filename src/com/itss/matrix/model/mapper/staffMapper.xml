@@ -9,7 +9,7 @@
 		and leave_date is null
 	</select>
 	<select id="getWorkingStaffs" resultType="java.util.Map" parameterType="int">
-		select s.staff_id, u.gender, u.name, u.profile_photo, u.birth, s.work_part
+		select s.staff_id, u.gender, u.name, u.profile_photo, to_char(u.birth, 'YYYY/MM/DD') as birth, s.work_part
 		from staffs s, users u 
 		where s.staff_id=u.user_id 
 		and branch_seq=#{branchSeq} 
@@ -17,7 +17,7 @@
 		and leave_date is null
 	</select>
 	<select id="getPreStaffs" resultType="java.util.Map" parameterType="int">
-		select s.staff_id, u.profile_photo, u.name, u.gender, u.birth 
+		select s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth
 		from users u, staffs s 
 		where s.branch_seq=#{branchSeq} 
 		and s.join_date is null 
@@ -25,7 +25,7 @@
 		order by u.name asc
 	</select> 
 	<select id="getLeftStaffs" resultType="java.util.Map" parameterType="int">
-		select distinct s.staff_id, u.profile_photo, u.name, u.gender, u.birth 
+		select distinct s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth
 		from users u, staffs s 
 		where s.branch_seq=#{branchSeq} 
 		and s.join_date is not null 
@@ -58,7 +58,7 @@
 	<select id="getStaffDetail" resultType="java.util.Map" parameterType="java.util.Map">
 		select a.staff_id, a.profile_photo, a.name, a.gender, a.birth, a.join_date, a.leave_date, a.work_part, a.bank_name, a.account_num, a.resume_file, a.health_file, a.bank_file, a.phone_num
 		from 
-		(select s.staff_id, u.profile_photo, u.name, u.gender, u.birth, to_char(s.join_date, 'YYYY/MM/DD') as join_date, to_char(s.leave_date, 'YYYY/MM/DD') as leave_date, s.work_part, s.bank_name, s.account_num, s.resume_file, s.health_file, s.bank_file, u.phone_num 
+		(select s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth, to_char(s.join_date, 'YYYY/MM/DD') as join_date, to_char(s.leave_date, 'YYYY/MM/DD') as leave_date, s.work_part, s.bank_name, s.account_num, s.resume_file, s.health_file, s.bank_file, u.phone_num 
 		from users u, staffs s
 		where staff_id = #{staffId}
 		and branch_seq = #{branchSeq}

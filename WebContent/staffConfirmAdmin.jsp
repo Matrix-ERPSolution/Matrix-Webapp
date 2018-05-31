@@ -8,8 +8,8 @@
 			<tr>
 				<td><img
 					class="profilePhoto"
-					src="https://www.puriindahmall.co.id/assets/img/default.png"
-					width="30" height="30"></td>
+					src="images/defaultProfile.png"
+					width="30" height="20"></td>
 				<td align="left" class="staffConfirmName">윤제발</td>
 				<td style="min-width: 20pt" align="right">남</td>
 				<td style="min-width: 20pt" align="right">891024</td>
@@ -21,7 +21,7 @@
 			<tr>
 				<td><img
 					class="profilePhoto"
-					src="https://www.puriindahmall.co.id/assets/img/default.png"
+					src="images/defaultProfile.png"
 					width="30" height="30"></td>
 				<td align="left" class="staffConfirmName">하승인</td>
 				<td style="min-width: 20pt" align="right">남</td>
@@ -35,6 +35,9 @@
 	</div>
 </body>
 <script>
+$(document).ready(function(){
+	alert("ready");
+});
 $(".staffAcceptButton").click(
 		function(){
 			confirm(' 님을 직원으로 승인하시겠습니까?');
