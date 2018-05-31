@@ -42,13 +42,9 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-.inline {
-	display: inline;
-}
 
-.finisher {
-	display: inline;
-	float: right;
+.unfinished {
+	color: gray;
 }
 ul {
 	margin-left: -20pt;
@@ -56,17 +52,20 @@ ul {
 }
 li::before {
 	font-size: 12pt;
-	content: "•";
-	color: gray;
 	display: inline-block;
-	width: 1em;
-	margin-left: -1em;
 }
 li.important::before {
-	color: red;
+	content: "\2605";
+	color: orange;
+	width: 1em;
+	margin-left: -1.4em;
 }
 .ui-datepicker-trigger {
 	width: 20pt;
+	cursor: pointer;
+}
+.ui-datepicker-trigger:hover {
+	width: 25pt;
 }
 #datemenu {
 	vertical-align: middle 
@@ -91,6 +90,9 @@ li.important::before {
     border: 1px solid #888;
     width: 80%;
 }
+#scrollPast:hover, #scrollFuture:hover {
+	width: 17pt;
+}
 </style>
 <script type="text/javascript">
 var now = new Date();
@@ -103,6 +105,7 @@ $(function(){
    $("#datepicker").datepicker({
       showOn : "button",
       buttonImage : "images/calendar.png",
+      buttonText: "날짜 선택",
       buttonImageOnly : true,
       showButtonPanel : true,
       currentText : '이번 달로',
@@ -132,20 +135,20 @@ $(function(){
 <body>
 <!-- 날짜선택바 -->
 <div id="dateMenu" class="w3-center" style="vertial-align:center; padding:1px;">
-   <div class="inline">
+   <span>
       <input type="text" id="datepicker" hidden="hidden">
       <input type="text" id="alterDate" hidden="hidden">
-   </div>
-   <div class="inline">
-      <img id="scrollPast" src="images/leftTriangle.png" width="15pt" />
-   </div>
-   <h2 id="date" class="inline"></h2>
-   <div class="inline">
-      <img id="scrollFuture" src="images/rightTriangle.png" width="15pt" />
-   </div>
-   <div class="inline" >
+  </span>
+  <span>
+      <img id="scrollPast" src="images/leftTriangle.png" width="15pt"/>
+   </span>
+   <h2 id="date" style="display: inline;"></h2>
+   <span>
+      <img id="scrollFuture" src="images/rightTriangle.png" width="15pt"/>
+   </span>
+   <span>
        <i class="fa fa-external-link w3-xlarge" aria-hidden="true" id="assignTaskButton"></i>
-   </div>
+   </span>
 </div>
 
 <!-- <h2 id="dailyTaskTitle" style="text-align:center;">dailyTaskTitle</h2> --> <!-- 오늘/내일/과거 업무 보기 -->
@@ -247,38 +250,30 @@ $("#scrollFuture").on("click", function(){
 });
 
 /**업무 수정, 삭제  기능*/
-$(".changeable").append('<i class="fa fa-edit updateIcon" hidden></i>');
 
-var updateFlag=0;
 $("#updateTask").click(function(){
-   //alert('업무 수정');
-	$(".updateIcon").toggle();
-	switch (updateFlag) {
-		case 0:
-			$("#updateTask").html("수정완료");
-			updateFlag=1;
-			$(".updateIcon").click(function(){
-				//location.href="";
-				//$(location).attr("href", "updateTaskAdmin.jsp/")
-				 $(".modal").css({
-					 "display":"block"
-				 });
-				if($(".updateIcon").hasClass("finisher")) {
-					$("#updateContent").html("업무 재배정")
-				} else {
-					$("#updateContent").html("업무 수정")
-				}
-			});
-		break;
-		case 1:
-			$("#updateTask").html("수정");
-			updateFlag=0;
-		break;
-		default:
-			alert('오류');
-		break;
+	$(this).toggleClass("clicked");
+	if($(this).hasClass("clicked")){
+		$(".assignDetail").not($(".unfinished")).parent("li").css({"color": "lightgray"});
+		$(".unfinished").show();
+		$(".unfinished").prev().show();
+		$(".unfinished").next().show();
+		$(this).html("수정완료");
+	} else {
+		$(".assignDetail").not($(".unfinished")).parent("li").css({"color": "black"});
+		$(".unfinished").not($(".personal").children()).hide();
+		$(".unfinished").prev().hide();
+		$(".unfinished").next().hide();
+		$(this).html("수정");
 	}
 });
+
+var activateTask = function(input){
+	alert('ajax 업무수정'+input.parentElement.innerHTML)
+}
+var activateAssign = function(input){
+	alert('ajax 업무재배정'+input.parentElement.innerHTML)
+}
 
 $("#deleteTask").click(function(){
    alert('업무 삭제');
@@ -287,6 +282,9 @@ $("#deleteTask").click(function(){
 $("#assignTaskButton").click(function(){
 	$.ajax({
         url : "controller?cmd=assignTaskAdminUI", 
+        data : {
+        	date : $("#datepicker").val()
+        },
         success : function(result){
            $("#result").html(result);
         }
