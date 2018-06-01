@@ -76,4 +76,20 @@ public class FormatCheckSolution {
 		return result;
 	}
 	
+	/**입력받은 문자열의 byte크기 리턴*/
+	public static int getByteSize(String s) {
+	    int count = 0;
+	    char[] ch = s.toCharArray();
+	    for (int i = 0; i < s.length(); i++) {
+	      if (ch[i] >= '\u0020' && ch[i] <= 'z') {
+	    	  count++;
+	      } else if (ch[i] >= '\uAC00' && ch[i] <= '\uD7A3') {
+	    	  count += 3;
+	      } else if (ch[i] > 'z' || ch[i] < '\u0020'){
+	    	  throw new RuntimeException("wrong input char type");
+	      }
+	    }
+	    return count;
+	}
+	
 }
