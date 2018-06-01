@@ -53,22 +53,16 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+.inline {
+	display:inline;
+}
 </style>
 </head>
 <body>
 <div align="center" class="w3-center">
 	<h3>직원 관리</h3>
 </div>
-<%-- <div class="accordion" style="width: 235pt; margin-left: 20pt;">
-	<h3 id="preStaffs">승인 요청 내역</h3>
-		<div><%@include file="staffConfirmAdmin.jsp" %></div>
-	
-	<h3>재직 중인 직원들</h3>
-		<div><%@include file="staffCurrentAdmin.jsp" %></div>
-			
-	<h3>퇴사한 직원들</h3>
-		<div><%@include file="staffRetiredAdmin.jsp" %></div>
-</div> --%>
+
 <div class="preStaffs accordion" onclick="activateAcc(this)">승인 요청 내역</div>
 <div class="panel"></div>
 
@@ -77,34 +71,52 @@
 
 <div class="leftStaffs accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
 <div class="panel"></div>
-<script>
-$(".inline").css({
-	"display":"inline"
-});
 
-$(".profilePhoto").click(function(){
+<!-- 나중에 modal로 연결할 예정 -->
+<div id="staffDetailContent">
+</div>
+<script>
+/* $(".inline").css({
+	"display":"inline"
+}); */
+var getStaffDetail = function(input){
+	/*해당 input의 tr에 있는 id 값 가져오기 = userId
+	이 userId 값과 함께 getStaffDetailAction로 이동(controller?cmd=)
+	*/
+	var staffIdToGetStaffDetail = $(input).parent("tr").attr("id");
+ 	$.ajax({
+		url : "controller?cmd=getStaffDetailAction",
+		data : {
+			staffId : staffIdToGetStaffDetail
+		},
+		success : function(result){
+			$("#staffDetailContent").html(result);
+		}
+	}); 
+}
+
+var acceptStaff = function(){
+	confirm(' 님을 직원으로 승인하시겠습니까?');
+};
+var rejectStaff = function(){
+	confirm(' 님의 직원 승인을 거부하시겠습니까?');
+};
+
+$(".profilePhoto").click(function(){/* 작동안함 */
+	alert("직원상세정보 페이지로 이동");
 	$.ajax({
 		url : "controller?cmd=staffDetailAdminUI", 
 		data : {},
 		success : function(result){
 			$("#result").html(result);
-			}
-		});
+		}
 	});
+});
 
 $(document).ready(function(){
 	//alert("ready");
 });
 
-$(".staffAcceptButton").click(
-		function(){
-			confirm(' 님을 직원으로 승인하시겠습니까?');
-		});
-$(".staffRejectButton").click(
-		function(){
-			confirm(' 님의 직원 승인을 거부하시겠습니까?');
-		});
-		
 var activateAcc = function(input){
     input.classList.toggle("active");
     var panel = input.nextElementSibling;
@@ -121,26 +133,28 @@ var activateAcc = function(input){
     	        }
     	    });
     	}
+      
        if(input.classList.contains("workingStaffs")){
-  		$.ajax({
-  	        url : "controller?cmd=getWorkingStaffsAction", 
-  	        data: {},
-  	        success : function(result){
-  	        	panel.innerHTML = result;
-  	        	panel.style.maxHeight = panel.scrollHeight + "px";
-  	        }
-  	    });
-  	}
-       /*if(input.classList.contains("leftStaffs")){
-  		$.ajax({
-  	        url : "controller?cmd=getLeftStaffsAction", 
-  	        data: {},
-  	        success : function(result){
-  	        	panel.innerHTML = result;
-  	        	panel.style.maxHeight = panel.scrollHeight + "px";
-  	        }
-  	    });
-  	} */
+	  		$.ajax({
+	  	        url : "controller?cmd=getWorkingStaffsAction", 
+	  	        data: {},
+	  	        success : function(result){
+	  	        	panel.innerHTML = result;
+	  	        	panel.style.maxHeight = panel.scrollHeight + "px";
+	  	        }
+	  	    });
+	  	}
+       
+       if(input.classList.contains("leftStaffs")){
+	  		$.ajax({
+	  	        url : "controller?cmd=getLeftStaffsAction", 
+	  	        data: {},
+	  	        success : function(result){
+	  	        	panel.innerHTML = result;
+	  	        	panel.style.maxHeight = panel.scrollHeight + "px";
+	  	        }
+	  	    });
+  		}
       
     } 
 }
