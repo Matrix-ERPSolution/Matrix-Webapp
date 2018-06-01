@@ -1,5 +1,9 @@
 package com.itss.matrix.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.itss.matrix.model.DailyDAO;
 
 public class DailyDAOTest {
@@ -61,7 +65,19 @@ public class DailyDAOTest {
 			//dao.setDailyAssign(null, null, "2018/01/01", "파트", "새벽", "야간개장 준비");
 			//dao.setDailyAssign("파트", "새벽", "2018/01/01", "파트", "마감", "야간개장 준비");
 			//dao.getAssignedParts("2018/05/31");
-			System.out.println(dao.getDailyTasksForPerson("2018/05/30"));
+			//System.out.println(dao.getDailyTasksForPerson("2018/05/30"));
+			//dao.setDailyAssign("파트", "없는파트", "2018/01/01", "파트", "마감", "환풍기 청소");
+			//dao.setDailyAssign("개인", "없는직원", "2018/01/01", "파트", "마감", "환풍기 청소");
+			//dao.setDailyAssign("없는타입", "아무거나", "2018/01/01", "파트", "마감", "환풍기 청소");
+			
+			//System.out.println(dao.getDailyTask("환풍기 청소", "2018/01/01", "오픈"));
+			//System.out.println(dao.getDailyTask("환풍기", "2018/01/01", "마감"));
+			//dao.removeDailyTask("test", "2018/01/01", "파트", "새벽");
+			//dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "test", "2018/01/01", "오픈");
+			//dao.addDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01", 1, "파트", "마감", 1);
+			//dao.addDailyTask("testtest", "2018/01/01", 1, "파트", "마감", 1);
+			//dao.setDailyTask("새로운 업무", "바꾸려는 업무", "2018/01/01", "오픈");
+			//dao.removeDailyTask("test", "2018/01/01", "파트", "오픈");
 			System.out.println("\nend");
 	}
 }

@@ -23,6 +23,7 @@ public class DailyDAOUnitTest {
 		assertNotNull(dao.getDailyTasksForParts("2018/05/20", "마감"));
 		assertNotNull(dao.getDailyTasksForPerson("2018/05/18"));
 		assertFalse(dao.isDailyTask("바닥 쓸기", "2018/05/25"));
+		assertNotNull(dao.getDailyTask("환풍기 청소", "2018/01/01", "오픈"));
 		
 		int count=0;
 		count=dao.getDailyTasks("2018/11/11").size();
@@ -67,6 +68,11 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
+	public void getDailyTaskWithNonExist(){
+		assertEquals(dao.getDailyTask("환풍기", "2018/01/01", "오픈"), null);
+	}
+	
+	@Test
 	public void getAssignedPartsWithWrongAssignDate(){
 		assertEquals(dao.getAssignedParts("2018/12/30").size(), 0);
 	}
@@ -91,6 +97,13 @@ public class DailyDAOUnitTest {
 		assertFalse(dao.isDailyTask("바닥 쓸기", "2400/20/20"));
 	}
 	
+	@Test
+	public void addDailyTaskWithPast(){
+		int count=0;
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.addDailyTask("과거에업무배정", "2018/01/01", 1, "파트", "마감", 1);
+		assertEquals(count, dao.getDailyTasks("2018/01/01").size());
+	}
 	
 	@Test
 	public void addDailyTaskWithWrongImportance(){
@@ -129,6 +142,15 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
+	public void addDailyTaskWithOverDataSize(){
+		//업무 VARCHAR2(60)이 넘으면 안된다
+		int count=0;
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.addDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01", 1, "파트", "마감", 1);
+		assertEquals(count, dao.getDailyTasks("2018/01/01").size());
+	}
+	
+	@Test
 	public void addDailyTaskWithDuplicate(){
 		//동일한 쿼리문 중복 입력가능 - 같은 날, 동일업무
 		int count=0;
@@ -141,6 +163,13 @@ public class DailyDAOUnitTest {
 		assertEquals(count, dao.getDailyTasks("2018/11/11").size());
 	}
 	
+	@Test
+	public void setDailyTaskWithPast(){
+		// 과거의 업무 수정
+		dao.setDailyTask("새로운 업무", "바꾸려는 업무", "2018/01/01", "오픈");
+		assertFalse(dao.isDailyTask("새로운 업무", "2018/01/01"));
+	}
+
 	@Test
 	public void setDailyTaskWithWrongNonExistTask(){
 		//선택날짜에 없는 업무를 바꾸려는 경우
@@ -156,7 +185,7 @@ public class DailyDAOUnitTest {
 	}
 	
 	@Test
-	public void setDailyTaskWithWrongOverDataSize(){
+	public void setDailyTaskWithOverDataSize(){
 		//직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다
 		dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "환풍기 청소", "2018/01/01", "yunseok");
 		assertFalse(dao.isDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01"));
@@ -183,6 +212,15 @@ public class DailyDAOUnitTest {
 		Map<String, String> tmp=dao.getDailyTask("카운터 선반 닦기", "2018/01/01", "미들");
 		dao.setDailyAssign("개인", "pikachu", "2018/01/01", "파트", "미들", "카운터 선반 닦기");
 		assertEquals(tmp, dao.getDailyTask("카운터 선반 닦기", "2018/01/01", "pikachu"));
+	}
+	
+	//업무삭제 - 과거에 배정한 업무
+	@Test
+	public void removeDailyTaskWithPast (){
+		int count=0;
+		count=dao.getDailyTasks("2018/01/01").size();
+		dao.removeDailyTask("test", "2018/01/01", "파트", "오픈");
+		assertNotEquals(count-1, dao.getDailyTasks("2018/01/01").size());
 	}
 	
 	
