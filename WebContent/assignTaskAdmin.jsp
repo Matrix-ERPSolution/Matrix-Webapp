@@ -168,17 +168,11 @@ var activateSubAcc = function(input){
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-    	var space = "";
-    	var task = "";
-    	if(input.classList.contains('taskType')){
-    		task = input.id;
-    		space = input.parentNode.previousElementSibling.id;
-    	} 
     	$.ajax({
-	        url : "controller?cmd=getTasksAction", 
+	        url : "controller?cmd=getManualTasksAction", 
 	        data: {
-				spaceType : space, 
-				taskType : task
+				spaceType : input.parentNode.previousElementSibling.id, 
+				taskType : input.id
 			},
 	        success : function(result){
 	        	panel.innerHTML = result;

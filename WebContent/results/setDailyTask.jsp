@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <h2>업무 수정</h2>
-${param.oldDailyTask}
-${param.oldAssignDetail}
-${param.assignDate}
 <div>
-<!-- 중요체크 부분 -->
-<p>중요</p>
 <ul>
-	<li id="importantTask" class="important">통장사본 제출<div class="finisher">홍윤영</div></li>
+	<c:if test="${param.importance == true}">
+		<li class="part important">
+	</c:if>
+	<c:if test="${param.importance == false}">
+		<li class="part">
+	</c:if>
+	${param.oldDailyTask}
+	<span class="assignDetail unfinished " id="${param.assignDetail}" style="float: right; display: none;">${param.assignName}</span>
+	</li>
 </ul>
 </div>
 
@@ -18,14 +21,7 @@ ${param.assignDate}
 매뉴얼에서 선택하기, <br>
 직접 입력하기  <br>
 복붙해서 들어갈 부분 <br>
+
+중요도 토글기능
 </div>
 
-
-
-<script>
-
-
-$("#importantTask").click(function(){
-	alert('중요도 토글 설정'); 
-});
-</script>

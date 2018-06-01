@@ -1,22 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h2>업무 재배정</h2>
-${param.oldAssignType}
-${param.oldAssignDetail}
-${param.dailyTask}
-${param.assignDate}
 <div>
-<!-- 중요체크 부분 -->
-<p>중요</p>
 <ul>
-	<li id="selectedTask" class="selected">통장사본 제출<div class="finisher" style="float: right; ">홍윤영</div></li>
+	<c:if test="${param.importance == true}">
+		<li class="part important">
+	</c:if>
+	<c:if test="${param.importance == false}">
+		<li class="part">
+	</c:if>
+	${param.dailyTask}
+	<span class="assignDetail unfinished " id="${param.oldAssignDetail}" style="float: right; display: none;">${param.oldAssignName}</span>
+	</li>
 </ul>
-</div>
-
-<div>
-
-</div>
-<div class="center">
-	<button>수정완료</button>
-	<button>취소</button>
 </div>

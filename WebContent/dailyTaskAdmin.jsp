@@ -100,6 +100,7 @@ var thisYear=now.getFullYear();
 var thisMonth=now.getMonth()+1;
 thisMonth = thisMonth >= 10 ? thisMonth : '0' + thisMonth;
 var thisDay=now.getDate();
+thisDay = thisDay >= 10 ? thisDay : '0' + thisDay;
 
 $(function(){
    $("#datepicker").datepicker({
@@ -254,17 +255,24 @@ $("#updateTask").click(function(){
 });
 
 $("#closeModal").on("click", function(){
+	$("#updatePopup").html("");
 	$("#selectedTaskModal").css({display: "none"});
 	$("#selectedTaskPopup").css({display: "none"});
 });
 
 var activateTask = function(input){
+	var imp = false;
+	if($(input).parent().hasClass("important")){
+		imp = true;
+	}
 	$.ajax({
         url : "controller?cmd=setDailyTaskUI", 
         data: {
         	oldDailyTask : $(input).parent().text(),
-        	oldAssignDetail : $(input).next().id,
-        	assignDate : $("#datepicker").val()
+        	assignDetail : $(input).next().id,
+        	assignName : $(input).next().text(),
+        	assignDate : $("#datepicker").val(),
+        	importance : imp
 		},
         success : function(result){
         	$("#updatePopup").html(result);
@@ -278,13 +286,19 @@ var activateAssign = function(input){
 	if($(input).parent().hasClass("personal")){
 		assignType = '개인';
 	}
+	var imp = false;
+	if($(input).parent().hasClass("important")){
+		imp = true;
+	}
 	$.ajax({
         url : "controller?cmd=setDailyAssignUI", 
         data: {
         	oldAssignType : assignType,
         	oldAssignDetail : $(input).next().id,
+        	oldAssignName : $(input).next().text(),
         	dailyTask :  $(input).parent().text(),
-        	assignDate : $("#datepicker").val()
+        	assignDate : $("#datepicker").val(),
+        	importance : imp
 		},
         success : function(result){
         	$("#updatePopup").html(result);
@@ -295,7 +309,9 @@ var activateAssign = function(input){
 }
 
 $("#deleteTask").click(function(){
-   alert('업무 삭제');
+   $("li").click(function(){
+	   alert($(this).text());
+   });
 });
 
 /**assignTaskAdmin 페이지로 이동*/
