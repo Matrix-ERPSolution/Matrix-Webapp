@@ -3,22 +3,6 @@
 <html>
 <head>
 <%@include file="headSetting.jsp"%>
-<!-- <script>
-$(function() {
-	$(".accordion").accordion({  
-		'collapsible':true,'active':false
-	});
-});
-$(function() {
-	$(".subAccordion").accordion({
-		'collapsible':true,'active':false,
-		icons : {
-			"header" : "ui-icon-plus",
-			"activeHeader" : "ui-icon-minus"
-		}
-	});
-});
-</script> -->
 <style type="text/css">
 .accordion {
     background-color: #e6f2ff;
@@ -86,11 +70,13 @@ $(function() {
 		<div><%@include file="staffRetiredAdmin.jsp" %></div>
 </div> --%>
 <div class="preStaffs accordion" onclick="activateAcc(this)">승인 요청 내역</div>
-<div id="preStaffsContent" class="panel">내용내용내용</div>
+<div id="preStaffsContent" class="panel"></div>
+
 <div id="workingStaffs" class="accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
-<div id="workingStaffsContent" class="panel">내용내용내용</div>
+<div id="workingStaffsContent" class="panel"></div>
+
 <div id="leftStaffs" class="accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
-<div id="leftStaffsContent" class="panel">내용내용내용</div>
+<div id="leftStaffsContent" class="panel"></div>
 <script>
 $(".inline").css({
 	"display":"inline"
@@ -109,6 +95,7 @@ $(".profilePhoto").click(function(){
 $(document).ready(function(){
 	//alert("ready");
 });
+
 $(".staffAcceptButton").click(
 		function(){
 			confirm(' 님을 직원으로 승인하시겠습니까?');
@@ -134,7 +121,7 @@ var activateAcc = function(input){
     	        }
     	    });
     	}
- /*      if(input.classList.contains("workingStaffs")){
+       if(input.classList.contains("workingStaffs")){
   		$.ajax({
   	        url : "controller?cmd=getWorkingStaffsAction", 
   	        data: {},
@@ -144,7 +131,7 @@ var activateAcc = function(input){
   	        }
   	    });
   	}
-      if(input.classList.contains("leftStaffs")){
+       /*if(input.classList.contains("leftStaffs")){
   		$.ajax({
   	        url : "controller?cmd=getLeftStaffsAction", 
   	        data: {},

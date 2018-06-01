@@ -113,6 +113,15 @@ public class ActionFactory {
 		case "getPreStaffsAction":
 			a=new GetPreStaffsAction();
 			break;
+		case "getWorkingStaffsAction":
+			a=new GetWorkingStaffsAction();
+			break;
+		case "getLeftStaffsAction":
+			a=new GetLeftStaffsAction();
+			break;
+		case "getStaffDetailAction":
+			a=new GetStaffDetailAction();
+			break;
 		}
 		return a;
 	}
