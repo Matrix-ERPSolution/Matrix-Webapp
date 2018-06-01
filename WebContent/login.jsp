@@ -47,6 +47,13 @@ $("saveID").checkboxradio();
 		$("#userId").val(localStorage.getItem("loginId"));
 		$("#saveId").prop("checked", true);
 	}
+	
+//test용 자동로그인(pw저장만)
+	if (localStorage.getItem("loginPw")) {
+		$("#pw").val(localStorage.getItem("loginPw"));
+		$("#autoLogin").prop("checked", true);
+	}
+	
 
 //아이디, 패스워드 길이 점검
 	$("#userId").keyup(function() {
@@ -92,6 +99,17 @@ $("saveID").checkboxradio();
 			} else {
 				if (localStorage.getItem("loginId")) {
 					localStorage.removeItem("loginId");
+				}
+			}
+		}
+		
+		//test용 pw저장
+		if (check) {
+			if ($("#autoLogin").prop("checked")) {
+				localStorage.setItem("loginPw", $("#pw").val());
+			} else {
+				if (localStorage.getItem("loginPw")) {
+					localStorage.removeItem("loginPw");
 				}
 			}
 		}
