@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static com.itss.matrix.model.FormatCheckSolution.*;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -142,8 +143,7 @@ public class DailyDAO {
 				throw new RuntimeException("권한이 없는 관리자 코드입니다.");
 			}
 			//길이
-			FormatCheckSolution form = new FormatCheckSolution();
-			if(form.getByteSize(vo.getDailyTask()) > 60){
+			if(getByteSize(vo.getDailyTask()) > 60){
 				throw new RuntimeException("최대 한글 20자, 영어60자 입력 가능합니다.");
 			}
 			int branchSeq = sqlSession.selectOne("dailyMapper.getBranchSeq", vo.getAdminSeq());
@@ -242,8 +242,7 @@ public class DailyDAO {
 				throw new RuntimeException("해당날짜에 없는 업무입니다.");
 			}
 
-			FormatCheckSolution form = new FormatCheckSolution();
-			if(form.getByteSize(newDailyTask) > 60){
+			if(getByteSize(newDailyTask) > 60){
 				throw new RuntimeException("최대 한글 20자, 영어60자 입력 가능합니다.");
 			}
 			// 날짜에 해당하는 업무명의 assign_detail 비교
