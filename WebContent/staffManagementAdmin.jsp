@@ -70,13 +70,13 @@
 		<div><%@include file="staffRetiredAdmin.jsp" %></div>
 </div> --%>
 <div class="preStaffs accordion" onclick="activateAcc(this)">승인 요청 내역</div>
-<div id="preStaffsContent" class="panel"></div>
+<div class="panel"></div>
 
-<div id="workingStaffs" class="accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
-<div id="workingStaffsContent" class="panel"></div>
+<div class="workingStaffs accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
+<div class="panel"></div>
 
-<div id="leftStaffs" class="accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
-<div id="leftStaffsContent" class="panel"></div>
+<div class="leftStaffs accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
+<div class="panel"></div>
 <script>
 $(".inline").css({
 	"display":"inline"

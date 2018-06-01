@@ -14,9 +14,8 @@ public class GetPreStaffsAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
 		Collection<Map<String, String>> preStaffs = null;
-		preStaffs = new StaffDAO().getPreStaffs(Integer.parseInt((String)session.getAttribute("branchSeq")));
+		preStaffs = new StaffDAO().getPreStaffs(Integer.parseInt((String)request.getSession(true).getAttribute("branchSeq")));
 		request.setAttribute("preStaffs", preStaffs);
 		return "results/getPreStaffs.jsp";
 	}

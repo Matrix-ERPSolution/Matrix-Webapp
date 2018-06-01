@@ -1,16 +1,21 @@
 package com.itss.matrix.action;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-public class GetWorkingStaffsAction implements Action {
+import com.itss.matrix.model.StaffDAO;
 
+public class GetWorkingStaffsAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<Map<String, String>> workingStaffs = null;
+		workingStaffs = new StaffDAO().getWorkingStaffs(Integer.parseInt((String)request.getSession(true).getAttribute("branchSeq")));
+		request.setAttribute("workingStaffs", workingStaffs);
+		return "results/getWorkingStaffs.jsp";
 	}
 
 }
