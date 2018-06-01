@@ -141,10 +141,14 @@ public class DailyDAO {
 			if(!result){
 				throw new RuntimeException("권한이 없는 관리자 코드입니다.");
 			}
-			
+			//길이
+			FormatCheckSolution form = new FormatCheckSolution();
+			if(form.getByteSize(vo.getDailyTask()) > 60){
+				throw new RuntimeException("최대 한글 20자, 영어60자 입력 가능합니다.");
+			}
+			int branchSeq = sqlSession.selectOne("dailyMapper.getBranchSeq", vo.getAdminSeq());
+			StaffDAO dao = new StaffDAO();
 			if(vo.getAssignType()=="파트"){
-				int branchSeq = sqlSession.selectOne("dailyMapper.getBranchSeq", vo.getAdminSeq());
-				StaffDAO dao = new StaffDAO();
 				Collection<String> workParts = dao.getWorkParts(branchSeq); //지점에 해당하는 파트 종류 호출
 				result=false;
 				for (String tmp : workParts) {
@@ -155,11 +159,7 @@ public class DailyDAO {
 				if(!result){
 					throw new RuntimeException("없는 파트입니다.");
 				}
-			}
-			
-			if(vo.getAssignType()=="개인"){
-				int branchSeq = sqlSession.selectOne("dailyMapper.getBranchSeq", vo.getAdminSeq());
-				StaffDAO dao = new StaffDAO();
+			} else if(vo.getAssignType()=="개인"){
 				Collection<Map<String, String>> workingStaffs = dao.getWorkingStaffs(branchSeq); //지점에 해당하는 재직중인 직원 호출
 				result=false;
 				for (Map<String, String> map : workingStaffs) {					
@@ -170,13 +170,19 @@ public class DailyDAO {
 				if(!result){
 					throw new RuntimeException("없는 직원입니다.");
 				}
+			} else {
+				throw new RuntimeException("없는 배정타입입니다.");
 			}
 			
 			
 			// 현재 날짜 기준으로 과거 날짜에 업무 배정
-			//sysdate
-
-			
+			// 현재 날짜 기준으로 과거 날짜에 업무 배정
+			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+			Date today = new Date();
+			Date assignDate = df.parse(vo.getAssignDate()); 
+			if(today.after(assignDate)){
+				throw new RuntimeException("과거에 업무배정을 할 수 없습니다.");
+			}
 				
 			if (vo.getManualTaskSeq() == -1) {
 				sqlSession.insert("dailyMapper.addDailyTaskByInput", vo);
@@ -218,6 +224,14 @@ public class DailyDAO {
 		Map input = new HashMap<>();
 		List<String> list=getDailyTasks(assignDate);
 		try{
+			// 과거 업무 수정
+			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+			Date today = new Date();
+			Date date = df.parse(assignDate); 
+			if(today.after(date)){
+				throw new RuntimeException("과거의 업무를 수정 할 수 없습니다.");
+			}
+
 			boolean tmp=false;
 			for(int i=0; i<list.size(); i++){
 				if(list.get(i).equals(oldDailyTask)){
@@ -227,7 +241,11 @@ public class DailyDAO {
 			if(!tmp){
 				throw new RuntimeException("해당날짜에 없는 업무입니다.");
 			}
-			
+
+			FormatCheckSolution form = new FormatCheckSolution();
+			if(form.getByteSize(newDailyTask) > 60){
+				throw new RuntimeException("최대 한글 20자, 영어60자 입력 가능합니다.");
+			}
 			// 날짜에 해당하는 업무명의 assign_detail 비교
 			// SQL 추가 : 업무명, 배정날짜 입력 -> getAssignDetail
 			Map<String, String> map = new HashMap<>();
@@ -271,6 +289,9 @@ public class DailyDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			result = session.selectOne("dailyMapper.getDailyTask", input);
+			if(result==null){
+				throw new RuntimeException("선택된 업무가 없습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -285,12 +306,43 @@ public class DailyDAO {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Map<String, String> input = new HashMap<>();
 		try{
+			Map<String, String> map = new HashMap<>();
 			if(newAssignType==null || newAssignDetail==null){
 				throw new RuntimeException("배정대상이 없습니다.");
 			}
 			
 			//해당 지점의 assginDetail 찾아서  newAssignDetail 비교
 			//해당 지점을 어떻게 찾지??
+			map.put("assignDate", assignDate);
+			map.put("dailyTask", dailyTask);
+			int adminSeq = sqlSession.selectOne("getAdminSeqByAssignDateDailyTask", map);
+			int branchSeq = sqlSession.selectOne("dailyMapper.getBranchSeq", adminSeq);
+			StaffDAO dao = new StaffDAO();
+			boolean result=false;
+			if(newAssignType=="파트"){
+				Collection<String> workParts = dao.getWorkParts(branchSeq); //지점에 해당하는 파트 종류 호출
+				for (String tmp : workParts) {
+					if(tmp.equals(newAssignDetail)){
+						result=true;
+					}
+				}
+				if(!result){
+					throw new RuntimeException("없는 파트입니다.");
+				}
+			}
+			else if(newAssignType=="개인"){
+				Collection<Map<String, String>> workingStaffs = dao.getWorkingStaffs(branchSeq);
+				for (Map<String, String> m : workingStaffs) {					
+					if(m.get("STAFF_ID").equals(newAssignDetail)){
+						result=true;
+					}
+				}
+				if(!result){
+					throw new RuntimeException("없는 직원입니다.");
+				}
+			} else{
+				throw new RuntimeException("없는 배정타입입니다.");
+			}
 			
 			input.put("newAssignType", newAssignType);
 			input.put("newAssignDetail", newAssignDetail);
@@ -314,12 +366,26 @@ public class DailyDAO {
 	/** 업무 삭제 */
 	public void removeDailyTask(DailyVO vo) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		if (sqlSession.delete("dailyMapper.removeDailyTask", vo) == 1) {
-			sqlSession.commit();
-		} else{
-			throw new RuntimeException("removeDailyTask delete 실패.");
+		try {
+			//과거 업무 삭제
+			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+			Date today = new Date();
+			Date date = df.parse(vo.getAssignDate()); 
+			if(today.after(date)){
+				throw new RuntimeException("과거의 업무를 삭제 할 수 없습니다.");
+			}
+			
+			getDailyTask(vo.getDailyTask(), vo.getAssignDate(), vo.getAssignDetail()); //없는 업무
+			if (sqlSession.delete("dailyMapper.removeDailyTask", vo) == 1) {
+				sqlSession.commit();
+			} else{
+				throw new RuntimeException("removeDailyTask delete 실패.");
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally{
+			sqlSession.close();
 		}
-		sqlSession.close();
 	}
 
 	public void removeDailyTask(String dailyTask, String assignDate, String assignType, String assignDetail) {
