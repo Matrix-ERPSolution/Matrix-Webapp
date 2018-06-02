@@ -10,7 +10,14 @@ alert('birth: '+birth);
 alert('simpleBirth: '+simpleBirth);
 </script> <!-- 적용안됨 -->
 	<tr id="${leftStaff.STAFF_ID}">
-		<td onclick="getStaffDetail(this)">${leftStaff.PROFILE_PHOTO}</td>
+		<c:choose>
+			<c:when test="${leftStaff.PROFILE_PHOTO != null}">
+				<td onclick="getStaffDetail(this)">${leftStaff.PROFILE_PHOTO}</td>
+			</c:when>
+			<c:otherwise>
+				<td onclick="getStaffDetail(this)">default profile</td>
+			</c:otherwise>
+		</c:choose>
 		<td align="left" onclick="getStaffDetail(this)">${leftStaff.NAME}</td>
 		<td>${leftStaff.GENDER}</td>
 		<td>${leftStaff.BIRTH}</td><!-- 날짜 간단한 형식으로 수정해야 할 수도 -->

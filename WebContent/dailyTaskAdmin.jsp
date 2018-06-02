@@ -347,9 +347,9 @@ $(function(){
 			$.ajax({
 				url : "controller?cmd=removeDailyTaskAction",
 				data : {
-					dailyTask : ,
+					/* dailyTask : ,
 					assignType : ,
-					assignDetail : ,
+					assignDetail : , */
 					assignDate : $("#datepicker").val()
 				},
 				success : function(result) {
