@@ -66,7 +66,9 @@
 <h2>5월 3일(목)</h2>
 <h2>업무 배정</h2>
 <hr> <br>
-<h4>총 3가지 업무를 배정합니다.<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i></h4>
+<h4>${param.selectedTask}
+<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i>
+</h4>
 <div id="assignedTaskBox">
 	<ul>
 		<li ><i class="fa fa-circle" aria-hidden="true" style="margin-right:25px"></i></li> <li>쇼케이스 얼룩 제거</li> <li>D-1</li>
@@ -82,7 +84,7 @@
 <hr><br>
 <div id="taskFromRecommend">
 	<h4>담당자 지정하기</h4>
-	<div class="accordion" id="cleanControl">파트별</div>
+	<div class="accordion" id="assignableParts">파트별</div>
 	<div class="panel">
 		<ul>
 			<li class="units"><button class="units">오픈조</button></li>
@@ -143,20 +145,21 @@
 <button id="assignCancelButton">취소</button>
 </div>
 <script>
-var acc = document.querySelectorAll(".accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
+$("#assignableParts").on("click", function() {
+	this.classList.toggle("active");
+	var panel = this.nextElementSibling;
+	if (panel.style.maxHeight) {
+		panel.style.maxHeight = null;
+	} else {
+		$.ajax({
+			url : "controller?cmd=getWorkPartsAction",
+			success : function(result) {
+				panel.innerHTML = result;
+				panel.style.maxHeight = panel.scrollHeight + "px";
+			}
+		});
+	}
+});
 
 var subAcc = document.querySelectorAll(".subAccordion");
 

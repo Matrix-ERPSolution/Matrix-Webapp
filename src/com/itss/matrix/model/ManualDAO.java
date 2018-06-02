@@ -26,14 +26,17 @@ public class ManualDAO {
 	}
 
 	/** 추천업무 출력 : 업무배정, 업무수정 */
-	public List<Map> getRecommendedTasks() {
+	public List<Map> getRecommendedTasks(String assignDate) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Map> list = null;
 
 		try {
 			List<Map> tasks = session.selectList("manualMapper.getPeriodicManualTasks");
 			for(Map task : tasks){
-				if(session.selectOne("manualMapper.getRecommendedTasks", task) != 0){
+				Map input = new HashMap<>();
+				input.putAll(task);
+				input.put("assignDate", assignDate);
+				if((int)session.selectOne("manualMapper.getRecommendedTasks", task) != 0){
 					list.add(task);
 				}
 			}
@@ -46,7 +49,7 @@ public class ManualDAO {
 		return list;
 	}
 
-		/** 매뉴얼 업무 검색 (자동완성)*/
+	/** 매뉴얼 업무 검색 (자동완성)*/
 	public List<Map> searchManualTasks(String inputText) {
 		if(inputText == null){
 			return null;
@@ -56,7 +59,6 @@ public class ManualDAO {
 		for(String i : inputs){
 			inputText += i+"%";
 		}
-		System.out.println(inputText);
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Map> list = null;
 		

@@ -64,28 +64,30 @@ li:hover, .selected {
 <h2>업무 배정</h2>
 <div id="taskFromRecommend">
 	<h4>오늘의 추천업무</h4>
-	<div class="accordion" id="cleanControl">카운터</div>
-	<div class="panel">
-		<ul>
-			<li>쇼케이스 얼룩 제거 <span class="deadline" style="float: right;">D-1</span></li>
-			<li>아이스크림 기계 청소 <span class="deadline" style="float: right;">D-7</span></li>
-		</ul>
-	</div>
-	
-	<div class="accordion" id="stockControl">주방</div>
-	<div class="panel">
-		<ul>
-			<li>원두 재고 점검 <span class="deadline" style="float: right;">D-2</span></li>
-			<li>컵 재고 점검 <span class="deadline" style="float: right;">D-3</span></li>
-			<li>냉장고 성에 제거 <span class="deadline" style="float: right;">D-9</span></li>
-		</ul>
-	</div>
-	
-	<div class="accordion" id="moneyControl">홀</div>
-	<div class="panel">
-		<ul>
-			<li>대걸레 청소 <span class="deadline" style="float: right;">D-1</span></li>
-		</ul>
+	<div id="recommendList">
+		<div class="accordion" id="cleanControl">카운터</div>
+		<div class="panel">
+			<ul>
+				<li>쇼케이스 얼룩 제거 <span class="deadline" style="float: right;">D-1</span></li>
+				<li>아이스크림 기계 청소 <span class="deadline" style="float: right;">D-7</span></li>
+			</ul>
+		</div>
+		
+		<div class="accordion" id="stockControl">주방</div>
+		<div class="panel">
+			<ul>
+				<li>원두 재고 점검 <span class="deadline" style="float: right;">D-2</span></li>
+				<li>컵 재고 점검 <span class="deadline" style="float: right;">D-3</span></li>
+				<li>냉장고 성에 제거 <span class="deadline" style="float: right;">D-9</span></li>
+			</ul>
+		</div>
+		
+		<div class="accordion" id="moneyControl">홀</div>
+		<div class="panel">
+			<ul>
+				<li>대걸레 청소 <span class="deadline" style="float: right;">D-1</span></li>
+			</ul>
+		</div>
 	</div>
 </div>
 
@@ -101,9 +103,6 @@ li:hover, .selected {
 	<div id="addTaskFromTyping" class="w3-dropdown-hover">
 		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요">
 		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border">
-     		<a href="#" class="w3-bar-item w3-button">Link 1</a>
-    		<a href="#" class="w3-bar-item w3-button">Link 2</a>
-    		<a href="#" class="w3-bar-item w3-button">Link 3</a>
   		</div>
 		<button id="addTask">추가</button>
 	</div>
@@ -120,123 +119,142 @@ li:hover, .selected {
 </div>
 <script>
 
-//매뉴얼목록 토글
-$("#manualList").click(function() {
-	$("#manual").toggle();
-	$("#manualList").toggleClass("selected");
-});
+	//매뉴얼목록 토글
+	$("#manualList").click(function() {
+		$("#manual").toggle();
+		$("#manualList").toggleClass("selected");
+		if($(this).hasClass("selected")){
+			manualSpaceMode();
+		}
+	});
 
-var activateli = function(input){
-	//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
-	$("#selectedTask").html(input.childNodes[0].nodeValue);
-	$("#selectedTaskModal").css({display: "block"});
-	$("#selectedTaskPopup").css({display: "block"});
-}
-//매뉴얼 db연결
-var manualSpaceMode = function(){
-	 $.ajax({
-       url : "controller?cmd=getSpaceTypesAction", 
-       success : function(result){
-          $("#manual").html(result);
-       }
-   });
-}
-manualSpaceMode();
-
-var activateAcc = function(input){
-    input.classList.toggle("active");
-    var panel = input.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-    		$.ajax({
-    	        url : "controller?cmd=getTaskTypesBySpaceTypeAction", 
-    	        data: {
-    				spaceType : input.id, 
-    			},
-    	        success : function(result){
-    	        	panel.innerHTML = result;
-    	        	panel.style.maxHeight = panel.scrollHeight + "px";
-    	        }
-    	    });
-    }
-}; 
-    	
-var activateSubAcc = function(input){
-    input.classList.toggle("active");
-    var panel = input.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-    	$.ajax({
-	        url : "controller?cmd=getManualTasksAction", 
-	        data: {
-				spaceType : input.parentNode.previousElementSibling.id, 
-				taskType : input.id
-			},
-	        success : function(result){
-	        	panel.innerHTML = result;
-	        	panel.style.maxHeight = panel.scrollHeight + "px";
-	        	var motherPanel = input.parentNode;
-	            motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-	             //#### 페이지가 이벤트 처리이후 데이터를 실시간으로 가져올 때는 이후 관련 이벤트도 같이 연결 = getTasks.jsp로 코드 이동
-	        }
-	    });
-    } 
-}  
-//직접 입력하여 업무 추가
-$("#addTask").click(function(){
-	if($("#addTaskFromTypingInput").val() != ""){
-		$("#selectedTask").html($("#addTaskFromTypingInput").val());
-		$("#selectedTaskModal").css({display: "block"});
-		$("#selectedTaskPopup").css({display: "block"});
+	var activateli = function(input) {
+		//업무 리스트 중 1개를 클릭 -> 업무 배정에 추가
+		$("#selectedTask").html(input.childNodes[0].nodeValue);
+		$("#selectedTaskModal").css({
+			display : "block"
+		});
+		$("#selectedTaskPopup").css({
+			display : "block"
+		});
 	}
-});
+	//매뉴얼 db연결
+	var manualSpaceMode = function() {
+		$.ajax({
+			url : "controller?cmd=getSpaceTypesAction",
+			success : function(result) {
+				$("#manual").html(result);
+			}
+		});
+	}
+	
 
-$(".w3-bar-item.w3-button").click(function(){
-	$("#selectedTask").html($(this).html());
-	$("#selectedTaskModal").css({display: "block"});
-	$("#selectedTaskPopup").css({display: "block"});
-});
-//선택or입력된 업무를 리스트에서 지우기
+	var activateAcc = function(input) {
+		input.classList.toggle("active");
+		var panel = input.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+		} else {
+			$.ajax({
+				url : "controller?cmd=getTaskTypesBySpaceTypeAction",
+				data : {
+					spaceType : input.id,
+				},
+				success : function(result) {
+					panel.innerHTML = result;
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			});
+		}
+	};
 
+	var activateSubAcc = function(input) {
+		input.classList.toggle("active");
+		var panel = input.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+		} else {
+			$.ajax({
+				url : "controller?cmd=getManualTasksAction",
+				data : {
+					spaceType : input.parentNode.previousElementSibling.id,
+					taskType : input.id
+				},
+				success : function(result) {
+					panel.innerHTML = result;
+					panel.style.maxHeight = panel.scrollHeight + "px";
+					var motherPanel = input.parentNode;
+					motherPanel.style.maxHeight = motherPanel.scrollHeight
+							+ panel.scrollHeight + "px";
+					//#### 페이지가 이벤트 처리이후 데이터를 실시간으로 가져올 때는 이후 관련 이벤트도 같이 연결 = getTasks.jsp로 코드 이동
+				}
+			});
+		}
+	}
 
+	//직접 입력하여 업무 추가
+	$("#addTask").click(function() {
+		if ($("#addTaskFromTypingInput").val() != "") {
+			$("#selectedTask").html($("#addTaskFromTypingInput").val());
+			$("#selectedTaskModal").css({
+				display : "block"
+			});
+			$("#selectedTaskPopup").css({
+				display : "block"
+			});
+		}
+	});
 
-$("#closeModal").on("click", function(){
-	$("#selectedTaskModal").css({display: "none"});
-	$("#selectedTaskPopup").css({display: "none"});
-});
+	$(".w3-bar-item.w3-button").click(function() {
+		$("#selectedTask").html($(this).html());
+		$("#selectedTaskModal").css({
+			display : "block"
+		});
+		$("#selectedTaskPopup").css({
+			display : "block"
+		});
+	});
+	//선택or입력된 업무를 리스트에서 지우기
 
-$("#goNext").on("click", function(){
-	location.href = "controller?cmd=assignTaskNextAdminUI";
-});
+	$("#closeModal").on("click", function() {
+		$("#selectedTaskModal").css({
+			display : "none"
+		});
+		$("#selectedTaskPopup").css({
+			display : "none"
+		});
+	});
 
-//자동완성
-$("#searchFromManual").width($("#addTaskFromTypingInput").width());
-$("#addTaskFromTypingInput").on("keyup", function() {
-	// $("#searchFromManual").html("");	//ajax에서 실시간으로 select result가져오게 되면 기존값을 계속 리셋해줘야함
-	 $("#searchFromManual").css({display: "block"});
-	    $.ajax({
-	     url: "data.json",
-	     dataType: "json",
-	     success: function(data){
-	      //json의 경우는 data는 파싱된 결과
-	      //alert(data[0].num);
-	      $.each(data, function(index, item){
-	       $("#searchFromManual").append('<a href="#" class="w3-bar-item w3-button">' + item + '</a>'); 
-	       //객체를 가져다가 파싱
-	       //var ar=data["fields"];
-	       //var ar1=data["records"];
-	       //alert(ar[0].id+ar1[0].재산구분)
-	      })
-	      
-	     }
-	    })
-});
-$("#addTaskFromTypingInput").focusout(function(){
-	$("#searchFromManual").css({display: "none"});
-});
+	$("#goNext").on("click", function() {
+		location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html();
+	});
 
+	//자동완성
+	$("#searchFromManual").width($("#addTaskFromTypingInput").width());
+	$("#addTaskFromTypingInput").on("keyup", function() {
+		if ($(this).val() == "") {
+			$("#searchFromManual").val("");
+			return;
+		}
+		// $("#searchFromManual").html("");	//ajax에서 실시간으로 select result가져오게 되면 기존값을 계속 리셋해줘야함
+		$("#searchFromManual").css({
+			display : "block"
+		});
+		$.ajax({
+			url : "controller?cmd=searchManualTasksAction",
+			data : {
+				inputText : $("#addTaskFromTypingInput").val()
+			},
+			success : function(result) {
+				$("#searchFromManual").html(result);
+			}
+		})
+	});
+	$("#addTaskFromTypingInput").focusout(function() {
+		$("#searchFromManual").css({
+			display : "none"
+		});
+	});
 </script>
 
 </body>

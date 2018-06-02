@@ -7,9 +7,9 @@
 		where REPEAT_TYPE='기간'
 	</select>
 	<select id="getRecommendedTasks" resultType="int" parameterType="java.util.Map">
-		select distinct DAILY_TASK
+		select count(DAILY_TASK)
 		from DAILY_TASKS
-		where ASSIGN_DATE between #{startDate} and #{endDate}
+		where ASSIGN_DATE between to_date(#{assignDate}, 'YYYY/MM/DD')-#{REPEAT_DETAIL} and to_date(#{assignDate}, 'YYYY/MM/DD')+1
 		and MANUAL_TASK_SEQ=#{MANUAL_TASK_SEQ}
 	</select>
 	<select id="searchManualTasks" resultType="java.util.Map" parameterType="String">
