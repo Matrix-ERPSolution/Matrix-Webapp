@@ -63,13 +63,13 @@
 	<h3>직원 관리</h3>
 </div>
 
-<div class="preStaffs accordion" onclick="activateAcc(this)">승인 요청 내역</div>
+<div id="preStaffs" class=" accordion" onclick="activateAcc(this)">승인 요청 내역</div>
 <div class="panel"></div>
 
-<div class="workingStaffs accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
+<div id="workingStaffs" class=" accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
 <div class="panel"></div>
 
-<div class="leftStaffs accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
+<div id="leftStaffs" class=" accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
 <div class="panel"></div>
 
 <!-- 나중에 modal로 연결할 예정 -->
@@ -79,24 +79,50 @@
 
 /**승인 요청 내역 관련 event*/
 var acceptStaff = function(input){
-	var acceptedStaff = $(input).parent().siblings(".acceptStaffName").html();
+	var acceptedStaff = $(input).parent().siblings(".preStaffName").html();
 	if(confirm(acceptedStaff+' 님을 직원으로 승인하시겠습니까?')) {
+		var staffIdToSetJoinDate = $(input).parents("tr").attr("id");
 		$.ajax({
-			url : "controller?cmd=addStaffAction",
-			data : {},
+			url : "controller?cmd=setJoinDateAction",
+			data : {
+				staffId : staffIdToSetJoinDate
+			},
 			success : function(result){
-				//추후 업데이트?
+				alert("승인되었습니다.");
+				document.querySelector("#staffManagementTab").click();	//jQuery로는 안됨
 			}
 		});
 	}
 };
 var rejectStaff = function(input){
-	confirm(' 님의 직원 승인을 거부하시겠습니까?');
+	var rejectedStaff = $(input).parent().siblings(".preStaffName").html();
+	if(confirm(rejectedStaff+' 님의 직원 승인을 거부하시겠습니까?')) {
+		var staffIdToRemoveStaff = $(input).parents("tr").attr("id");
+		$.ajax({
+			url : "controller?cmd=removeStaffAction",
+			data : {
+				staffId : staffIdToRemoveStaff
+			},
+			success : function(result){
+				alert("거부되었습니다.");
+				document.querySelector("#staffManagementTab").click();	//jQuery로는 안됨
+			}
+		});
+	}
 };
 
-
 /**재직 중인 직원들 관련 event*/
-
+var setWorkPart = function(input){
+	var staffIdToSetWorkPart = $(input).parents("tr").attr("id");
+	alert(staffIdToSetWorkPart);
+	//파트 수정 UI 구현해야함
+};
+var setLeaveDate= function(input){
+	var staffIdToSetLeaveDate = $(input).parents("tr").attr("id");
+	if(confirm(staffIdToSetLeaveDate+' 님을 퇴사시키겠습니까?')){
+		alert("ajax 구현");
+	}
+};
 
 /**직원 상세 페이지 관련 event*/
 var getStaffDetail = function(input){
@@ -134,7 +160,7 @@ var activateAcc = function(input){
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-      if(input.classList.contains("preStaffs")){
+      if(input.id=="preStaffs"){
     		$.ajax({
     	        url : "controller?cmd=getPreStaffsAction", 
     	        data: {},
@@ -145,7 +171,7 @@ var activateAcc = function(input){
     	    });
     	}
       
-       if(input.classList.contains("workingStaffs")){
+       if(input.id=="workingStaffs"){
 	  		$.ajax({
 	  	        url : "controller?cmd=getWorkingStaffsAction", 
 	  	        data: {},
@@ -156,7 +182,7 @@ var activateAcc = function(input){
 	  	    });
 	  	}
        
-       if(input.classList.contains("leftStaffs")){
+       if(input.id=="leftStaffs"){
 	  		$.ajax({
 	  	        url : "controller?cmd=getLeftStaffsAction", 
 	  	        data: {},
