@@ -344,16 +344,24 @@ $(function(){
 	$("#deleteTask").click(function() {
 		$("li").addClass("deleting")
 		$("li").click(function() {
+			var task = this.childNodes[0].nodeValue.trim();
+			confirm(task + ' 업무를 삭제하시겠습니까?')
+			var type = '파트';
+			if($(this).hasClass("personal")){
+				type = '개인';
+			}
 			$.ajax({
 				url : "controller?cmd=removeDailyTaskAction",
 				data : {
-					/* dailyTask : ,
-					assignType : ,
-					assignDetail : , */
+					dailyTask :  task,
+					assignType : type,
+					assignDetail : $(this).children(".assignDetail").prop("id"),
 					assignDate : $("#datepicker").val()
 				},
 				success : function(result) {
-					$("#result").html(result);
+					if(result == '성공'){
+						alert(task +' 업무가 삭제되었습니다.')
+					}
 				}
 			});
 		});
