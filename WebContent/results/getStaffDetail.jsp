@@ -33,7 +33,14 @@ li {
 	</h2>
 	<table>
 		<tr>
-			<td rowspan="3" style="min-width: 100px;">${staffDetail.PROFILE_PHOTO}</td>
+			<c:choose>
+				<c:when test="${staffDetail.PROFILE_PHOTO != null}">
+					<td rowspan="3" style="min-width: 100px;">${staffDetail.PROFILE_PHOTO}</td>
+				</c:when>
+				<c:otherwise>
+					<td rowspan="3" style="min-width: 100px;">default profile </td>
+				</c:otherwise>
+			</c:choose>
 			<td>이름</td>
 			<td>${staffDetail.NAME}</td>
 		</tr>
@@ -64,21 +71,20 @@ li {
 				<td>계좌번호</td>
 				<td><span>${staffDetail.ACCOUNT_NUM}</span><span style="float: right;">${staffDetail.BANK_NAME}</span></td>
 			</tr>
-			<!-- 조건처리 
-			<c:if test="${staffDetail.JOIN_DATE}!=null">
+			
+			<c:if test="${staffDetail.JOIN_DATE != null}">
 				<tr>
 					<td>입사날짜</td>
 					<td>${staffDetail.JOIN_DATE}</td>
 				</tr>
-			</c:if>-->
-			<tr>
-				<td>입사날짜</td>
-				<td>${staffDetail.JOIN_DATE}</td>
-			</tr>
-			<tr>
-				<td>퇴사날짜</td>
-				<td>${staffDetail.LEAVE_DATE}</td>
-			</tr>
+			</c:if>
+			<c:if test="${staffDetail.LEAVE_DATE != null}">
+				<tr>
+					<td>퇴사날짜</td>
+					<td>${staffDetail.LEAVE_DATE}</td>
+				</tr>
+			</c:if>
+			
 			<tr>
 				<td>통장사본</td>
 				<td>${staffDetail.BANK_FILE}</td>

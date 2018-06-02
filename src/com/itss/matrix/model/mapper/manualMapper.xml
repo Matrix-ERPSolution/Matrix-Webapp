@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="manualMapper">
-	<select id="getManualTasks" resultType="java.util.Map">
-		select m.MANUAL_TASK, s.SPACE_TYPE from MANUAL_TASKS m, SPACE_TYPES s where m.space_type_seq=s.space_type_seq order by m.space_type_seq asc, m.manual_task_seq asc
+	<select id="getPeriodicManualTasks" resultType="java.util.Map">
+		select m.MANUAL_TASK_SEQ, m.MANUAL_TASK, m.REPEAT_DETAIL, s.SPACE_TYPE 
+		from manual_tasks m, space_types s 
+		where REPEAT_TYPE='기간'
+	</select>
+	<select id="getRecommendedTasks" resultType="int" parameterType="java.util.Map">
+		select distinct DAILY_TASK
+		from DAILY_TASKS
+		where ASSIGN_DATE between #{startDate} and #{endDate}
+		and MANUAL_TASK_SEQ=#{MANUAL_TASK_SEQ}
 	</select>
 	<select id="searchManualTasks" resultType="java.util.Map" parameterType="String">
 		select m.MANUAL_TASK, s.SPACE_TYPE, t.TASK_TYPE

@@ -25,13 +25,19 @@ public class ManualDAO {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	/** 매뉴얼 업무 전체 출력(자동완성): 업무배정, 업무수정 */
-	public List<Map> getManualTasks() {
+	/** 추천업무 출력 : 업무배정, 업무수정 */
+	public List<Map> getRecommendedTasks() {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Map> list = null;
 
 		try {
-			list = session.selectList("manualMapper.getManualTasks");
+			List<Map> tasks = session.selectList("manualMapper.getPeriodicManualTasks");
+			for(Map task : tasks){
+				if(session.selectOne("manualMapper.getRecommendedTasks", task) != 0){
+					list.add(task);
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

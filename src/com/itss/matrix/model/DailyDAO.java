@@ -366,15 +366,16 @@ public class DailyDAO {
 	public void removeDailyTask(DailyVO vo) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			//과거 업무 삭제
-			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-			Date today = new Date();
-			Date date = df.parse(vo.getAssignDate()); 
-			if(today.after(date)){
-				throw new RuntimeException("과거의 업무를 삭제 할 수 없습니다.");
+//			//과거 업무 삭제 - 과거업무여부 제대로 확인 안됨. 수정해야함.
+//			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+//			Date today = new Date();
+//			Date date = df.parse(vo.getAssignDate()); 
+//			if(today.after(date)){
+//				throw new RuntimeException("과거의 업무를 삭제 할 수 없습니다.");
+//			}
+			if(getDailyTask(vo.getDailyTask(), vo.getAssignDate(), vo.getAssignDetail()) == null){
+				throw new RuntimeException("해당 날짜에 존재하지 않는 업무");
 			}
-			
-			getDailyTask(vo.getDailyTask(), vo.getAssignDate(), vo.getAssignDetail()); //없는 업무
 			if (sqlSession.delete("dailyMapper.removeDailyTask", vo) == 1) {
 				sqlSession.commit();
 			} else{
