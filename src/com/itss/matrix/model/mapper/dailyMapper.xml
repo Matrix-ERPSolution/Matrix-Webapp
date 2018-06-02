@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dailyMapper">
 	<select id="getAssignedParts" parameterType="String" resultType="String">
-		select distinct assign_detail from daily_tasks where assign_type='파트' and assign_date = #{assignDate}
+		select distinct assign_detail 
+		from daily_tasks 
+		where assign_type='파트' 
+		and assign_date = #{assignDate}
+		order by assign_detail desc
 	</select>
 	<select id="getDailyTasksForParts" parameterType="java.util.Map" resultType="java.util.Map">
 		select importance, daily_task, assign_detail, finisher_id, finisher_name 
