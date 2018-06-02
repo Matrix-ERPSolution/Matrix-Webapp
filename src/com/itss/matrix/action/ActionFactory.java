@@ -77,6 +77,9 @@ public class ActionFactory {
 		case "setDailyAssignAction":
 			a = new SetDailyAssignAction();
 			break;
+		case "removeDailyTaskAction":
+			a = new RemoveDailyTaskAction();
+			break;
 		case "getSpaceTypesAction":
 			a = new GetSpaceTypesAction();
 			break;

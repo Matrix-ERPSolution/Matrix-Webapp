@@ -60,6 +60,13 @@ li.important::before {
 	width: 1em;
 	margin-left: -1.4em;
 }
+li.deleting:hover {
+	background-color: #99ccff;
+}
+li.deleting:hover:after {
+	content: "\26D4";
+	color: red;
+}
 .ui-datepicker-trigger {
 	width: 20pt;
 	cursor: pointer;
@@ -95,12 +102,6 @@ li.important::before {
 }
 </style>
 <script type="text/javascript">
-var now = new Date();
-var thisYear=now.getFullYear();
-var thisMonth=now.getMonth()+1;
-thisMonth = thisMonth >= 10 ? thisMonth : '0' + thisMonth;
-var thisDay=now.getDate();
-thisDay = thisDay >= 10 ? thisDay : '0' + thisDay;
 
 $(function(){
    $("#datepicker").datepicker({
@@ -169,166 +170,207 @@ $(function(){
 </div>
 
 <script>
-// 아코디언
-var activateAcc = function(input){
-    input.classList.toggle("active");
-    var panel = input.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
+	// 아코디언
+	var activateAcc = function(input){
+	    input.classList.toggle("active");
+	    var panel = input.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+			$.ajax({
+		        url : "controller?cmd=getDailyTasksAction", 
+		        data: {
+		        	assignDate : $("#datepicker").val(),
+		        	assignType : input.id
+				},
+		        success : function(result){
+		        	panel.innerHTML = result;
+		        	panel.style.maxHeight = panel.scrollHeight + "px";
+		        }
+		    });
+	    } 
+	}
+	
+	/**날짜 포맷 변환*/
+	Date.prototype.format = function(){
+		var date = this;
+		var year = date.getFullYear();
+		var month = (1 + date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		return year + '/' + month + '/' + day;
+	}
+
+	/**일일업무 컨텐츠 로드 및 UI 설정*/
+	var contentLoad = function() {
+		$("#date").html($("#alterDate").val());
+		var today = new Date();
+		var tomorrow = new Date();
+		tomorrow.setDate(today.getDate() + 1);
+		today = today.format("yyyy/MM/dd");
+		tomorrow = tomorrow.format("yyyy/MM/dd");
+		if ($("#datepicker").val() == today) {
+			$("#updateTask").show();
+			$("#deleteTask").show();
+			$("#scrollFuture").show();
+		} else if ($("#datepicker").val() == tomorrow) {
+			$("#updateTask").show();
+			$("#deleteTask").show();
+			$("#scrollFuture").hide();
+		} else {
+			$("#updateTask").hide();
+			$("#deleteTask").hide();
+			$("#scrollFuture").show();
+		}
 		$.ajax({
-	        url : "controller?cmd=getDailyTasksAction", 
-	        data: {
-	        	assignDate : $("#datepicker").val(),
-	        	assignType : input.id
+			url : "controller?cmd=getAssignedPartsAction",
+			data : {
+				date : $("#datepicker").val()
 			},
-	        success : function(result){
-	        	panel.innerHTML = result;
-	        	panel.style.maxHeight = panel.scrollHeight + "px";
-	        }
-	    });
-    } 
-}
-
-/**일일업무 컨텐츠 로드 및 UI 설정*/
-var contentLoad = function(){
-	$("#date").html($("#alterDate").val());
-	if($("#datepicker").val() == (thisYear + "/" +thisMonth + "/" + thisDay)){
-		$("#updateTask").show();
-		$("#deleteTask").show();
-		$("#scrollFuture").show();
-	} else if($("#datepicker").val() == (thisYear + "/" +thisMonth + "/" + (thisDay+1))){
-		$("#updateTask").show();
-		$("#deleteTask").show();
-		$("#scrollFuture").hide();
-	} else {
-		$("#updateTask").hide();
-		$("#deleteTask").hide();
-		$("#scrollFuture").show();
+			success : function(result) {
+				$("#content").html(result);
+			}
+		});
 	}
-	$.ajax({
-	   url:"controller?cmd=getAssignedPartsAction",
-	   data:{
-		 date : $("#datepicker").val()
-		},
-	   success:function(result){
-	      $("#content").html(result);
-	   }
+	$(document).ready(function() {
+		$("#datepicker").datepicker("setDate", "0d");
+		contentLoad();
 	});
-}
-$(document).ready(function(){
-	$("#datepicker").datepicker("setDate", "0d");
-	contentLoad();
-});
 
-/**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
-$("#scrollPast").on("click", function(){
-	var dateVal = $("#datepicker").datepicker("getDate");
-	dateVal.setDate(dateVal.getDate()-1);
-	$("#datepicker").datepicker("setDate", dateVal);
-	contentLoad();
-});
+	/**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
+	$("#scrollPast").on("click", function() {
+		var dateVal = $("#datepicker").datepicker("getDate");
+		dateVal.setDate(dateVal.getDate() - 1);
+		$("#datepicker").datepicker("setDate", dateVal);
+		contentLoad();
+	});
 
-$("#scrollFuture").on("click", function(){
-	var dateVal = $("#datepicker").datepicker("getDate");
-	dateVal.setDate(dateVal.getDate()+1);
-	$("#datepicker").datepicker("setDate", dateVal);
-	contentLoad();
-});
+	$("#scrollFuture").on("click", function() {
+		var dateVal = $("#datepicker").datepicker("getDate");
+		dateVal.setDate(dateVal.getDate() + 1);
+		$("#datepicker").datepicker("setDate", dateVal);
+		contentLoad();
+	});
 
-/**업무 수정, 삭제  기능*/
-$("#updateTask").click(function(){
-	$(this).toggleClass("clicked");
-	if($(this).hasClass("clicked")){
-		$(".assignDetail").not($(".unfinished")).parent("li").css({"color": "lightgray"});
-		$(".unfinished").show();
-		$(".unfinished").prev().show();
-		$(".unfinished").next().show();
-		$(this).html("수정완료");
-	} else {
-		$(".assignDetail").not($(".unfinished")).parent("li").css({"color": "black"});
-		$(".unfinished").not($(".personal").children()).hide();
-		$(".unfinished").prev().hide();
-		$(".unfinished").next().hide();
-		$(this).html("수정");
+	/**업무 수정, 삭제  기능*/
+	$("#updateTask").click(function() {
+		$(this).toggleClass("clicked");
+		if ($(this).hasClass("clicked")) {
+			$(".assignDetail").not($(".unfinished")).parent("li").css({
+				"color" : "lightgray"
+			});
+			$(".unfinished").show();
+			$(".unfinished").prev().show();
+			$(".unfinished").next().show();
+			$(this).html("수정완료");
+		} else {
+			$(".assignDetail").not($(".unfinished")).parent("li").css({
+				"color" : "black"
+			});
+			$(".unfinished").not($(".personal").children()).hide();
+			$(".unfinished").prev().hide();
+			$(".unfinished").next().hide();
+			$(this).html("수정");
+		}
+	});
+
+	$("#closeModal").on("click", function() {
+		$("#updatePopup").html("");
+		$("#selectedTaskModal").css({
+			display : "none"
+		});
+		$("#selectedTaskPopup").css({
+			display : "none"
+		});
+	});
+
+	var activateTask = function(input) {
+		var imp = false;
+		if ($(input).parent().hasClass("important")) {
+			imp = true;
+		}
+		$.ajax({
+			url : "controller?cmd=setDailyTaskUI",
+			data : {
+				oldDailyTask : $(input).parent().text(),
+				assignDetail : $(input).next().id,
+				assignName : $(input).next().text(),
+				assignDate : $("#datepicker").val(),
+				importance : imp
+			},
+			success : function(result) {
+				$("#updatePopup").html(result);
+			}
+		});
+		$("#selectedTaskModal").css({
+			display : "block"
+		});
+		$("#selectedTaskPopup").css({
+			display : "block"
+		});
 	}
-});
-
-$("#closeModal").on("click", function(){
-	$("#updatePopup").html("");
-	$("#selectedTaskModal").css({display: "none"});
-	$("#selectedTaskPopup").css({display: "none"});
-});
-
-var activateTask = function(input){
-	var imp = false;
-	if($(input).parent().hasClass("important")){
-		imp = true;
+	var activateAssign = function(input) {
+		var assignType = '파트';
+		if ($(input).parent().hasClass("personal")) {
+			assignType = '개인';
+		}
+		var imp = false;
+		if ($(input).parent().hasClass("important")) {
+			imp = true;
+		}
+		$.ajax({
+			url : "controller?cmd=setDailyAssignUI",
+			data : {
+				oldAssignType : assignType,
+				oldAssignDetail : $(input).next().id,
+				oldAssignName : $(input).next().text(),
+				dailyTask : $(input).parent().text(),
+				assignDate : $("#datepicker").val(),
+				importance : imp
+			},
+			success : function(result) {
+				$("#updatePopup").html(result);
+			}
+		});
+		$("#selectedTaskModal").css({
+			display : "block"
+		});
+		$("#selectedTaskPopup").css({
+			display : "block"
+		});
 	}
-	$.ajax({
-        url : "controller?cmd=setDailyTaskUI", 
-        data: {
-        	oldDailyTask : $(input).parent().text(),
-        	assignDetail : $(input).next().id,
-        	assignName : $(input).next().text(),
-        	assignDate : $("#datepicker").val(),
-        	importance : imp
-		},
-        success : function(result){
-        	$("#updatePopup").html(result);
-        }
-    });
-	$("#selectedTaskModal").css({display: "block"});
-	$("#selectedTaskPopup").css({display: "block"});
-}
-var activateAssign = function(input){
-	var assignType = '파트';
-	if($(input).parent().hasClass("personal")){
-		assignType = '개인';
-	}
-	var imp = false;
-	if($(input).parent().hasClass("important")){
-		imp = true;
-	}
-	$.ajax({
-        url : "controller?cmd=setDailyAssignUI", 
-        data: {
-        	oldAssignType : assignType,
-        	oldAssignDetail : $(input).next().id,
-        	oldAssignName : $(input).next().text(),
-        	dailyTask :  $(input).parent().text(),
-        	assignDate : $("#datepicker").val(),
-        	importance : imp
-		},
-        success : function(result){
-        	$("#updatePopup").html(result);
-        }
-    });
-	$("#selectedTaskModal").css({display: "block"});
-	$("#selectedTaskPopup").css({display: "block"});
-}
 
-$("#deleteTask").click(function(){
-   $("li").click(function(){
-	   alert($(this).text());
-   });
-});
+	$("#deleteTask").click(function() {
+		$("li").addClass("deleting")
+		$("li").click(function() {
+			$.ajax({
+				url : "controller?cmd=removeDailyTaskAction",
+				data : {
+					dailyTask : ,
+					assignType : ,
+					assignDetail : ,
+					assignDate : $("#datepicker").val()
+				},
+				success : function(result) {
+					$("#result").html(result);
+				}
+			});
+		});
+	});
 
-/**assignTaskAdmin 페이지로 이동*/
-$("#assignTaskButton").click(function(){
-	$.ajax({
-        url : "controller?cmd=assignTaskAdminUI", 
-        data : {
-        	date : $("#datepicker").val()
-        },
-        success : function(result){
-           $("#result").html(result);
-        }
-    });
-});
-
-
-
+	/**assignTaskAdmin 페이지로 이동*/
+	$("#assignTaskButton").click(function() {
+		$.ajax({
+			url : "controller?cmd=assignTaskAdminUI",
+			data : {
+				date : $("#datepicker").val()
+			},
+			success : function(result) {
+				$("#result").html(result);
+			}
+		});
+	});
 </script>
 
 </body>
