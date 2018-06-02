@@ -76,13 +76,30 @@
 <div id="staffDetailContent">
 </div>
 <script>
-/* $(".inline").css({
-	"display":"inline"
-}); */
+
+/**승인 요청 내역 관련 event*/
+var acceptStaff = function(input){
+	var acceptedStaff = $(input).parent().siblings(".acceptStaffName").html();
+	if(confirm(acceptedStaff+' 님을 직원으로 승인하시겠습니까?')) {
+		$.ajax({
+			url : "controller?cmd=addStaffAction",
+			data : {},
+			success : function(result){
+				//추후 업데이트?
+			}
+		});
+	}
+};
+var rejectStaff = function(input){
+	confirm(' 님의 직원 승인을 거부하시겠습니까?');
+};
+
+
+/**재직 중인 직원들 관련 event*/
+
+
+/**직원 상세 페이지 관련 event*/
 var getStaffDetail = function(input){
-	/*해당 input의 tr에 있는 id 값 가져오기 = userId
-	이 userId 값과 함께 getStaffDetailAction로 이동(controller?cmd=)
-	*/
 	var staffIdToGetStaffDetail = $(input).parent("tr").attr("id");
  	$.ajax({
 		url : "controller?cmd=getStaffDetailAction",
@@ -95,28 +112,22 @@ var getStaffDetail = function(input){
 	}); 
 }
 
-var acceptStaff = function(){
-	confirm(' 님을 직원으로 승인하시겠습니까?');
-};
-var rejectStaff = function(){
-	confirm(' 님의 직원 승인을 거부하시겠습니까?');
+var detailStaffCall = function(input){
+	alert($(input));	//추후 업데이트
 };
 
-$(".profilePhoto").click(function(){/* 작동안함 */
-	alert("직원상세정보 페이지로 이동");
+var backToStaffManagementAdmin= function() {
 	$.ajax({
-		url : "controller?cmd=staffDetailAdminUI", 
-		data : {},
-		success : function(result){
+		url : "controller?cmd=staffManagementAdminUI",
+		data: {
+		},
+		success : function(result) {
 			$("#result").html(result);
 		}
 	});
-});
+};
 
-$(document).ready(function(){
-	//alert("ready");
-});
-
+/**세부 페이지 이동 event*/
 var activateAcc = function(input){
     input.classList.toggle("active");
     var panel = input.nextElementSibling;
@@ -157,39 +168,6 @@ var activateAcc = function(input){
   		}
       
     } 
-}
-
-var activateSubAcc = function(input){
-    input.classList.toggle("active");
-    var panel = input.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-    	var space = "";
-    	var task = "";
-    	if(input.classList.contains('taskType')){
-    		task = input.id;
-    		space = input.parentNode.previousElementSibling.id;
-    	} else if(input.classList.contains('spaceType')){
-    		space = input.id;
-    		task = input.parentNode.previousElementSibling.id;
-    	}
-    	$.ajax({
-	        url : "controller?cmd=getManualTasksAction", 
-	        data: {
-				spaceType : space, 
-				taskType : task
-			},
-	        success : function(result){
-	        	panel.innerHTML = result;
-	        	panel.style.maxHeight = panel.scrollHeight + "px";
-	        	var motherPanel = input.parentNode;
-	            motherPanel.style.maxHeight = motherPanel.scrollHeight + panel.scrollHeight + "px";
-	        }
-	    });
-    } 
-    
-    
 }
 </script>
 </body>

@@ -140,6 +140,9 @@ public class StaffDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		Collection<Map<String, String>> list = new ArrayList<>();
 		try {
+			if(!isBranchSeq(branchSeq)) {
+				throw new RuntimeException("getLeftStaffs 실패 nullBranchSeq");
+			}
 			list = session.selectList("staffMapper.getLeftStaffs", branchSeq);
 			if(list.isEmpty()){
 				throw new RuntimeException("getLeftStaffs 결과:empty");

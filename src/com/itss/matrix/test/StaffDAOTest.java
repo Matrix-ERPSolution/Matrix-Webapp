@@ -20,6 +20,7 @@ public class StaffDAOTest {
 		//System.out.println(isInputLength("chanyoung_bankFile.png", 0, 40));
 		//dao.setStaffInfo("tester99", 1, "testbank.doc", "00000000000", null, null, null);
 		//System.out.println(dao.getStaffDetail("chanyoung", 99));
+		//System.out.println(dao.getLeftStaffs(1));
 		System.out.println("end");
 	}
 

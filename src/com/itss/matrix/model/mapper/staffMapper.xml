@@ -25,13 +25,29 @@
 		order by u.name asc
 	</select> 
 	<select id="getLeftStaffs" resultType="java.util.Map" parameterType="int">
-		select distinct s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth
+		select a.staff_id, a.profile_photo, a.name, a.gender, a.birth, to_char(s.leave_date, 'YYYY/MM/DD') as leave_date
+		from staffs s,
+		(select s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth
 		from users u, staffs s 
 		where s.branch_seq=#{branchSeq} 
 		and s.join_date is not null 
 		and s.leave_date is not null 
-		and u.user_id=s.staff_id 
-		order by u.name asc
+		and u.user_id=s.staff_id
+		minus
+		select s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth
+		from staffs s, users u
+		where s.staff_id=u.user_id
+		and branch_seq=#{branchSeq} 
+		and join_date is not null
+		and leave_date is null
+		minus
+		select s.staff_id, u.profile_photo, u.name, u.gender, to_char(u.birth, 'YYYY/MM/DD') as birth
+		from users u, staffs s
+		where s.branch_seq=#{branchSeq} 
+		and s.join_date is null
+		and u.user_id=s.staff_id ) a
+		where s.staff_id=a.staff_id
+		order by a.name asc
 	</select>
 	<update id="setJoinDate" parameterType="java.util.Map">
 		update staffs 

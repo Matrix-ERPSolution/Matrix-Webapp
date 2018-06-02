@@ -11,7 +11,6 @@ import com.itss.matrix.model.StaffDAO;
 public class GetStaffDetailAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		System.out.println("GetStaffDetailAction");
 		String staffId = request.getParameter("staffId");
 		Map<Object, Object> staffDetail = null;
 		staffDetail = new StaffDAO().getStaffDetail(staffId, Integer.parseInt((String)request.getSession(true).getAttribute("branchSeq")));

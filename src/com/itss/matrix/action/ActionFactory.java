@@ -116,8 +116,20 @@ public class ActionFactory {
 		case "getPreStaffsAction":
 			a=new GetPreStaffsAction();
 			break;
+		case "setJoinDateAction":
+			a=new SetJoinDateAction();
+			break;
+		case "removeStaffAction":
+			a=new RemoveStaffAction();
+			break;
 		case "getWorkingStaffsAction":
 			a=new GetWorkingStaffsAction();
+			break;
+		case "setWorkPartAction" :
+			a=new SetWorkPartAction();
+			break;
+		case "setLeaveDateAction":
+			a=new SetLeaveDateAction();
 			break;
 		case "getLeftStaffsAction":
 			a=new GetLeftStaffsAction();
