@@ -9,7 +9,7 @@ public class HomeUI implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		return "headerAdmin.jsp";
+		return "dailyTaskAdmin.jsp";
 	}
 
 }

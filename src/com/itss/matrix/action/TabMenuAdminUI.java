@@ -5,11 +5,11 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-public class HeaderAdminUI implements Action {
+public class TabMenuAdminUI implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		return "headerAdmin.jsp";
+		return "tabMenuAdmin.jsp";
 	}
 
 }

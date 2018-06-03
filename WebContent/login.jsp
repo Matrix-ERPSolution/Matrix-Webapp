@@ -7,14 +7,20 @@
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <title>로그인</title>
 <style>
-body {
-    background: #3284E2;
-	text-align: center;
-}
 .roundBox {
 	width: 200px;
 	padding: 10px;
 	border-radius: 20px;
+	text-align: center;
+}
+#logo {
+	max-width: 300px;
+	max-height: 300px;
+}
+.container {
+	max-width: 1000px;
+    margin: auto;
+    background: #3284E2;
 	text-align: center;
 }
 </style>
@@ -22,7 +28,8 @@ body {
 </head>
 
 <body>
-<div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"></div>
+<div class="container">
+<div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="padding-top: 3%;"></div>
 <br><br>
 <input type="text" id="userId" name="userId" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
 <input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
@@ -33,7 +40,7 @@ body {
 <br><br>
 <a id="findIdPassword">아이디/비밀번호찾기</a><br>
 <a id="addUser" >회원가입</a>
-
+</div>
 
 <script type="text/javascript">
 

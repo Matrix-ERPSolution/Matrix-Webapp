@@ -25,9 +25,9 @@ public class GetCertifiedInfoAction implements Action {
 			String type = (String)user.get("type");
 			HttpSession session = request.getSession(true);
 			if(type.equals("admin")) {
-				result="controller?cmd=headerAdminUI";
+				result="controller?cmd=dailyTaskAdminUI";
 			} else if(type.equals("staff")) {
-				result="controller?cmd=headerStaffUI";
+				result="controller?cmd=tabMenuStaffUI";
 			}
 			session.setAttribute("type", type);
 			session.setAttribute("branchSeq", user.get("branchSeq"));

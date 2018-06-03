@@ -4,6 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="headSetting.jsp"%>
+<%@include file = "tabMenuAdmin.jsp" %>
 <title>Manual</title>
 <style>
 

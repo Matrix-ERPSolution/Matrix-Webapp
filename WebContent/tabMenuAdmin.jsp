@@ -1,22 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file="headSetting.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-  
-<style type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>	
+.tabs {
+	padding: 0px;
+	width: 360px;
+};
+.inline {
+	display : inline;
+}
 .w3-bar-block {
 	font-size: small;
 	font-weight: bold;
 }
-
-</style> 
-
+</style>
 </head>
+
 <body>
+<header>
 <!-- Sidebar/menu -->
 <div class="w3-sidebar w3-white w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
   <button class="w3-bar-item w3-button w3-small" onclick="w3_close()" style="text-align:right;">&times;</button>
@@ -36,16 +46,41 @@
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
   </div>
 </div>
-
-<!-- Page Content -->
-<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
-
-
-<header class="w3-container w3-large">
+<div class="w3-container w3-large">
   <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()">☰</a>
   <a href="controller?cmd=homeUI"><img src="images/logo.png" style="width: 160px; margin-left:10%;"></a>
+</div>
 </header>
+
+<!-- 위치조정 필요 -->
+<nav class = "containerw3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay">
+	<div class="tabs w3-bar" style="background-color: #e6f2ff; position:relative;">
+	    <div class="w3-col s4">
+	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff;">일일업무</a>
+	    </div>
+	    <div class="w3-col s4">
+	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff;">매뉴얼</a>
+	    </div>
+	    <div class="w3-col s4">
+	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff;">직원관리</a>
+	    </div>
+	</div> 
+</nav>
+
 <script>
+$("#dailyTaskTab").click(
+		function(){
+			 location.href="controller?cmd=dailyTaskAdminUI";
+		});
+$("#manualTab").click(
+		function(){
+			location.href="controller?cmd=manualAdminUI";
+		});
+$("#staffManagementTab").click(
+		function(){
+			location.href="controller?cmd=staffManagementAdminUI";
+		});
+
 //Script to open and close sidebar
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -68,6 +103,5 @@ $( document ).ready(function() {
 	});
 });
 </script>
-
 </body>
 </html>

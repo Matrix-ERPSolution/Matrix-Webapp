@@ -3,6 +3,7 @@
 <html>
 <head>
 <%@include file="headSetting.jsp"%>
+<%@include file = "tabMenuAdmin.jsp" %>
 <style type="text/css">
 .accordion {
     background-color: #e6f2ff;

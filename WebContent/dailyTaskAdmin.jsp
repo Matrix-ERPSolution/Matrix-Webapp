@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@include file = "tabMenuAdmin.jsp" %>
 <style>
 .accordion {
     background-color: #e6f2ff;
@@ -98,6 +99,12 @@ li.deleting:hover:after {
 }
 #scrollPast:hover, #scrollFuture:hover {
 	width: 17pt;
+}
+.container {
+	max-width: 1000px;
+    margin: auto;
+    background: #3284E2;
+	text-align: center;
 }
 </style>
 <script type="text/javascript">

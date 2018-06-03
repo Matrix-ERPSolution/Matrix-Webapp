@@ -27,11 +27,11 @@ public class ActionFactory {
 		case "findIdPasswordUI":
 			a = new FindIdPasswordUI();
 			break;
-		case "headerAdminUI":
-			a = new HeaderAdminUI();
+		case "tabMenuAdminUI":
+			a = new TabMenuAdminUI();
 			break;
-		case "headerStaffUI":
-			a = new HeaderStaffUI();
+		case "tabMenuStaffUI":
+			a = new TabMenuStaffUI();
 			break;
 		case "dailyTaskAdminUI":
 			a = new DailyTaskAdminUI();
