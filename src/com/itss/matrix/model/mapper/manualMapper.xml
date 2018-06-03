@@ -5,11 +5,13 @@
 		select m.MANUAL_TASK_SEQ, m.MANUAL_TASK, m.REPEAT_DETAIL, s.SPACE_TYPE 
 		from manual_tasks m, space_types s 
 		where REPEAT_TYPE='기간'
+		and m.SPACE_TYPE_SEQ=s.SPACE_TYPE_SEQ
+		order by SPACE_TYPE asc
 	</select>
 	<select id="getRecommendedTasks" resultType="int" parameterType="java.util.Map">
 		select count(DAILY_TASK)
 		from DAILY_TASKS
-		where ASSIGN_DATE between to_date(#{assignDate}, 'YYYY/MM/DD')-#{REPEAT_DETAIL} and to_date(#{assignDate}, 'YYYY/MM/DD')+1
+		where ASSIGN_DATE between to_date(#{date}, 'YYYY/MM/DD')-#{REPEAT_DETAIL} and to_date(#{date}, 'YYYY/MM/DD')+1
 		and MANUAL_TASK_SEQ=#{MANUAL_TASK_SEQ}
 	</select>
 	<select id="searchManualTasks" resultType="java.util.Map" parameterType="String">

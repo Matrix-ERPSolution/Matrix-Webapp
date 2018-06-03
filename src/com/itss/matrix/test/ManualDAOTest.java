@@ -27,10 +27,10 @@ public class ManualDAOTest {
 			for(Object key : keys)
 			System.out.println(map.get(key));
 		}*/
-		List<Map> list = dao.getRecommendedTasks("2018/06/02");
+		/*List<Map> list = dao.getRecommendedTasks("2018/06/02");
 		for(Map map : list){
 			System.out.println(map.get("MANUAL_TASK"));
-		}
+		}*/
 		//System.out.println(dao.searchManualTasks("바닥"));
 		System.out.println("end");
 	}

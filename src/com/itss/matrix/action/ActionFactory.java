@@ -80,6 +80,9 @@ public class ActionFactory {
 		case "removeDailyTaskAction":
 			a = new RemoveDailyTaskAction();
 			break;
+		case "getRecommendedTasksAction":
+			a = new GetRecommendedTasksAction();
+			break;
 		case "getSpaceTypesAction":
 			a = new GetSpaceTypesAction();
 			break;

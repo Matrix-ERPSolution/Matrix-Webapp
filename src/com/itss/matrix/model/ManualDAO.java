@@ -27,7 +27,7 @@ public class ManualDAO {
 	}
 
 	/** 추천업무 출력 : 업무배정, 업무수정 */
-	public List<Map> getRecommendedTasks(String assignDate) {
+	public List<Map> getRecommendedTasks(String date) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Map> list = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class ManualDAO {
 			for(Map task : tasks){
 				Map input = new HashMap<>();
 				input.putAll(task);
-				input.put("assignDate", assignDate);
+				input.put("date", date);
 				if((int)session.selectOne("manualMapper.getRecommendedTasks", input) == 0){
 					list.add(task);
 				}

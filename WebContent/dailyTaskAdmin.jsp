@@ -50,9 +50,8 @@ ul {
 	margin-left: -20pt;
 	list-style: none;
 }
-li::before {
-	font-size: 12pt;
-	display: inline-block;
+li {
+	font-size: 10pt;
 }
 li.important::before {
 	content: "\2605";
@@ -369,15 +368,17 @@ $(function(){
 
 	/**assignTaskAdmin 페이지로 이동*/
 	$("#assignTaskButton").click(function() {
-		$.ajax({
-			url : "controller?cmd=assignTaskAdminUI",
+		location.href = "controller?cmd=assignTaskAdminUI&date"+$("#datepicker").val()+"&dateKor="+$("#alterDate").val();
+		/* $.ajax({
+			url : "controller?cmd=assignTaskAdminUI&date"+$("#datepicker").val()+"&dateKor="+$("#alterDate").val(),
 			data : {
-				date : $("#datepicker").val()
+				date : $("#datepicker").val(),
+				dateKor : $("#alterDate").val()
 			},
 			success : function(result) {
 				$("#result").html(result);
 			}
-		});
+		}); */
 	});
 </script>
 

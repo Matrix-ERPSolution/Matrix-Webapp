@@ -44,6 +44,13 @@ html, body { height:100%; margin:0; padding:0;}
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+ul {
+	margin-left: -20pt;
+	list-style: none;
+}
+li {
+	font-size: 10pt;
+}
 li:hover, .selected {
 	background-color: #99ccff;
 }
@@ -60,34 +67,11 @@ li:hover, .selected {
 </style>
 </head>
 <body>
-<h2>5월 3일(목)</h2>
+<h2>${param.dateKor}</h2>
 <h2>업무 배정</h2>
 <div id="taskFromRecommend">
 	<h4>오늘의 추천업무</h4>
 	<div id="recommendList">
-		<div class="accordion" id="cleanControl">카운터</div>
-		<div class="panel">
-			<ul>
-				<li>쇼케이스 얼룩 제거 <span class="deadline" style="float: right;">D-1</span></li>
-				<li>아이스크림 기계 청소 <span class="deadline" style="float: right;">D-7</span></li>
-			</ul>
-		</div>
-		
-		<div class="accordion" id="stockControl">주방</div>
-		<div class="panel">
-			<ul>
-				<li>원두 재고 점검 <span class="deadline" style="float: right;">D-2</span></li>
-				<li>컵 재고 점검 <span class="deadline" style="float: right;">D-3</span></li>
-				<li>냉장고 성에 제거 <span class="deadline" style="float: right;">D-9</span></li>
-			</ul>
-		</div>
-		
-		<div class="accordion" id="moneyControl">홀</div>
-		<div class="panel">
-			<ul>
-				<li>대걸레 청소 <span class="deadline" style="float: right;">D-1</span></li>
-			</ul>
-		</div>
 	</div>
 </div>
 
@@ -147,7 +131,21 @@ li:hover, .selected {
 			}
 		});
 	}
-	
+	$(document).ready(function(){
+		getRecommendedTasks();
+	})
+	//추천업무 가져오기 
+	var getRecommendedTasks = function(){
+		$.ajax({
+			url : "controller?cmd=getRecommendedTasksAction",
+			data : {
+				date : "${date}"
+			},
+			success : function(result) {
+				$("#recommendList").html(result);
+			}
+		});
+	}
 
 	var activateAcc = function(input) {
 		input.classList.toggle("active");
@@ -191,6 +189,16 @@ li:hover, .selected {
 			});
 		}
 	}
+	
+	var activateAccBasic = function(input) {
+		input.classList.toggle("active");
+		var panel = input.nextElementSibling;
+		if (panel.style.maxHeight) {
+			panel.style.maxHeight = null;
+		} else {
+			panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+	};
 
 	//직접 입력하여 업무 추가
 	$("#addTask").click(function() {
