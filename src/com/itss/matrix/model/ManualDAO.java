@@ -2,6 +2,7 @@ package com.itss.matrix.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class ManualDAO {
 	/** 추천업무 출력 : 업무배정, 업무수정 */
 	public List<Map> getRecommendedTasks(String assignDate) {
 		SqlSession session = sqlSessionFactory.openSession();
-		List<Map> list = null;
+		List<Map> list = new ArrayList<>();
 
 		try {
 			List<Map> tasks = session.selectList("manualMapper.getPeriodicManualTasks");
@@ -36,7 +37,7 @@ public class ManualDAO {
 				Map input = new HashMap<>();
 				input.putAll(task);
 				input.put("assignDate", assignDate);
-				if((int)session.selectOne("manualMapper.getRecommendedTasks", task) != 0){
+				if((int)session.selectOne("manualMapper.getRecommendedTasks", input) == 0){
 					list.add(task);
 				}
 			}

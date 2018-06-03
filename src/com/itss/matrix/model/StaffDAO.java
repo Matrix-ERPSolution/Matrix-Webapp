@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -28,9 +29,9 @@ public class StaffDAO {
 	}
 	
 	/**배정할 파트 목록 보기: 업무배정, 업무재배정*/
-	public Collection<String> getWorkParts(int branchSeq) {
+	public List<String> getWorkParts(int branchSeq) {
 		SqlSession session = sqlSessionFactory.openSession();
-		Collection<String> list = new ArrayList<>();
+		List<String> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getWorkParts", branchSeq);
 			if(list.isEmpty()) {

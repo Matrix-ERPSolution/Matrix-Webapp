@@ -233,10 +233,9 @@ li:hover, .selected {
 	$("#searchFromManual").width($("#addTaskFromTypingInput").width());
 	$("#addTaskFromTypingInput").on("keyup", function() {
 		if ($(this).val() == "") {
-			$("#searchFromManual").val("");
+			$("#searchFromManual").html("");
 			return;
 		}
-		// $("#searchFromManual").html("");	//ajax에서 실시간으로 select result가져오게 되면 기존값을 계속 리셋해줘야함
 		$("#searchFromManual").css({
 			display : "block"
 		});

@@ -17,7 +17,6 @@ public class ManualDAOUnitTest {
 	
 	@Test
 	public void correct(){
-		assertNotNull(dao.getManualTasks());
 		assertNotNull(dao.getSpaceTypes());
 		assertNotNull(dao.getTaskTypesBySpaceType("카운터"));
 		assertNotNull(dao.getTaskTypes());

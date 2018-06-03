@@ -95,6 +95,12 @@ public class ActionFactory {
 		case "getManualTasksAction":
 			a = new GetManualTasksAction();
 			break;
+		case "getWorkPartsAction":
+			a = new GetWorkPartsAction();
+			break;
+		case "searchManualTasksAction":
+			a = new SearchManualTasksAction();
+			break;
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
 			break;
