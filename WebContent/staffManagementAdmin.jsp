@@ -56,9 +56,32 @@
 .inline {
 	display:inline;
 }
+
+/* modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
 </style>
 </head>
 <body>
+
 <div align="center" class="w3-center">
 	<h3>직원 관리</h3>
 </div>
@@ -74,6 +97,12 @@
 
 <!-- 나중에 modal로 연결할 예정 -->
 <div id="staffDetailContent">
+</div>
+
+<!-- 파트 수정 Modal content -->
+<div class="modal">	<!-- 얘 위치를 정확히 모르겠음 -->
+<div class="modal-content">
+</div>
 </div>
 <script>
 
@@ -112,15 +141,69 @@ var rejectStaff = function(input){
 };
 
 /**재직 중인 직원들 관련 event*/
-var setWorkPart = function(input){
+/*파트 변경*/
+var modal = document.querySelector(".modal");
+//console.log($(".modal"));	//jQuery로는 안됨
+var getWorkPart = function(input){
 	var staffIdToSetWorkPart = $(input).parents("tr").attr("id");
-	alert(staffIdToSetWorkPart);
-	//파트 수정 UI 구현해야함
+	var staffNameToSetWorkPart = $(input).parent().siblings().next("td.workingStaffName").html();
+	var workPartToSet = $(input).val();
+	 $.ajax({
+		 url : "controller?cmd=getWorkPartsAction",
+		 data : {
+			 staffId : staffIdToSetWorkPart,
+			 staffName : staffNameToSetWorkPart,
+			 oldWorkPart : workPartToSet
+		 },
+		 success : function(result){
+			$(".modal-content").html(result);
+			modal.style.display = "block";
+		 }
+	 })
 };
+
+var setWorkPart = function(input){
+	if($(input).siblings().hasClass("selected")){
+		$(input).siblings().removeClass("selected");	
+	}
+	$(input).addClass("selected");
+	$(".modal-content").fadeOut('slow');
+	$(".modal").fadeOut('slow');
+	var workPart = $(input).html();
+	var staffId = $(".staffInfoToSetWorkPart").attr("id");
+	$.ajax({
+		url : "controller?cmd=setWorkPartAction",
+		data : {
+			staffId : staffId,
+			workPart : workPart
+		},
+		success : function(result){
+			alert("수정되었습니다.");
+			document.querySelector("#staffManagementTab").click();
+		}
+	});
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+/*퇴사*/
 var setLeaveDate= function(input){
 	var staffIdToSetLeaveDate = $(input).parents("tr").attr("id");
 	if(confirm(staffIdToSetLeaveDate+' 님을 퇴사시키겠습니까?')){
-		alert("ajax 구현");
+		$.ajax({
+			url : "controller?cmd=setLeaveDateAction",
+			data : {
+				staffId : staffIdToSetLeaveDate
+			},
+			success : function(result) {
+				alert("퇴사되었습니다.");
+				document.querySelector("#staffManagementTab").click();
+			}
+		});
 	}
 };
 

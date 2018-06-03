@@ -21,15 +21,15 @@
 				<td onclick="getStaffDetail(this)">default profile</td>
 			</c:otherwise>
 		</c:choose>
-		<td onclick="getStaffDetail(this)">${workingStaff.NAME}</td>
+		<td class="workingStaffName" onclick="getStaffDetail(this)">${workingStaff.NAME}</td>
 		<td>${workingStaff.GENDER}</td>
 		<td>${workingStaff.BIRTH}</td>
 		<c:choose>
 			<c:when test="${workingStaff.WORK_PART != null}">
-				<td><input type="button" onclick="setWorkPart(this)" value="${workingStaff.WORK_PART}" style="float: right"></td>
+				<td><input type="button" onclick="getWorkPart(this)" value="${workingStaff.WORK_PART}" style="float: right"></td>
 			</c:when>
 			<c:otherwise>
-				<td><input type="button" onclick="setWorkPart(this)" value="미배정" style="float: right"></td>
+				<td><input type="button" onclick="getWorkPart(this)" value="미배정" style="float: right"></td>
 			</c:otherwise>
 		</c:choose>
 		<td><input type="button" onclick="setLeaveDate(this)" value="퇴사" style="float: right"></td>

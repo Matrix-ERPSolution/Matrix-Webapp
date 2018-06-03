@@ -3,12 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <table>
 <c:forEach var="leftStaff" items="${leftStaffs}">
-<script>
-var birth = ${leftStaff.BIRTH};
-var simpleBirth = birth.substring(2, 9);
-alert('birth: '+birth);
-alert('simpleBirth: '+simpleBirth);
-</script> <!-- 적용안됨 -->
 	<tr id="${leftStaff.STAFF_ID}">
 		<c:choose>
 			<c:when test="${leftStaff.PROFILE_PHOTO != null}">
