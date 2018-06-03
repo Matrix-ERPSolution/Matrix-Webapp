@@ -11,35 +11,60 @@
 	width: 200px;
 	padding: 10px;
 	border-radius: 20px;
+	border-color: white;
 	text-align: center;
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+	font-weight: bold;
+}
+#login {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border-color: white;
+	text-align: center;
+	background-color: #e6f2ff;
+	color: 003366;
+	font-weight: bold;
+}
+#login:hover {
+	border-color: rgb(0, 51, 102);
+	border-width: medium;	
 }
 #logo {
 	max-width: 300px;
 	max-height: 300px;
 }
 .container {
-	max-width: 1000px;
+	max-width: 500px;
+	min-height: 590px;
     margin: auto;
-    background: #3284E2;
 	text-align: center;
+}
+.background {
+	background-image: url("images/background_img3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
 </style>
 <script type="text/javascript"></script>
 </head>
 
-<body>
+<body class="background">
 <div class="container">
-<div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="padding-top: 3%;"></div>
+<div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="padding-top: 30%;"></div>
 <br><br>
 <input type="text" id="userId" name="userId" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
 <input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
-<button id="login" class="roundBox" style="background: rgba(255, 255, 255, 0.3);">로그인</button><br>
+<button id="login">로그인</button><br>
 <br>
 <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
 <input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
 <br><br>
 <a id="findIdPassword">아이디/비밀번호찾기</a><br>
 <a id="addUser" >회원가입</a>
+
 </div>
 
 <script type="text/javascript">

@@ -78,11 +78,23 @@
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 }
-
+.container {
+	max-width: 500px;
+	min-height: 640px;
+    margin: auto;
+	text-align: center;
+	background-color: rgba(255,255,255,0.8);
+}
+.background {
+	background-image: url("images/background_img3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
 </style>
 </head>
-<body>
-
+<body class="background">
+<div class="container">
 <div align="center" class="w3-center">
 	<h3>직원 관리</h3>
 </div>
@@ -104,6 +116,8 @@
 <div class="modal">	<!-- 얘 위치를 정확히 모르겠음 -->
 <div class="modal-content">
 </div>
+</div>
+
 </div>
 <script>
 
