@@ -125,7 +125,7 @@ public class DailyDAO {
 			if(isDailyTask(vo.getDailyTask(), vo.getAssignDate())==true){
 				throw new RuntimeException("이미 배정된 업무입니다.");
 			}
-			if(vo.getAssignType()!="개인" && vo.getAssignType()!="파트"){
+			if(!vo.getAssignType().equals("개인") && !vo.getAssignType().equals("파트")){
 				throw new RuntimeException("배정유형이 올바르지 않습니다.");
 			}
 			if(vo.getImportance()!=0 && vo.getImportance()!=1){
@@ -148,7 +148,7 @@ public class DailyDAO {
 			}
 			int branchSeq = sqlSession.selectOne("dailyMapper.getBranchSeq", vo.getAdminSeq());
 			StaffDAO dao = new StaffDAO();
-			if(vo.getAssignType()=="파트"){
+			if(vo.getAssignType().equals("파트")){
 				Collection<String> workParts = dao.getWorkParts(branchSeq); //지점에 해당하는 파트 종류 호출
 				result=false;
 				for (String tmp : workParts) {
@@ -159,7 +159,7 @@ public class DailyDAO {
 				if(!result){
 					throw new RuntimeException("없는 파트입니다.");
 				}
-			} else if(vo.getAssignType()=="개인"){
+			} else if(vo.getAssignType().equals("개인")){
 				Collection<Map<String, String>> workingStaffs = dao.getWorkingStaffs(branchSeq); //지점에 해당하는 재직중인 직원 호출
 				result=false;
 				for (Map<String, String> map : workingStaffs) {					
@@ -177,8 +177,10 @@ public class DailyDAO {
 			
 			// 현재 날짜 기준으로 과거 날짜에 업무 배정
 			// 현재 날짜 기준으로 과거 날짜에 업무 배정
+			
 			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 			Date today = new Date();
+			today.setTime(0);
 			Date assignDate = df.parse(vo.getAssignDate()); 
 			if(today.after(assignDate)){
 				throw new RuntimeException("과거에 업무배정을 할 수 없습니다.");

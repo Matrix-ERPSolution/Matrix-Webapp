@@ -60,6 +60,34 @@
     padding: 0 18px;
     float: center;
 }
+#selectedAssignDetail{
+	font-size: 12pt;
+	color: blue;
+}
+.panel.assignableStaffs {
+	margin-top : 10px;
+	overflow: auto;
+    white-space: nowrap;
+}
+.staffBox {
+	display: inline-block;
+}
+.staffName {
+	display: block;
+	font-size: 10pt;
+}
+.workparts {
+	margin-bottom : 10px;
+    background-color: #cccccc;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    display: inline-block;
+}
+.workparts:hover, .staffBox:hover, .selected {
+	background-color: #99ccff;
+}
 </style>
 </head>
 <body>
@@ -78,51 +106,15 @@
 	<h4>담당자 지정하기</h4>
 	<div class="accordion" id="assignableParts">파트별</div>
 	<div class="panel">
-		<ul>
-			<li class="units"><button class="units">오픈조</button></li>
-			<li class="units"><button class="units">미들조</button></li>
-			<li class="units"><button class="units">마감조</button></li>
-		</ul>
 	</div>
 	
-	<div class="accordion" id="stockControl">개인별</div>
-	<div class="panel">
-		<div class="subAccordion">
-			<div>현재 근무자</div>
-		</div>
-		<div class="subPanel" id="presentStaff">
-			<ul>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>김연진</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>김태훈</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>홍윤영</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>장윤석</p></li>				
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>근무 예정자</div>
-		</div>
-		<div class="subPanel" id="scheduledStaff">
-			<ul>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>박대기</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>정예정</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>한다음</p></li>
-			</ul>
-		</div>
-		<div class="subAccordion">
-			<div>기타</div>
-		</div>
-		<div class="subPanel" id="otherStaff">
-			<ul>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>김기타</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>윤엘스</p></li>
-				<li class="staffs"><i class="fa fa-user fa-3x" aria-hidden="true" ></i> <p>허등등</p></li>
-			</ul>
-		</div>
+	<div class="accordion" id="assignableStaffs">개인별</div>
+	<div class="panel assignableStaffs">
 	</div>
 </div>
 
 <hr> <br>
-<h5>해당 업무를 <span id="selectedAssignDetail"></span> 파트에 배정합니다.</h5>
+<h5>해당 업무를 <span id="selectedAssignDetail">&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="selectedAssignType"></span> 배정합니다.</h5>
 
 <hr> <br>
 <div style="text-align: center;">
@@ -143,6 +135,35 @@ $("#assignableParts").on("click", function() {
 			success : function(result) {
 				panel.innerHTML = result;
 				panel.style.maxHeight = panel.scrollHeight + "px";
+			}
+		});
+	}
+});
+var setWorkPart = function(input){
+	$(".selected").removeClass("selected");
+	$(input).addClass("selected");
+	$("#selectedAssignDetail").html($(input).html());
+	$("#selectedAssignType").html(" 파트에");
+}
+
+var setWorkStaff = function(input){
+	$(".selected").removeClass("selected");
+	$("#selectedAssignDetail").html($(input).clone());
+	$(input).children(".staffName").addClass("selected");
+	$("#selectedAssignType").html(" 님에게");
+}
+
+$("#assignableStaffs").on("click", function() {
+	this.classList.toggle("active");
+	var panel = this.nextElementSibling;
+	if (panel.style.maxHeight) {
+		panel.style.maxHeight = null;
+	} else {
+		$.ajax({
+			url : "controller?cmd=getAssignableStaffsAction",
+			success : function(result) {
+				panel.innerHTML = result;
+				panel.style.maxHeight = panel.scrollHeight + 25 +"px";
 			}
 		});
 	}
@@ -191,19 +212,32 @@ for (i = 0; i < li.length; i++) {
 		 }
 	})
 };
+
 $('#assignButton').on('click',function (){
+	console.log("${param.date}")
+	var selectedAssignType = "개인";
+	if($("#selectedAssignType").html()==" 파트에"){
+		selectedAssignType = "파트";
+	}
 	 $.ajax({
-	        //url : "controller?cmd=assignTaskAdminAction", 
-	        //data : {  }
+	        url : "controller?cmd=addDailyTaskAction", 
+	        data : {  
+	        	dailyTask : "${param.selectedTask}", 
+	        	assignDate : "${param.date}",
+	        	importance : 0, 
+	        	assignType : selectedAssignType, 
+	        	assignDetail : $("#selectedAssignDetail").text()
+	        },
 	        success : function(result) {
-	        	confirm("~를 ~에게 배정합니다.");
-				location.href = "controller?cmd=headerAdminUI";
+	        	alert("${param.selectedTask}를 " +$("#selectedAssignDetail").text() + "에게 배정했습니다.");
+				location.href = "controller?cmd=dailyTaskAdminUI";
 	        }
 	 });
 });
+
 $('#assignCancelButton').on('click',function (){
 	        	alert("홈화면으로 돌아갑니다.");
-				location.href = "controller?cmd=headerAdminUI";
+				location.href = "controller?cmd=dailyTaskAdminUI";
 });
 </script>
 </body>

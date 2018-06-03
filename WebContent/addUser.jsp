@@ -102,7 +102,7 @@
 			alert("인증번호를 입력하세요");
 		} */ else if($("#certifyResult").html() =="") {
 			$.ajax({
-				url:"controller?cmd=addUserNextAction",
+				url:"controller?cmd=addUserNextUI",
 				/* data: {
 					phoneNum:$("#phoneNum").val()
 				}, */ 

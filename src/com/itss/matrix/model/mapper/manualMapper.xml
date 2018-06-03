@@ -36,7 +36,7 @@
 	<select id="getTasks" resultType="java.util.Map" parameterType="java.util.Map">
 		select manual_task, repeat_type, repeat_detail from manual_tasks m, space_types s, task_types t where m.space_type_seq = s.space_type_seq and m.task_type_seq = t.task_type_seq and s.space_type=#{spaceType} and t.task_type=#{taskType}
 	</select>
-	<select id="getManualTaskSeq" resultType="int" parameterType="String">
+	<select id="getManualTaskSeq" resultType="String" parameterType="String">
 		select manual_task_seq from manual_tasks where manual_task=#{searchTask}
 	</select>
 </mapper>

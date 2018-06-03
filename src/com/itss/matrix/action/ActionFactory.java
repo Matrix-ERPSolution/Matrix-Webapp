@@ -15,6 +15,9 @@ public class ActionFactory {
 		case "addUserUI":
 			a = new AddUserUI();
 			break;
+		case "addUserNextUI":
+			a=new AddUserNextUI();
+			break;
 		case "certificationUI":
 			a = new CertificationUI();
 			break;
@@ -101,8 +104,14 @@ public class ActionFactory {
 		case "getWorkPartsAction":
 			a = new GetWorkPartsAction();
 			break;
+		case "getAssignableStaffsAction":
+			a = new GetAssignableStaffsAction();
+			break;
 		case "searchManualTasksAction":
 			a = new SearchManualTasksAction();
+			break;
+		case "addDailyTaskAction":
+			a = new AddDailyTaskAction();
 			break;
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
@@ -115,9 +124,6 @@ public class ActionFactory {
 			break;
 		case "getUserPhoneAction":
 			a=new GetUserPhoneAction();
-			break;
-		case "addUserNextAction":
-			a=new AddUserNextAction();
 			break;
 		case "getUserIdByPhoneNumAction":
 			a=new GetUserIdByPhoneNumAction();

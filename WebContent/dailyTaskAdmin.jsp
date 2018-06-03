@@ -375,7 +375,7 @@ $(function(){
 
 	/**assignTaskAdmin 페이지로 이동*/
 	$("#assignTaskButton").click(function() {
-		location.href = "controller?cmd=assignTaskAdminUI&date"+$("#datepicker").val()+"&dateKor="+$("#alterDate").val();
+		location.href = "controller?cmd=assignTaskAdminUI&date="+$("#datepicker").val()+"&dateKor="+$("#alterDate").val();
 		/* $.ajax({
 			url : "controller?cmd=assignTaskAdminUI&date"+$("#datepicker").val()+"&dateKor="+$("#alterDate").val(),
 			data : {

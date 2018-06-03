@@ -57,7 +57,6 @@ li:hover, .selected {
 #manual {
 	display: none;
 }
-
 .ui-autocomplete-category {
    font-weight: bold;
    padding: .2em .4em;
@@ -234,7 +233,8 @@ li:hover, .selected {
 	});
 
 	$("#goNext").on("click", function() {
-		location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html();
+		console.log("${param.date}")
+		location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html()+"&date="+"${param.date}";
 	});
 
 	//자동완성
