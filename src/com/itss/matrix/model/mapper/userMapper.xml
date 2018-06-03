@@ -85,20 +85,21 @@
 		where status=1
 	</select>
 	
-	<select id="isCertifiedAdmin" parameterType="String" resultType="String">
-		select branch_seq 
+	<select id="isCertifiedAdmin" parameterType="String" resultType="java.util.Map">
+		select branch_seq, admin_seq 
 		from admins 
 		where admin_id=#{userId}
 		and approve_date is not null
 		and revoke_date is null
 	</select>
 	
-	<select id="isCertifiedStaff" parameterType="String" resultType="String">
-		select branch_seq 
-		from staffs 
+	<select id="isCertifiedStaff" parameterType="String" resultType="java.util.Map">
+		select s.branch_seq, u.name
+		from staffs s, users u 
 		where staff_id=#{userId}
 		and join_date is not null
 		and leave_date is null
+		and s.staff_id=u.user_id
 	</select>
 	
 </mapper>

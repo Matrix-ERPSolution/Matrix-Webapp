@@ -389,7 +389,6 @@ public class UserDAO {
 	public Map getCertifiedInfo(String userId){
 		SqlSession session = sqlSessionFactory.openSession();
 		Map<Object, Object> result = new HashMap<>();
-		String branchSeq = null;
 		try {
 			if(!isUserId(userId)){
 				throw new RuntimeException("getCertifiedInfo 실패 nullUserId");
@@ -397,18 +396,16 @@ public class UserDAO {
 			if(!isInputLength(userId, 6, 16)){
 				throw new RuntimeException("getCertifiedInfo 실패 inputLength 오류");
 			}
-			branchSeq = session.selectOne("userMapper.isCertifiedAdmin", userId);
-			if(branchSeq == null){
-				branchSeq = session.selectOne("userMapper.isCertifiedStaff", userId);
-				if(branchSeq != null){
+			result = session.selectOne("userMapper.isCertifiedAdmin", userId);
+			if(result == null){
+				result = session.selectOne("userMapper.isCertifiedStaff", userId);
+				if(result != null){
 					result.put("type", "staff");
-					result.put("branchSeq", branchSeq);
 				} else{
 					return null;
 				}
 			} else {
 				result.put("type", "admin");
-				result.put("branchSeq", branchSeq);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

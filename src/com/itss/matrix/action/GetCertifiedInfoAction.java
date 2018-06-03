@@ -26,11 +26,14 @@ public class GetCertifiedInfoAction implements Action {
 			HttpSession session = request.getSession(true);
 			if(type.equals("admin")) {
 				result="controller?cmd=dailyTaskAdminUI";
+				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
+				session.setAttribute("adminSeq", user.get("ADMIN_SEQ"));
 			} else if(type.equals("staff")) {
 				result="controller?cmd=tabMenuStaffUI";
+				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
+				session.setAttribute("name", user.get("NAME"));
 			}
 			session.setAttribute("type", type);
-			session.setAttribute("branchSeq", user.get("branchSeq"));
 		} 
 
 		request.setAttribute("result", result);
