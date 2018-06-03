@@ -13,7 +13,7 @@
 <style>	
 .tabs {
 	padding: 0px;
-	width: 360px;
+	min-width: 360px;
 };
 .inline {
 	display : inline;
@@ -21,6 +21,11 @@
 .w3-bar-block {
 	font-size: small;
 	font-weight: bold;
+}
+header, body {
+	max-width: 500px;
+    margin: auto;
+	text-align: center;
 }
 </style>
 </head>
@@ -46,10 +51,8 @@
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
   </div>
 </div>
-<div class="w3-container w3-large">
-  <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()">☰</a>
-  <a href="controller?cmd=homeUI"><img src="images/logo.png" style="width: 160px; margin-left:10%;"></a>
-</div>
+  <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()" style="float: left;">☰</a>
+  <a href="controller?cmd=homeUI"><img src="images/logo.png" style="width: 160px; "></a>
 </header>
 
 <!-- 위치조정 필요 -->
