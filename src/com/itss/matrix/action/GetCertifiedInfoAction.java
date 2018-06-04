@@ -29,7 +29,7 @@ public class GetCertifiedInfoAction implements Action {
 				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
 				session.setAttribute("adminSeq", user.get("ADMIN_SEQ"));
 			} else if(type.equals("staff")) {
-				result="controller?cmd=tabMenuStaffUI";
+				result="controller?cmd=dailyTaskStaffUI";
 				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
 				session.setAttribute("name", user.get("NAME"));
 			}

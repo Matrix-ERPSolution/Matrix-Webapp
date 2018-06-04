@@ -172,6 +172,16 @@ $("saveID").checkboxradio();
 			$("#pwCheck").html("");
 		}
 	});
+	
+	//엔터 키 누르면 로그인 버튼 누르는 기능 구현하고싶음
+	/*var enterToLogin = function(input){
+		alert($(input).val());
+	}
+	$("#pw").keydown(function(input){
+		if($(input).val().keycode===13){
+			alert('엔터');
+		}
+	}) */
 
 	//로그인
 	$("#login").on("click",	function() {
@@ -233,6 +243,7 @@ $("saveID").checkboxradio();
 		} else {
 			alert("아이디, 비밀번호를 확인해주세요.");
 		}
+		
 	});
 
 	//비밀번호 찾기 페이지 이동
