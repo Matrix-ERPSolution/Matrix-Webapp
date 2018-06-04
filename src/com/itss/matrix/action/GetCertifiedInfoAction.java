@@ -20,7 +20,6 @@ public class GetCertifiedInfoAction implements Action {
 		String result = "controller?cmd=certificationUI";
 		
 		Map user = new UserDAO().getCertifiedInfo(userId);
-		
 		if(user!=null) {
 			String type = (String)user.get("type");
 			HttpSession session = request.getSession(true);
@@ -31,7 +30,7 @@ public class GetCertifiedInfoAction implements Action {
 			} else if(type.equals("staff")) {
 				result="controller?cmd=dailyTaskStaffUI";
 				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
-				session.setAttribute("name", user.get("NAME"));
+				session.setAttribute("staffName", user.get("NAME"));
 			}
 			session.setAttribute("type", type);
 		} 

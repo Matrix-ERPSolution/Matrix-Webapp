@@ -39,7 +39,8 @@
 }
 
 .accordion:before, .subAccordion:before {
-    content: '\25B6';
+	font-family: FontAwesome;
+    content: '\f0da';
     color: #003366;
     font-weight: bold;
     float: left;
@@ -47,7 +48,8 @@
 }
 
 .active:before {
-    content: '\25BC';
+    font-family: FontAwesome;
+    content: '\f0d7';
 }
 
 .panel, .subPanel {

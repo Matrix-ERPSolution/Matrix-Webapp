@@ -78,6 +78,7 @@ public class DailyDAOTest {
 			//dao.addDailyTask("testtest", "2018/01/01", 1, "파트", "마감", 1);
 			//dao.setDailyTask("새로운 업무", "바꾸려는 업무", "2018/01/01", "오픈");
 			//dao.removeDailyTask("test", "2018/01/01", "파트", "오픈");
+			
 			System.out.println("\nend");
 	}
 }

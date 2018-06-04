@@ -388,7 +388,7 @@ public class UserDAO {
 	/**관리자 or 직원 or 미인증자 여부 확인*/
 	public Map getCertifiedInfo(String userId){
 		SqlSession session = sqlSessionFactory.openSession();
-		Map<Object, Object> result = new HashMap<>();
+		Map result = new HashMap<>();
 		try {
 			if(!isUserId(userId)){
 				throw new RuntimeException("getCertifiedInfo 실패 nullUserId");

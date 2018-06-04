@@ -25,7 +25,8 @@
 }
 
 .accordion:before {
-    content: '\25B6';
+	font-family: FontAwesome;
+    content: '\f0da';
     color: #003366;
     font-weight: bold;
     float: left;
@@ -33,7 +34,8 @@
 }
 
 .active:before {
-    content: '\25BC';
+    font-family: FontAwesome;
+    content: '\f0d7';
 }
 
 .panel {
@@ -147,6 +149,23 @@ $(function(){
 </div>
 
 <script>
+var setCheckBox = function(input){
+	$(input).removeClass("fa fa-square-o");
+	$(input).addClass("fa fa-check-square-o");
+	var dailyTaskToFinish = input.parentNode.childNodes[0].nodeValue;
+	$.ajax({
+		url : "controller?cmd=setFinisherAction",
+		data : {
+			assignDate : $("#datepicker").val(),
+			dailyTask : dailyTaskToFinish
+		},
+		success : function(result){
+			alert("완료 등록되었습니다.");
+			location.reload();
+		}
+	});
+};
+
 	// 아코디언
 	var activateAcc = function(input){
 	    input.classList.toggle("active");
@@ -155,7 +174,7 @@ $(function(){
 	      panel.style.maxHeight = null;
 	    } else {
 			$.ajax({
-		        url : "controller?cmd=getDailyTasksAction", 
+		        url : "controller?cmd=getDailyTasksStaffAction", 
 		        data: {
 		        	assignDate : $("#datepicker").val(),
 		        	assignType : input.id
@@ -163,6 +182,7 @@ $(function(){
 		        success : function(result){
 		        	panel.innerHTML = result;
 		        	panel.style.maxHeight = panel.scrollHeight + "px";
+		        	
 		        }
 		    });
 	    } 
@@ -201,6 +221,7 @@ $(function(){
 			},
 			success : function(result) {
 				$("#content").html(result);
+				
 			}
 		});
 	}

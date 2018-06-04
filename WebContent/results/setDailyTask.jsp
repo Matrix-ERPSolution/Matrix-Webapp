@@ -21,8 +21,9 @@ html, body { height:100%; margin:0; padding:0;}
     background-color: #99ccff;
 }
 
-.accordion:before, .subAccordion:before {
-    content: '\25B6';
+.accordion:before {
+	font-family: FontAwesome;
+    content: '\f0da';
     color: #003366;
     font-weight: bold;
     float: left;
@@ -30,7 +31,8 @@ html, body { height:100%; margin:0; padding:0;}
 }
 
 .active:before {
-    content: '\25BC';
+    font-family: FontAwesome;
+    content: '\f0d7';
 }
 
 .panel, .subPanel {

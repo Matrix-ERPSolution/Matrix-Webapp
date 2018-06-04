@@ -66,7 +66,7 @@ function w3_close() {
     document.querySelector("#mySidebar").style.display = "none";
 }
 
-$( document ).ready(function() {
+/* $( document ).ready(function() {
 	$.ajax({
 	url: "controller?cmd=getSlideInfoAction",
 	success: function(result) {
@@ -75,7 +75,7 @@ $( document ).ready(function() {
 		$("#name").html(result["name"]);
 	}
 	});
-});
+}); */
 </script>
 </body>
 </html>
