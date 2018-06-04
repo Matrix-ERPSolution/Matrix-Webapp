@@ -35,6 +35,7 @@ html, body { height:100%; margin:0; padding:0;}
     content: '\f0d7';
 }
 
+
 .panel, .subPanel {
     padding: 0 18px;
     background-color: white;
@@ -242,23 +243,38 @@ ${param.oldDailyTask}
 	});
 	
 	$("#update").on("click", function(){
-		var imp = 0;
-		if ($("#selectedTask").hasClass("important")) {
-			imp = 1;
-		}
 		$.ajax({
-			url : "controller?cmd=setDailyTaskAction",
-			data : {
-				oldDailyTask : "${param.oldDailyTask}",
-				newDailyTask : $("#selectedTask").html().trim(),
-				assignDate : "${param.assignDate}",
-				assignDetail : "${param.assignDetail}",
-				newImportance : imp
-			},
-			success : function(result) {
-				alert("${param.oldDailyTask} 업무를 " + $("#selectedTask").html().trim() + "업무로 변경하였습니다.")
-				location.href="controller?cmd=dailyTaskAdminUI";
-			}
-		})
+	        url : "controller?cmd=isDailyTaskAction", 
+	        data : {  
+	        	dailyTask : $("#selectedTask").html().trim(), 
+	        	assignDate : "${param.date}",
+	        },
+	        success : function(result) {
+	        	result = JSON.parse(result);
+				if(result["result"] == "true") {
+					alert('해당 날짜에 이미 배정된 업무입니다.');
+					$("#closeModal").click();
+				} else {
+					var imp = 0;
+					if ($("#selectedTask").hasClass("important")) {
+						imp = 1;
+					}
+					$.ajax({
+						url : "controller?cmd=setDailyTaskAction",
+						data : {
+							oldDailyTask : "${param.oldDailyTask}",
+							newDailyTask : $("#selectedTask").html().trim(),
+							assignDate : "${param.assignDate}",
+							assignDetail : "${param.assignDetail}",
+							newImportance : imp
+						},
+						success : function(result) {
+							alert("${param.oldDailyTask} 업무를 " + $("#selectedTask").html().trim() + "업무로 변경하였습니다.")
+							location.href="controller?cmd=dailyTaskAdminUI";
+						}
+					})
+				}
+	        }
+		});
 	});
 </script>
