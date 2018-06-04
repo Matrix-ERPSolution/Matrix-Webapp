@@ -220,7 +220,7 @@ public class DailyDAO {
 	
 
 	/** 업무 수정 */
-	public void setDailyTask(String newDailyTask, String oldDailyTask, String assignDate, String assignDetail) {
+	public void setDailyTask(String newDailyTask, String oldDailyTask, String assignDate, String assignDetail, int newImportance) {
 		SqlSession session = sqlSessionFactory.openSession();
 		int result = -1;
 		Map input = new HashMap<>();
@@ -229,6 +229,7 @@ public class DailyDAO {
 			// 과거 업무 수정
 			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 			Date today = new Date();
+			today.setTime(0);
 			Date date = df.parse(assignDate); 
 			if(today.after(date)){
 				throw new RuntimeException("과거의 업무를 수정 할 수 없습니다.");
@@ -253,7 +254,6 @@ public class DailyDAO {
 			map.put("oldDailyTask", oldDailyTask);
 			map.put("assignDate", assignDate);
 			String str = session.selectOne("dailyMapper.getAssignDetail", map);
-			System.out.println(str);
 			if(!str.equals(assignDetail)){
 				throw new RuntimeException("바꾸려는 업무의 배정대상이 일치하지 않습니다.");
 			}
@@ -262,6 +262,7 @@ public class DailyDAO {
 			input.put("assignDetail", assignDetail);
 			input.put("assignDate", assignDate);
 			input.put("oldDailyTask", oldDailyTask);
+			input.put("newImportance", newImportance);
 			int newManualTaskSeq = new ManualDAO().getManualTaskSeq(newDailyTask);
 			if (newManualTaskSeq == -1) {
 				result = session.update("dailyMapper.setDailyTaskByInput", input);
@@ -282,7 +283,6 @@ public class DailyDAO {
 	
 	/** 업무 한가지 검색 */
 	public Map<String, String> getDailyTask(String dailyTask, String assignDate, String assignDetail) {
-		System.out.println(dailyTask+assignDate+assignDetail);
 		Map<String, String> result= null;
 		Map<String, String> input = new HashMap<>();
 		input.put("dailyTask", dailyTask);
@@ -291,7 +291,6 @@ public class DailyDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			result = session.selectOne("dailyMapper.getDailyTask", input);
-			System.out.println(result);
 			if(result==null){
 				throw new RuntimeException("선택된 업무가 없습니다.");
 			}

@@ -37,12 +37,12 @@
 	</select>
 	<update id="setDailyTaskByInput" parameterType="java.util.Map">
 		update daily_tasks
-		set daily_task=#{newDailyTask}, manual_task_seq = null
+		set daily_task=#{newDailyTask}, manual_task_seq = null, importance=#{newImportance}
 		where assign_date=#{assignDate} and assign_detail=#{assignDetail} and daily_task=#{oldDailyTask}
 	</update>
 	<update id="setDailyTaskByManual" parameterType="java.util.Map">
 		update daily_tasks
-		set daily_task=#{newDailyTask}, manual_task_seq = #{newManualTaskSeq}
+		set daily_task=#{newDailyTask}, manual_task_seq = #{newManualTaskSeq}, importance=#{newImportance}
 		where assign_date=#{assignDate} and assign_detail=#{assignDetail} and daily_task=#{oldDailyTask}
 	</update>	
 	<update id="setDailyAssign" parameterType="java.util.Map">

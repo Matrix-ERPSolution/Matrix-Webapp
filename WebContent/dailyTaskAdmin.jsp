@@ -77,19 +77,19 @@ li.deleting:hover:after {
 #datemenu {
 	vertical-align: middle 
 }
-.modal {
+/* .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 80%; /* Full width */
+    height: 80%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+} */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -105,6 +105,16 @@ li.deleting:hover:after {
     margin: auto;
     background: #3284E2;
 	text-align: center;
+}
+#selectedTask::before {
+	content: "\2605";
+	color: lightgray;
+	width: 1em;
+}
+.important#selectedTask::before {
+	content: "\2605";
+	color: orange;
+	width: 1em;
 }
 </style>
 <script type="text/javascript">
@@ -167,12 +177,10 @@ $(function(){
    <button id="deleteTask">삭제</button>
 </div>
 
-<div id="selectedTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);">
+<div id="updateTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.4);">
 </div>
-<div id="selectedTaskPopup" style="z-index:4;position:fixed;outline:0;width:100%; background-color: white; display:none;">
-    <span id="updatePopup"></span>
-    <span id="closeModal" class="w3-button" style="pad; top:0; padding:3px 6px;">&times;</span>
-    <span id="update" class="w3-button" style="pad; position:absolute; padding:3px 6px;">수정완료</span>
+<div id="updateTaskPopup" style="z-index:4;position:absolute;outline:0;margin:50px;top:100px;overflow-y:auto;background-color: white; display:none;">
+    <span id="updateTaskContent"></span>
 </div>
 
 <script>
@@ -285,39 +293,25 @@ $(function(){
 	});
 
 	$("#closeModal").on("click", function() {
-		$("#updatePopup").html("");
-		$("#selectedTaskModal").css({
+		$("#updateTaskContent").html("");
+		$("#updateTaskModal").css({
 			display : "none"
 		});
-		$("#selectedTaskPopup").css({
+		$("#updateTaskPopup").css({
 			display : "none"
 		});
 	});
 
 	var activateTask = function(input) {
-		var imp = false;
+		var imp = 0;
 		if ($(input).parent().hasClass("important")) {
-			imp = true;
+			imp = 1;
 		}
-		$.ajax({
-			url : "controller?cmd=setDailyTaskUI",
-			data : {
-				oldDailyTask : $(input).parent().text(),
-				assignDetail : $(input).next().id,
-				assignName : $(input).next().text(),
-				assignDate : $("#datepicker").val(),
-				importance : imp
-			},
-			success : function(result) {
-				$("#updatePopup").html(result);
-			}
-		});
-		$("#selectedTaskModal").css({
-			display : "block"
-		});
-		$("#selectedTaskPopup").css({
-			display : "block"
-		});
+		location.href = "controller?cmd=setDailyTaskUI&oldDailyTask="+input.parentNode.childNodes[0].nodeValue
+					+"&assignDetail="+$(input).next().prop("id")
+					+"&assignName="+$(input).next().text()
+					+"&assignDate="+$("#datepicker").val()
+					+"&importance="+imp;
 	}
 	var activateAssign = function(input) {
 		var assignType = '파트';
@@ -339,41 +333,51 @@ $(function(){
 				importance : imp
 			},
 			success : function(result) {
-				$("#updatePopup").html(result);
+				$("#updateTaskContent").html(result);
 			}
 		});
-		$("#selectedTaskModal").css({
+		$("#updateTaskModal").css({
 			display : "block"
 		});
-		$("#selectedTaskPopup").css({
+		$("#updateTaskPopup").css({
 			display : "block"
 		});
 	}
 
 	$("#deleteTask").click(function() {
-		$("li").addClass("deleting")
-		$("li").click(function() {
-			var task = this.childNodes[0].nodeValue.trim();
-			confirm(task + ' 업무를 삭제하시겠습니까?')
-			var type = '파트';
-			if($(this).hasClass("personal")){
-				type = '개인';
-			}
-			$.ajax({
-				url : "controller?cmd=removeDailyTaskAction",
-				data : {
-					dailyTask :  task,
-					assignType : type,
-					assignDetail : $(this).children(".assignDetail").attr("id"),
-					assignDate : $("#datepicker").val()
-				},
-				success : function(result) {
-					if(result == '성공'){
-						alert(task +' 업무가 삭제되었습니다.')
+		$("li").toggleClass("deleting");
+		if ($("li").hasClass("deleting")) {
+			$(this).html("삭제완료");
+			$("li").click(function() {
+				var task = this.childNodes[0].nodeValue.trim();
+				if(confirm(task + ' 업무를 삭제하시겠습니까?')){
+					var type = '파트';
+					if($(this).hasClass("personal")){
+						type = '개인';
 					}
+					$.ajax({
+						url : "controller?cmd=removeDailyTaskAction",
+						data : {
+							dailyTask :  task,
+							assignType : type,
+							assignDetail : $(this).children(".assignDetail").attr("id"),
+							assignDate : $("#datepicker").val()
+						},
+						success : function(result) {
+							var result = JSON.parse(result);
+							if(result["result"] == "성공") {
+								alert(task +' 업무가 삭제되었습니다.')
+							}
+							location.href="controller?cmd=dailyTaskAdminUI";
+						}
+					});
 				}
 			});
-		});
+		} else {
+			$(this).html("삭제");
+			$("li").click("");
+		}
+		
 	});
 
 	/**assignTaskAdmin 페이지로 이동*/
