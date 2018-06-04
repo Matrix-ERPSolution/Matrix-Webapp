@@ -34,9 +34,9 @@ public class StaffDAO {
 		List<String> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getWorkParts", branchSeq);
-			if(list.isEmpty()) {
+			/*if(list.isEmpty()) {
 				throw new RuntimeException("getWorkParts 결과:empty");
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -51,9 +51,9 @@ public class StaffDAO {
 		Collection<Map<String, String>> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getWorkingStaffs", branchSeq);
-			if(list.isEmpty()){
+			/*if(list.isEmpty()){
 				throw new RuntimeException("getWorkingStaffs 결과:empty");
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -68,9 +68,9 @@ public class StaffDAO {
 		Collection<Map<String, String>> list = new ArrayList<>();
 		try {
 			list = session.selectList("staffMapper.getPreStaffs", branchSeq);
-			if(list.isEmpty()){
+			/*if(list.isEmpty()){
 				throw new RuntimeException("getPreStaffs 결과:empty");
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -145,9 +145,9 @@ public class StaffDAO {
 				throw new RuntimeException("getLeftStaffs 실패 nullBranchSeq");
 			}
 			list = session.selectList("staffMapper.getLeftStaffs", branchSeq);
-			if(list.isEmpty()){
+		/*	if(list.isEmpty()){
 				throw new RuntimeException("getLeftStaffs 결과:empty");
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

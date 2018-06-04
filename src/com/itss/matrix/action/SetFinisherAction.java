@@ -14,10 +14,7 @@ public class SetFinisherAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		System.out.println(session.getAttribute("branchSeq"));
-		int i = (int)session.getAttribute("branchSeq");
-		System.out.println(i+1);
-		new DailyDAO().setFinisher((String)session.getAttribute("userId"), (String)session.getAttribute("staffName"), request.getParameter("assignDate"), ((BigDecimal)session.getAttribute("branchSeq")).intValue(), request.getParameter("dailyTask").trim());
+		new DailyDAO().setFinisher((String)session.getAttribute("userId"), (String)session.getAttribute("staffName"), request.getParameter("assignDate"), Integer.parseInt((String)request.getSession(true).getAttribute("branchSeq")), request.getParameter("dailyTask").trim());
 		return "results/succeed.jsp";
 	}
 

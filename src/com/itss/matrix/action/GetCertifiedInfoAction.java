@@ -19,18 +19,18 @@ public class GetCertifiedInfoAction implements Action {
 		String userId = (String)request.getSession().getAttribute("userId");
 		String result = "controller?cmd=certificationUI";
 		
-		Map user = new UserDAO().getCertifiedInfo(userId);
+		Map<String, String> user = new UserDAO().getCertifiedInfo(userId);
 		if(user!=null) {
 			String type = (String)user.get("type");
 			HttpSession session = request.getSession(true);
 			if(type.equals("admin")) {
 				result="controller?cmd=dailyTaskAdminUI";
-				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
-				session.setAttribute("adminSeq", user.get("ADMIN_SEQ"));
+				session.setAttribute("branchSeq", String.valueOf(user.get("BRANCH_SEQ")));
+				session.setAttribute("adminSeq", String.valueOf(user.get("ADMIN_SEQ")));
 			} else if(type.equals("staff")) {
 				result="controller?cmd=dailyTaskStaffUI";
-				session.setAttribute("branchSeq", user.get("BRANCH_SEQ"));
-				session.setAttribute("staffName", user.get("NAME"));
+				session.setAttribute("branchSeq", String.valueOf(user.get("BRANCH_SEQ")));
+				session.setAttribute("staffName", String.valueOf(user.get("NAME")));
 			}
 			session.setAttribute("type", type);
 		} 

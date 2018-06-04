@@ -19,7 +19,7 @@ public class AddDailyTaskAction implements Action {
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String assignType = request.getParameter("assignType");
 		String assignDetail = request.getParameter("assignDetail");
-		int adminSeq = ((BigDecimal)session.getAttribute("adminSeq")).intValue();
+		int adminSeq = Integer.parseInt((String)session.getAttribute("adminSeq"));
 		
 		new DailyDAO().addDailyTask(dailyTask, assignDate, importance, assignType, assignDetail, adminSeq);
 		return "results/succeed.jsp";

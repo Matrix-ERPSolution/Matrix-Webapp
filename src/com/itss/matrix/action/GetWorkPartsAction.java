@@ -12,7 +12,7 @@ import com.itss.matrix.model.StaffDAO;
 public class GetWorkPartsAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		List<String> workParts = new StaffDAO().getWorkParts(((BigDecimal)request.getSession().getAttribute("branchSeq")).intValue());
+		List<String> workParts = new StaffDAO().getWorkParts(Integer.parseInt((String)request.getSession(true).getAttribute("branchSeq")));
 		String page = "results/getWorkParts.jsp";
 		request.setAttribute("workParts", workParts);
 		
