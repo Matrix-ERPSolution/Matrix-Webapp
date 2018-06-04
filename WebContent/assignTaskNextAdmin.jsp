@@ -232,22 +232,36 @@ for (i = 0; i < li.length; i++) {
 };
 
 $('#assignButton').on('click',function (){
-	var selectedAssignType = "개인";
-	if($("#selectedAssignType").html()==" 파트에"){
-		selectedAssignType = "파트";
-	}
 	 $.ajax({
-	        url : "controller?cmd=addDailyTaskAction", 
+	        url : "controller?cmd=isDailyTaskAction", 
 	        data : {  
 	        	dailyTask : "${param.selectedTask}", 
 	        	assignDate : "${param.date}",
-	        	importance : "${param.importance}", 
-	        	assignType : selectedAssignType, 
-	        	assignDetail : $(".selectedAssignDetail").attr("id")
 	        },
 	        success : function(result) {
-	        	alert("${param.selectedTask}를 " +$(".selectedAssignDetail").attr("id") + "에게 배정했습니다.");
-				location.href = "controller?cmd=dailyTaskAdminUI";
+	        	result = JSON.parse(result);
+				if(result["result"] == "true") {
+					alert('해당 날짜에 이미 배정된 업무입니다.')
+				} else {
+					var selectedAssignType = "개인";
+					if($("#selectedAssignType").html()==" 파트에"){
+						selectedAssignType = "파트";
+					}
+					 $.ajax({
+					        url : "controller?cmd=addDailyTaskAction", 
+					        data : {  
+					        	dailyTask : "${param.selectedTask}", 
+					        	assignDate : "${param.date}",
+					        	importance : "${param.importance}", 
+					        	assignType : selectedAssignType, 
+					        	assignDetail : $(".selectedAssignDetail").attr("id")
+					        },
+					        success : function(result) {
+					        	alert("${param.selectedTask}를 " +$(".selectedAssignDetail").attr("id") + "에게 배정했습니다.");
+								location.href = "controller?cmd=dailyTaskAdminUI";
+					        }
+					 });
+				}
 	        }
 	 });
 });

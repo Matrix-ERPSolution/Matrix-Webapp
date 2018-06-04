@@ -113,6 +113,9 @@ public class ActionFactory {
 		case "searchManualTasksAction":
 			a = new SearchManualTasksAction();
 			break;
+		case "isDailyTaskAction":
+			a = new IsDailyTaskAction();
+			break;
 		case "addDailyTaskAction":
 			a = new AddDailyTaskAction();
 			break;

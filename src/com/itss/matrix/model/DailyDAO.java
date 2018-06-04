@@ -104,7 +104,6 @@ public class DailyDAO {
 		try {
 			if(session.selectOne("dailyMapper.isDailyTask", input) != null){
 				result = true;
-				throw new RuntimeException("해당날짜에 이미 업무가 있습니다.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

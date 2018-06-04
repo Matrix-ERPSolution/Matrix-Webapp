@@ -9,7 +9,8 @@
 		<li class="part important">
 	</c:if>
 	<c:if test="${param.importance == false}">
-		<li class="part">
+		<li class="part">28
+		
 	</c:if>
 	${param.dailyTask}
 	<span class="assignDetail unfinished " id="${param.oldAssignDetail}" style="float: right; display: none;">${param.oldAssignName}</span>
