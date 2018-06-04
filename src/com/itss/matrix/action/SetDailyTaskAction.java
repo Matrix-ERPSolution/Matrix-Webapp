@@ -16,7 +16,6 @@ public class SetDailyTaskAction implements Action {
 		String assignDate = request.getParameter("assignDate");
 		String assignDetail = request.getParameter("assignDetail");
 		int newImportance = Integer.parseInt(request.getParameter("newImportance"));
-		System.out.println(oldDailyTask+newDailyTask+assignDate+assignDetail+newImportance);
 		new DailyDAO().setDailyTask(newDailyTask, oldDailyTask, assignDate, assignDetail, newImportance);
 		
 		return "results/succeed.jsp";

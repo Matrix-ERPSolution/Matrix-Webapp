@@ -163,13 +163,13 @@ public class ManualDAO {
 		String manualTaskSeq = null;
 		try {
 			manualTaskSeq = session.selectOne("manualMapper.getManualTaskSeq", searchTask);
-			if(manualTaskSeq == null){
-				manualTaskSeq = "-1";
-			}
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally {
 			session.close();
+		}
+		if(manualTaskSeq == null){
+			manualTaskSeq = "-1";
 		}
 		return Integer.parseInt(manualTaskSeq);
 	}

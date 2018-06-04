@@ -83,7 +83,9 @@ public class FormatCheckSolution {
 	    for (int i = 0; i < s.length(); i++) {
 	      if (ch[i] >= '\u0020' && ch[i] <= 'z') {
 	    	  count++;
-	      } else if (ch[i] >= '\uAC00' && ch[i] <= '\uD7A3') {
+	      } else if (ch[i] >= '\uAC00' && ch[i] <= '\uD7A3') {	//한글 가~힣
+	    	  count += 3;
+	      } else if (ch[i] >= '\u3131' && ch[i] <= '\u3163') {	//한글 자음
 	    	  count += 3;
 	      } else if (ch[i] > 'z' || ch[i] < '\u0020'){
 	    	  throw new RuntimeException("wrong input char type");
