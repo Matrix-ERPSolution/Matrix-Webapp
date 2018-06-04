@@ -23,8 +23,8 @@
 	border-radius: 20px;
 	border-color: white;
 	text-align: center;
-	background-color: #e6f2ff;
-	color: 003366;
+	background-color: rgb(153, 204, 255);
+	color: #003366;
 	font-weight: bold;
 }
 #login:hover {
@@ -35,7 +35,71 @@
 	max-width: 300px;
 	max-height: 300px;
 }
-.container {
+/* The container */
+.checkboxContainer {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    display:inline;
+    font-size:11pt;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hide the browser's default checkbox */
+.checkboxContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkboxContainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkboxContainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkboxContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkboxContainer .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+.container {	
 	max-width: 500px;
 	min-height: 590px;
     margin: auto;
@@ -59,8 +123,17 @@
 <input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
 <button id="login">로그인</button><br>
 <br>
-<input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
+<!-- <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
 <input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
+<br><br> -->
+<label class="checkboxContainer">자동 로그인
+  <input type="checkbox" class="check" name="autoLogin" id="autoLogin">
+  <span class="checkmark"></span>
+</label>
+<label class="checkboxContainer">아이디 저장
+  <input type="checkbox" class="check" name="saveId" id="saveId">
+  <span class="checkmark"></span>
+</label>
 <br><br>
 <a id="findIdPassword">아이디/비밀번호찾기</a><br>
 <a id="addUser" >회원가입</a>

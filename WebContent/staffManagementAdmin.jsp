@@ -79,11 +79,11 @@
     width: 80%; /* Could be more or less, depending on screen size */
 }
 .container {
-	max-width: 500px;
+	max-width: 800px;
 	min-height: 640px;
     margin: auto;
 	text-align: center;
-	background-color: rgba(255,255,255,0.8);
+	background-color: rgba(255,255,255,0.2);
 }
 .background {
 	background-image: url("images/background_img3.jpg");
