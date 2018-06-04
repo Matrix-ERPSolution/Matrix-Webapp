@@ -24,14 +24,15 @@
 }
 header, body {
 	max-width: 500px;
-    margin: auto;
+	margin: auto;
 	text-align: center;
+	background-color: rgba(255,255,255,1);
 }
 </style>
 </head>
 
 <body>
-<header>
+<header style="height: 50px;">
 <!-- Sidebar/menu -->
 <div class="w3-sidebar w3-white w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
   <button class="w3-bar-item w3-button w3-small" onclick="w3_close()" style="text-align:right;">&times;</button>
