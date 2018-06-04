@@ -394,5 +394,25 @@ public class DailyDAO {
 		removeDailyTask(new DailyVO(dailyTask, assignDate, assignType, assignDetail));
 	}
 
-	
+	/**직원: 업무 완료 선택*/
+	public void setFinisher(String finisherId, String staffName, String assignDate, int branchSeq, String dailyTask) {
+		SqlSession session = sqlSessionFactory.openSession();
+		Map input = new HashMap<>();
+		input.put("finisherId", finisherId);
+		input.put("staffName", staffName);
+		input.put("assignDate", assignDate);
+		input.put("branchSeq", branchSeq);
+		input.put("dailyTask", dailyTask);
+		try {
+			if(session.update("dailyMapper.setFinisher", input)==1){
+				session.commit();
+			} else {
+				throw new RuntimeException("setFinisher update 실패");
+			};
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }

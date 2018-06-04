@@ -68,6 +68,9 @@ public class ActionFactory {
 		case "loginAction":
 			a = new LoginAction();
 			break;
+		case "logoutAction":
+			a = new LogoutAction();
+			break;
 		case "getCertifiedInfoAction":
 			a = new GetCertifiedInfoAction();
 			break;
@@ -88,6 +91,9 @@ public class ActionFactory {
 			break;
 		case "getRecommendedTasksAction":
 			a = new GetRecommendedTasksAction();
+			break;
+		case "getDailyTasksStaffAction":
+			a = new GetDailyTasksStaffAction();
 			break;
 		case "getSpaceTypesAction":
 			a = new GetSpaceTypesAction();
@@ -118,6 +124,9 @@ public class ActionFactory {
 			break;
 		case "addDailyTaskAction":
 			a = new AddDailyTaskAction();
+			break;
+		case "setFinisherAction":
+			a = new SetFinisherAction();
 			break;
 		case "getSlideInfoAction":
 			a = new GetSlideInfoAction();
