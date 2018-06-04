@@ -39,6 +39,9 @@ public class ActionFactory {
 		case "dailyTaskAdminUI":
 			a = new DailyTaskAdminUI();
 			break;
+		case "dailyTaskStaffUI":
+			a = new DailyTaskStaffUI();
+			break;
 		case "setDailyTaskUI":
 			a = new SetDailyTaskUI();
 			break;
