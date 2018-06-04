@@ -220,14 +220,17 @@ $(function(){
 			$("#updateTask").show();
 			$("#deleteTask").show();
 			$("#scrollFuture").show();
+			$("#assignTaskButton").show();
 		} else if ($("#datepicker").val() == tomorrow) {
 			$("#updateTask").show();
 			$("#deleteTask").show();
 			$("#scrollFuture").hide();
+			$("#assignTaskButton").show();
 		} else {
 			$("#updateTask").hide();
 			$("#deleteTask").hide();
 			$("#scrollFuture").show();
+			$("#assignTaskButton").hide();
 		}
 		$.ajax({
 			url : "controller?cmd=getAssignedPartsAction",
@@ -361,7 +364,7 @@ $(function(){
 				data : {
 					dailyTask :  task,
 					assignType : type,
-					assignDetail : $(this).children(".assignDetail").prop("id"),
+					assignDetail : $(this).children(".assignDetail").attr("id"),
 					assignDate : $("#datepicker").val()
 				},
 				success : function(result) {

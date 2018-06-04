@@ -63,6 +63,16 @@ li:hover, .selected {
    margin: .8em 0 .2em;
    line-height: 1.5;
 }
+#selectedTask::before {
+	content: "\2605";
+	color: lightgray;
+	width: 1em;
+}
+.important#selectedTask::before {
+	content: "\2605";
+	color: orange;
+	width: 1em;
+}
 </style>
 </head>
 <body>
@@ -231,10 +241,17 @@ li:hover, .selected {
 			display : "none"
 		});
 	});
+	
+	$("#selectedTask").on("click", function() {
+		this.classList.toggle("important");
+	});
 
 	$("#goNext").on("click", function() {
-		console.log("${param.date}")
-		location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html()+"&date="+"${param.date}";
+		var importance = 0;
+		if($("#selectedTask").hasClass("important")){
+			importance = 1;
+		}
+		location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html().trim()+"&date="+"${param.date}&importance="+importance;
 	});
 
 	//자동완성

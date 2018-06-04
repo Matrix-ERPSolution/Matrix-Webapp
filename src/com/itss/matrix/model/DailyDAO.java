@@ -282,6 +282,7 @@ public class DailyDAO {
 	
 	/** 업무 한가지 검색 */
 	public Map<String, String> getDailyTask(String dailyTask, String assignDate, String assignDetail) {
+		System.out.println(dailyTask+assignDate+assignDetail);
 		Map<String, String> result= null;
 		Map<String, String> input = new HashMap<>();
 		input.put("dailyTask", dailyTask);
@@ -290,6 +291,7 @@ public class DailyDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			result = session.selectOne("dailyMapper.getDailyTask", input);
+			System.out.println(result);
 			if(result==null){
 				throw new RuntimeException("선택된 업무가 없습니다.");
 			}

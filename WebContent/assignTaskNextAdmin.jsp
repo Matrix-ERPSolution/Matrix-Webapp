@@ -60,7 +60,7 @@
     padding: 0 18px;
     float: center;
 }
-#selectedAssignDetail{
+.selectedAssignDetail{
 	font-size: 12pt;
 	color: blue;
 }
@@ -88,6 +88,16 @@
 .workparts:hover, .staffBox:hover, .selected {
 	background-color: #99ccff;
 }
+#selectedTask::before {
+	content: "\2605";
+	color: lightgray;
+	width: 1em;
+}
+.important#selectedTask::before {
+	content: "\2605";
+	color: orange;
+	width: 1em;
+}
 </style>
 </head>
 <body>
@@ -96,7 +106,7 @@
 <hr> <br>
 
 <div id="assignedTaskBox">
-	<h4>${param.selectedTask}
+	<h4 id="selectedTask">${param.selectedTask}
 	<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i>
 	</h4>
 </div>
@@ -114,7 +124,7 @@
 </div>
 
 <hr> <br>
-<h5>해당 업무를 <span id="selectedAssignDetail">&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="selectedAssignType"></span> 배정합니다.</h5>
+<h5>해당 업무를 <span class="selectedAssignDetail">&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="selectedAssignType"></span> 배정합니다.</h5>
 
 <hr> <br>
 <div style="text-align: center;">
@@ -124,6 +134,12 @@
 <button id="assignCancelButton">취소</button>
 </div>
 <script>
+$(document).ready(function() {
+	if("${param.importance}"==1){
+		$("#selectedTask").addClass("important");
+	}
+});
+
 $("#assignableParts").on("click", function() {
 	this.classList.toggle("active");
 	var panel = this.nextElementSibling;
@@ -142,13 +158,15 @@ $("#assignableParts").on("click", function() {
 var setWorkPart = function(input){
 	$(".selected").removeClass("selected");
 	$(input).addClass("selected");
-	$("#selectedAssignDetail").html($(input).html());
+	$(".selectedAssignDetail").html($(input).html());
+	$(".selectedAssignDetail").attr("id", $(input).html());
 	$("#selectedAssignType").html(" 파트에");
 }
 
 var setWorkStaff = function(input){
 	$(".selected").removeClass("selected");
-	$("#selectedAssignDetail").html($(input).clone());
+	$(".selectedAssignDetail").html($(input).clone());
+	$(".selectedAssignDetail").attr("id", $(input).children("img").prop("title"));
 	$(input).children(".staffName").addClass("selected");
 	$("#selectedAssignType").html(" 님에게");
 }
@@ -214,7 +232,6 @@ for (i = 0; i < li.length; i++) {
 };
 
 $('#assignButton').on('click',function (){
-	console.log("${param.date}")
 	var selectedAssignType = "개인";
 	if($("#selectedAssignType").html()==" 파트에"){
 		selectedAssignType = "파트";
@@ -224,12 +241,12 @@ $('#assignButton').on('click',function (){
 	        data : {  
 	        	dailyTask : "${param.selectedTask}", 
 	        	assignDate : "${param.date}",
-	        	importance : 0, 
+	        	importance : "${param.importance}", 
 	        	assignType : selectedAssignType, 
-	        	assignDetail : $("#selectedAssignDetail").text()
+	        	assignDetail : $(".selectedAssignDetail").attr("id")
 	        },
 	        success : function(result) {
-	        	alert("${param.selectedTask}를 " +$("#selectedAssignDetail").text() + "에게 배정했습니다.");
+	        	alert("${param.selectedTask}를 " +$(".selectedAssignDetail").attr("id") + "에게 배정했습니다.");
 				location.href = "controller?cmd=dailyTaskAdminUI";
 	        }
 	 });

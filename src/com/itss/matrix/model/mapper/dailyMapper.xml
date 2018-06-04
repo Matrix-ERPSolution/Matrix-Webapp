@@ -63,12 +63,8 @@
 		select daily_task, assign_type, assign_detail 
 		from daily_tasks 
 		where assign_date=#{assignDate} 
-		<if test="#{dailyTask} != null">
 			and daily_task=#{dailyTask}
-		</if>
-		<if test="#{assignDetail} != null">
 			and assign_detail=#{assignDetail}
-		</if>
 	</select>
 	<select id="getBranchSeq" parameterType="int" resultType="int">
 		select distinct branch_seq
