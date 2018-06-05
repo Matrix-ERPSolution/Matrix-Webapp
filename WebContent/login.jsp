@@ -4,20 +4,19 @@
 <html>
 <head>
 <%@include file="headSetting.jsp" %>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>로그인</title>
 <style>
-.background {
+body {
 	background-image: url("images/login.png");
     background-position: center top;
     background-repeat: no-repeat;
-    background-size: contain;
-    position: relative;
+    background-size: 360px 640px;
     margin: auto;
+    width: 100%;
 }
 .container {	
-	max-width: 500px;
-	min-height: 590px;
     margin: auto;
     padding-top: 200px;
 	text-align: center;
@@ -32,7 +31,7 @@
 	width: 200px;
 	padding: 10px;
 	text-align: center;
-	background-color: none;
+	background-color: rgba(0,0,0,0);
 	color: #004566;
 	font-weight: bold;
 }
@@ -46,7 +45,7 @@
 	color: #FFFFFF;
 }
 #login:hover {
-	background-color: #00324d;
+	background-color: #002133;
 }
 #logo {
 	max-width: 300px;
@@ -109,10 +108,10 @@
 
 /* Style the checkmark/indicator */
 .checkboxContainer .checkmark:after {
-    left: 3px;
+    left: 5px;
     top: 0;
-    width: 5px;
-    height: 9px;
+    width: 6px;
+    height: 12px;
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
@@ -128,29 +127,31 @@
 			<br>
 			<br> <input type="text" id="userId" name="userId"
 				placeholder="아이디" class="roundBox">
-			<div id="idCheck"></div>
-			<br> <input type="password" id="pw" name="pw" placeholder="비밀번호"
+			<br><span id="idCheck"></span><br>
+			<input type="password" id="pw" name="pw" placeholder="비밀번호"
 				class="roundBox">
-			<div id="pwCheck"></div>
+			<br><span id="pwCheck"></span><br>
 			<br>
 			<button id="login">로그인</button>
 			<br> <br>
 			<!-- <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
 			<input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
 			<br><br> -->
-			<label class="checkboxContainer">자동 로그인 <input
-				type="checkbox" class="check" name="autoLogin" id="autoLogin">
+			<label class="checkboxContainer">자동 로그인 
+				<input type="checkbox" class="check" name="autoLogin"
+					id="autoLogin"> <span class="checkmark"></span>
+			</label> 
+			&nbsp;&nbsp;&nbsp;
+			<label class="checkboxContainer">아이디 저장 
+				<input type="checkbox" class="check" name="saveId" id="saveId">
 				<span class="checkmark"></span>
-			</label> <label class="checkboxContainer">아이디 저장 <input
-				type="checkbox" class="check" name="saveId" id="saveId"> <span
-				class="checkmark"></span>
-			</label> <br>
-			<br> <a
-				id="addUser">join</a>&nbsp; | &nbsp;<a id="findIdPassword">forgot id/password</a> 
+			</label> <br> <br> 
+			<a id="addUser" style="color: #004566">join</a>&nbsp; | &nbsp;<a id="findIdPassword" style="color: #004566">forgot id/password</a> 
 
 		</div>
 	</div>
-	<script type="text/javascript">
+	
+<script type="text/javascript">
 
 $("button").button();
 $("saveID").checkboxradio();
@@ -183,9 +184,6 @@ $("saveID").checkboxradio();
 		}
 	});
 	
-	var enterToLogin = function(input){
-		alert($(input).val());
-	}
 	$("#pw").keydown(function(event){
 		if(event.which==13){
 			$("#login").click();
@@ -247,10 +245,11 @@ $("saveID").checkboxradio();
 				},
 				success : function(result) {
 					$("body").html(result);
-					}
-				});	
+				}
+			});	
 		} else {
 			alert("아이디, 비밀번호를 확인해주세요.");
+			 $( ".container" ).effect( "shake" );
 		}
 		
 	});

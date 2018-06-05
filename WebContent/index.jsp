@@ -3,18 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style type="text/css">
 body {
 	background-color: #004566;
 	margin: auto;
-	min-height: 640;
+	width: 360px;
+	height: 640px;
 }
 </style>
 </head>
 </head>
 <body>
-<div style="padding-top:200px; color:white; text-align:center; font-weight: bold;"><img alt="logo" src="images/logo_white.png" width="250px"></div>
+<div style="padding-top:45%; color:white; text-align:center; font-weight: bold;"><img alt="logo" src="images/logo_white.png" width="350px"></div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("body").fadeOut(2000, toLogin);

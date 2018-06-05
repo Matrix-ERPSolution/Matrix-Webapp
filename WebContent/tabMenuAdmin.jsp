@@ -11,35 +11,44 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>	
+body {
+	width: 360px;
+	height: 640px;
+}
 .tabs {
 	padding: 0px;
-	min-width: 360px;
+	max-width: 360px;
+	margin-top: 230px;
+	background-color: rgba(255,255,255,0.5); 
+	position: relative;
+}
+.w3-col.s4 {
+
 }
 .w3-bar-block {
 	font-size: small;
 	font-weight: bold;
 }
 header {
-	max-width: 360px;
-	margin: auto;
+	width: 360px;
 	text-align: center;
 	background-image: url("images/header.png");
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 </style>
 </head>
 
 <body>
-<header style="height: 50px;">
+<header>
 <!-- Sidebar/menu -->
 <div class="w3-sidebar w3-white w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
   <button class="w3-bar-item w3-button w3-small" onclick="w3_close()" style="text-align:right;">&times;</button>
   <div class="w3-container">
   	<table>
   		<tr>
-  			<td><img alt="프로필사진" src="images/profile/defaultProfile.png" style="width: 70px; height: 70px; border-radius: 50%"></td>
-  			<td><span id="branchName"></span><br>관리자<br><span id="name"></span>님</td>
+  			<td><img id="slideProfilePhoto" alt="프로필사진" src="images/profile/defaultProfile.png" style="width: 70px; height: 70px; border-radius: 50%"></td>
+  			<td><span id="branchName"></span><br><span id="certifyType"></span><br><span id="name"></span>님</td>
 		</tr>
   	</table>
   </div>
@@ -54,16 +63,16 @@ header {
   <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()" style="float: left;">☰</a>
 
 <!-- 위치조정 필요 -->
-<nav class = "containerw3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay">
-	<div class="tabs w3-bar" style="background-color: #e6f2ff; position:relative;">
+<nav class = "containerw3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay">
+	<div class="tabs w3-bar">
 	    <div class="w3-col s4">
-	      <a id="dailyTaskTab" class="w3-button w3-block" style="background-color: #e6f2ff;">일일업무</a>
+	      <a id="dailyTaskTab" class="w3-button w3-block">일일업무</a>
 	    </div>
 	    <div class="w3-col s4">
-	      <a id="manualTab" class="w3-button w3-block" style="background-color: #e6f2ff;">매뉴얼</a>
+	      <a id="manualTab" class="w3-button w3-block">매뉴얼</a>
 	    </div>
 	    <div class="w3-col s4">
-	      <a id="staffManagementTab" class="w3-button w3-block" style="background-color: #e6f2ff;">직원관리</a>
+	      <a id="staffManagementTab" class="w3-button w3-block">직원관리</a>
 	    </div>
 	</div> 
 </nav>
@@ -100,6 +109,13 @@ $( document ).ready(function() {
 		result = JSON.parse(result);
 		$("#branchName").html(result["branchName"]);
 		$("#name").html(result["name"]);
+		$("#slideProfilePhoto").prop("src", "images/profile/"+result["profilePhoto"]);
+		if(result["type"] == "staff"){
+			$("#certifyType").html("직원");
+		} else if(result["type"] == "admin"){
+			$("#certifyType").html("관리자");
+		}
+		
 	}
 	});
 });
