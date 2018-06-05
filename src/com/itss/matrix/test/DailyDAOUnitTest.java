@@ -35,11 +35,11 @@ public class DailyDAOUnitTest {
 		assertEquals(++count, dao.getDailyTasks("2018/11/11").size());
 		
 		//업무수정 - setDailyTaskByManual
-		dao.setDailyTask("바닥 쓸기", "화장실 소독", "2018/01/01", "마감");
+		dao.setDailyTask("바닥 쓸기", "화장실 소독", "2018/01/01", "마감", 1);
 		assertFalse(dao.isDailyTask("화장실 소독", "2018/01/01"));
 		
 		//업무수정 - setDailyTaskByInput
-		dao.setDailyTask("행주소독을 직접입력업무로수정", "행주 소독", "2018/01/01", "미들");
+		dao.setDailyTask("행주소독을 직접입력업무로수정", "행주 소독", "2018/01/01", "미들", 1);
 		assertTrue(dao.isDailyTask("행주소독을 직접입력업무로수정", "2018/01/01"));
 		
 		
@@ -166,28 +166,28 @@ public class DailyDAOUnitTest {
 	@Test
 	public void setDailyTaskWithPast(){
 		// 과거의 업무 수정
-		dao.setDailyTask("새로운 업무", "바꾸려는 업무", "2018/01/01", "오픈");
+		dao.setDailyTask("새로운 업무", "바꾸려는 업무", "2018/01/01", "오픈", 1);
 		assertFalse(dao.isDailyTask("새로운 업무", "2018/01/01"));
 	}
 
 	@Test
 	public void setDailyTaskWithWrongNonExistTask(){
 		//선택날짜에 없는 업무를 바꾸려는 경우
-		dao.setDailyTask("바꾸려는업무", "없는업무", "2018/01/01", "마감");
+		dao.setDailyTask("바꾸려는업무", "없는업무", "2018/01/01", "마감", 1);
 		assertFalse(dao.isDailyTask("바꾸려는업무", "2018/01/01"));
 	}
 
 	@Test
 	public void setDailyTaskWithWrongAssignDetail(){
 		//바꾸려는 배정한 업무의 assign_detail이 다른 경우
-		dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "오픈");
+		dao.setDailyTask("손 세정제 리필", "현금 시재 확인", "2018/01/01", "오픈", 1);
 		assertFalse(dao.isDailyTask("손 세정제 리필", "2018/01/01"));
 	}
 	
 	@Test
 	public void setDailyTaskWithOverDataSize(){
 		//직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다
-		dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "환풍기 청소", "2018/01/01", "yunseok");
+		dao.setDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "환풍기 청소", "2018/01/01", "yunseok", 1);
 		assertFalse(dao.isDailyTask("직접입력업무를 입력할때는 VARCHAR2(60)이 넘으면 안된다", "2018/01/01"));
 	}
 	@Test
