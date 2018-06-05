@@ -59,7 +59,7 @@
 		<option value="더미동2">더미동2</option>
 		<option value="더미동3">더미동3</option>
 	</select> <br>
-	<div id="addressCheck">asdf</div><br> 
+	<div id="addressCheck"></div><br> 
 	<input type="text" name="profilePhoto"	id=profilePhoto class="roundBox" placeholder="프로필 사진 첨부"><br>
 	<button id="addUserButton" class="roundBox" >가입하기</button>
 </div>
@@ -391,8 +391,12 @@ $("#addUserButton").click(function() {
 					},
 			success : function(result) {
 			if (result) {
-					alert("Matrix의 회원이 되신 것을 환영합니다!")
-					location.href = "controller?cmd=certificationUI";
+					var result = JSON.parse(result);
+					if(result["result"]=="성공"){
+						location.href = "controller?cmd=certificationUI";	
+					} else {
+						alert("다시해봐");
+					}					
 				} 
 			}
 		}); 	
