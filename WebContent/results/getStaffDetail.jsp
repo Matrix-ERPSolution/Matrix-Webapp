@@ -8,6 +8,7 @@
 	border-collapse: collapse;
 	margin-top: 15px;
 	font-size: 10pt;
+	vertical-align: middle;
 }
 
 #detailTable td {
@@ -26,19 +27,22 @@ li {
 	display: table-cell;
 	width: 70%;
 }
+.detailProfilePhoto {
+	border-radius: 50%;
+	height: 100px;
+	weight: 100px;
+	float: left;
+}
 </style>
 <div align="center" id="${staffDetail.STAFF_ID}">
-	<h2>
-		<i onclick="backToStaffManagementAdmin()" class="fa fa-chevron-left" aria-hidden="true" style="margin-right: 25px"></i>직원 상세 정보
-	</h2>
 	<table>
 		<tr>
 			<c:choose>
 				<c:when test="${staffDetail.PROFILE_PHOTO != null}">
-					<td rowspan="3" style="min-width: 100px;">${staffDetail.PROFILE_PHOTO}</td>
+					<td rowspan="3" style="min-width: 120px;"><img class="detailProfilePhoto" src="images/profile/${staffDetail.PROFILE_PHOTO}"></td>
 				</c:when>
 				<c:otherwise>
-					<td rowspan="3" style="min-width: 100px;">default profile </td>
+					<td rowspan="3" style="min-width: 120px;"><img class="detailProfilePhoto" src="images/profile/defaultProfile.png"></td>
 				</c:otherwise>
 			</c:choose>
 			<td>이름</td>

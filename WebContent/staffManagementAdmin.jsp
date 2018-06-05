@@ -76,9 +76,51 @@
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    height:180px;
+    
+}
+.profilePhoto {
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	float: left;
+}
+.resultStaffTable {
+	font-size: 10pt;
+}
+.resultStaffTable tr td {
+	padding-right: 10px;
+}
+.resultStaffTable tr td input {
+	background-color: white;
+	/* border: none; */
+	border-color:rgb(50, 132, 226);
+	border-width:1px;
+	border-radius:10%;
+	color: rgb(50, 132, 226);
+	padding: 3px;
+}
+.setWorkPartHeader{
+	font-size: 14pt;
+	text-align: left;
+    padding: 10px 16px 10px 10px;
+    background-color: rgb(50, 132, 226);
+    color: white;
+    width: 100%;
+}
+.workParts {
+	border: none;
+	background-color: rgb(153,153,153);
+	color: rgb(255,255,255);
+	border-radius: 20%;
+	padding: 14px;
+	cursor: pointer;	
+}
+.selected {
+	background-color: rgb(50, 132, 226);
 }
 .container {
 	max-width: 800px;
@@ -109,10 +151,6 @@
 
 <div id="leftStaffs" class=" accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
 <div class="panel"></div>
-
-<!-- 나중에 modal로 연결할 예정 -->
-<div id="staffDetailContent">
-</div>
 
 <!-- 파트 수정 Modal content -->
 <div class="modal">	<!-- 얘 위치를 정확히 모르겠음 -->
@@ -227,31 +265,8 @@ var setLeaveDate= function(input){
 /**직원 상세 페이지 관련 event*/
 var getStaffDetail = function(input){
 	var staffIdToGetStaffDetail = $(input).parent("tr").attr("id");
- 	$.ajax({
-		url : "controller?cmd=getStaffDetailAction",
-		data : {
-			staffId : staffIdToGetStaffDetail
-		},
-		success : function(result){
-			$("#staffDetailContent").html(result);
-		}
-	}); 
+	location.href = "controller?cmd=staffDetailAdminUI&staffId="+staffIdToGetStaffDetail;
 }
-
-var detailStaffCall = function(input){
-	alert($(input));	//추후 업데이트
-};
-
-var backToStaffManagementAdmin= function() {
-	$.ajax({
-		url : "controller?cmd=staffManagementAdminUI",
-		data: {
-		},
-		success : function(result) {
-			$("#result").html(result);
-		}
-	});
-};
 
 /**세부 페이지 이동 event*/
 var activateAcc = function(input){

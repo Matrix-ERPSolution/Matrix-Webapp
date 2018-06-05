@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:if test="${empty leftStaffs}">
 	<br>퇴직한 직원이 없습니다.<br><br>
 </c:if>
-<table>
+<table class="resultStaffTable">
 <c:forEach var="leftStaff" items="${leftStaffs}">
 	<tr id="${leftStaff.STAFF_ID}">
 		<c:choose>
 			<c:when test="${leftStaff.PROFILE_PHOTO != null}">
-				<td onclick="getStaffDetail(this)">${leftStaff.PROFILE_PHOTO}</td>
+				<td onclick="getStaffDetail(this)"><img class="profilePhoto" src="images/profile/${leftStaff.PROFILE_PHOTO}"></td>
 			</c:when>
 			<c:otherwise>
-				<td onclick="getStaffDetail(this)">default profile</td>
+				<td onclick="getStaffDetail(this)"><img class="profilePhoto" src="images/profile/defaultProfile.png"></td>
 			</c:otherwise>
 		</c:choose>
 		<td align="left" onclick="getStaffDetail(this)">${leftStaff.NAME}</td>
