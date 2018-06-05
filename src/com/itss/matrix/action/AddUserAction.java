@@ -21,17 +21,17 @@ public class AddUserAction implements Action {
 		String birthMonth = request.getParameter("birthMonth");
 		String birthDay = request.getParameter("birthDay");
 		String gender = request.getParameter("gender");
-		String emailAccount = request.getParameter("emailId");
+		String emailAccount = request.getParameter("emailAccount");
 		String emailDomain = request.getParameter("emailDomain");
 		String addressCity = request.getParameter("addressCity");
 		String addressGu = request.getParameter("addressGu");
 		String addressDong = request.getParameter("addressDong");
 		String profilePhoto = request.getParameter("profilePhoto");
 		
-		if(profilePhoto != null) {
-			new UserDAO().addUser(userId, pw, phoneNum, name, birthYear, birthMonth, birthDay, gender, emailAccount, emailDomain, addressCity, addressGu, addressDong, profilePhoto);	
-		} else {
+		if(profilePhoto == null) {
 			new UserDAO().addUser(userId, pw, phoneNum, name, birthYear, birthMonth, birthDay, gender, emailAccount, emailDomain, addressCity, addressGu, addressDong);
+		} else {
+			new UserDAO().addUser(userId, pw, phoneNum, name, birthYear, birthMonth, birthDay, gender, emailAccount, emailDomain, addressCity, addressGu, addressDong, profilePhoto);	
 		}
 		
 		

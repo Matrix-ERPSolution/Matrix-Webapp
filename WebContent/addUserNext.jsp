@@ -30,7 +30,7 @@
 	<input type="radio" name="gender" value="M" id="genderM" checked="checked">남자 
 	<input type="radio" name="gender" value="F" id="genderF" >여자
 	<br> 
-	<input name="emailId" id="emailId" class="roundBox" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
+	<input name="emailAccount" id="emailAccount" class="roundBox" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
 	<select name="selectDomain" id="selectDomain" required="required">
 		<option selected value=''>선택</option>
 		<option value="naver.com">naver.com</option>
@@ -39,7 +39,7 @@
 		<option value="yahoo.com">yahoo.com</option>
 		<option value="selfInput">직접입력</option>
 	</select>
-		<div id="emailIdCheck"></div><div id="emailDomainCheck"></div><br> 
+		<div id="emailAccountCheck"></div><div id="emailDomainCheck"></div><br> 
 	<div align="left">주소</div><br>
 	<select name="addressCity" id="addressCity"	required="required">
 		<option selected>시/도</option>
@@ -223,14 +223,14 @@ $("#birthDay").click(function() {
 });
 
 //이메일 아이디 입력
-$("#emailId").keyup(function() {
-	var regExpEmailId = /^([\w-]+(?:\.[\w-]+)*)$/i;
-	if ($("#emailId").val().length < 3) {
-		$("#emailIdCheck").html("이메일 아이디를 다시 입력해주세요");
-	} else if(!regExpEmailId.test($("#emailId").val())) {
-		$("#emailIdCheck").html("형식에 맞지 않는 이메일 아이디입니다");
+$("#emailAccount").keyup(function() {
+	var regExpEmailAccount = /^([\w-]+(?:\.[\w-]+)*)$/i;
+	if ($("#emailAccount").val().length < 3) {
+		$("#emailAccountCheck").html("이메일 아이디를 다시 입력해주세요");
+	} else if(!regExpEmailAccount.test($("#emailAccount").val())) {
+		$("#emailAccountCheck").html("형식에 맞지 않는 이메일 아이디입니다");
 	} else {
-		$("#emailIdCheck").html("");
+		$("#emailAccountCheck").html("");
 	}
 });
 
@@ -326,13 +326,13 @@ $("#addUserButton").click(function() {
 	}
 	
 	if(check) {
-		if ($("#emailId").val() == "") {
-			$("#emailIdCheck").html("이메일 아이디를 입력해주세요");
-			$("#emailId").focus();
+		if ($("#emailAccount").val() == "") {
+			$("#emailAccountCheck").html("이메일 아이디를 입력해주세요");
+			$("#emailAccount").focus();
 			check=false;
-		} else if($("#emailIdCheck").html()!="") {
-			$("#emailIdCheck").html("이메일 아이디를 다시 확인해주세요");
-			$("#emailId").focus();
+		} else if($("#emailAccountCheck").html()!="") {
+			$("#emailAccountCheck").html("이메일 아이디를 다시 확인해주세요");
+			$("#emailAccount").focus();
 			check=false;
 		}
 	} 
@@ -382,7 +382,7 @@ $("#addUserButton").click(function() {
 					birthMonth : $("#birthMonth").val(),
 					birthDay : $("#birthDay").val(),
 					gender : $("input:radio:checked").val(),
-					emailId : $("#emailId").val(),
+					emailAccount : $("#emailAccount").val(),
 					emailDomain : $("#emailDomain").val(),
 					addressCity : $("#addressCity").val(),
 					addressGu : $("#addressGu").val(),
