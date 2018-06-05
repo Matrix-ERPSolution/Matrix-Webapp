@@ -71,6 +71,9 @@ public class ActionFactory {
 		case "logoutAction":
 			a = new LogoutAction();
 			break;
+		case "addUserAction":
+			a = new AddUserAction();
+			break;
 		case "getCertifiedInfoAction":
 			a = new GetCertifiedInfoAction();
 			break;

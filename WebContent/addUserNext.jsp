@@ -10,7 +10,8 @@
 <div id="newMember">
 	<input type="text" id="userId" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
 	<input type="password" id="pw" class="roundBox" required="required" placeholder="비밀번호"><div id="pwCheck"></div><br>
-	<input type="password" id="pw2" class="roundBox" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div>
+	<input type="password" id="pw2" class="roundBox" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div><br>
+	<button id="addPrivacy" class="roundBox" >다음 단계</button>
 </div><br>
 <!-- newMember end -->
 
@@ -60,12 +61,15 @@
 	</select> <br>
 	<div id="addressCheck">asdf</div><br> 
 	<input type="text" name="profilePhoto"	id=profilePhoto class="roundBox" placeholder="프로필 사진 첨부"><br>
+	<button id="addUserButton" class="roundBox" >가입하기</button>
 </div>
 <!-- privacy end -->
-	<button id="addUserButton" class="roundBox" >가입하기</button>
+	
 
 </body>
 <script>
+//privacy 박스: 처음에는 사라져 있도록 설정;
+$("#privacy").hide();
 //아이디 입력값 형식 검사: 
 //아이디 : 6~16자 영소문자, 숫자-영소문자 1자 반드시 포함/정규표현식: ^(?=.*[a-z])[a-z0-9]{6,16}$
 
@@ -115,6 +119,32 @@ $("#pw2").keyup(function(){
 		$("#pwCheck2").html("");
 	}
 });
+
+//아이디, 비밀번호, 비밀번호 확인이 다 입력 + addPrivacy 버튼 클릭 -> privacy div 박스가 보이도록. + newMember div 박스가 사라지도록.
+$("#addPrivacy").click(function(){
+		if ($("#userId").val() == "") {
+			$("#idCheck").html("아이디를 입력해주세요");
+			$("#userId").focus();
+		} else if($("#idCheck").html() != "") {
+			$("#idCheck").html("아이디를 다시 확인해주세요");
+			$("#userId").focus();
+		} else if($("#pw").val() == "") {
+			$("#pwCheck").html("비밀번호를 입력해주세요");
+			$("#pw").focus();
+		}  else if ($("#pwCheck").html()!="") {
+			$("#pwCheck").html("비밀번호를 다시 확인해주세요");
+			$("#pw").focus();
+		} else if($("#pw2").val()=="") {
+			$("#pwCheck2").html("비밀번호 확인을 입력해주세요");
+			$("#pw2").focus();
+		} else if ($("#pwCheck2").html()!="") {
+			$("#pwCheck2").html("비밀번호 확인을 다시 진행해주세요");
+			$("#pw2").focus();
+		} else {
+			$("#newMember").hide();
+			$("#privacy").show();			
+		}
+	});
 
 //이름 입력값 형식 검사: 2~12자의 한글, 영문만 사용 가능합니다.
 //[가-힣a-z]{2,12}
