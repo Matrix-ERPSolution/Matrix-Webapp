@@ -6,7 +6,6 @@
 <%@include file="headSetting.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<title>로그인</title>
 <style>
 body {
 	background-image: url("images/login.png");

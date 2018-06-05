@@ -4,7 +4,6 @@
 <head>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<title>업무 배정</title>
 <%@include file="headSetting.jsp" %>
 <style>
 html, body { height:100%; margin:0; padding:0;}

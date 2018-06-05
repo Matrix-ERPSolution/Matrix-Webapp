@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="headSetting.jsp"%>
 <%@include file = "tabMenuAdmin.jsp" %>
-<title>Manual</title>
 <style>
 .accordion {
     background-color: #e6f2ff;
@@ -100,6 +99,8 @@ li {
 <div id="manual">
 </div>
 <script>
+$("#manualTab").parent().addClass("tapped");
+
 var manualSpaceMode = function(){
 	 $.ajax({
         url : "controller?cmd=getSpaceTypesAction", 

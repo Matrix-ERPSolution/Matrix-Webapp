@@ -120,6 +120,7 @@ li.deleting:hover:after {
 }
 </style>
 <script type="text/javascript">
+$("#dailyTaskTab").parent().addClass("tapped");
 
 $(function(){
    $("#datepicker").datepicker({

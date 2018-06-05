@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<%@include file="headSetting.jsp" %>
 <style type="text/css">
 body {
 	background-color: #004566;

@@ -20,7 +20,6 @@
 }
 
 </style>
-<title>회원가입</title>
 </head>
 <body id="grad1">
 

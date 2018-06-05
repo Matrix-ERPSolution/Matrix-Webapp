@@ -6,6 +6,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="apple-touch-icon-precomposed" href="images/icon.png">
+<link href="images/favicon.ico" rel="shortcut icon">
+<title>MATRIX</title>
+
 <!-- <style>
 	@media screen and (max-width: 400px) {
 	    body { width: 100%;

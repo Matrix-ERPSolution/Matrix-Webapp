@@ -8,7 +8,6 @@
 <html>
 <head>
 <%@include file="headSetting.jsp" %>
-<title>로그인</title>
 </head>
 <body>
 check기능

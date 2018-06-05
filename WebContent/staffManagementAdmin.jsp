@@ -155,6 +155,7 @@
 
 </div>
 <script>
+$("#staffManagementTab").parent().addClass("tapped");
 
 /**승인 요청 내역 관련 event*/
 var acceptStaff = function(input){
