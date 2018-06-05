@@ -7,14 +7,33 @@
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <title>로그인</title>
 <style>
+.background {
+	background-image: url("images/login.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    margin: auto;
+}
+.container {	
+	max-width: 500px;
+	min-height: 590px;
+    margin: auto;
+    padding-top: 200px;
+	text-align: center;
+}
+
 .roundBox {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #004566;
+ 	line-height : normal;
 	width: 200px;
 	padding: 10px;
-	border-radius: 20px;
-	border-color: white;
 	text-align: center;
-	background-color: rgba(0,0,0,0.5);
-	color: white;
+	background-color: none;
+	color: #004566;
 	font-weight: bold;
 }
 #login {
@@ -23,13 +42,11 @@
 	border-radius: 20px;
 	border-color: white;
 	text-align: center;
-	background-color: rgb(153, 204, 255);
-	color: #003366;
-	font-weight: bold;
+	background-color: #004566;
+	color: #FFFFFF;
 }
 #login:hover {
-	border-color: rgb(0, 51, 102);
-	border-width: medium;	
+	background-color: #00324d;
 }
 #logo {
 	max-width: 300px;
@@ -62,19 +79,20 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
+    height: 15px;
+    width: 15px;
+    margin-top: 3px;
+    background-color: #bbb;
 }
 
 /* On mouse-over, add a grey background color */
 .checkboxContainer:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: #aaa;
 }
 
 /* When the checkbox is checked, add a blue background */
 .checkboxContainer input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #004566;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -91,60 +109,48 @@
 
 /* Style the checkmark/indicator */
 .checkboxContainer .checkmark:after {
-    left: 7px;
-    top: 3px;
+    left: 3px;
+    top: 0;
     width: 5px;
-    height: 10px;
+    height: 9px;
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
-.container {	
-	max-width: 500px;
-	min-height: 590px;
-    margin: auto;
-	text-align: center;
-}
-.background {
-	background-image: url("images/background_img3.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-/*     width: 360px;
-    height: 640px; */
-    margin: auto;
-}
+
 </style>
 <script type="text/javascript"></script>
 </head>
 
-<body >
-<div class="background">
-<div class="container">
-<div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="padding-top: 30%;"></div>
-<br><br>
-<input type="text" id="userId" name="userId" placeholder="아이디" class="roundBox"><div id="idCheck"></div><br>
-<input type="password" id="pw" name="pw" placeholder="비밀번호" class="roundBox"><div id="pwCheck"></div><br>
-<button id="login">로그인</button><br>
-<br>
-<!-- <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
-<input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
-<br><br> -->
-<label class="checkboxContainer">자동 로그인
-  <input type="checkbox" class="check" name="autoLogin" id="autoLogin">
-  <span class="checkmark"></span>
-</label>
-<label class="checkboxContainer">아이디 저장
-  <input type="checkbox" class="check" name="saveId" id="saveId">
-  <span class="checkmark"></span>
-</label>
-<br><br>
-<a id="findIdPassword">아이디/비밀번호찾기</a><br>
-<a id="addUser" >회원가입</a>
+<body>
+	<div class="background">
+		<div class="container">
+			<br>
+			<br> <input type="text" id="userId" name="userId"
+				placeholder="아이디" class="roundBox">
+			<div id="idCheck"></div>
+			<br> <input type="password" id="pw" name="pw" placeholder="비밀번호"
+				class="roundBox">
+			<div id="pwCheck"></div>
+			<br>
+			<button id="login">로그인</button>
+			<br> <br>
+			<!-- <input type="checkbox" class="check" name="autoLogin" id="autoLogin">자동 로그인
+			<input type="checkbox" class="check" name="saveId" id="saveId">아이디 저장
+			<br><br> -->
+			<label class="checkboxContainer">자동 로그인 <input
+				type="checkbox" class="check" name="autoLogin" id="autoLogin">
+				<span class="checkmark"></span>
+			</label> <label class="checkboxContainer">아이디 저장 <input
+				type="checkbox" class="check" name="saveId" id="saveId"> <span
+				class="checkmark"></span>
+			</label> <br>
+			<br> <a
+				id="addUser">join</a>&nbsp; | &nbsp;<a id="findIdPassword">forgot id/password</a> 
 
-</div>
-</div>
-<script type="text/javascript">
+		</div>
+	</div>
+	<script type="text/javascript">
 
 $("button").button();
 $("saveID").checkboxradio();
@@ -177,15 +183,14 @@ $("saveID").checkboxradio();
 		}
 	});
 	
-	//엔터 키 누르면 로그인 버튼 누르는 기능 구현하고싶음
-	/*var enterToLogin = function(input){
+	var enterToLogin = function(input){
 		alert($(input).val());
 	}
-	$("#pw").keydown(function(input){
-		if($(input).val().keycode===13){
-			alert('엔터');
+	$("#pw").keydown(function(event){
+		if(event.which==13){
+			$("#login").click();
 		}
-	}) */
+	})
 
 	//로그인
 	$("#login").on("click",	function() {
