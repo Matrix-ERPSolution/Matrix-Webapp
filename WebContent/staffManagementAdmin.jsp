@@ -90,13 +90,14 @@
 }
 .resultStaffTable {
 	font-size: 10pt;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .resultStaffTable tr td {
 	padding-right: 10px;
 }
 .resultStaffTable tr td input {
 	background-color: white;
-	/* border: none; */
 	border-color:rgb(50, 132, 226);
 	border-width:1px;
 	border-radius:10%;
@@ -129,15 +130,9 @@
 	text-align: center;
 	background-color: rgba(255,255,255,0.2);
 }
-.background {
-	background-image: url("images/background_img3.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
 </style>
 </head>
-<body class="background">
+<body>
 <div class="container">
 <div align="center" class="w3-center">
 	<h3>직원 관리</h3>

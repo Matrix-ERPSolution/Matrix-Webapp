@@ -7,7 +7,6 @@
 <%@include file = "tabMenuAdmin.jsp" %>
 <title>Manual</title>
 <style>
-
 .accordion {
     background-color: #e6f2ff;
     font-weight: bold;
@@ -69,6 +68,24 @@ li {
 	font-size: 12pt;
 	margin-left: -40pt;
 }
+.unselectedMode {
+	background-color: #cccccc;
+	border:none;
+	border-radius:10%;
+	color: #333333;
+	padding: 10px;
+	margin-left: 10px;
+	font-size: 11pt;
+}
+.selectedMode {
+	background-color: rgb(50, 132, 226);
+	border:none;
+	border-radius:10%;
+	color: white;
+	padding: 10px;
+	margin-left: 10px;
+	font-size: 11pt;
+}
 </style>
 </head>
 <body>
@@ -77,8 +94,8 @@ li {
     <h2>매뉴얼 </h2>
 </div> 		
 <br>
-<button id="spaceMode">공간별</button>
-<button id="taskMode">업무별</button>
+<button id="spaceMode" class="selectedMode">공간별</button>
+<button id="taskMode" class="unselectedMode">업무별</button>
 <br><br>
 <div id="manual">
 </div>
@@ -103,10 +120,18 @@ var manualTaskMode = function(){
 }
 
 $("#spaceMode").click(function(){
+	$("#spaceMode").removeClass("unselectedMode");
+	$("#spaceMode").addClass("selectedMode");
+	$("#taskMode").removeClass("selectedMode");
+	$("#taskMode").addClass("unselectedMode");
 	manualSpaceMode();
 });
 
 $("#taskMode").click(function(){
+	$("#spaceMode").removeClass("selectedMode");
+	$("#spaceMode").addClass("unselectedMode");
+	$("#taskMode").removeClass("unselectedMode");
+	$("#taskMode").addClass("selectedMode");
 	manualTaskMode();
 });
 
