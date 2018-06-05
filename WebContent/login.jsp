@@ -110,12 +110,16 @@
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+/*     width: 360px;
+    height: 640px; */
+    margin: auto;
 }
 </style>
 <script type="text/javascript"></script>
 </head>
 
-<body class="background">
+<body >
+<div class="background">
 <div class="container">
 <div><img id="logo" src="images/logo_white.png" width="80%" height="80%" style="padding-top: 30%;"></div>
 <br><br>
@@ -139,7 +143,7 @@
 <a id="addUser" >회원가입</a>
 
 </div>
-
+</div>
 <script type="text/javascript">
 
 $("button").button();

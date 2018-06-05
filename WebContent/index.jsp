@@ -3,12 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>index</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style type="text/css">
+body {
+	background-color: rgb(0, 51, 102);
+	margin: auto;
+	min-height: 640;
+}
+</style>
+</head>
 </head>
 <body>
+<div style="padding-top:200px; color:white; text-align:center; font-weight: bold;"><h2>Logo</h2></div>
 <script type="text/javascript">
-	location.href = "controller?cmd=loginUI";
+$(document).ready(function(){
+	$("body").fadeOut(2000, toLogin);
+});
+
+var toLogin = function(){
+	location.href="controller?cmd=loginUI";
+}
 </script>
 </body>
 </html>
