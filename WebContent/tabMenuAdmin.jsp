@@ -14,19 +14,18 @@
 .tabs {
 	padding: 0px;
 	min-width: 360px;
-};
-.inline {
-	display : inline;
 }
 .w3-bar-block {
 	font-size: small;
 	font-weight: bold;
 }
-header, body {
-	max-width: 500px;
+header {
+	max-width: 360px;
 	margin: auto;
 	text-align: center;
-	background-color: rgba(255,255,255,1);
+	background-image: url("images/header.png");
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 </style>
 </head>
@@ -53,8 +52,6 @@ header, body {
   </div>
 </div>
   <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()" style="float: left;">☰</a>
-  <a href="controller?cmd=homeUI"><img src="images/logo.png" style="width: 160px; "></a>
-</header>
 
 <!-- 위치조정 필요 -->
 <nav class = "containerw3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay">
@@ -70,7 +67,7 @@ header, body {
 	    </div>
 	</div> 
 </nav>
-
+</header>
 <script>
 $("#dailyTaskTab").click(
 		function(){
