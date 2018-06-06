@@ -4,63 +4,88 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style type="text/css">
+.inputSet {
+	width: 220px;
+	margin: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display:inline;
+}
+.addUserShortInput{
+	width: 150px;
+}
+</style>
 </head>
 <body>
-
 <div id="newMember">
 	<input type="text" id="userId" class="addUserInput" required="required" placeholder="아이디"><div id="idCheck"></div><br>
 	<input type="password" id="pw" class="addUserInput" required="required" placeholder="비밀번호"><div id="pwCheck"></div><br>
 	<input type="password" id="pw2" class="addUserInput" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div><br>
 	<button id="addPrivacy" class="certifyUserButton" >다음 단계</button>
+	<button class="cancelButton" onclick="backtoLogin()">취소</button>
 </div><br>
 <!-- newMember end -->
 
 <div id="privacy">
-	<input name="name" id="name" class="addUserInput" required="required" placeholder="이름"> <div id="nameCheck"></div><br>
-	<div align="left">생년월일</div>
-	<select name="birthYear" id="birthYear" required="required">
-		<option value="">년</option>
-	</select> <select name="birthMonth" id="birthMonth" required="required">
-		<option value="">월</option>
-	</select> <select name="birthDay" id="birthDay" required="required">
-		<option value="">일</option>
-	</select> 
-	<div id="birthCheck"></div><br> 
-	<div align="left">성별</div>
-	<input type="radio" name="gender" value="M" id="genderM" checked="checked" class="addUserInput">남자 
-	<input type="radio" name="gender" value="F" id="genderF" class="addUserInput">여자
-	<br> 
-	<input name="emailAccount" id="emailAccount" class="addUserInput" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
-	<select name="selectDomain" id="selectDomain" required="required">
-		<option selected value=''>선택</option>
-		<option value="naver.com">naver.com</option>
-		<option value="daum.net">daum.net</option>
-		<option value="gmail.com">gmail.com</option>
-		<option value="yahoo.com">yahoo.com</option>
-		<option value="selfInput">직접입력</option>
-	</select>
-		<div id="emailAccountCheck"></div><div id="emailDomainCheck"></div><br> 
-	<div align="left">주소</div><br>
-	<select name="addressCity" id="addressCity"	required="required">
-		<option selected>시/도</option>
-		<option value="더미시1">더미시1</option>
-		<option value="더미시2">더미시2</option>
-		<option value="더미시3">더미시3</option>
-	</select> 
-	<select name="addressGu" id="addressGu" required="required">
-		<option selected>시/군/구</option>
-		<option value="더미구1">더미구1</option>
-		<option value="더미구2">더미구2</option>
-		<option value="더미구3">더미구3</option>
-	</select> 
-	<select name="addressDong" id="addressDong" required="required">
-		<option selected>면/읍/동</option>
-		<option value="더미동1">더미동1</option>
-		<option value="더미동2">더미동2</option>
-		<option value="더미동3">더미동3</option>
-	</select> <br>
-	<div id="addressCheck"></div><br> 
-	<input type="text" name="profilePhoto"	id=profilePhoto class="addUserButton" placeholder="프로필 사진 첨부"><br>
+	<div class="inputSet">
+		<span>이름: </span><input name="name" id="name" class="addUserShortInput" required="required" placeholder="2~4자"><div id="nameCheck"></div>
+	</div>
+	
+	<div class="inputSet">
+		<span>생년월일: </span>
+		<select name="birthYear" id="birthYear" required="required">
+			<option value="">년</option>
+		</select> <select name="birthMonth" id="birthMonth" required="required">
+			<option value="">월</option>
+		</select> <select name="birthDay" id="birthDay" required="required">
+			<option value="">일</option>
+		</select> 
+		<div id="birthCheck"></div>
+	</div>
+	
+	<div class="inputSet">
+		<span>성별: </span>
+		<input type="radio" name="gender" value="M" id="genderM" checked="checked" class="addUserInput"><p>남자</p> 
+		<input type="radio" name="gender" value="F" id="genderF" class="addUserInput"><p>여자</p>
+	</div>
+	
+	<div class="inputSet">
+		<input name="emailAccount" id="emailAccount" class="addUserShortInput" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
+		<select name="selectDomain" id="selectDomain" required="required">
+			<option selected value=''>선택</option>
+			<option value="naver.com">naver.com</option>
+			<option value="daum.net">daum.net</option>
+			<option value="gmail.com">gmail.com</option>
+			<option value="yahoo.com">yahoo.com</option>
+			<option value="selfInput">직접입력</option>
+		</select>
+		<div id="emailAccountCheck"></div><div id="emailDomainCheck"></div>
+	</div>
+	
+	<div class="inputSet">
+		<span>주소: <span>
+		<select name="addressCity" id="addressCity"	required="required">
+			<option selected>시/도</option>
+			<option value="더미시1">더미시1</option>
+			<option value="더미시2">더미시2</option>
+			<option value="더미시3">더미시3</option>
+		</select> 
+		<select name="addressGu" id="addressGu" required="required">
+			<option selected>시/군/구</option>
+			<option value="더미구1">더미구1</option>
+			<option value="더미구2">더미구2</option>
+			<option value="더미구3">더미구3</option>
+		</select> 
+		<select name="addressDong" id="addressDong" required="required">
+			<option selected>면/읍/동</option>
+			<option value="더미동1">더미동1</option>
+			<option value="더미동2">더미동2</option>
+			<option value="더미동3">더미동3</option>
+		</select> <br>
+		<div id="addressCheck"></div>
+	</div>
+	<!-- <input type="text" name="profilePhoto"	id=profilePhoto class="addUserButton" placeholder="프로필 사진 첨부"> -->
 	<button id="addUser" class="addUserButton" >가입하기</button>
 </div>
 <!-- privacy end -->
@@ -370,13 +395,14 @@ $("#addUser").click(function() {
 	}
 	
 	 if(check) {
+		var phoneNum=${param.phoneNum};
 		$.ajax({
 			url : "controller?cmd=addUserAction",
 			type: "POST",
 			data : {
 					userId : $("#userId").val(),
 					pw : $("#pw").val(),
-					phoneNum : $("#phoneNum").val(),
+					phoneNum : phoneNum,
 					name : $("#name").val(),
 					birthYear : $("#birthYear").val(),
 					birthMonth : $("#birthMonth").val(),

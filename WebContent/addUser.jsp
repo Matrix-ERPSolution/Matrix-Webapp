@@ -53,7 +53,7 @@ body {
 	background-color: #005580;
 	color: #FFFFFF;
 }
-#cancelButton {
+.cancelButton {
 	width: 200px;
 	padding: 10px;
 	border-radius: 20px;
@@ -72,6 +72,8 @@ body {
 .addUserContainer {
 	text-align: center;
 	padding-top: 20px;
+	width: 300px;
+	margin: auto;
 }
 </style>
 </head>
@@ -84,15 +86,15 @@ body {
 
 <div class="addUserContainer">
 	<input type="text" id="phoneNum" class="addUserInput" required="required" placeholder="휴대폰 번호만 입력">
-	<div id="certifyResult"></div>
+	<div id="certifyResult" style="font-size: 10pt;"></div>
 	<button id="certify1" class="certifyUserButton">인증 요청</button>
 	<input type="text" id="inputCertification" class="addUserInput" placeholder="인증번호입력">
 	<button id="certify2" class="certifyUserButton">확인</button><br>
-	<button id="addUserNext" class="addUserButton" >다음 단계</button>
-	<button id="cancelButton">취소</button>
+	<button id="addUserNext" class="addUserButton" >다음 단계</button><br>
+	<button class="cancelButton" onclick="backtoLogin()">취소</button>
 </div>
 <script type="text/javascript">
-$("#cancelButton").click(function(){
+var backtoLogin = (function(){
 	location.href="controller?cmd=loginUI";
 });
 
