@@ -11,7 +11,7 @@
 	margin: auto;
 	text-align: center;
 	width: 50%;
-	border-bottom: rgb(153, 204, 255) solid;
+	border-bottom: #d4e5f7 solid;
 }
 .dailyHeader h4{
 	margin-bottom: 5px;
