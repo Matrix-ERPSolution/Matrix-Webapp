@@ -6,13 +6,11 @@
 <%@include file = "tabMenuAdmin.jsp" %>
 <style type="text/css">
 .accordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
+	background: linear-gradient(to bottom left, #1d6dc9, #85d8de);
+    color: #003366;
     cursor: pointer;
     padding: 8px;
     width: 95%;
-    border: 2px solid #d4e5f7;
     text-align: left;
     outline: none;
     font-size: 15px;
@@ -29,7 +27,8 @@
     color: #003366;
     font-weight: bold;
     float: left;
-    margin-right: 5px;
+    margin-left: 7px;
+    margin-right: 10px;
 }
 
 .active:before {
@@ -165,7 +164,7 @@ $(document).ready(function(){
 	$("#preStaffs").click();
 });
 
-$("#staffManagementTab").parent().addClass("tapped");
+$("#staffManagementTab").addClass("tapped");
 
 /**승인 요청 내역 관련 event*/
 var acceptStaff = function(input){

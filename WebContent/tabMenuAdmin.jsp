@@ -6,8 +6,6 @@
 <%@include file="headSetting.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
@@ -34,6 +32,7 @@ body {
 .w3-col.s4 {
 	padding: 7px;
 	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 15px 15px 0 0;
 }
 
 .w3-col.s4:hover, .w3-col.s4.tapped {
@@ -49,7 +48,7 @@ body {
 	margin: 15px;
 }
 
-.w3-bar-block a {
+.w3-bar-block div {
 	background-color: rgb(255, 255, 255);
 }
 
@@ -64,7 +63,8 @@ header {
 
 .mat-button {
 	display: inline-block;
-	padding: 10px 16px;
+	margin-top: 2px;
+	padding: 4px 10px;
 	left: 0;
 	vertical-align: middle;
 	overflow: hidden;
@@ -74,7 +74,7 @@ header {
 	cursor: pointer;
 	white-space: nowrap;
 	float: left; 
-	font-size: 25px;
+	font-size: 35px;
 }
 .mat-button:hover {
 	background-color: white;
@@ -108,19 +108,19 @@ header {
 </div>
 
 <div class="w3-container">
-  <a href="#" class="mat-button" onclick="w3_open()">☰</a>
+  <a href="#" class="mat-button" onclick="w3_open()">≡</a>
 </div>
 <nav class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"></nav>
 	<!-- 위치조정 필요 -->
 	<div class="tabs w3-bar">
-	    <div class="w3-col s4">
-	      <a id="dailyTaskTab">일일업무</a>
+	    <div class="w3-col s4" id="dailyTaskTab">
+	   	  일일업무
 	    </div>
-	    <div class="w3-col s4">
-	      <a id="manualTab">매뉴얼</a>
+	    <div class="w3-col s4" id="manualTab">
+		  매뉴얼
 	    </div>
-	    <div class="w3-col s4">
-	      <a id="staffManagementTab">직원관리</a>
+	    <div class="w3-col s4" id="staffManagementTab">
+	  	  직원관리
 	    </div>
 	</div> 
 
