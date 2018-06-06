@@ -10,32 +10,49 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>	
+<style>
 body {
 	width: 360px;
 	height: 640px;
 }
+
 .side-bar {
-	height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto
+	height: 100%;
+	width: 200px;
+	background-color: #fff;
+	position: fixed !important;
+	z-index: 1;
+	overflow: auto
 }
+
 .tabs {
 	max-width: 360px;
 	padding-top: 4px;
 	position: relative;
 }
+
 .w3-col.s4 {
 	padding: 7px;
-	background-color: rgba(255,255,255,0.5); 
+	background-color: rgba(255, 255, 255, 0.7);
 }
+
 .w3-col.s4:hover, .w3-col.s4.tapped {
-	background-color: rgba(255,255,255,0.7);
+	background-color: rgba(255, 255, 255, 1.0);
 }
+
+.side-bar {
+	background-color: rgb(230, 242, 255);
+}
+
 .w3-bar-block {
 	font-size: 16px;
+	margin: 15px;
 }
+
 .w3-bar-block a {
-	background-color: rgb(240,240,240);
+	background-color: rgb(255, 255, 255);
 }
+
 header {
 	width: 360px;
 	top: 0;
@@ -44,16 +61,34 @@ header {
 	background-size: 360px auto;
 	background-repeat: no-repeat;
 }
+
+.mat-button {
+	display: inline-block;
+	padding: 10px 16px;
+	left: 0;
+	vertical-align: middle;
+	overflow: hidden;
+	text-decoration: none;
+	color: white;
+	background-color: none;
+	cursor: pointer;
+	white-space: nowrap;
+	float: left; 
+	font-size: 25px;
+}
+.mat-button:hover {
+	background-color: white;
+}
 </style>
 </head>
 
 <body>
 <header>
 <!-- Sidebar/menu -->
-<div class="side-bar w3-white w3-animate-left" style="display:none;z-index:5; text-align: center;">
+<div class="side-bar w3-animate-left" style="display:none;z-index:5; text-align: center;">
   <button class="w3-button" onclick="w3_close()" style="float:right; font-size:20px; font-weight: normal;">&times;</button>
   <div class="w3-container">
-  	<table>
+  	<table class="profileInfo">
   		<tr>
   			<td><img id="slideProfilePhoto" alt="프로필사진" src="images/profile/defaultProfile.png" style="width: 70px; height: 70px; border-radius: 50%"></td>
   			<td style="padding-left: 7px;"><span id="branchName"></span><br><span id="certifyType"></span><br><span id="name"></span>님</td>
@@ -61,17 +96,19 @@ header {
   	</table>
   </div>
   <br>
+  <br>
   <div class="w3-bar-block">
     <a href="#updateUser" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">회원 정보 수정</a> 
     <a href="#notifications" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">알림 설정</a> 
     <a href="#help" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">도움말</a> 
-    <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 ver 1.0.0</a> 
+    <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 &nbsp;&nbsp; ver 1.0.0</a> 
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
+    <a href="#logout" onclick="logout()" class="w3-bar-item w3-button w3-hover-blue" style="background-color: rgb(255, 230, 230);">로그아웃</a> 
   </div>
 </div>
 
 <div class="w3-container">
-  <a href="javascript:void(0)" class="w3-button w3-large" onclick="w3_open()" style="float: left; color:white;">☰</a>
+  <a href="#" class="mat-button" onclick="w3_open()">☰</a>
 </div>
 <nav class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"></nav>
 	<!-- 위치조정 필요 -->
@@ -132,6 +169,10 @@ $( document ).ready(function() {
 	}
 	});
 });
+
+function logout() {
+	location.href="controller?cmd=logoutAction";
+}
 </script>
 </body>
 </html>
