@@ -121,7 +121,6 @@ body {
 </head>
 
 <body>
-	<div class="background">
 		<div class="container">
 			<br>
 			<br> <input type="text" id="userId" name="userId"
@@ -148,7 +147,6 @@ body {
 			<a id="addUser" style="color: #004566">join</a>&nbsp; | &nbsp;<a id="findIdPassword" style="color: #004566">find id/password</a> 
 
 		</div>
-	</div>
 	
 <script type="text/javascript">
 
