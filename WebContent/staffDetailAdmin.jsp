@@ -9,38 +9,19 @@
 <%@include file="headSetting.jsp"%>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
-.detailedTable {
-	width: 300px;
-	border: 1px solid #444444;
-	border-collapse: collapse;
-	margin-top: 15px;
-	font-size: 11pt;
-}
-
-table.detailedTable td {
-	border: 1px solid #444444;
-	padding: 5px;
-}
-
-ul {
-	list-style-type: none;
-	width: 100px;
-	display: table;
-	table-layout: fixed;
-}
-
-li {
-	display: table-cell;
-	width: 70%;
+.staffDetailHeader {
+	padding-top: 5px;
+	margin: auto;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-<div class="staffDetailContainer">
+<div class="staffDetailHeader">
 	<i id="backToStaffManagementAdmin" class="fa fa-chevron-left" aria-hidden="true" style="margin-right: 25px"></i>
-	<span style="font-size: 16pt;">직원 상세 정보</span>
+	<h4 style="display:inline;">직원 상세 정보</h4>
+</div>
 	<div id="getStaffDetailContent" style="padding-top: 5%;"></div>
-	</div>
 </body>
 <script>
 var detailStaffCall = function(input){

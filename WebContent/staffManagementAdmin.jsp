@@ -6,42 +6,29 @@
 <%@include file = "tabMenuAdmin.jsp" %>
 <style type="text/css">
 .accordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
+	background: linear-gradient(to bottom left, #1d6dc9, #85d8de);
+    color: #003366;
     cursor: pointer;
     padding: 8px;
-    width: 100%;
-    border: 2px solid #d4e5f7;
+    width: 95%;
     text-align: left;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+    margin: auto;
 }
-.subAccordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
-    cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: 2px solid #e6f2ff;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
-.active, .accordion:hover, .subAccordion:hover {
+.active, .accordion:hover {
     background-color: #99ccff;
 }
 
-.accordion:before, .subAccordion:before {
+.accordion:before {
 	font-family: FontAwesome;
     content: '\f0da';
     color: #003366;
     font-weight: bold;
     float: left;
-    margin-right: 5px;
+    margin-left: 7px;
+    margin-right: 10px;
 }
 
 .active:before {
@@ -50,7 +37,9 @@
 }
 
 .panel, .subPanel {
-    padding: 0 18px;
+	width:90%;
+	margin:auto;
+    padding: 0;
     background-color: white;
     max-height: 0;
     overflow: hidden;
@@ -96,13 +85,24 @@
 .resultStaffTable tr td {
 	padding-right: 10px;
 }
-.resultStaffTable tr td input {
+.resultStaffTable .yesButton{
 	background-color: white;
-	border-color:rgb(50, 132, 226);
-	border-width:1px;
-	border-radius:10%;
-	color: rgb(50, 132, 226);
+	border: rgb(50, 132, 226) 1px solid;
+	border-radius: 10%;
+	color: black;
 	padding: 3px;
+	width: 36px;
+}
+.resultStaffTable .yesButton:hover{
+	background-color: rgb(50, 132, 226);
+}
+.resultStaffTable .noButton{
+	background-color: white;
+	border: rgb(255, 128, 128) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
+	width: 36px;
 }
 .setWorkPartHeader{
 	font-size: 14pt;
@@ -123,22 +123,27 @@
 .selected {
 	background-color: rgb(50, 132, 226);
 }
-.container {
-	max-width: 800px;
-	min-height: 640px;
-    margin: auto;
+.staffManagementHeader {
+	margin: auto;
 	text-align: center;
-	background-color: rgba(255,255,255,0.2);
+	width: 50%;
+	border-bottom: rgb(153, 204, 255) solid;
+}
+.staffManagementHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 1px;
 }
 </style>
 </head>
 <body>
-<div class="container">
-<div align="center" class="w3-center">
-	<h3>직원 관리</h3>
+<div>
+<div class="staffManagementHeader">
+	<h4>직원 관리</h4>
 </div>
 
-<div id="preStaffs" class=" accordion" onclick="activateAcc(this)">승인 요청 내역</div>
+<div id="preStaffs" class=" accordion" onclick="activateAcc(this)" style="margin-top:10px;">승인 요청 내역</div>
 <div class="panel"></div>
 
 <div id="workingStaffs" class=" accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
@@ -155,7 +160,11 @@
 
 </div>
 <script>
-$("#staffManagementTab").parent().addClass("tapped");
+$(document).ready(function(){
+	$("#preStaffs").click();
+});
+
+$("#staffManagementTab").addClass("tapped");
 
 /**승인 요청 내역 관련 event*/
 var acceptStaff = function(input){

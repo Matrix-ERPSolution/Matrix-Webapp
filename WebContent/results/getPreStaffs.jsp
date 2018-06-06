@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:if test="${empty preStaffs}">
 	<br>승인 요청한 직원이 없습니다.<br><br>
 </c:if>
@@ -19,9 +18,9 @@
 		<td class="preStaffName" onclick="getStaffDetail(this)">${preStaff.NAME}</td>
 		<td>${preStaff.GENDER}</td>
 		<td>${preStaff.BIRTH}</td>
-		<td><input type="button" value="승인" onclick="acceptStaff(this)"
+		<td><input type="button" value="승인" onclick="acceptStaff(this)" class="yesButton"
 			style="float: right"></td>
-		<td><input type="button"  value="거부" onclick="rejectStaff(this)"
+		<td><input type="button"  value="거부" onclick="rejectStaff(this)" class="noButton"
 			style="float: right"></td>
 	</tr>
 </c:forEach>

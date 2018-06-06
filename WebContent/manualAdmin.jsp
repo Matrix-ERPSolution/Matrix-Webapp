@@ -50,14 +50,23 @@
     content: '\f0d7';
 }
 
-.panel, .subPanel {
+.panel{
     padding: 0 18px;
-    background-color: white;
+    background: none;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-
+.subPanel {
+    padding: 0 18px;
+    margin: auto;
+    width: 90%;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    border: rgb(153, 204, 255) solid 2px;
+}
 li:hover, .selected {
 	background-color: #99ccff;
 }
@@ -68,12 +77,11 @@ li {
 	margin-left: -40pt;
 }
 .unselectedMode {
-	background-color: #cccccc;
+	background-color: #d9d9d9;
 	border:none;
 	border-radius:10%;
 	color: #333333;
 	padding: 10px;
-	margin-left: 10px;
 	font-size: 11pt;
 }
 .selectedMode {
@@ -85,17 +93,29 @@ li {
 	margin-left: 10px;
 	font-size: 11pt;
 }
+.manualHeader {
+	margin: auto;
+	text-align: center;
+	width: 50%;
+	border-bottom: rgb(153, 204, 255) solid;
+}
+.manualHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 1px;
+}
 </style>
 </head>
 <body>
 
-<div class="w3-center">
-    <h2>매뉴얼 </h2>
-</div> 		
-<br>
+<div class="manualHeader">
+    <h4>매뉴얼 조회</h4>
+</div>
+<div style="padding: 10px;">
 <button id="spaceMode" class="selectedMode">공간별</button>
 <button id="taskMode" class="unselectedMode">업무별</button>
-<br><br>
+</div>
 <div id="manual">
 </div>
 <script>

@@ -18,7 +18,7 @@
 
 #staffDetailTable td {
 	border: 2px solid #FFFFFF;
-	padding: 5px 3px;
+	padding: 5px 3px 5px 5px;
 }
 
 #staffDetailTable td:nth-child(1) {

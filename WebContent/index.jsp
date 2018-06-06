@@ -6,7 +6,7 @@
 <%@include file="headSetting.jsp" %>
 <style type="text/css">
 body {
-	background-color: #004566;
+	background-color: #005580;
 	margin: auto;
 	width: 360px;
 	height: 640px;

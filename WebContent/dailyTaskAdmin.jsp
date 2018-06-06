@@ -76,22 +76,26 @@ li.deleting:hover:after {
 .ui-datepicker-trigger:hover {
 	width: 25pt;
 }
-#datemenu {
-	vertical-align: middle 
+#date{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 1px;
+	display:inline;
 }
-/* .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+/*.modal {
+    display: none;  /* Hidden by default
+    position: fixed; /* Stay in place
+    z-index: 1; /* Sit on top 
+    padding-top: 100px; /* Location of the box 
     left: 0;
     top: 0;
-    width: 80%; /* Full width */
-    height: 80%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-} */
+    width: 80%; /* Full width
+    height: 80%; /* Full height 
+    overflow: auto; /* Enable scroll if needed
+    background-color: rgb(0,0,0); /* Fallback color
+    background-color: rgba(0,0,0,0.4); /*  Black w/ opacity 
+}*/
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -117,6 +121,25 @@ li.deleting:hover:after {
 	content: "\2605";
 	color: orange;
 	width: 1em;
+}
+.yesButton{
+	background-color: white;
+	border: rgb(50, 132, 226) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
+	width: 50px;
+}
+.yesButton:hover{
+	background-color: rgb(50, 132, 226);
+}
+.noButton{
+	background-color: white;
+	border: rgb(255, 128, 128) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
+	width: 50px;
 }
 </style>
 <script type="text/javascript">
@@ -155,7 +178,7 @@ $(function(){
 </head>
 <body>
 <!-- 날짜선택바 -->
-<div id="dateMenu" class="w3-center" style="vertial-align:center; padding:1px;">
+<div id="dateMenu" class="w3-center" style="vertical-align: middle; padding:10px;">
    <span>
       <input type="text" id="datepicker" hidden="hidden">
       <input type="text" id="alterDate" hidden="hidden">
@@ -163,12 +186,12 @@ $(function(){
   <span>
       <img id="scrollPast" src="images/leftTriangle.png" width="15pt"/>
    </span>
-   <h2 id="date" style="display: inline;"></h2>
+   <h4 id="date"></h4>
    <span>
       <img id="scrollFuture" src="images/rightTriangle.png" width="15pt"/>
    </span>
    <span>
-       <i class="fa fa-external-link w3-xlarge" aria-hidden="true" id="assignTaskButton"></i>
+       <i class="fa fa-external-link w3-xlarge" aria-hidden="true" id="assignTaskButton" style="vertical-align: middle;"></i>
    </span>
 </div>
 
@@ -176,8 +199,8 @@ $(function(){
 <div id="content"></div>
 
 <div style="text-align: center;">
-   <button id="updateTask">수정</button>
-   <button id="deleteTask">삭제</button>
+   <button id="updateTask" class="yesButton">수정</button>
+   <button id="deleteTask" class="noButton">삭제</button>
 </div>
 
 <div id="updateTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.4);">

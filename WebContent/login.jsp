@@ -40,7 +40,7 @@ body {
 	border-radius: 20px;
 	border-color: white;
 	text-align: center;
-	background-color: #004566;
+	background-color: #005580;
 	color: #FFFFFF;
 }
 #login:hover {
@@ -145,7 +145,7 @@ body {
 				<input type="checkbox" class="check" name="saveId" id="saveId">
 				<span class="checkmark"></span>
 			</label> <br> <br> 
-			<a id="addUser" style="color: #004566">join</a>&nbsp; | &nbsp;<a id="findIdPassword" style="color: #004566">forgot id/password</a> 
+			<a id="addUser" style="color: #004566">join</a>&nbsp; | &nbsp;<a id="findIdPassword" style="color: #004566">find id/password</a> 
 
 		</div>
 	</div>
