@@ -8,15 +8,15 @@
 <body>
 
 <div id="newMember">
-	<input type="text" id="userId" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
-	<input type="password" id="pw" class="roundBox" required="required" placeholder="비밀번호"><div id="pwCheck"></div><br>
-	<input type="password" id="pw2" class="roundBox" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div><br>
-	<button id="addPrivacy" class="roundBox" >다음 단계</button>
+	<input type="text" id="userId" class="addUserInput" required="required" placeholder="아이디"><div id="idCheck"></div><br>
+	<input type="password" id="pw" class="addUserInput" required="required" placeholder="비밀번호"><div id="pwCheck"></div><br>
+	<input type="password" id="pw2" class="addUserInput" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div><br>
+	<button id="addPrivacy" class="certifyUserButton" >다음 단계</button>
 </div><br>
 <!-- newMember end -->
 
 <div id="privacy">
-	<input name="name" id="name" class="roundBox" required="required" placeholder="이름"> <div id="nameCheck"></div><br>
+	<input name="name" id="name" class="addUserInput" required="required" placeholder="이름"> <div id="nameCheck"></div><br>
 	<div align="left">생년월일</div>
 	<select name="birthYear" id="birthYear" required="required">
 		<option value="">년</option>
@@ -27,10 +27,10 @@
 	</select> 
 	<div id="birthCheck"></div><br> 
 	<div align="left">성별</div>
-	<input type="radio" name="gender" value="M" id="genderM" checked="checked">남자 
-	<input type="radio" name="gender" value="F" id="genderF" >여자
+	<input type="radio" name="gender" value="M" id="genderM" checked="checked" class="addUserInput">남자 
+	<input type="radio" name="gender" value="F" id="genderF" class="addUserInput">여자
 	<br> 
-	<input name="emailAccount" id="emailAccount" class="roundBox" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
+	<input name="emailAccount" id="emailAccount" class="addUserInput" required="required" placeholder="이메일 입력">@<input type="text" name="emailDomain" id="emailDomain" readonly required="required">
 	<select name="selectDomain" id="selectDomain" required="required">
 		<option selected value=''>선택</option>
 		<option value="naver.com">naver.com</option>
@@ -60,8 +60,8 @@
 		<option value="더미동3">더미동3</option>
 	</select> <br>
 	<div id="addressCheck"></div><br> 
-	<input type="text" name="profilePhoto"	id=profilePhoto class="roundBox" placeholder="프로필 사진 첨부"><br>
-	<button id="addUserButton" class="roundBox" >가입하기</button>
+	<input type="text" name="profilePhoto"	id=profilePhoto class="addUserButton" placeholder="프로필 사진 첨부"><br>
+	<button id="addUser" class="addUserButton" >가입하기</button>
 </div>
 <!-- privacy end -->
 	
@@ -265,7 +265,7 @@ $("#emailDomain").keyup(function() {
 //프로필 사진 첨부
 
 //다음페이지 이동 = 입력받아야 할 파트 null + xxxCheck 파트 체크 -> 다 입력되어야 ajax로 가입처리
-$("#addUserButton").click(function() {
+$("#addUser").click(function() {
 	var check=true;
 	if(check){
 		if ($("#userId").val() == "") {

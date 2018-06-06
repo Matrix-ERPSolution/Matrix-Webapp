@@ -6,43 +6,97 @@
 <head>
 <%@include file="headSetting.jsp"%>
 <style>
-#grad1 {
-    height: 640px;
-    background: #2E64FE;
-    background: linear-gradient(#2E64FE, white);
-	text-align: center;
+#logo{
+	display:block;
+	padding-top:10px;
+	margin-left: auto;
+	margin-right: auto;
 }
-.roundBox {
+body {
+	background-image: url("images/joinetc.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 360px 640px;
+    margin: auto;
+    width: 100%;
+}
+.addUserInput {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #004566;
+ 	line-height : normal;
 	width: 200px;
-	height: 30px;
-	border-radius: 20px;
+	padding: 10px;
 	text-align: center;
+	background-color: rgba(0,0,0,0);
+	color: #004566;
+	font-weight: bold;
 }
-
+.certifyUserButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	text-align: center;
+	background-color: rgb(153, 204, 255);
+	color: black;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.addUserButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	text-align: center;
+	background-color: #005580;
+	color: #FFFFFF;
+}
+#cancelButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	text-align: center;
+	background-color: #bfbfbf;
+	color: black;
+	margin-top: 20px;
+}
+.addUserHeader {
+	text-align: center;
+	padding-top: 15%;
+	height: 40px;
+	font-size: 18pt;
+}
+.addUserContainer {
+	text-align: center;
+	padding-top: 20px;
+}
 </style>
 </head>
-<body id="grad1">
+<body>
+<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
 
-<div>
-	<!-- <img class="inline" src="images/back.png" width="30%" height="80%" style="left:20px;"> -->
-	<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
-	<h4 class="inline" align="center">회원가입</h4>
+<div class="addUserHeader">
+	<span>회원가입</span>
 </div>
-	<div id="phoneNumCertify">
-		<input type="text" id="phoneNum" class="roundBox" required="required" placeholder="휴대폰 번호만 입력">
-			<div id="certifyResult"></div>
-		<button id="certify1" class="roundBox">인증</button>
-	</div><br><!-- phoneNumCertify end -->
-	<nav id="next">
-		<div id="certifier">
-			<input type="text" id="inputCertification" class="roundBox" placeholder="인증번호입력"><br>
-			<button id="certify2" class="roundBox">확인</button><br>
-		</div><!-- certifier end -->
-		<button id="addUserNext" class="roundBox" >다음 단계</button>
-	</nav>
+
+<div class="addUserContainer">
+	<input type="text" id="phoneNum" class="addUserInput" required="required" placeholder="휴대폰 번호만 입력">
+	<div id="certifyResult"></div>
+	<button id="certify1" class="certifyUserButton">인증 요청</button>
+	<input type="text" id="inputCertification" class="addUserInput" placeholder="인증번호입력">
+	<button id="certify2" class="certifyUserButton">확인</button><br>
+	<button id="addUserNext" class="addUserButton" >다음 단계</button>
+	<button id="cancelButton">취소</button>
+</div>
 <script type="text/javascript">
-/*회원가입*/					
-		
+$("#cancelButton").click(function(){
+	location.href="controller?cmd=loginUI";
+});
+
+	/*회원가입*/						
 	$(document).ready(function() {
 		$(".inline").css({
 			"display" : "inline"
@@ -102,12 +156,11 @@
 		} */ else if($("#certifyResult").html() =="") {
 			$.ajax({
 				url:"controller?cmd=addUserNextUI",
-				/* data: {
+				data: {
 					phoneNum:$("#phoneNum").val()
-				}, */ 
+				},
 				success: function(result){
-					$("#phoneNumCertify").hide();
-					$("#next").html(result);
+					$(".addUserContainer").html(result);
 				}
 			});
 		}
