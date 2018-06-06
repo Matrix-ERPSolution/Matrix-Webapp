@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
 .dailyHeader {
@@ -16,7 +17,7 @@
 	margin-bottom: 5px;
 	color: rgb(0, 51, 102);
 	font-weight: bolder;
-	letter-spacing: 1px;
+	letter-spacing: 2px;
 }
 .accordion {
 	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
@@ -32,7 +33,7 @@
     margin: auto;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid white;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
 }
 .active {
     background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145, 0.2));
@@ -92,13 +93,17 @@ li.deleting:hover:after {
 	color: red;
 }
 .ui-datepicker-trigger {
-	width: 20pt;
+	width: 35px;
 	cursor: pointer;
+	float: left;
+	margin-left: 50px;
 }
 .ui-datepicker-trigger:hover {
-	width: 25pt;
+	filter: grayscale(100%);
 }
 #date{
+	margin-left: 4px;
+	margin-top: 3px;
 	margin-bottom: 5px;
 	color: rgb(0, 51, 102);
 	font-weight: bolder;
@@ -125,8 +130,34 @@ li.deleting:hover:after {
     border: 1px solid #888;
     width: 80%;
 }
+#scrollPast {
+	float: left;
+	margin-left: 20px;
+	margin-top: 10px;
+	vertical-align: middle;
+}
+#scrollFuture {
+	float: right;
+	margin-right: 25px;
+	margin-top: 10px;
+	vertical-align: middle;
+}
 #scrollPast:hover, #scrollFuture:hover {
-	width: 17pt;
+	filter: grayscale(100%);
+}
+#assignTaskButton {
+	float: right; 
+	margin-right: 50px;
+	margin-top: 1px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+#assignTaskButton.disabled {
+	filter: saturate(0%) brightness(400%);
+	cursor: default;
+}
+#assignTaskButton:not(.disabled):hover {
+	filter: grayscale(100%);
 }
 .container {
 	max-width: 1000px;
@@ -170,7 +201,7 @@ $("#dailyTaskTab").addClass("tapped");
 $(function(){
    $("#datepicker").datepicker({
       showOn : "button",
-      buttonImage : "images/calendar.png",
+      buttonImage : "images/calendar_navy.png",
       buttonText: "날짜 선택",
       buttonImageOnly : true,
       showButtonPanel : true,
@@ -209,14 +240,14 @@ $(function(){
       <input type="text" id="alterDate" hidden="hidden">
   </span>
   <span>
-      <img id="scrollPast" src="images/leftTriangle.png" width="15pt"/>
+      <img id="scrollPast" src="images/leftTriangle.png" width="15px"/>
    </span>
    <h4 id="date"></h4>
    <span>
-      <img id="scrollFuture" src="images/rightTriangle.png" width="15pt"/>
+       <img id="assignTaskButton" alt="assign" title="업무 배정" src="images/assign_navy.png" width="30px">
    </span>
    <span>
-       <i class="fa fa-external-link w3-xlarge" aria-hidden="true" id="assignTaskButton" style="vertical-align: middle;"></i>
+      <img id="scrollFuture" src="images/rightTriangle.png" width="15px"/>
    </span>
 </div>
 
@@ -278,17 +309,17 @@ $(function(){
 			$("#updateTask").show();
 			$("#deleteTask").show();
 			$("#scrollFuture").show();
-			$("#assignTaskButton").show();
+			$("#assignTaskButton").removeClass("disabled");
 		} else if ($("#datepicker").val() == tomorrow) {
 			$("#updateTask").show();
 			$("#deleteTask").show();
 			$("#scrollFuture").hide();
-			$("#assignTaskButton").show();
+			$("#assignTaskButton").removeClass("disabled");
 		} else {
 			$("#updateTask").hide();
 			$("#deleteTask").hide();
 			$("#scrollFuture").show();
-			$("#assignTaskButton").hide();
+			$("#assignTaskButton").addClass("disabled");
 		}
 		$.ajax({
 			url : "controller?cmd=getAssignedPartsAction",
@@ -432,7 +463,9 @@ $(function(){
 
 	/**assignTaskAdmin 페이지로 이동*/
 	$("#assignTaskButton").click(function() {
-		location.href = "controller?cmd=assignTaskAdminUI&date="+$("#datepicker").val()+"&dateKor="+$("#alterDate").val();
+		if(!$(this).hasClass("disabled")){
+			location.href = "controller?cmd=assignTaskAdminUI&date="+$("#datepicker").val()+"&dateKor="+$("#alterDate").val();
+		}
 		/* $.ajax({
 			url : "controller?cmd=assignTaskAdminUI&date"+$("#datepicker").val()+"&dateKor="+$("#alterDate").val(),
 			data : {

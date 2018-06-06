@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-<%@include file="headSetting.jsp"%>
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style type="text/css">
 .accordion {
@@ -19,7 +19,7 @@
     margin: auto;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid white;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
 }
 .active {
     background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145, 0.2));

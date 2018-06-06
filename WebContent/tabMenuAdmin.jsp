@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file="headSetting.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -108,6 +109,7 @@ header {
 
 <div class="w3-container">
   <a href="#" class="mat-button" onclick="w3_open()">≡</a>
+  <span style="padding: 80px 80px 20px 20px;" onclick="goHome()"></span>
 </div>
 <nav class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"></nav>
 	<!-- 위치조정 필요 -->
@@ -125,6 +127,9 @@ header {
 
 </header>
 <script>
+function goHome(){
+	location.href="controller?cmd=homeUI";
+}
 $("#dailyTaskTab").click(
 		function(){
 			 location.href="controller?cmd=dailyTaskAdminUI";

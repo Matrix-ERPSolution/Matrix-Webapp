@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file="headSetting.jsp"%>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>

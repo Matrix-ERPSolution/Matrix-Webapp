@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file="headSetting.jsp"%>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
