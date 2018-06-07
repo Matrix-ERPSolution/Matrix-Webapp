@@ -35,13 +35,15 @@ body {
 	font-weight: bold;
 } */
 .certifyUserButton {
-	width: 100px;
-	padding: 40px;
-	border-radius: 50%;
-	border: none;
+	padding: 10px;
+	border-radius: 10px;
+	border-color: #003366;
+	border-style: solid;
+	border-width: 2px;
 	text-align: center;
-	background-color: rgb(153, 204, 255);
+	background-color: white;
 	color: black;
+	font-weight: bold;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -76,24 +78,38 @@ body {
 	width: 300px;
 	margin: auto;
 }
+#userHeader {
+	margin: auto;
+	text-align: center;
+	width: 50%;
+	border-bottom: #d4e5f7 solid;
+	text-align: center;
+}
+#userHeader h4 {
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
 </style>
 </head>
 <body>
 <img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
 <div class="addUserHeader">
-<br>
-	<span>회원인증</span>
-	<br><br>
+<div id="userHeader"><h4>회원인증</h4></div>
+
 </div><!-- addUserHeader end -->
+	<br><br>
 <div class="addUserContainer">
-<!-- <img id="staffLogo" src="images/profile/defaultProfile.png" width="20%" height="20%"><br> -->
-<button id="certifyStaff" class="certifyUserButton">직원 인증</button>
+<img id="staffIcon" src="images/staff_icon.png" width="100px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img id="adminIcon" src="images/admin_icon.png" width="95px">
+<br><br>
+<a id="certifyStaff" class="certifyUserButton">직원 인증</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="certifyAdmin" class="certifyUserButton">관리자 인증</a>
 
-<button id="certifyAdmin" class="certifyUserButton">관리자 인증</button>
 
-<!-- <i class="fa fa-user" aria-hidden="true"></i> --><!-- 직원용 그림-->
-
-<!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> --><!-- 관리자용 그림 -->
 
 </div><!-- addUserContainer end -->
  	<script type="text/javascript">
