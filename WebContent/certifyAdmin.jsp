@@ -8,38 +8,97 @@
 <%@include file = "loginCheckUser.jsp" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-#grad1 {
-    height: 640px;
-    background: #2E64FE;
-    background: linear-gradient(#2E64FE, white);
-	text-align: center;
+#logo{
+	display:block;
+	padding-top:10px;
+	margin-left: auto;
+	margin-right: auto;
 }
-.roundBox {
+body {
+	background-image: url("images/joinetc.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 360px 640px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.addUserInput {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #004566;
+ 	line-height : normal;
 	width: 200px;
-	height: 30px;
-	border-radius: 10px;
+	padding: 10px;
 	text-align: center;
+	background-color: rgba(0,0,0,0);
+	color: #004566;
+	font-weight: bold;
+}
+.certifyUserButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+	background-color: rgb(153, 204, 255);
+	color: black;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.addUserButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+	background-color: #005580;
+	color: #FFFFFF;
+}
+.cancelButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 10px;
+	border: none;
+	text-align: center;
+	background-color: #bfbfbf;
+	color: black;
+	margin-top: 20px;
+}
+.addUserHeader {
+	text-align: center;
+	padding-top: 15%;
+	height: 40px;
+	font-size: 18pt;
+}
+.addUserContainer {
+	text-align: center;
+	padding-top: 20px;
+	width: 300px;
+	margin: auto;
 }
 </style>
 </head>
-<body id="grad1">
-<div>
-	<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
-	<h4 class="inline" align="center">관리자 회원 인증</h4>
+<body>
+	<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+<div class="addUserHeader">
+	<span>관리자 회원 인증</span>
 </div>
-	<input type="text" id="licenseNum" class ="roundBox" required="required" placeholder="-제외한 사업자등록번호 10자 입력"><br>
-	<button id="certifyLicense" class="roundBox">사업자번호조회</button>
+	<input type="text" id="licenseNum" class ="addUserInput" required="required" placeholder="-제외한 사업자등록번호 10자 입력"><br>
+	<button id="certifyLicense" class="certifyUserButton">사업자번호조회</button>
 	<div id="licenseNumCheck"></div>
 	<br>
+<div id="adminInfo" align="center">
 대표자명
-	<div id="representative">홍윤영</div><br>
+	<div id="representative" class="addUserInput" align="center">홍윤영</div><br>
 지점명
-	<div id="branchName">가락시장점</div> <br>
-매장 전화번호<div id="branchPhoneNum">02-123-1234</div><br>
-영업시간<div id="openingTime">24시간</div><br>
-<button id="certify" class="roundBox" >인증요청</button>
+	<div id="branchName" class="addUserInput" align="center">가락시장점</div> <br>
+매장 전화번호<div id="branchPhoneNum" class="addUserInput" align="center">02-123-1234</div><br>
+영업시간<div id="openingTime" class="addUserInput" align="center">24시간</div><br>
+<button id="certify" class="certifyUserButton" >인증요청</button>
+</div>
 <script type="text/javascript">
-		 
 	 //사업자 등록번호 입력값 형식 검사
 	 //정규식[1-9]{1}[0-9]{2}-[0-9]{2}-[0-9]{5}
 	 //숫자만 입력되도록 유도.
