@@ -8,7 +8,7 @@
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
 .accordion {
-	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.4));
     color: #003366;
     cursor: pointer;
     padding: 8px 8px 8px 20px;
@@ -23,7 +23,7 @@
     letter-spacing: 5px;
 }
 .subAccordion {
-    background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, #eaf3fa);
+    background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.4));
     color: #003366;
     cursor: pointer;
     padding: 8px 8px 8px 15px;

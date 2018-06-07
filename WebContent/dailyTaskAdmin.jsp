@@ -20,7 +20,7 @@
 	letter-spacing: 2px;
 }
 .accordion {
-	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.4));
     color: #003366;
     cursor: pointer;
     padding: 8px 8px 8px 20px;
@@ -156,7 +156,7 @@ li.deleting:hover:after {
 	cursor: pointer;
 }
 #assignTaskButton.disabled {
-	filter: saturate(0%) brightness(400%);
+	filter: saturate(0%) brightness(520%);
 	cursor: default;
 }
 #assignTaskButton:not(.disabled):hover {
@@ -268,6 +268,7 @@ $(function(){
 </div>
 
 <script>
+
 	// 아코디언
 	var activateAcc = function(input){
 	    input.classList.toggle("active");

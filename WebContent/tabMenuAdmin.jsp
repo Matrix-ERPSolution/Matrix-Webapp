@@ -86,7 +86,7 @@ header {
 <header>
 <!-- Sidebar/menu -->
 <div class="side-bar w3-animate-left" style="display:none;z-index:5; text-align: center;">
-  <button class="w3-button" onclick="w3_close()" style="float:right; font-size:20px; font-weight: normal;">&times;</button>
+  <button class="w3-button" onclick="w3_close()" style="float:right; font-size:20px; font-weight: normal; color: white;">&times;</button>
   <div class="w3-container">
   	<table class="profileInfo" style="color: white">
   		<tr>

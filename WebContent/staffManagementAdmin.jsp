@@ -6,7 +6,7 @@
 <%@include file = "tabMenuAdmin.jsp" %>
 <style type="text/css">
 .accordion {
-	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.4));
     color: #003366;
     cursor: pointer;
     padding: 8px 8px 8px 15px;
@@ -47,7 +47,7 @@
 	width:90%;
 	margin:auto;
     padding: 0;
-    background-color: white;
+  	background: linear-gradient(#FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, rgba(192, 222, 241, 0.3));
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -85,12 +85,13 @@
 	float: left;
 }
 .resultStaffTable {
+	width: 100%;
 	font-size: 10pt;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 .resultStaffTable tr td {
-	padding-right: 10px;
+	padding-right: 5px;
 }
 .resultStaffTable .yesButton{
 	background-color: white;
@@ -141,6 +142,9 @@
 	color: rgb(0, 51, 102);
 	font-weight: bolder;
 	letter-spacing: 1px;
+}
+.panel {
+	padding-left: 7px;
 }
 </style>
 </head>
