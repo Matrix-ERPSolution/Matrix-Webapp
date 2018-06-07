@@ -151,7 +151,7 @@ public class DailyDAO {
 				Collection<String> workParts = dao.getWorkParts(branchSeq); //지점에 해당하는 파트 종류 호출
 				result=false;
 				for (String tmp : workParts) {
-					if(tmp.equals(vo.getAssignDetail())){
+					if(tmp != null && tmp.equals(vo.getAssignDetail())){
 						result=true;
 					}
 				}
@@ -411,6 +411,8 @@ public class DailyDAO {
 			};
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		
 	}
