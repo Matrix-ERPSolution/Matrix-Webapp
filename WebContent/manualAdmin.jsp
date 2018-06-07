@@ -88,7 +88,7 @@ li {
 .mode {
 	background-color: #d9d9d9;
 	border:none;
-	border-radius:10%;
+	border-radius:10px;
 	color: #333333;
 	padding: 6px;
 	font-size: 10pt;

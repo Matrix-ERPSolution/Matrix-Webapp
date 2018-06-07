@@ -35,7 +35,7 @@ body {
 .certifyUserButton {
 	width: 200px;
 	padding: 10px;
-	border-radius: 20px;
+	border-radius: 10px;
 	border: none;
 	text-align: center;
 	background-color: rgb(153, 204, 255);
@@ -46,7 +46,7 @@ body {
 .addUserButton {
 	width: 200px;
 	padding: 10px;
-	border-radius: 20px;
+	border-radius: 10px;
 	border: none;
 	text-align: center;
 	background-color: #005580;
@@ -55,7 +55,7 @@ body {
 .cancelButton {
 	width: 200px;
 	padding: 10px;
-	border-radius: 20px;
+	border-radius: 10px;
 	border: none;
 	text-align: center;
 	background-color: #bfbfbf;

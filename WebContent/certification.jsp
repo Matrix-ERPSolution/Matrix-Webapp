@@ -16,7 +16,7 @@
 .roundBox {
 	width: 200px;
 	height: 30px;
-	border-radius: 20px;
+	border-radius: 10px;
 	text-align: center;
 }
 </style>

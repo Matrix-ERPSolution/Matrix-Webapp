@@ -96,7 +96,7 @@
 .resultStaffTable .yesButton{
 	background-color: white;
 	border: rgb(50, 132, 226) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
 	padding: 3px;
 	width: 36px;
@@ -107,7 +107,7 @@
 .resultStaffTable .noButton{
 	background-color: white;
 	border: rgb(255, 128, 128) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
 	padding: 3px;
 	width: 36px;
@@ -124,7 +124,7 @@
 	border: none;
 	background-color: rgb(153,153,153);
 	color: rgb(255,255,255);
-	border-radius: 20%;
+	border-radius: 10px;
 	padding: 14px;
 	cursor: pointer;	
 }

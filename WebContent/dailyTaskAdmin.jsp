@@ -180,14 +180,14 @@ li.deleting:after {
 .yesButton{
 	background-color: white;
 	border: rgb(50, 132, 226) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
 	padding: 5px 10px 5px 10px;
 }
 .noButton{
 	background-color: white;
 	border: rgb(255, 128, 128) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
 	padding: 5px 10px 5px 10px;
 }

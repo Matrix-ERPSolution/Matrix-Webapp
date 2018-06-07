@@ -133,30 +133,32 @@ li {
 .yesButton{
 	background-color: white;
 	border: rgb(50, 132, 226) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
-	padding: 3px;
+	padding: 5px;
 	width: 50px;
 }
 .confirmButton{
 	background-color: white;
 	border: rgb(50, 132, 226) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
-	padding: 3px;
+	padding: 5px;
 	width: 80px;
 	float: right;
 }
 #oldTask {
-	width:90%;
-	margin: auto;
+	width:80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 10px;
 }
 #selectedTaskResult {
 	width: 80%;
 	margin-left:10%;
 	margin-right:10%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	text-align: center;
 	vertical-align: middle;
 	height: 50px;
@@ -166,8 +168,8 @@ li {
 }
 .cancelButton {
 	width: 200px;
-	padding: 10px;
-	border-radius: 20px;
+	padding: 5px;
+	border-radius: 10px;
 	border: none;
 	text-align: center;
 	background-color: #bfbfbf;
@@ -178,15 +180,15 @@ li {
 	margin-left:30%;
 	margin-right:30%;
 	width: 40%;
-	padding: 10px;
+	padding: 5px;
 	text-align: center;
 }
 .noButton{
 	background-color: white;
 	border: rgb(255, 128, 128) 1px solid;
-	border-radius: 10%;
+	border-radius: 10px;
 	color: black;
-	padding: 3px;
+	padding: 5px;
 }
 </style>
 </head>
