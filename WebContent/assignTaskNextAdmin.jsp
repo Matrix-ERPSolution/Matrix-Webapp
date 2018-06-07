@@ -8,53 +8,106 @@
 <%@include file = "loginCheckAdmin.jsp" %>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
-.accordion, .subAccordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
-    cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
+.accordion {
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247,
+		0.2));
+	color: #003366;
+	cursor: pointer;
+	padding: 5px 5px 5px 20px;
+	width: 95%;
+	text-align: left;
+	font-weight: bold;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+	margin: auto;
+	border-radius: 5px 5px 5px 5px;
+	letter-spacing: 5px;
 }
 
-.active, .accordion:hover, .subAccordion:hover {
-    background-color: #99ccff;
+
+.active {
+	background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145,
+		0.2));
+	color: #FFFFFF;
 }
 
-.accordion:before, .subAccordion:before {
-    content: '\25B6';
-    color: #003366;
-    font-weight: bold;
-    float: left;
-    margin-right: 5px;
+.accordion:after {
+	font-family: FontAwesome;
+	content: '\f0da';
+	font-size: 17px;
+	color: #003366;
+	float: right;
+	margin-top: -3px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.active:after {
+	font-family: FontAwesome;
+	content: '\f0d7';
+	color: #FFFFFF;
 }
 
-.active:before {
-    content: '\25BC';
+.panel {
+	width: 90%;
+	background: linear-gradient(#FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, rgba(192, 222, 241, 0.3));
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	margin: auto;
+	border-radius: 0 0 5px 5px;
+}
+.assignTaskHeader{
+	margin: auto;
+	text-align: center;
+	width: 50%;
+	border-bottom: #d4e5f7 solid;
+	text-align: center;
 }
 
-.panel, .subPanel {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+.assignTaskHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 2px;
 }
- ul {
-  list-style-type: none;
-  display: table;
-  table-layout: fixed;
+ul {
+	margin-left: -20pt;
+	list-style: none;
 }
- li {
-  display: table-cell;
+li {
+	list-style: none;
+	font-size: 14px;
+	margin-left: -10px;
+	margin-right: 5px;
+	margin-bottom: 3px;
 }
-#assignedTaskBox{
-	border: 2px solid black;
+#date {
+	margin: auto;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 1px;
+	vertical-align: middle;
+	padding-top: 10px;
+	text-align: center;
+}
+.subMenu {
+	padding: 10px;
+	margin-left: 10px;
+}
+
+.subMenu span {
+	font-size: 15px;
+	letter-spacing: 1px;
+}
+.subMenu::after {
+	content: '\2795';
+	color: #003366;
+	font-size: 12px;
+	padding-left: 5px;
+}
+.subMenu.selected::after {
+	content: '\2796';
 }
 .staffs{
 	border: 2px solid black;
@@ -66,16 +119,17 @@
 	color: blue;
 }
 .panel.assignableStaffs {
-	margin-top : 10px;
 	overflow: auto;
     white-space: nowrap;
 }
 .staffBox {
 	display: inline-block;
+	margin: 7px;
 }
 .staffName {
+	margin-top: 5px;
 	display: block;
-	font-size: 10pt;
+	font-size: 15px;
 }
 .workparts {
 	margin-bottom : 10px;
@@ -86,37 +140,55 @@
     border: none;
     display: inline-block;
 }
-.workparts:hover, .staffBox:hover, .selected {
+.selected {
 	background-color: #99ccff;
+}
+#selectedTaskBox {
+	box-shadow: 5px 5px 5px lightgray;
+	border-radius: 10px;
+	width: 90%;
+	margin-left: 5%;
+}
+#selectedTask {
+	margin-left: 55px;
+	font-size: 17px;
+	font-weight: bold;
+	vertical-align: middle;
+	margin-bottom: 3px;
 }
 #selectedTask::before {
 	content: "\2605";
 	color: lightgray;
-	width: 1em;
+	font-size: 30px;
+	padding-right: 15px;
 }
 .important#selectedTask::before {
 	content: "\2605";
-	color: orange;
-	width: 1em;
+	color: #3284e2;
+}
+.workParts {
+	padding: 8px;
+	margin: 10px 10px 17px 10px;
+	background: #ededed;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px lightgray;
 }
 </style>
 </head>
 <body>
-<h2>${param.dateKor}</h2>
-<h2>업무 배정</h2>
-<hr> <br>
-
-<div id="assignedTaskBox">
-	<h4 id="selectedTask">${param.selectedTask}
-	<i class="fa fa-chevron-right" aria-hidden="true" style="margin-left:25px"></i>
-	</h4>
+<div class="assignTaskHeader">
+	<h4>업무 배정</h4>
+</div>
+<h4 id="date">${param.dateKor}</h4>
+<div id="selectedTaskBox">
+	<h4 id="selectedTask">${param.selectedTask}</h4>
 </div>
 
-<hr><br>
 <div id="assignTask">
-	<h4>담당자 지정하기</h4>
+	<h6 style="font-size: 14px; margin-left: 10px;">담당자 지정하기</h6>
 	<div class="accordion" id="assignableParts">파트별</div>
-	<div class="panel">
+	<div class="panel assignableParts">
 	</div>
 	
 	<div class="accordion" id="assignableStaffs">개인별</div>
