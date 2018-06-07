@@ -496,6 +496,7 @@ update users set profile_photo='jonghyuk_profile.jpg' where user_id='jonghyuk';
 update users set profile_photo='yunseok_profile.jpg' where user_id='yunseok';
 update users set profile_photo='yejee_profile.jpg' where user_id='yejee';
 update users set profile_photo='taehun_profile.jpg' where user_id='taehun';
+update users set profile_photo='minji_profile.jpg' where user_id='minji';
 
 --커밋하실건가요?
 commit?
