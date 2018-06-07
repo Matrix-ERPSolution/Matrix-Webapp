@@ -70,13 +70,14 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    /* padding: 20px; */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    height:180px;
-    
+	outline: 0;
+	background-color: white;
+	height: 40%;
+	width: 300px;
+	border-radius: 10px;
+	margin-left: 30px;
+	margin-top: 70px;
+	text-align: center;
 }
 .profilePhoto {
 	border-radius: 50%;
@@ -113,23 +114,30 @@
 	width: 36px;
 }
 .setWorkPartHeader{
-	font-size: 14pt;
-	text-align: left;
-    padding: 10px 16px 10px 10px;
-    background-color: rgb(50, 132, 226);
-    color: white;
-    width: 100%;
+	padding-top: 10px;
+   	margin-left: auto;
+   	margin-right: auto;
+	text-align: center;
+	width: 50%;
+	border-bottom: #d4e5f7 solid;
+}
+.setWorkPartHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 2px;
 }
 .workParts {
+	padding: 8px;
+	margin: 10px 10px 17px 10px;
+	background: #ededed;
 	border: none;
-	background-color: rgb(153,153,153);
-	color: rgb(255,255,255);
 	border-radius: 10px;
-	padding: 14px;
-	cursor: pointer;	
+	box-shadow: 2px 2px 5px lightgray;
 }
 .selected {
-	background-color: rgb(50, 132, 226);
+	background-color: rgb(0, 51, 102);
+	color: white;
 }
 .staffManagementHeader {
 	margin: auto;
@@ -146,10 +154,19 @@
 .panel {
 	padding-left: 7px;
 }
+.staffInfoToSetWorkPart {
+	margin-left:10px;
+	margin-right:10px;
+	width:280px;
+}
+.staffInfoToSetWorkPart span{
+	color: rgb(0, 51, 102);
+	font-weight: bold;	
+}
 </style>
 </head>
 <body>
-<div>
+<div class="container">
 <div class="staffManagementHeader">
 	<h4>직원 관리</h4>
 </div>
@@ -260,6 +277,9 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+var closeModal = function(){
+	modal.style.display="none";	
+};
 
 /*퇴사*/
 var setLeaveDate= function(input){
