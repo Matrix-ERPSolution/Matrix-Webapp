@@ -223,6 +223,7 @@ li {
 <button id="assignCancelButton">취소</button>
 </div>
 <br>
+<br>
 <script>
 $(document).ready(function() {
 	if("${param.importance}"==1){

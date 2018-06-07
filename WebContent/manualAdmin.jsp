@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file = "loginCheckAdmin.jsp" %>
+<%@include file="loginCheckAdmin.jsp" %>
 <%@include file="headSetting.jsp"%>
-<%@include file = "tabMenuAdmin.jsp" %>
+<%@include file="tabMenuAdmin.jsp" %>
 <style>
 .accordion {
 	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.4));
@@ -82,8 +82,8 @@
 li {
 	list-style: none;
 	font-size: 14px;
-	margin-left: -35px;
-	margin-right: 5px;
+	margin-left: -27px;
+	margin-right: 13px;
 }
 .mode {
 	background-color: #d9d9d9;
