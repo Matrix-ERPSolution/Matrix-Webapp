@@ -412,7 +412,9 @@ insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detai
 insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 소독', '기간', '7', 5, 4);
 insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '환풍기 청소', '기간', '30', 5, 5);
 insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '대소변기 비데 및 센서점검', 5, 5);
-
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '더치커피 원액 추출', '기간', '2', 2, 2);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '그린티 파우더 발주 신청', '기간', '7', 2, 2);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '고객 쿠폰 사용금액 정산', '기간', '30', 3, 3);
 
 -- 일일업무 레코드
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/15',	0,	'파트',	'오픈',	17,	'yunjin',	'김연진',	1	);
@@ -478,6 +480,13 @@ insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, ass
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'바닥 쓸기',	'2018/05/20',	0,	'파트',	'마감',	19,	'taehun',	'김태훈',	1	);
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'POS기 프로그램 업데이트',	'2018/05/20',	0,	'파트',	'마감',	16,	'taehun',	'김태훈',	1	);
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'근무태만 반성문 작성해오기',	'2018/05/20',	1,	'개인',	'taehun',	null,	'taehun',	'김태훈',	1	);
+
+--일일업무에 추가
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '더치커피 원액 추출', '2018/06/08', 0,	'파트',	'미들',	35, null, null, 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '그린티 파우더 발주 신청', '2018/06/08', 1, '개인', 'yunseok', 36, null, null,	1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '고객 쿠폰 사용금액 정산', '2018/06/08', 1, '개인', 'taehun', 37, null, null, 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '오금점에서 파라솔 대여', '2018/06/08', 0, '파트', '오픈', null, null,	null, 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '문정점에서 제빙기 대여', '2018/06/08', 0, '파트', '오픈', null, null,	null, 1);
 
 --일일 업무 날짜 최신화
 
