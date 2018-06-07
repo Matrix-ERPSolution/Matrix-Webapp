@@ -38,7 +38,7 @@ body {
 	border-radius: 10px;
 	border: none;
 	text-align: center;
-	background-color: rgb(153, 204, 255);
+	background-color: #d4e5f7;
 	color: black;
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -63,10 +63,16 @@ body {
 	margin-top: 20px;
 }
 .addUserHeader {
+	margin: auto;
 	text-align: center;
-	padding-top: 15%;
-	height: 40px;
-	font-size: 18pt;
+	width: 50%;
+	border-bottom: #d4e5f7 solid;
+}
+.addUserHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 2px;
 }
 .addUserContainer {
 	text-align: center;
@@ -78,9 +84,9 @@ body {
 </head>
 <body>
 <img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
-
+<br>
 <div class="addUserHeader">
-	<span>회원가입</span>
+	<h4>회원가입</h4>
 </div>
 
 <div class="addUserContainer">
@@ -92,6 +98,8 @@ body {
 	<button id="addUserNext" class="addUserButton" >다음 단계</button><br>
 	<button class="cancelButton" onclick="backtoLogin()">취소</button>
 </div>
+<br>
+<br>
 <script type="text/javascript">
 var backtoLogin = (function(){
 	location.href="controller?cmd=loginUI";

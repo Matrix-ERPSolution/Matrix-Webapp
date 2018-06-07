@@ -338,14 +338,14 @@ $('#assignButton').on('click',function (){
 	        },
 	        success : function(result) {
 	        	alert("${param.selectedTask} 업무를 " + $(".selectedAssignDetail").text().trim() + $(".selectedAssignType").text() + "에게 배정했습니다.");
-				location.href = "controller?cmd=dailyTaskAdminUI";
+				location.href = "controller?cmd=dailyTaskAdminUI&date={param.date}";
 	        }
 	 });
 });
 
 $('#assignCancelButton').on('click',function (){
 	        	alert("홈화면으로 돌아갑니다.");
-				location.href = "controller?cmd=dailyTaskAdminUI";
+				location.href = "controller?cmd=dailyTaskAdminUI&date={param.date}";
 });
 </script>
 </body>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,9 +180,26 @@ li.deleting:after {
 	padding: 5px 10px 5px 10px;
 }
 </style>
+<c:choose>
+	<c:when test="${!empty param.prevDate}">
+		<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker("setDate", "${param.prevDate}");
+			contentLoad();
+		});
+		</script>
+	</c:when>
+	<c:otherwise>
+		<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker("setDate", "0d");
+			contentLoad();
+		});
+		</script>
+	</c:otherwise>
+</c:choose>
 <script type="text/javascript">
 $("#dailyTaskTab").addClass("tapped");
-
 $(function(){
    $("#datepicker").datepicker({
       showOn : "button",
@@ -316,10 +334,7 @@ $(function(){
 			}
 		});
 	}
-	$(document).ready(function() {
-		$("#datepicker").datepicker("setDate", "0d");
-		contentLoad();
-	});
+	
 
 	/**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 	$("#scrollPast").on("click", function() {
@@ -437,7 +452,7 @@ $(function(){
 							if(result["result"] == "성공") {
 								alert(task +' 업무가 삭제되었습니다.')
 							}
-							location.href="controller?cmd=dailyTaskAdminUI";
+							location.href="controller?cmd=dailyTaskAdminUI&date=" + $("#datepicker").val();
 						}
 					});
 				}
