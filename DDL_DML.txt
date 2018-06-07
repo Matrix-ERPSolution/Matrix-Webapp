@@ -487,7 +487,11 @@ update daily_tasks set assign_date='2018/06/05' where assign_date='2018/05/18';
 update daily_tasks set assign_date='2018/06/04' where assign_date='2018/05/17';
 update daily_tasks set assign_date='2018/06/03' where assign_date='2018/05/16';
 update daily_tasks set assign_date='2018/06/02' where assign_date='2018/05/15';
-
+update daily_tasks set daily_task='입구 유리창 닦기' where daily_task='연진이 피카츄 생일케이크 사오기' and assign_date='2018/06/07';
+update daily_tasks set daily_task='오븐 수리기사 연락하기' where daily_task='근무태만 반성문 작성해오기' and assign_date='2018/06/07';
+delete daily_tasks where daily_task='에어컨 필터 교체' and assign_detail='마감' and assign_date='2018/06/07';
+update daily_tasks set importance=0 where assign_date='2018/06/07' and daily_task='입구 유리창 닦기';
+update users set profile_photo='yunjin_profile.jpg' where user_id='yunjin';
 
 --커밋하실건가요?
 commit?
