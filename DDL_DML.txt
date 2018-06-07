@@ -492,6 +492,10 @@ update daily_tasks set daily_task='오븐 수리기사 연락하기' where daily
 delete daily_tasks where daily_task='에어컨 필터 교체' and assign_detail='마감' and assign_date='2018/06/07';
 update daily_tasks set importance=0 where assign_date='2018/06/07' and daily_task='입구 유리창 닦기';
 update users set profile_photo='yunjin_profile.jpg' where user_id='yunjin';
+update users set profile_photo='jonghyuk_profile.jpg' where user_id='jonghyuk';
+update users set profile_photo='yunseok_profile.jpg' where user_id='yunseok';
+update users set profile_photo='yejee_profile.jpg' where user_id='yejee';
+update users set profile_photo='taehun_profile.jpg' where user_id='taehun';
 
 --커밋하실건가요?
 commit?
