@@ -19,7 +19,7 @@
 	    max-width: 720px; }
 	}
 </style> -->
-<!-- <style>
+<style>
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(NanumFont_TTF_ALL/NanumGothic.ttf) format('truetype');
@@ -28,4 +28,4 @@
 body {
 	font-family: NanumGothic;
 }
-</style> -->
+</style>

@@ -5,48 +5,123 @@
 <head>
 <%@include file="headSetting.jsp"%>
 <style>
-#grad1 {
-    height: 640px;
-    background: #2E64FE;
-    background: linear-gradient(#2E64FE, white);
-	text-align: center;
+#logo{
+	display:block;
+	padding-top:10px;
+	margin-left: auto;
+	margin-right: auto;
 }
-.roundBox {
+body {
+	background-image: url("images/joinetc.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 360px 640px;
+    margin: auto;
+    width: 100%;
+}
+.findInput {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #004566;
+ 	line-height : normal;
 	width: 200px;
-	height: 30px;
-	border-radius: 20px;
+	padding: 10px;
 	text-align: center;
+	background-color: rgba(0,0,0,0);
+	color: #004566;
+	font-weight: bold;
+}
+.findButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	text-align: center;
+	background-color: rgb(153, 204, 255);
+	color: black;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.cancelButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	text-align: center;
+	background-color: #bfbfbf;
+	color: black;
+	margin-top: 20px;
+}
+.findHeader {
+	text-align: center;
+	padding-top: 15%;
+	height: 40px;
+	font-size: 18pt;
+}
+.findMenu {
+	text-align: center;
+	height: 40px;
+}
+.findMenu span {
+	font-size: 14pt;
+	border-bottom: 2px solid #004566;
+	padding: 10px 10px 3px 10px;
+}
+.findContainer {
+	padding-top: 20px;
+	width: 300px;
+	margin: auto;
+}
+.findIdContent, .findPwContent {
+	padding-top: 20px;
+	display:inline;
+	font-size: 11pt;
+	margin-left: auto;
+	margin-right: auto;
+	width:80px;
+}
+#idCheck, #getUserPhoneNum, #,userPhoneNum, #findIdResult {
+	font-size: 11pt;
+}
+h5{
+	margin:0;
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body id="grad1">
-	<div>
-	<!-- <img class="inline" src="images/back.png" width="30%" height="80%" style="left:20px;"> -->
-	<img id="logo" src="images/logo_white.png" width="80%" height="80%" style="top:100px;"><br>
-	<h4 class="inline" align="center">아이디/비밀번호 찾기</h4>
-	</div>
-	
-		<h4>아이디 찾기</h4>
-		<h5>본인명의 휴대폰 번호로 인증</h5><br>
+<body>
+<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+
+<div class="findHeader">
+	<span>아이디/비밀번호 찾기</span><br>
+</div>
+
+<div class="findContainer">
+<div class="findMenu">
+	<span id="showFindId">아이디 찾기</span>
+	<span id="showFindPw">비밀번호 찾기</span>
+</div>
+<div class="findIdContent">
+	<span>본인명의 휴대폰 번호로 인증</span>
 	<div id="findId">
-			<input type="text" id="phoneNum" class="roundBox" required="required" placeholder="휴대폰 번호만 입력">
-			<div id="certifyResult"></div>
-			<button id="certify1" class="roundBox">인증</button>
+		<input type="text" id="phoneNum" class="roundBox" required="required" placeholder="휴대폰 번호만 입력">
+		<button id="certify1" class="roundBox">인증</button>
+		<div id="certifyResult"></div>
 	</div>
 	<!-- findId end -->
-		<br>
-		<div id="certifier">
-			<input type="text" id="inputCertification" class="roundBox" placeholder="인증번호입력"><br>
-			<button id="certify2" class="roundBox">확인</button><br>
-		</div>
-		<!-- certifier end -->
-		<div id="findIdResult"></div>
-		<!-- findIdResult end -->
 
+	<div id="certifier">
+		<input type="text" id="inputCertification" class="roundBox" placeholder="인증번호입력">
+		<button id="certify2" class="roundBox">확인</button>
+	</div>
+	<!-- certifier end -->
+<div id="findIdResult"></div>
+<!-- findIdResult end -->
+</div>
+<div class="findPwContent">
 	<div id="findPassword">
 		<div id="findPwByPhoneNum">
-			<h4>비밀번호 찾기</h4><br>
 			<input type="text" id="userId" class="roundBox" required="required" placeholder="아이디"><div id="idCheck"></div><br>
 			<button id="findUserPhoneNum" class="roundBox">휴대폰 번호 찾기</button><br>
 			<h5>회원정보에 등록된 휴대폰 번호로 인증</h5>
@@ -60,18 +135,27 @@
 			<button id="certify4" class="roundBox">인증</button>
 		</div><!-- phoneNumCertify end -->
 	</div><br><!-- findPassword end -->
+	
 	<div id="updatePassword">
 		<input type="password" id="newPw" class="roundBox" required="required" placeholder="비밀번호 재설정"><div id="pwCheck"></div><br>
 		<input type="password" id="checkPw" class="roundBox" required="required" placeholder="비밀번호 확인"><div id="pwCheck2"></div>
 		<button id="resetPw" class="roundBox" >변경</button>
 	</div><!-- updatePassword end -->
-	
-	<script>
-		$(document).ready(function() {
-			$(".inline").css({
-				"display" : "inline"
-			})
-		});
+</div>
+</div>
+<script>
+$(document).ready(function() {
+	$(".findIdContent").hide();
+	$(".findPwContent").hide();
+});
+$("#showFindId").click(function(){
+	$(".findIdContent").show();
+	$(".findPwContent").hide();
+});
+$("#showFindPw").click(function(){
+	$(".findPwContent").show();
+	$(".findIdContent").hide();
+});
 		
 	/* 아이디/비밀번호 찾기		
 	아이디 찾기	

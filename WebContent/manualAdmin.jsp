@@ -3,101 +3,106 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file="headSetting.jsp"%>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
 .accordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
+    color: #003366;
     cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: 2px solid #d4e5f7;
+    padding: 8px 8px 8px 20px;
+    width: 95%;
     text-align: left;
+    font-weight: bold;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+    margin: auto;
+    border-radius: 5px 5px 5px 5px;
+    letter-spacing: 5px;
 }
 .subAccordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
+    background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, #eaf3fa);
+    color: #003366;
     cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: 2px solid #e6f2ff;
+    padding: 8px 8px 8px 15px;
+    position: inherit;
+    width: 95%;
     text-align: left;
+    font-weight: bold;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+    margin: auto;
+    border-radius: 5px 5px 5px 5px;
+    letter-spacing: 5px;
 }
-.active, .accordion:hover, .subAccordion:hover {
-    background-color: #99ccff;
+.active, .subActive {
+    background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145, 0.2));
+    color: #FFFFFF;
 }
 
-.accordion:before, .subAccordion:before {
+.accordion:after, .subAccordion:after {
 	font-family: FontAwesome;
     content: '\f0da';
+    font-size: 20px;
     color: #003366;
-    font-weight: bold;
-    float: left;
-    margin-right: 5px;
+    float: right;
+    margin-top: -3px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
-.active:before {
+.active:after, .subActive:after {
     font-family: FontAwesome;
     content: '\f0d7';
+    color: #FFFFFF;
 }
 
 .panel{
-    padding: 0 18px;
-    background: none;
+    width: 95%;
+    background: linear-gradient(#FFFFFF, rgba(192, 222, 241, 0.3));
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
 }
 .subPanel {
-    padding: 0 18px;
-    margin: auto;
-    width: 90%;
-    background-color: white;
+    width: 95%;
+    background: linear-gradient(#FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, rgba(192, 222, 241, 0.3));
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    border: rgb(153, 204, 255) solid 2px;
-}
-li:hover, .selected {
-	background-color: #99ccff;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
 }
 
 li {
 	list-style: none;
-	font-size: 12pt;
-	margin-left: -40pt;
+	font-size: 14px;
+	margin-left: -35px;
+	margin-right: 5px;
 }
-.unselectedMode {
+.mode {
 	background-color: #d9d9d9;
 	border:none;
 	border-radius:10%;
 	color: #333333;
-	padding: 10px;
-	font-size: 11pt;
+	padding: 6px;
+	font-size: 10pt;
 }
-.selectedMode {
-	background-color: rgb(50, 132, 226);
-	border:none;
-	border-radius:10%;
+.mode.selected {
+	background-color: #206591;
 	color: white;
-	padding: 10px;
-	margin-left: 10px;
-	font-size: 11pt;
+	font-weight: bold;
 }
 .manualHeader {
 	margin: auto;
 	text-align: center;
 	width: 50%;
-	border-bottom: rgb(153, 204, 255) solid;
+	border-bottom: #d4e5f7 solid;
 }
 .manualHeader h4{
 	margin-bottom: 5px;
@@ -112,14 +117,15 @@ li {
 <div class="manualHeader">
     <h4>매뉴얼 조회</h4>
 </div>
-<div style="padding: 10px;">
-<button id="spaceMode" class="selectedMode">공간별</button>
-<button id="taskMode" class="unselectedMode">업무별</button>
+<br>
+<div style="padding: 0 10px 10px 10px;">
+<button id="spaceMode" class="mode selected">공간별</button>
+<button id="taskMode" class="mode">업무별</button>
 </div>
 <div id="manual">
 </div>
 <script>
-$("#manualTab").parent().addClass("tapped");
+$("#manualTab").addClass("tapped");
 
 var manualSpaceMode = function(){
 	 $.ajax({
@@ -141,18 +147,14 @@ var manualTaskMode = function(){
 }
 
 $("#spaceMode").click(function(){
-	$("#spaceMode").removeClass("unselectedMode");
-	$("#spaceMode").addClass("selectedMode");
-	$("#taskMode").removeClass("selectedMode");
-	$("#taskMode").addClass("unselectedMode");
+	$("#taskMode").removeClass("selected");
+	$("#spaceMode").addClass("selected");
 	manualSpaceMode();
 });
 
 $("#taskMode").click(function(){
-	$("#spaceMode").removeClass("selectedMode");
-	$("#spaceMode").addClass("unselectedMode");
-	$("#taskMode").removeClass("unselectedMode");
-	$("#taskMode").addClass("selectedMode");
+	$("#spaceMode").removeClass("selected");
+	$("#taskMode").addClass("selected");
 	manualTaskMode();
 });
 
@@ -192,7 +194,7 @@ var activateAcc = function(input){
 }
 
 var activateSubAcc = function(input){
-    input.classList.toggle("active");
+    input.classList.toggle("subActive");
     var panel = input.nextElementSibling;
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;

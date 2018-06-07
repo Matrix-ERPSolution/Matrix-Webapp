@@ -2,38 +2,45 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-<%@include file="headSetting.jsp"%>
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file = "tabMenuAdmin.jsp" %>
 <style type="text/css">
 .accordion {
-	background: linear-gradient(to bottom left, #1d6dc9, #85d8de);
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
     color: #003366;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px 8px 8px 15px;
     width: 95%;
     text-align: left;
+    font-weight: bold;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
     margin: auto;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid white;
+    letter-spacing: 1px;
 }
-.active, .accordion:hover {
-    background-color: #99ccff;
+.active {
+    background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145, 0.2));
+    color: #FFFFFF;
 }
 
-.accordion:before {
+.accordion:after {
 	font-family: FontAwesome;
     content: '\f0da';
+    font-size: 20px;
     color: #003366;
-    font-weight: bold;
-    float: left;
-    margin-left: 7px;
+    float: right;
+    margin-top: -3px;
     margin-right: 10px;
+    vertical-align: middle;
 }
 
-.active:before {
+.active:after {
     font-family: FontAwesome;
     content: '\f0d7';
+    color: #FFFFFF;
 }
 
 .panel, .subPanel {
@@ -127,7 +134,7 @@
 	margin: auto;
 	text-align: center;
 	width: 50%;
-	border-bottom: rgb(153, 204, 255) solid;
+	border-bottom: #d4e5f7 solid;
 }
 .staffManagementHeader h4{
 	margin-bottom: 5px;
@@ -142,14 +149,14 @@
 <div class="staffManagementHeader">
 	<h4>직원 관리</h4>
 </div>
-
-<div id="preStaffs" class=" accordion" onclick="activateAcc(this)" style="margin-top:10px;">승인 요청 내역</div>
+<br>
+<div id="preStaffs" class="accordion" onclick="activateAcc(this)">승인 요청 내역</div>
 <div class="panel"></div>
 
-<div id="workingStaffs" class=" accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
+<div id="workingStaffs" class="accordion" onclick="activateAcc(this)">재직 중인 직원들</div>
 <div class="panel"></div>
 
-<div id="leftStaffs" class=" accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
+<div id="leftStaffs" class="accordion" onclick="activateAcc(this)">퇴사한 직원들</div>
 <div class="panel"></div>
 
 <!-- 파트 수정 Modal content -->

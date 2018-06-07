@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file = "loginCheckAdmin.jsp" %>
 <%@include file="headSetting.jsp" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -40,15 +41,15 @@ body {
 }
 
 .side-bar {
-	background-color: rgb(230, 242, 255);
+	background-color: #006088;
 }
 
 .w3-bar-block {
 	font-size: 16px;
-	margin: 15px;
+	margin: 4px;
 }
 
-.w3-bar-block div {
+.w3-bar-block a {
 	background-color: rgb(255, 255, 255);
 }
 
@@ -60,7 +61,6 @@ header {
 	background-size: 360px auto;
 	background-repeat: no-repeat;
 }
-
 .mat-button {
 	display: inline-block;
 	margin-top: 2px;
@@ -88,13 +88,12 @@ header {
 <div class="side-bar w3-animate-left" style="display:none;z-index:5; text-align: center;">
   <button class="w3-button" onclick="w3_close()" style="float:right; font-size:20px; font-weight: normal;">&times;</button>
   <div class="w3-container">
-  	<table class="profileInfo">
+  	<table class="profileInfo" style="color: white">
   		<tr>
-  			<td><img id="slideProfilePhoto" alt="프로필사진" src="images/profile/defaultProfile.png" style="width: 70px; height: 70px; border-radius: 50%"></td>
+  			<td><img id="slideProfilePhoto" alt="프로필사진" src="images/profile/defaultProfile.png" style="width: 70px; height: 70px; border-radius: 50%; border: 5px solid white;"></td>
   			<td style="padding-left: 7px;"><span id="branchName"></span><br><span id="certifyType"></span><br><span id="name"></span>님</td>
 		</tr>
   	</table>
-  </div>
   <br>
   <br>
   <div class="w3-bar-block">
@@ -105,10 +104,12 @@ header {
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
     <a href="#logout" onclick="logout()" class="w3-bar-item w3-button w3-hover-blue" style="background-color: rgb(255, 230, 230);">로그아웃</a> 
   </div>
+  </div>
 </div>
 
 <div class="w3-container">
   <a href="#" class="mat-button" onclick="w3_open()">≡</a>
+  <span style="padding: 80px 80px 20px 20px;" onclick="goHome()"></span>
 </div>
 <nav class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"></nav>
 	<!-- 위치조정 필요 -->
@@ -126,6 +127,9 @@ header {
 
 </header>
 <script>
+function goHome(){
+	location.href="controller?cmd=homeUI";
+}
 $("#dailyTaskTab").click(
 		function(){
 			 location.href="controller?cmd=dailyTaskAdminUI";

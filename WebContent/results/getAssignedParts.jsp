@@ -10,6 +10,6 @@
  	<div class="panel"></div>
 </c:if>
 <c:if test="${!personal && empty parts}">
-	<p style="margin-left:20px;">배정된 업무가 없습니다.</p>
+	<p style="text-align: center;">배정된 업무가 없습니다.</p>
 </c:if>
  	
