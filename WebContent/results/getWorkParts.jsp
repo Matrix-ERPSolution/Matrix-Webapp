@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${param.staffId!=null}">
-	<div class="setWorkPartHeader">소속 파트 수정</div>
-	<p class="staffInfoToSetWorkPart" id="${param.staffId}" style="margin-bottom: 5px;"><span>${param.staffName}</span>님의<br>
-	소속파트를 수정합니다.</p>
+	<span onclick="closeModal()" class="w3-button" style="pad; float: right; margin-top:5px; margin-right: 15px; padding:3px 3px; font-size: 30px;">&times;</span>
+	<div class="setWorkPartHeader"><h4>소속 파트 수정</h4></div>
+	<br><p class="staffInfoToSetWorkPart" id="${param.staffId}" style="margin-bottom: 5px;"><span>${param.staffName}</span>님의 소속파트를 수정합니다.</p><br>
 </c:if>
 <c:forEach var="part" items="${workParts}">
 	<c:choose>
