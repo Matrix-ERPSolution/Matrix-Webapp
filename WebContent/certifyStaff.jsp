@@ -45,7 +45,7 @@ body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-.addUserButton {
+/* .addUserButton {
 	width: 200px;
 	padding: 10px;
 	border-radius: 10px;
@@ -53,8 +53,8 @@ body {
 	text-align: center;
 	background-color: #005580;
 	color: #FFFFFF;
-}
-.cancelButton {
+} */
+/* .cancelButton {
 	width: 200px;
 	padding: 10px;
 	border-radius: 10px;
@@ -63,7 +63,7 @@ body {
 	background-color: #bfbfbf;
 	color: black;
 	margin-top: 20px;
-}
+} */
 .addUserHeader {
 	text-align: center;
 	padding-top: 15%;
@@ -112,11 +112,12 @@ body {
 </head>
 <body>
 <img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
-	<div id=addUserHeader>
+	<div class=addUserHeader>
 		<span>직원 회원 인증</span>
 	</div>
+<div id="staffInfo" align="center">
 <input type="text" id="branchName" name="branchName" class ="addUserInput" required="required" placeholder="지점명"><br>
-<button id="findBranch" class="roundBox">지점찾기</button>
+<button id="findBranch" class="certifyUserButton">지점찾기</button>
 
 <div id="branchNameCheck"></div>
 <br>
@@ -133,8 +134,8 @@ body {
 <option value="기업">기업</option>
 </select>
 <br><input type="text" id="accountNum" name="accountName" class ="addUserInput" placeholder="계좌번호"><br>
-<button id="certify" class="roundBox" >인증요청</button>
-
+<button id="certify" class="certifyUserButton" >인증요청</button>
+</div>
 	<!-- 모달 -->
 	<div id="modalFindBranch" class="modal">
     <div class="modal-content">
