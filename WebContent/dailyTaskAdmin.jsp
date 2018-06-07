@@ -143,7 +143,7 @@ li.deleting:hover:after {
 	vertical-align: middle;
 }
 #scrollPast:hover, #scrollFuture:hover {
-	filter: grayscale(100%);
+	filter: brightness(20%);
 }
 #assignTaskButton {
 	float: right; 
