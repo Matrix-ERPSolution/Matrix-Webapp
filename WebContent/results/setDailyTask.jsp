@@ -94,13 +94,13 @@ li {
 }
 #selectedTask::before, #oldTask::before {
 	content: "\2605";
-	color: lightgray;
-	width: 1em;
+	color: #999999;
+	width: 2em;
 }
 .important#selectedTask::before, .important#oldTask::before{
 	content: "\2605";
-	color: orange;
-	width: 1em;
+	color: #3284e2;
+	width: 2em;
 }
 .setDailyTaskHeader {
 	margin: auto;
@@ -158,9 +158,11 @@ li {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-align: center;
+	vertical-align: middle;
+	height: 50px;
 }
-#selectedTaskResult #selectedTask {
-	min-width: 200px;
+#selectedTask {
+	vertical-align: bottom;
 }
 </style>
 </head>
@@ -196,7 +198,7 @@ ${param.oldDailyTask}
 
 <!-- 선택된 업무 출력 -->
 <div id="selectedTaskResult">
-	<span id="selectedTask" style="font-size: 10pt;">새로운 업무를 선택하세요</span>
+	<span id="selectedTask" style="font-size: 11pt;">새로운 업무를 선택하세요</span>
 	<button id="update" class="confirmButton">수정완료</button>
 	<span id="closeModal" class="w3-button" style="pad; top:0; padding:4px 8px; float:right;">&times;</span>
 </div>
