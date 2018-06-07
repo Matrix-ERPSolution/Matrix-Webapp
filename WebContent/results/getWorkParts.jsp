@@ -9,10 +9,14 @@
 <c:forEach var="part" items="${workParts}">
 	<c:choose>
 		<c:when test="${part==param.oldWorkPart}">
-			<button class="selected workParts" >${part}</button>
+			<c:if test="${!empty param.oldWorkPart && param.oldWorkPart != ''}">
+				<button class="selected workParts" >${part}</button>
+			</c:if>
 		</c:when>
 		<c:otherwise>
-			<button class="workParts" onclick="setWorkPart(this)">${part}</button>
+			<c:if test="${!empty part && part != ''}">
+				<button class="workParts" onclick="setWorkPart(this)">${part}</button>
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>

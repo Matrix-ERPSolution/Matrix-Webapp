@@ -415,6 +415,25 @@ insert into manual_tasks(manual_task_seq, manual_task, space_type_seq, task_type
 insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '더치커피 원액 추출', '기간', '2', 2, 2);
 insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '그린티 파우더 발주 신청', '기간', '7', 2, 2);
 insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '고객 쿠폰 사용금액 정산', '기간', '30', 3, 3);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 테이블, 의자 소독', '기간', '14', 4, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 화단 물 주기', '기간', '3', 4, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '고객 쿠폰 사용금액 정산', '기간', '30', 3, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, 'POS기 감열지 재고 확인', '기간', '30', 3, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 방향제 교체', '기간', '14', 5, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '스탬프 쿠폰 재고 확인', '기간', '30', 1, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '셀프 바 컵홀더 재고량 확인', '기간', '7', 1, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '머그컵 열탕 소독', '기간', '3', 2, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '더치커피 원액 추출', '기간', '2', 2, 2);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '그린티 파우더 발주 신청', '기간', '7', 2, 2);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '고객 쿠폰 사용금액 정산', '기간', '30', 3, 3);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 테이블, 의자 소독', '기간', '14', 4, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '테라스 화단 물 주기', '기간', '3', 4, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '트레이 소독하기', '기간', '30', 2, 4);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, 'POS기 감열지 재고 확인', '기간', '30', 3, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '화장실 방향제 교체', '기간', '14', 5, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '스탬프 쿠폰 재고 확인', '기간', '30', 1, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '셀프 바 컵홀더 재고량 확인', '기간', '7', 1, 1);
+insert into manual_tasks(manual_task_seq, manual_task, repeat_type, repeat_detail, space_type_seq, task_type_seq) values(manual_task_seq.nextval, '머그컵 열탕 소독', '기간', '3', 2, 1);
 
 -- 일일업무 레코드
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'셀프 바 빨대 재고량 확인',	'2018/05/15',	0,	'파트',	'오픈',	17,	'yunjin',	'김연진',	1	);
@@ -506,6 +525,45 @@ update users set profile_photo='yunseok_profile.jpg' where user_id='yunseok';
 update users set profile_photo='yejee_profile.jpg' where user_id='yejee';
 update users set profile_photo='taehun_profile.jpg' where user_id='taehun';
 update users set profile_photo='minji_profile.jpg' where user_id='minji';
+delete daily_tasks where assign_date='2018/06/08' and admin_seq=1;
+
+--파트 수정
+update staffs set leave_date=null where staff_id='jaemin' and leave_date='2017/06/05';
+update daily_tasks set finisher_id='heeeun', finisher_name='강희은' where assign_date='2018/06/07' and daily_task='은행에서 잔돈 교환';
+update daily_tasks set finisher_id='chanyoung', finisher_name='주찬영' where assign_date='2018/06/07' and daily_task='메뉴판 업데이트 및 점검';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/07' and daily_task='POS기 프로그램 업데이트';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/07' and daily_task='오븐 수리기사 연락하기';
+
+update daily_tasks set finisher_id='heeeun', finisher_name='강희은' where assign_date='2018/06/06' and daily_task='냉장고 성에 제거';
+update daily_tasks set finisher_id='jaemin', finisher_name='최재민' where assign_date='2018/06/06' and finisher_name='김연진';
+update daily_tasks set finisher_id='chanyoung', finisher_name='주찬영' where assign_date='2018/06/06' and daily_task='원두 재고량 점검';
+update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where assign_date='2018/06/06' and daily_task='카운터 선반 닦기';
+update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where assign_date='2018/06/06' and daily_task='아이스 컵 재고량 점검';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/06' and daily_task='야간개장 준비';
+update daily_tasks set finisher_id='yejee', finisher_name='이예지' where assign_date='2018/06/06' and daily_task='POS기 먼지 제거';
+
+update daily_tasks set finisher_id='heeeun', finisher_name='강희은' where assign_date='2018/06/05' and finisher_name='김연진';
+update daily_tasks set daily_task='공휴일 대체 근무자 확인' where assign_date='2018/06/05' and daily_task='보건증 갱신';
+delete daily_tasks where assign_date='2018/06/05' and assign_type='개인' and assign_detail='chanyoung';
+delete daily_tasks where assign_date='2018/06/05' and assign_type='개인' and daily_task='대소변기 비데 및 센서점검';
+
+update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where assign_date='2018/06/04' and finisher_name='장윤석';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/04' and finisher_name='김태훈';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/04' and finisher_name='주찬영';
+update daily_tasks set finisher_id='chanyoung', finisher_name='주찬영' where assign_date='2018/06/04' and daily_task='원두 재고량 점검';
+
+update daily_tasks set finisher_id='heeeun', finisher_name='강희은' where assign_date='2018/06/03' and daily_task='셀프 바 빨대 재고량 확인';
+update daily_tasks set finisher_id='heeeun', finisher_name='강희은' where assign_date='2018/06/03' and daily_task='비품재고현황표 작성';
+update daily_tasks set daily_task='문정점에서 원두 빌려오기', finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/03' and daily_task='냉장고 성에 제거';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/03' and daily_task='파라솔 상태 점검';
+
+update daily_tasks set finisher_id='jaemin', finisher_name='최재민' where assign_date='2018/06/02' and finisher_name='김연진';
+update daily_tasks set finisher_id='chanyoung', finisher_name='주찬영' where assign_date='2018/06/02' and finisher_name='장윤석';
+update daily_tasks set finisher_id='yejee', finisher_name='이예지' where assign_date='2018/06/02' and finisher_name='김태훈';
+update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where assign_date='2018/06/02' and daily_task='테이블 및 좌석 점검';
+update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where assign_date='2018/06/02' and daily_task='행사 상품 재고 확인';
+update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/02' and daily_task='화장실 청소';
+delete daily_tasks where assign_date='2018/06/02' and daily_task='바닥 쓸기';
 
 --커밋하실건가요?
 commit?
