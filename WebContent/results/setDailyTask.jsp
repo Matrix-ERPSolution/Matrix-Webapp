@@ -4,55 +4,84 @@
 <%@include file = "../loginCheckAdmin.jsp" %>
 <%@include file = "../tabMenuAdmin.jsp" %>
 <style>
-html, body { height:100%; margin:0; padding:0;}
-.accordion, .subAccordion, #manualList {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
+.accordion{
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
+    color: #003366;
     cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: none;
+    padding: 8px 8px 8px 20px;
+    width: 95%;
     text-align: left;
+    font-weight: bold;
+    outline: none;
     font-size: 15px;
-    transition: 0.4s; 
-    }
-
-.active, .accordion:hover, .subAccordion:hover, #manualList:hover {
-    background-color: #99ccff;
+    transition: 0.4s;
+    margin: auto;
+    border-radius: 5px 5px 5px 5px;
+    letter-spacing: 5px;
 }
-
-.accordion:before {
+.subAccordion {
+    background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, #eaf3fa);
+    color: #003366;
+    cursor: pointer;
+    padding: 8px 8px 8px 15px;
+    position: inherit;
+    width: 95%;
+    text-align: left;
+    font-weight: bold;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    margin: auto;
+    border-radius: 5px 5px 5px 5px;
+    letter-spacing: 5px;
+}
+.active, .subActive {
+    background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145, 0.2));
+    color: #FFFFFF;
+}
+.accordion:after, .subAccordion:after {
 	font-family: FontAwesome;
     content: '\f0da';
+    font-size: 20px;
     color: #003366;
-    font-weight: bold;
-    float: left;
-    margin-right: 5px;
+    float: right;
+    margin-top: -3px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
-
-.active:before {
+.active:after, .subActive:after {
     font-family: FontAwesome;
     content: '\f0d7';
+    color: #FFFFFF;
 }
-
-
-.panel, .subPanel {
-    padding: 0 18px;
-    background-color: white;
+.panel {
+    width: 90%;
+    background: linear-gradient(#FFFFFF, rgba(192, 222, 241, 0.3));
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
+}
+.subPanel {
+    width: 95%;
+    background: linear-gradient(#FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, rgba(192, 222, 241, 0.3));
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
 }
 ul {
 	margin-left: -20pt;
 	list-style: none;
 }
 li {
-	font-size: 10pt;
-}
-li:hover, .selected {
-	background-color: #99ccff;
+	list-style: none;
+	font-size: 14px;
+	margin-left: -10px;
+	margin-right: 5px;
+	border-bottom: 
 }
 #manual {
 	display: none;
@@ -73,43 +102,108 @@ li:hover, .selected {
 	color: orange;
 	width: 1em;
 }
+.setDailyTaskHeader {
+	margin: auto;
+	text-align: center;
+	width: 50%;
+	border-bottom: #d4e5f7 solid;
+	text-align: center;
+}
+.setDailyTaskHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+.subMenu{
+	padding: 10px;
+	margin-left:10px; 
+}
+.subMenu span{
+	font-size: 12pt;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+#addTaskFromTyping {	
+	margin-left: 5%;
+	margin-right: 5%;
+	width: 90%;
+	text-align: center;
+}
+.yesButton{
+	background-color: white;
+	border: rgb(50, 132, 226) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
+	width: 50px;
+}
+.confirmButton{
+	background-color: white;
+	border: rgb(50, 132, 226) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
+	width: 80px;
+	float: right;
+}
+#oldTask {
+	width:90%;
+	margin: auto;
+}
+#selectedTaskResult {
+	width: 90%;
+	margin-left:5%;
+	margin-right:5%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+#selectedTaskResult #selectedTask {
+	min-width: 200px;
+}
 </style>
 </head>
 <body>
-<h2>업무 수정</h2>
+<div class="setDailyTaskHeader">
+	<h4>업무 수정</h4>
+</div>
 <div id="oldTask">
 ${param.oldDailyTask}
 <span class="assignDetail unfinished " id="${param.assignDetail}" style="float: right; display: inline-block;">${param.assignName}</span>
 </div>
 <div id="taskFromRecommend">
-	<h4>오늘의 추천업무</h4>
+	<div id="recommendToggle" class="subMenu"><span>오늘의 추천업무</span></div>
 	<div id="recommendList">
 	</div>
 </div>
 
 <div id="taskFromManual">
-	<h4 id="">매뉴얼에서 선택하기</h4>
-	<div id="manualList">매뉴얼 전체보기</div>
+	<div id="manualList" class="subMenu"><span>매뉴얼에서 선택하기</span></div>
 	<div id="manual">
-	</div>	
+	</div>
 </div>
 <div id="taskFromTyping">
-	<h4>직접 입력하기/매뉴얼에서 검색하기</h4>
+	<div class="subMenu"><span>직접 입력하기/매뉴얼에서 검색하기</span></div>
 	<div id="addTaskFromTyping" class="w3-dropdown-hover">
 		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요">
 		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border">
   		</div>
-		<button id="addTask">추가</button>
+		<button id="addTask" class="yesButton">추가</button>
 	</div>
 	
 </div>
 
 <!-- 선택된 업무 출력 -->
-<span id="selectedTask"></span>
-<span id="closeModal" class="w3-button" style="pad; top:0; padding:3px 6px;">&times;</span>
-<span id="update" class="w3-button" style="pad; position:absolute; padding:3px 6px;">수정완료</span>
+<div id="selectedTaskResult">
+	<span id="selectedTask" style="font-size: 10pt;">새로운 업무를 선택하세요</span>
+	<button id="update" class="confirmButton">수정완료</button>
+	<span id="closeModal" class="w3-button" style="pad; top:0; padding:4px 8px; float:right;">&times;</span>
+</div>
 <script>
-
+$("#recommendToggle").click(function(){
+	$("#recommendList").toggle();
+});
 	//매뉴얼목록 토글
 	$("#manualList").click(function() {
 		$("#manual").toggle();
@@ -244,6 +338,9 @@ ${param.oldDailyTask}
 	});
 	
 	$("#update").on("click", function(){
+		if($("#selectedTask").html()=="새로운 업무를 선택하세요") {
+			alert("업무를 선택해주세요");
+		} else {
 		$.ajax({
 	        url : "controller?cmd=isDailyTaskAction", 
 	        data : {  
@@ -277,5 +374,6 @@ ${param.oldDailyTask}
 				}
 	        }
 		});
+		}
 	});
 </script>
