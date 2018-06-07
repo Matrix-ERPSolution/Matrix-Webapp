@@ -15,7 +15,7 @@
 		0.2));
 	color: #003366;
 	cursor: pointer;
-	padding: 5px 5px 5px 20px;
+	padding: 7px 7px 7px 20px;
 	width: 95%;
 	text-align: left;
 	font-weight: bold;
@@ -141,16 +141,16 @@ li {
 	padding: 10px;
 	margin-left: 10px;
 }
-
 .subMenu span {
+	font-weight: bold;
 	font-size: 15px;
-	letter-spacing: 1px;
 }
 .subMenu::after {
 	content: '\2795';
 	color: #003366;
-	font-size: 12px;
-	padding-left: 5px;
+	font-size: 10px;
+	padding-left: 6px;
+	vertical-align: middle;
 }
 .subMenu.selected::after {
 	content: '\2796';
@@ -221,7 +221,6 @@ li {
 .important#selectedTask::before {
 	content: "\2605";
 	color: #3284e2;
-	
 }
 </style>
 </head>
@@ -311,21 +310,22 @@ var manualSpaceMode = function() {
 		}
 	});
 }
-$(document).ready(function(){
-	getRecommendedTasks();
-})
+
 //추천업무 가져오기 
 var getRecommendedTasks = function(){
 	$.ajax({
 		url : "controller?cmd=getRecommendedTasksAction",
 		data : {
-			date : "${date}"
+			date : "${param.date}"
 		},
 		success : function(result) {
 			$("#recommendList").html(result);
 		}
 	});
 }
+$(document).ready(function(){
+	getRecommendedTasks();
+})
 
 var activateAcc = function(input) {
 	input.classList.toggle("active");
@@ -435,7 +435,7 @@ $("#goNext").on("click", function() {
 				if($("#selectedTask").hasClass("important")){
 					importance = 1;
 				}
-				location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html().trim()+"&date="+"${param.date}&dateKor=${param.dateKor}&importance="+importance;
+				location.href = "controller?cmd=assignTaskNextAdminUI&selectedTask="+$("#selectedTask").html().trim()+"&date=${param.date}&dateKor=${param.dateKor}&importance="+importance;
 			}
         }
     });
