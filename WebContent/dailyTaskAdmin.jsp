@@ -145,6 +145,9 @@ li.deleting:hover:after {
 #scrollPast:hover, #scrollFuture:hover {
 	filter: brightness(20%);
 }
+.disabled#scrollFuture, .disabled#scrollFuture:hover {
+	filter: opacity(0%);
+}
 #assignTaskButton {
 	float: right; 
 	margin-right: 50px;
@@ -308,17 +311,17 @@ $(function(){
 		if ($("#datepicker").val() == today) {
 			$("#updateTask").show();
 			$("#deleteTask").show();
-			$("#scrollFuture").show();
+			$("#scrollFuture").removeClass("disabled");
 			$("#assignTaskButton").removeClass("disabled");
 		} else if ($("#datepicker").val() == tomorrow) {
 			$("#updateTask").show();
 			$("#deleteTask").show();
-			$("#scrollFuture").hide();
+			$("#scrollFuture").addClass("disabled");
 			$("#assignTaskButton").removeClass("disabled");
 		} else {
 			$("#updateTask").hide();
 			$("#deleteTask").hide();
-			$("#scrollFuture").show();
+			$("#scrollFuture").removeClass("disabled");
 			$("#assignTaskButton").addClass("disabled");
 		}
 		$.ajax({

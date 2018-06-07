@@ -7,61 +7,83 @@
 <%@include file = "loginCheckStaff.jsp" %>
 <%@include file="tabMenuStaff.jsp" %>
 <style>
+.dailyHeader {
+	margin: auto;
+	text-align: center;
+	width: 50%;
+	border-bottom: #d4e5f7 solid;
+}
+.dailyHeader h4{
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
 .accordion {
-    background-color: #e6f2ff;
-    font-weight: bold;
-    color: #444;
+	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247, 0.2));
+    color: #003366;
     cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    border: none;
+    padding: 8px 8px 8px 20px;
+    width: 95%;
     text-align: left;
+    font-weight: bold;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+    margin: auto;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid white;
+    letter-spacing: 1px;
+}
+.active {
+    background: linear-gradient(#206591, #206591, #206591, #206591, rgba(32, 101, 145, 0.2));
+    color: #FFFFFF;
 }
 
-.active, .accordion:hover {
-    background-color: #99ccff;
-}
-
-.accordion:before {
+.accordion:after {
 	font-family: FontAwesome;
     content: '\f0da';
+    font-size: 20px;
     color: #003366;
-    font-weight: bold;
-    float: left;
-    margin-right: 5px;
+    float: right;
+    margin-top: -3px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
-.active:before {
+.active:after {
     font-family: FontAwesome;
     content: '\f0d7';
+    color: #FFFFFF;
 }
 
-.panel {
-    padding: 0 18px;
-    background-color: white;
+.panel{
+    width: 95%;
+    background: linear-gradient(#FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, rgba(192, 222, 241, 0.3));
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
 }
 
 .unfinished {
 	color: gray;
 }
 ul {
-	margin-left: -20pt;
 	list-style: none;
 }
 li {
-	font-size: 10pt;
+	list-style: none;
+	font-size: 14px;
+	margin-left: -20px;
+	margin-right: 13px;
 }
 li.important::before {
 	content: "\2605";
-	color: orange;
-	width: 1em;
-	margin-left: -1.4em;
+	color: #3284e2;
+	font-size: 12px;
+	margin-left: -15px;
 }
 li.deleting:hover {
 	background-color: #99ccff;
@@ -71,17 +93,40 @@ li.deleting:hover:after {
 	color: red;
 }
 .ui-datepicker-trigger {
-	width: 20pt;
+	width: 35px;
 	cursor: pointer;
+	float: left;
+	margin-left: 50px;
 }
 .ui-datepicker-trigger:hover {
-	width: 25pt;
+	filter: grayscale(100%);
 }
-#datemenu {
-	vertical-align: middle 
+#date{
+	margin-left: 4px;
+	margin-top: 3px;
+	margin-bottom: 5px;
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 1px;
+	display:inline;
+}
+#scrollPast {
+	float: left;
+	margin-left: 20px;
+	margin-top: 10px;
+	vertical-align: middle;
+}
+#scrollFuture {
+	float: right;
+	margin-right: 105px;
+	margin-top: 10px;
+	vertical-align: middle;
 }
 #scrollPast:hover, #scrollFuture:hover {
-	width: 17pt;
+	filter: brightness(20%);
+}
+.disabled#scrollFuture, .disabled#scrollFuture:hover {
+	filter: opacity(0%);
 }
 .container {
 	max-width: 1000px;
@@ -95,7 +140,7 @@ li.deleting:hover:after {
 $(function(){
    $("#datepicker").datepicker({
       showOn : "button",
-      buttonImage : "images/calendar.png",
+      buttonImage : "images/calendar_navy.png",
       buttonText: "날짜 선택",
       buttonImageOnly : true,
       showButtonPanel : true,
@@ -124,22 +169,25 @@ $(function(){
 </script>
 </head>
 <body>
+<div class="dailyHeader">
+    <h4>일일업무 관리</h4>
+</div>
 <!-- 날짜선택바 -->
-<div id="dateMenu" class="w3-center" style="vertial-align:center; padding:1px;">
+<div id="dateMenu" class="w3-center" style="vertial-align: middle; padding:1px;">
    <span>
       <input type="text" id="datepicker" hidden="hidden">
       <input type="text" id="alterDate" hidden="hidden">
   </span>
   <span>
-      <img id="scrollPast" src="images/leftTriangle.png" width="15pt"/>
+      <img id="scrollPast" src="images/leftTriangle.png" width="15px"/>
    </span>
-   <h2 id="date" style="display: inline;"></h2>
+   <h4 id="date"></h4>
    <span>
-      <img id="scrollFuture" src="images/rightTriangle.png" width="15pt"/>
+      <img id="scrollFuture" src="images/rightTriangle.png" width="15px"/>
    </span>
 </div>
 
-<div id="content"></div>
+<div id="content" style="margin-top: 20px;"></div>
 
 <div id="selectedTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);">
 </div>
@@ -150,6 +198,7 @@ $(function(){
 </div>
 
 <script>
+
 var setCheckBox = function(input){
 	$(input).removeClass("fa fa-square-o");
 	$(input).addClass("fa fa-check-square-o");
@@ -209,11 +258,11 @@ var setCheckBox = function(input){
 		today = today.format("yyyy/MM/dd");
 		tomorrow = tomorrow.format("yyyy/MM/dd");
 		if ($("#datepicker").val() == today) {
-			$("#scrollFuture").show();
+			$("#scrollFuture").removeClass("disabled");
 		} else if ($("#datepicker").val() == tomorrow) {
-			$("#scrollFuture").hide();
+			$("#scrollFuture").addClass("disabled");
 		} else {
-			$("#scrollFuture").show();
+			$("#scrollFuture").removeClass("disabled");
 		}
 		$.ajax({
 			url : "controller?cmd=getAssignedPartsAction",
