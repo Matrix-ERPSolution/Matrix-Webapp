@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@include file="headSetting.jsp" %>
+<%@include file = "loginCheckUser.jsp" %>
 <style>
 #grad1 {
 	height: 640px;
