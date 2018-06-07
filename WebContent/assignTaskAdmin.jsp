@@ -124,11 +124,58 @@ li {
 	font-weight: bolder;
 	letter-spacing: 1px;
 	vertical-align: middle; 
-	padding:10px;
+	padding-top:10px;
 	text-align: center;
 }
 .subMenu{
-
+	padding: 10px;
+	margin-left:10px; 
+}
+.subMenu span{
+	font-size: 12pt;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+#addTaskFromTyping {	
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	text-align: center;
+}
+.yesButton{
+	background-color: white;
+	border: rgb(50, 132, 226) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
+	width: 50px;
+}
+#selectedTaskModal {
+	z-index:3;
+	display:none;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	overflow:auto;
+	background-color:rgb(0,0,0);
+	background-color:rgba(0,0,0,0.4);
+	bottom: 50px;
+}
+#selectedTaskPopup {
+	z-index:4;
+	position:fixed;
+	outline:0;
+	width:70%;
+	background-color: #99ccff; 
+	height: 30%; 
+	display: none;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+#selectedTask {
+	
 }
 </style>
 </head>
@@ -138,37 +185,38 @@ li {
 </div>
 <h4 id="date">${param.dateKor}</h4>
 <div id="taskFromRecommend">
-	<h4>오늘의 추천업무</h4>
+	<div id="recommendToggle" class="subMenu"><span>오늘의 추천업무</span></div>
 	<div id="recommendList">
 	</div>
 </div>
 
 <div id="taskFromManual">
-	<h4 id="">매뉴얼에서 선택하기</h4>
-	
-	<div id="manualList">매뉴얼 전체보기</div>
+	<div id="manualList" class="subMenu"><span>매뉴얼에서 선택하기</span></div>
 	<div id="manual">
 	</div>	
 </div>
 <div id="taskFromTyping">
-	<h4>직접 입력하기/매뉴얼에서 검색하기</h4>
+	<div class="subMenu"><span>직접 입력하기/매뉴얼에서 검색하기</span></div>
 	<div id="addTaskFromTyping" class="w3-dropdown-hover">
 		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요">
 		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border">
   		</div>
-		<button id="addTask">추가</button>
+		<button id="addTask" class="yesButton">추가</button>
 	</div>
 </div>
 
 <!-- 선택된 업무 출력 -->
-<div id="selectedTaskModal" style="z-index:3;display:none;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);bottom: 50px;">
+<div id="selectedTaskModal">
 </div>
-<div id="selectedTaskPopup" style="z-index:4;position:fixed;outline:0;width:100%; background-color: #99ccff; bottom: 0px; height: 50px; display:none;">
+<div id="selectedTaskPopup">
     <span id="selectedTask"></span>
     <span id="closeModal" class="w3-button" style="pad; top:0; padding:3px 6px;">&times;</span>
     <span id="goNext" class="w3-button" style="pad; position:absolute; right:0;top:0; padding:3px 6px;">다음 단계<img alt="next" src="images/rightTriangle.png" width="15pt"></span>
 </div>
 <script>
+$("#recommendToggle").click(function(){
+	$("#recommendList").toggle();
+});
 //매뉴얼목록 토글
 $("#manualList").click(function() {
 	$("#manual").toggle();
