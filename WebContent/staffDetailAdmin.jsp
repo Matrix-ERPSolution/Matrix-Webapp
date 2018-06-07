@@ -11,9 +11,17 @@
 <%@include file = "tabMenuAdmin.jsp" %>
 <style>
 .staffDetailHeader {
-	padding-top: 5px;
 	margin: auto;
 	text-align: center;
+	width: 60%;
+	border-bottom: #d4e5f7 solid;
+	margin-top: 10px;
+	height: auto;
+}
+.staffDetailHeader h4{
+	color: rgb(0, 51, 102);
+	font-weight: bolder;
+	letter-spacing: 1px;
 }
 </style>
 </head>

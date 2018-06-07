@@ -152,9 +152,9 @@ li {
 	margin: auto;
 }
 #selectedTaskResult {
-	width: 90%;
-	margin-left:5%;
-	margin-right:5%;
+	width: 80%;
+	margin-left:10%;
+	margin-right:10%;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-align: center;
@@ -163,6 +163,30 @@ li {
 }
 #selectedTask {
 	vertical-align: bottom;
+}
+.cancelButton {
+	width: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	text-align: center;
+	background-color: #bfbfbf;
+	color: black;
+	margin-top: 20px;
+}
+.endMenu {
+	margin-left:30%;
+	margin-right:30%;
+	width: 40%;
+	padding: 10px;
+	text-align: center;
+}
+.noButton{
+	background-color: white;
+	border: rgb(255, 128, 128) 1px solid;
+	border-radius: 10%;
+	color: black;
+	padding: 3px;
 }
 </style>
 </head>
@@ -199,10 +223,16 @@ ${param.oldDailyTask}
 <!-- 선택된 업무 출력 -->
 <div id="selectedTaskResult">
 	<span id="selectedTask" style="font-size: 11pt;">새로운 업무를 선택하세요</span>
-	<button id="update" class="confirmButton">수정완료</button>
-	<span id="closeModal" class="w3-button" style="pad; top:0; padding:4px 8px; float:right;">&times;</span>
+	<span id="closeModal" class="w3-button" style="pad; top:0; padding:4px 8px;">&times;</span>
+</div>
+<div class="endMenu">
+	<button id="update" class="confirmButton" style="float: left">수정완료</button>
+	<button id="cancel" class="noButton" style="float: right">취소</button>
 </div>
 <script>
+$("#cancel").click(function(){
+	location.href="controller?cmd=dailyTaskAdminUI"
+});
 $("#recommendToggle").click(function(){
 	$("#recommendList").toggle();
 });

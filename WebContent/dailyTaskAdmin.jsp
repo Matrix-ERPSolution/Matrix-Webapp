@@ -85,13 +85,12 @@ li.important::before {
 	font-size: 12px;
 	margin-left: -15px;
 }
-li.deleting:hover {
-	background-color: #99ccff;
-}
-li.deleting:hover:after {
+li.deleting:after {
 	content: "\26D4";
-	color: red;
+	color: rgb(255, 230, 230);
 }
+/* li.deleting:hover:after {
+} */
 .ui-datepicker-trigger {
 	width: 35px;
 	cursor: pointer;
@@ -183,19 +182,14 @@ li.deleting:hover:after {
 	border: rgb(50, 132, 226) 1px solid;
 	border-radius: 10%;
 	color: black;
-	padding: 3px;
-	width: 50px;
-}
-.yesButton:hover{
-	background-color: rgb(50, 132, 226);
+	padding: 5px 10px 5px 10px;
 }
 .noButton{
 	background-color: white;
 	border: rgb(255, 128, 128) 1px solid;
 	border-radius: 10%;
 	color: black;
-	padding: 3px;
-	width: 50px;
+	padding: 5px 10px 5px 10px;
 }
 </style>
 <script type="text/javascript">
@@ -358,6 +352,7 @@ $(function(){
 	/**업무 수정, 삭제  기능*/
 	$("#updateTask").click(function() {
 		$(this).toggleClass("clicked");
+		$("#deleteTask").hide();
 		if ($(this).hasClass("clicked")) {
 			$(".assignDetail").not($(".unfinished")).parent("li").css({
 				"color" : "lightgray"
@@ -365,7 +360,7 @@ $(function(){
 			$(".unfinished").show();
 			$(".unfinished").prev().show();
 			$(".unfinished").next().show();
-			$(this).html("수정완료");
+			$(this).html("수정 완료");
 		} else {
 			$(".assignDetail").not($(".unfinished")).parent("li").css({
 				"color" : "black"
@@ -373,6 +368,7 @@ $(function(){
 			$(".unfinished").not($(".personal").children()).hide();
 			$(".unfinished").prev().hide();
 			$(".unfinished").next().hide();
+			$("#deleteTask").show();
 			$(this).html("수정");
 		}
 	});
@@ -430,9 +426,10 @@ $(function(){
 	}
 
 	$("#deleteTask").click(function() {
+		$("#updateTask").hide();
 		$("li").toggleClass("deleting");
 		if ($("li").hasClass("deleting")) {
-			$(this).html("삭제완료");
+			$(this).html("삭제 완료");
 			$("li").click(function() {
 				var task = this.childNodes[0].nodeValue.trim();
 				if(confirm(task + ' 업무를 삭제하시겠습니까?')){
@@ -460,6 +457,7 @@ $(function(){
 			});
 		} else {
 			$(this).html("삭제");
+			$("#updateTask").show();
 			$("li").click("");
 		}
 		
