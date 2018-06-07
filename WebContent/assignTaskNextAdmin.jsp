@@ -13,7 +13,7 @@
 		0.2));
 	color: #003366;
 	cursor: pointer;
-	padding: 5px 5px 5px 20px;
+	padding: 7px 7px 7px 20px;
 	width: 95%;
 	text-align: left;
 	font-weight: bold;
@@ -22,7 +22,7 @@
 	transition: 0.4s;
 	margin: auto;
 	border-radius: 5px 5px 5px 5px;
-	letter-spacing: 5px;
+	letter-spacing: 1px;
 }
 
 
@@ -115,8 +115,9 @@ li {
     float: center;
 }
 .selectedAssignDetail{
-	font-size: 12pt;
-	color: blue;
+	font-size: 16px;
+	font-weight: bold;
+	color: #699fbb;
 }
 .panel.assignableStaffs {
 	overflow: auto;
@@ -141,7 +142,9 @@ li {
     display: inline-block;
 }
 .selected {
-	background-color: #99ccff;
+	font-size: 16px;
+	font-weight: bold;
+	color: #699fbb;
 }
 #selectedTaskBox {
 	box-shadow: 5px 5px 5px lightgray;
@@ -174,6 +177,21 @@ li {
 	border-radius: 10px;
 	box-shadow: 2px 2px 5px lightgray;
 }
+#assignButton {
+	color: white;
+	background-color: #003366;
+	border-color: #003366;
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px 10px 5px 10px;
+}
+#assignCancelButton {
+	background-color: white;
+	border-color: rgb(255, 230, 230);
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px 10px 5px 10px;
+}
 </style>
 </head>
 <body>
@@ -184,9 +202,9 @@ li {
 <div id="selectedTaskBox">
 	<h4 id="selectedTask">${param.selectedTask}</h4>
 </div>
-
+<br>
 <div id="assignTask">
-	<h6 style="font-size: 14px; margin-left: 10px;">담당자 지정하기</h6>
+	<h5 style="font-size: 14px; margin-left: 10px;">담당자 지정하기</h5>
 	<div class="accordion" id="assignableParts">파트별</div>
 	<div class="panel assignableParts">
 	</div>
@@ -195,17 +213,16 @@ li {
 	<div class="panel assignableStaffs">
 	</div>
 </div>
-
-<hr> <br>
-<h5>해당 업무를 <span class="selectedAssignDetail">&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="selectedAssignType"></span> 배정합니다.</h5>
-
-<hr> <br>
+<br>
+<h6 style="text-align: center;">해당 업무를 <span class="selectedAssignDetail"></span><span id="selectedAssignType"></span> 배정합니다.</h6>
+<br>
 <div style="text-align: center;">
 <!-- <input type="button" class="assignButton" value="배정하기">
 <input type="button" class="assignCancelButton" value="취소"> -->
 <button id="assignButton">배정하기</button>
 <button id="assignCancelButton">취소</button>
 </div>
+<br>
 <script>
 $(document).ready(function() {
 	if("${param.importance}"==1){
@@ -319,7 +336,7 @@ $('#assignButton').on('click',function (){
 	        	assignDetail : $(".selectedAssignDetail").attr("id")
 	        },
 	        success : function(result) {
-	        	alert("${param.selectedTask}를 " +$(".selectedAssignDetail").attr("id") + "에게 배정했습니다.");
+	        	alert("${param.selectedTask} 업무를 " + $(".selectedAssignDetail").text().trim() + $(".selectedAssignType").text() + "에게 배정했습니다.");
 				location.href = "controller?cmd=dailyTaskAdminUI";
 	        }
 	 });
