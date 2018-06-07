@@ -46,7 +46,7 @@ body {
 .cancelButton {
 	width: 200px;
 	padding: 10px;
-	border-radius: 20px;
+	border-radius: 10px;
 	border: none;
 	text-align: center;
 	background-color: #bfbfbf;
@@ -70,7 +70,7 @@ body {
 	height: 40px;
 }
 .findMenu span {
-	font-size: 14pt;
+	font-size: 12pt;
 	padding: 10px 15px 3px 15px;
 }
 .findMenu span.selected  {
@@ -118,13 +118,15 @@ input {
 	text-align: center;
 	background-color: rgba(0,0,0,0);
 	color: #004566;
-	font-weight: bold;
+}
+#goHome {
+
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+<img id="logo" src="images/logo_white.png" width="100%" height="100%" onclick="goHome()"><br>
 <br><br>
 <div class="findHeader">
 	<h4>아이디/비밀번호 찾기</h4>
@@ -137,7 +139,7 @@ input {
 	<span id="showFindPw">비밀번호 찾기</span>
 </div>
 <div class="findIdContent">
-	<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인명의 휴대폰 번호로 인증</div>
+	<div>&nbsp;&nbsp;&nbsp;&nbsp;본인명의 휴대폰 번호로 인증</div>
 	<div id="findId">
 		<input type="text" id="phoneNum" class="roundBox" required="required" placeholder="휴대폰 번호만 입력">
 		<button id="certify1" class="roundBox">인증</button>
@@ -168,7 +170,7 @@ input {
 			<div id="certifyResult"></div>
 			<button id="certify4" class="roundBox">인증</button>
 		</div><!-- phoneNumCertify end -->
-	</div><br><!-- findPassword end -->
+	</div><!-- findPassword end -->
 	
 	<div id="updatePassword">
 		<input type="password" id="newPw" class="roundBox" required="required" placeholder="비밀번호 재설정"><div id="pwCheck"></div><br>
@@ -176,6 +178,8 @@ input {
 		<button id="resetPw" class="roundBox" >변경</button>
 	</div><!-- updatePassword end -->
 </div>
+
+<div style="text-align:center;"><button id="goHome" class="roundBox cancelButton" onclick="goHome()">취소</button></div>
 </div>
 <script>
 $(document).ready(function() {
@@ -183,13 +187,13 @@ $(document).ready(function() {
 });
 $("#showFindId").click(function(){
 	$(".selected").removeClass("selected");
-	$(".selected").addClass("selected");
+	$(this).addClass("selected");
 	$(".findIdContent").show();
 	$(".findPwContent").hide();
 });
 $("#showFindPw").click(function(){
 	$(".selected").removeClass("selected");
-	$(".selected").addClass("selected");
+	$(this).addClass("selected");
 	$(".findPwContent").show();
 	$(".findIdContent").hide();
 });
@@ -275,18 +279,18 @@ $("#updatePassword").hide();
 	
 	//아이디 입력값 형식 검사: 
 	//아이디 : 6~16자 영소문자, 숫자-영소문자 1자 반드시 포함/정규표현식: ^(?=.*[a-z])[a-z0-9]{6,16}$
-		$("#userId").keyup(function() {
+	$("#userId").keyup(function() {
 		var regExpId = new RegExp("^(?=.*[a-z])[a-zA-Z0-9]{6,16}$");
 		if ($("#userId").val().length >= 17) {
 			$("#idCheck").html("아이디는 6~16자여야 합니다.");
 		} else if(!regExpId.test($("#userId").val())) {
 			$("#idCheck").html("아이디는 영문 소문자, 숫자만 사용가능합니다.");
 		} else {
-		$("#idCheck").html("");
+			$("#idCheck").html("");
 		}
 	}); 
 	
-	//아이디 유무 검사: v표 띄우기;;;;
+	/* //아이디 유무 검사: v표 띄우기;;;;
 		$.ajax({
 			url: "controller?cmd=isUserIdAction",
 			data: {
@@ -302,7 +306,7 @@ $("#updatePassword").hide();
 					$("#userPhoneNum").attr("disabled", true);
 				}
 			}
-		});
+		}); */
 	
 	//아이디에 해당하는 휴대폰 번호 보기
 		$("#findUserPhoneNum").click(function(){
@@ -365,6 +369,11 @@ $("#updatePassword").hide();
 				}
 			});		
 		});
+		
+		
+		function goHome(){
+			location.href="controller?cmd=homeUI";
+		}
 	</script>
 </body>
 </html>

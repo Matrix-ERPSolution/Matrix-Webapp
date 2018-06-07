@@ -91,7 +91,7 @@ ul {
 
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -10px;
 	margin-right: 5px;
 	margin-bottom: 3px;
@@ -145,9 +145,9 @@ li {
 	width: 80%;
 	text-align: center;
 }
-.yesButton{
-	background-color: white;
-	border: rgb(50, 132, 226) 1px solid;
+.addButton{
+	background-color: #e6f2ff;
+	border: none;
 	border-radius: 10%;
 	color: black;
 	padding: 3px;
@@ -242,17 +242,16 @@ li {
 	margin-left: 5%;
 }
 #oldTask {
-	margin-left: 55px;
+	margin-left: 30px;
 	font-size: 17px;
 	font-weight: bold;
-	vertical-align: middle;
-	margin-bottom: 3px;
+	margin-top: -15px;
 }
 #oldTask::before {
 	content: "\2605";
 	color: lightgray;
 	font-size: 30px;
-	padding-right: 15px;
+	padding-right: 20px;
 }
 .important#oldTask::before {
 	content: "\2605";
@@ -266,8 +265,8 @@ li {
 	<h4>업무 수정</h4>
 </div>
 <div id="oldTaskBox">
-	<h4 id="oldTask">${param.oldDailyTask}</h4>
-	<span class="assignDetail unfinished " id="${param.assignDetail}" style="float: right; display: inline-block;">${param.assignName}</span>
+	<span id="oldTask">${param.oldDailyTask}</span>
+	<span class="assignDetail unfinished " id="${param.assignDetail}" style="float: right; margin-right: 25px; margin-top: 15px; font-size: 15px; font-weight: bold; vertical-align: middle; color: gray; display: inline;">${param.assignName}</span>
 </div>
 <div id="taskFromRecommend">
 	<div id="recommendToggle" class="subMenu"><span>오늘의 추천업무</span></div>
@@ -281,14 +280,15 @@ li {
 	</div>
 </div>
 <div id="taskFromTyping">
-	<div class="subMenu"><span>직접 입력하기/매뉴얼에서 검색하기</span></div>
-	<div id="addTaskFromTyping" class="w3-dropdown-hover">
-		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요" style="margin-left: 10px;">
-		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border">
+	<div id="inputToggle" class="subMenu selected"><span>직접 입력하기/매뉴얼에서 검색하기</span></div>
+	<div>
+		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요" style="margin-left: 10px; width: 78%;">
+		<button id="addTask" class="addButton" style="display: inline;">추가</button>
+		<div id="addTaskFromTyping" class="w3-dropdown-hover" style="display: inline;">
+		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border" style="margin-left: 10px;">
   		</div>
-		<button id="addTask" class="yesButton">추가</button>
 	</div>
-	
+	</div>
 </div>
 </div>
 
@@ -522,7 +522,7 @@ var activateli = function(input) {
 						},
 						success : function(result) {
 							alert("${param.oldDailyTask} 업무를 " + $("#selectedTask").html().trim() + "업무로 변경하였습니다.")
-							location.href="controller?cmd=dailyTaskAdminUI";
+							location.href="../controller?cmd=dailyTaskAdminUI&date=${param.assignDate}";
 						}
 					})
 				}

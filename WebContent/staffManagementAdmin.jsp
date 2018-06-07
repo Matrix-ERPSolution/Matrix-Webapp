@@ -284,7 +284,7 @@ var closeModal = function(){
 /*퇴사*/
 var setLeaveDate= function(input){
 	var staffIdToSetLeaveDate = $(input).parents("tr").attr("id");
-	if(confirm(staffIdToSetLeaveDate+' 님을 퇴사시키겠습니까?')){
+	if(confirm($(input).parent().prevAll(".workingStaffName").html()+' 님을 퇴사시키겠습니까?')){
 		$.ajax({
 			url : "controller?cmd=setLeaveDateAction",
 			data : {

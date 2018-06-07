@@ -81,7 +81,7 @@
 
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -27px;
 	margin-right: 13px;
 }

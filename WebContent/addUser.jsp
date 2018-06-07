@@ -83,7 +83,7 @@ body {
 </style>
 </head>
 <body>
-<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+<img id="logo" src="images/logo_white.png" width="100%" height="100%" onclick="goHome()"><br>
 <br>
 <div class="addUserHeader">
 	<h4>회원가입</h4>
@@ -174,6 +174,10 @@ var backtoLogin = (function(){
 			});
 		}
 	});
+	
+	function goHome(){
+		location.href="controller?cmd=homeUI";
+	}
 	 
 </script>
 

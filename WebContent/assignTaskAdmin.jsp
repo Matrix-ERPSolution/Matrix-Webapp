@@ -96,7 +96,7 @@ ul {
 
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -10px;
 	margin-right: 5px;
 	margin-bottom: 3px;
@@ -179,9 +179,9 @@ li {
 	text-align: left;
 }
 
-.yesButton {
-	background-color: white;
-	border: rgb(50, 132, 226) 1px solid;
+.addButton {
+	background-color: #e6f2ff;
+	border: none;
 	border-radius: 10%;
 	color: black;
 	padding: 3px;
@@ -261,8 +261,8 @@ li {
 <div id="taskFromTyping">
 	<div id="inputToggle" class="subMenu selected"><span>직접 입력하기/매뉴얼에서 검색하기</span></div>
 	<div>
-		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요" style="margin-left: 10px;">
-		<button id="addTask" class="yesButton" style="display: inline;">추가</button>
+		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요" style="margin-left: 10px; width: 78%;">
+		<button id="addTask" class="addButton" style="display: inline;">추가</button>
 		<div id="addTaskFromTyping" class="w3-dropdown-hover" style="display: inline;">
 		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border" style="margin-left: 10px;">
   		</div>

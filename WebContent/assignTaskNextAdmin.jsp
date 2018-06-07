@@ -202,9 +202,8 @@ li {
 <div id="selectedTaskBox">
 	<h4 id="selectedTask">${param.selectedTask}</h4>
 </div>
-<br>
 <div id="assignTask">
-	<h5 style="font-size: 14px; margin-left: 10px;">담당자 지정하기</h5>
+	<p style="font-size: 15px; margin-left: 20px; margin-bottom: 3px; font-weight: bold;">담당자 지정하기</p>
 	<div class="accordion" id="assignableParts">파트별</div>
 	<div class="panel assignableParts">
 	</div>
@@ -324,7 +323,7 @@ for (i = 0; i < li.length; i++) {
 
 $('#assignButton').on('click',function (){
 	var selectedAssignType = "개인";
-	if($("#selectedAssignType").html()==" 파트에"){
+	if($("#selectedAssignType").html().trim()=="파트에"){
 		selectedAssignType = "파트";
 	}
 	 $.ajax({
@@ -334,18 +333,18 @@ $('#assignButton').on('click',function (){
 	        	assignDate : "${param.date}",
 	        	importance : "${param.importance}", 
 	        	assignType : selectedAssignType, 
-	        	assignDetail : $(".selectedAssignDetail").attr("id")
+	        	assignDetail : $(".selectedAssignDetail").prop("id")
 	        },
 	        success : function(result) {
 	        	alert("${param.selectedTask} 업무를 " + $(".selectedAssignDetail").text().trim() + $(".selectedAssignType").text() + "에게 배정했습니다.");
-				location.href = "controller?cmd=dailyTaskAdminUI&date={param.date}";
+				location.href = "controller?cmd=dailyTaskAdminUI&date=${param.date}";
 	        }
 	 });
 });
 
 $('#assignCancelButton').on('click',function (){
 	        	alert("홈화면으로 돌아갑니다.");
-				location.href = "controller?cmd=dailyTaskAdminUI&date={param.date}";
+				location.href = "controller?cmd=dailyTaskAdminUI&date=${param.date}";
 });
 </script>
 </body>

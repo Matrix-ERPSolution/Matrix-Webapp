@@ -94,7 +94,7 @@ body {
 </style>
 </head>
 <body>
-<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+<img id="logo" src="images/logo_white.png" width="100%" height="100%" onclick="goHome()"><br>
 <div class="addUserHeader">
 <div id="userHeader"><h4>회원인증</h4></div>
 
@@ -123,6 +123,10 @@ body {
 		$("#certifyAdmin").click(function() {
 			location.href = "controller?cmd=certifyAdminUI";
 		});
+		
+		function goHome(){
+			location.href="controller?cmd=homeUI";
+		}
 	</script>
 </body>
 </html>

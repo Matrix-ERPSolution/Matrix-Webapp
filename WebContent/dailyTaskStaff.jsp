@@ -75,7 +75,7 @@ ul {
 }
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -20px;
 	margin-right: 13px;
 }

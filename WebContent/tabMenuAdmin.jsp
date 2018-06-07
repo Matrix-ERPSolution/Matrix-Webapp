@@ -100,7 +100,7 @@ header {
     <a href="#updateUser" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">회원 정보 수정</a> 
     <a href="#notifications" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">알림 설정</a> 
     <a href="#help" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">도움말</a> 
-    <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 &nbsp;&nbsp; 1.0.0</a> 
+    <a href="#version" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">버전 정보 <span style="vertical-align: middle; font-size: 14px; color: gray; margin-right: -4px; float: right;">ver 1.0.0</span></a> 
     <a href="#developer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-blue">개발자 정보</a> 
     <a href="#logout" onclick="logout()" class="w3-bar-item w3-button w3-hover-blue" style="background-color: rgb(255, 230, 230);">로그아웃</a> 
   </div>

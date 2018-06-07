@@ -76,7 +76,7 @@ ul {
 }
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -20px;
 	margin-right: 13px;
 }
@@ -180,24 +180,6 @@ li.deleting:after {
 	padding: 5px 10px 5px 10px;
 }
 </style>
-<c:choose>
-	<c:when test="${!empty param.prevDate}">
-		<script>
-		$(document).ready(function() {
-			$("#datepicker").datepicker("setDate", "${param.prevDate}");
-			contentLoad();
-		});
-		</script>
-	</c:when>
-	<c:otherwise>
-		<script>
-		$(document).ready(function() {
-			$("#datepicker").datepicker("setDate", "0d");
-			contentLoad();
-		});
-		</script>
-	</c:otherwise>
-</c:choose>
 <script type="text/javascript">
 $("#dailyTaskTab").addClass("tapped");
 $(function(){
@@ -265,7 +247,24 @@ $(function(){
 <div id="updateTaskPopup" style="z-index:4;position:absolute;outline:0;margin:50px;top:100px;overflow-y:auto;background-color: white; display:none;">
     <span id="updateTaskContent"></span>
 </div>
-
+<c:choose>
+	<c:when test="${!empty param.prevDate}">
+		<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker("setDate", "${param.prevDate}");
+			contentLoad();
+		});
+		</script>
+	</c:when>
+	<c:otherwise>
+		<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker("setDate", "0d");
+			contentLoad();
+		});
+		</script>
+	</c:otherwise>
+</c:choose>
 <script>
 
 	// 아코디언
