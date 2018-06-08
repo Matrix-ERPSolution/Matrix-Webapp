@@ -500,13 +500,6 @@ insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, ass
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'POS기 프로그램 업데이트',	'2018/05/20',	0,	'파트',	'마감',	16,	'taehun',	'김태훈',	1	);
 insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (	daily_task_seq.nextval,	'근무태만 반성문 작성해오기',	'2018/05/20',	1,	'개인',	'taehun',	null,	'taehun',	'김태훈',	1	);
 
---일일업무에 추가
-insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '더치커피 원액 추출', '2018/06/08', 0,	'파트',	'미들',	35, null, null, 1);
-insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '그린티 파우더 발주 신청', '2018/06/08', 1, '개인', 'yunseok', 36, null, null,	1);
-insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '고객 쿠폰 사용금액 정산', '2018/06/08', 1, '개인', 'taehun', 37, null, null, 1);
-insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '오금점에서 파라솔 대여', '2018/06/08', 0, '파트', '오픈', null, null,	null, 1);
-insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '문정점에서 제빙기 대여', '2018/06/08', 0, '파트', '오픈', null, null,	null, 1);
-
 --일일 업무 날짜 최신화
 
 update daily_tasks set assign_date='2018/06/07' where assign_date='2018/05/20';
@@ -564,6 +557,27 @@ update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where a
 update daily_tasks set finisher_id='jonghyuk', finisher_name='박종혁' where assign_date='2018/06/02' and daily_task='행사 상품 재고 확인';
 update daily_tasks set finisher_id='jaesun', finisher_name='이재선' where assign_date='2018/06/02' and daily_task='화장실 청소';
 delete daily_tasks where assign_date='2018/06/02' and daily_task='바닥 쓸기';
+
+--매뉴얼 중복사항 수정
+delete from manual_tasks where manual_task_seq='53';
+delete from manual_tasks where manual_task_seq='50';
+delete from manual_tasks where manual_task_seq='54';
+delete from manual_tasks where manual_task_seq='55';
+delete from manual_tasks where manual_task_seq='56';
+delete from manual_tasks where manual_task_seq='46';
+delete from manual_tasks where manual_task_seq='47';
+delete from manual_tasks where manual_task_seq='48';
+delete from manual_tasks where manual_task_seq='40';
+delete from manual_tasks where manual_task_seq='52';
+delete from manual_tasks where manual_task_seq='49';
+
+--일일업무에 추가
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '손 세정제 리필', '2018/06/08', 0, '파트', '오픈', 30, 'yunjin', '김연진', 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '시즌별 메뉴 포스터 부착', '2018/06/08', 1, '파트', '오픈', 23, 'yunjin', '김연진', 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '현금 시재 확인', '2018/06/08', 0, '파트', '미들', 11, null, null, 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '은행에서 잔돈 교환', '2018/06/08', 0, '파트', '미들', 12, null, null, 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, '원두 재고량 점검', '2018/06/08', 0, '파트', '미들', 3, null, null, 1);
+insert into daily_tasks(daily_task_seq, daily_task, assign_date, importance, assign_type, assign_detail, manual_task_seq, finisher_id, finisher_name, admin_seq) values (daily_task_seq.nextval, 'POS기 먼지 제거', '2018/06/08', 0, '파트', '마감', 14, null, null, 1);
 
 --커밋하실건가요?
 commit?
