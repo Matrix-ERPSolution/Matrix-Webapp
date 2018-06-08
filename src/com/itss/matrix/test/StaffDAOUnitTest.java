@@ -60,11 +60,11 @@ public class StaffDAOUnitTest {
 		
 	}
 	
-	/**(공통)지점코드 입력 가능범위 초과 시-DAO 예외처리
+	/**(공통)지점코드 입력 가능범위 초과 시-DAO 예외처리*/
 	@Test
 	public void getWorkPartsWithOutofboundsBranchSeq(){
 		assertEquals(dao.getWorkParts(83374949).size(),0);	
-	}*/
+	}
 	
 	/**없는 지점의 소속파트 가져오기-현재UI에서 불가능한 기능-DAO 예외처리	
 	@Test
