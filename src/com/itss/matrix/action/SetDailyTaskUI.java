@@ -9,7 +9,7 @@ public class SetDailyTaskUI implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-		return "results/setDailyTask.jsp";
+		return "setDailyTask.jsp";
 	}
 
 }

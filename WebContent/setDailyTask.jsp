@@ -522,7 +522,7 @@ var activateli = function(input) {
 						},
 						success : function(result) {
 							alert("${param.oldDailyTask} 업무를 " + $("#selectedTask").html().trim() + "업무로 변경하였습니다.")
-							location.href="../controller?cmd=dailyTaskAdminUI&date=${param.assignDate}";
+							location.href="controller?cmd=dailyTaskAdminUI&date=${param.assignDate}";
 						}
 					})
 				}
