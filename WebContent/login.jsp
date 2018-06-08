@@ -32,7 +32,6 @@ body {
 	text-align: center;
 	background-color: rgba(0,0,0,0);
 	color: #004566;
-	font-weight: bold;
 }
 #login {
 	width: 200px;
@@ -44,7 +43,7 @@ body {
 	color: #FFFFFF;
 }
 #login:hover {
-	background-color: #002133;
+	background-color: #004065;
 }
 #logo {
 	max-width: 300px;
@@ -115,6 +114,10 @@ body {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
+#idCheck, #pwCheck {
+	color: gray;
+	font-size: 13px;
+}
 
 </style>
 <script type="text/javascript"></script>
@@ -124,7 +127,7 @@ body {
 		<div class="container">
 			<br>
 			<br> <input type="text" id="userId" name="userId"
-				placeholder="아이디" class="roundBox">
+				placeholder="아이디" class="roundBox" autocapitalize="none">
 			<br><span id="idCheck"></span><br>
 			<input type="password" id="pw" name="pw" placeholder="비밀번호"
 				class="roundBox">
@@ -207,6 +210,7 @@ $("saveID").checkboxradio();
 			var regExpId = new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$");
 			var regExpPw = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$");
 			if (!regExpId.test($("#userId").val()) || !regExpPw.test($("#pw").val())) {
+				$("#pwCheck").html("아이디, 비밀번호를 다시 확인해주세요");
 				check = false;
 			}
 		}
@@ -245,8 +249,7 @@ $("saveID").checkboxradio();
 				}
 			});	
 		} else {
-			alert("아이디, 비밀번호를 확인해주세요.");
-			 $( ".container" ).effect( "shake" );
+			$( ".container" ).effect( "shake" );
 		}
 		
 	});

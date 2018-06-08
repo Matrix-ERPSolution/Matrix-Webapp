@@ -10,6 +10,7 @@
 #content {
 	width: 100%;
 }
+
 .accordion {
 	background: linear-gradient(#d4e5f7, #d4e5f7, #d4e5f7, #d4e5f7, rgba(212, 229, 247,
 		0.2));
@@ -95,7 +96,7 @@ ul {
 
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -10px;
 	margin-right: 5px;
 	margin-bottom: 3px;
@@ -141,10 +142,12 @@ li {
 	padding: 10px;
 	margin-left: 10px;
 }
+
 .subMenu span {
 	font-weight: bold;
 	font-size: 15px;
 }
+
 .subMenu::after {
 	content: '\2795';
 	color: #003366;
@@ -152,6 +155,7 @@ li {
 	padding-left: 6px;
 	vertical-align: middle;
 }
+
 .subMenu.selected::after {
 	content: '\2796';
 }
@@ -167,17 +171,17 @@ li {
 	font-size: 13px;
 	width: 100%;
 	display: block;
-	padding: 1px;
-	text-align: left;
+	padding: 1px; text-align : left;
 	border: none;
 	white-space: normal;
 	float: none;
-	outline: 0
+	outline: 0;
+	text-align: left;
 }
 
-.yesButton {
-	background-color: white;
-	border: rgb(50, 132, 226) 1px solid;
+.addButton {
+	background-color: #e6f2ff;
+	border: none;
 	border-radius: 10%;
 	color: black;
 	padding: 3px;
@@ -204,23 +208,36 @@ li {
 	height: 40%;
 	width: 300px;
 	display: none;
-	border-radius: 10px;
-	margin-left: 30px;
+	border-radius: 10px; margin-left : 30px;
 	margin-top: 70px;
+	margin-left: 30px;
 }
+
 #selectedTask {
 	margin-left: 35px;
 	font-size: 17px;
 }
+
 #selectedTask::before {
 	content: "\2605";
 	color: lightgray;
 	font-size: 30px;
 	padding-right: 15px;
 }
+
 .important#selectedTask::before {
 	content: "\2605";
 	color: #3284e2;
+}
+
+#goNext {
+	position: absolute;
+	font-weight: bolder;
+	font-size: 15px;
+	color: #003366;
+	right: 30px;
+	bottom: 15px;
+	padding: 3px 6px;
 }
 </style>
 </head>
@@ -244,8 +261,8 @@ li {
 <div id="taskFromTyping">
 	<div id="inputToggle" class="subMenu selected"><span>직접 입력하기/매뉴얼에서 검색하기</span></div>
 	<div>
-		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요" style="margin-left: 10px;">
-		<button id="addTask" class="yesButton" style="display: inline;">추가</button>
+		<input id="addTaskFromTypingInput" type="text" placeholder="업무명을 입력해주세요" style="margin-left: 10px; width: 78%;">
+		<button id="addTask" class="addButton" style="display: inline;">추가</button>
 		<div id="addTaskFromTyping" class="w3-dropdown-hover" style="display: inline;">
 		<div id="searchFromManual" class="w3-dropdown-content w3-bar-block w3-border" style="margin-left: 10px;">
   		</div>
@@ -262,8 +279,13 @@ li {
     <br>
     <div style="color: gray; font-size: 10px; margin-left: 20px; display: block;">중요여부 click!</div>
     <div id="selectedTask"></div>
-    <span id="goNext" class="w3-button" style="pad; position:absolute; font-weight: bolder; font-size: 15px; color:#003366; right:30px; bottom:15px; padding:3px 6px;">다음 단계 <img alt="next" src="images/forward.png" width="17px" style="padding: 5 px; margin-left: 10px; margin-bottom: 2px;"></span>
+    <span id="goNext" class="w3-button" style="pad;">
+	다음 단계 
+    <img alt="next" src="images/forward.png" width="17px" style="padding: 5 px; margin-left: 10px; margin-bottom: 2px;">
+    </span>
 </div>
+<br>
+<br>
 <script>
 $("#recommendToggle").click(function(){
 	$("#recommendToggle").toggleClass("selected");

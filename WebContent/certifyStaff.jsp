@@ -111,7 +111,7 @@ body {
 </style>
 </head>
 <body>
-<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+<img id="logo" src="images/logo_white.png" width="100%" height="100%" onclick="goHome()"><br>
 	<div class=addUserHeader>
 		<span>직원 회원 인증</span>
 	</div>
@@ -200,6 +200,10 @@ body {
 			});
 		} 
 	}); */
+	
+	function goHome(){
+		location.href="controller?cmd=homeUI";
+	}
 </script>
 
 </body>

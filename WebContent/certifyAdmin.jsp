@@ -81,7 +81,7 @@ body {
 </style>
 </head>
 <body>
-	<img id="logo" src="images/logo_white.png" width="100%" height="100%" ><br>
+	<img id="logo" src="images/logo_white.png" width="100%" height="100%" onclick="goHome()"><br>
 <div class="addUserHeader">
 	<span>관리자 회원 인증</span>
 </div>
@@ -147,6 +147,10 @@ body {
 			 location.href="관리자 인증 처리 서블릿 링크."
 		 }
 	 })
+	 
+	 function goHome(){
+	location.href="controller?cmd=homeUI";
+}
 </script>
 </body>
 </html>

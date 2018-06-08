@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +76,7 @@ ul {
 }
 li {
 	list-style: none;
-	font-size: 14px;
+	font-size: 15px;
 	margin-left: -20px;
 	margin-right: 13px;
 }
@@ -109,19 +110,6 @@ li.deleting:after {
 	letter-spacing: 1px;
 	display:inline;
 }
-/*.modal {
-    display: none;  /* Hidden by default
-    position: fixed; /* Stay in place
-    z-index: 1; /* Sit on top 
-    padding-top: 100px; /* Location of the box 
-    left: 0;
-    top: 0;
-    width: 80%; /* Full width
-    height: 80%; /* Full height 
-    overflow: auto; /* Enable scroll if needed
-    background-color: rgb(0,0,0); /* Fallback color
-    background-color: rgba(0,0,0,0.4); /*  Black w/ opacity 
-}*/
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -194,7 +182,6 @@ li.deleting:after {
 </style>
 <script type="text/javascript">
 $("#dailyTaskTab").addClass("tapped");
-
 $(function(){
    $("#datepicker").datepicker({
       showOn : "button",
@@ -260,7 +247,24 @@ $(function(){
 <div id="updateTaskPopup" style="z-index:4;position:absolute;outline:0;margin:50px;top:100px;overflow-y:auto;background-color: white; display:none;">
     <span id="updateTaskContent"></span>
 </div>
-
+<c:choose>
+	<c:when test="${!empty param.prevDate}">
+		<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker("setDate", "${param.prevDate}");
+			contentLoad();
+		});
+		</script>
+	</c:when>
+	<c:otherwise>
+		<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker("setDate", "0d");
+			contentLoad();
+		});
+		</script>
+	</c:otherwise>
+</c:choose>
 <script>
 
 	// 아코디언
@@ -329,10 +333,7 @@ $(function(){
 			}
 		});
 	}
-	$(document).ready(function() {
-		$("#datepicker").datepicker("setDate", "0d");
-		contentLoad();
-	});
+	
 
 	/**왼쪽/오른쪽 버튼으로 날짜 선택 시 세부 페이지 이동 기능*/
 	$("#scrollPast").on("click", function() {
@@ -450,7 +451,7 @@ $(function(){
 							if(result["result"] == "성공") {
 								alert(task +' 업무가 삭제되었습니다.')
 							}
-							location.href="controller?cmd=dailyTaskAdminUI";
+							location.href="controller?cmd=dailyTaskAdminUI&date=" + $("#datepicker").val();
 						}
 					});
 				}
